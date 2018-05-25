@@ -24,7 +24,15 @@ u_int32_t *loadFile(char *path, u_int32_t *pointer) {
 void loadFile (char *fname, uint32_t *memory) {
     File *f = fopen(fname,"rb");
 
-    assert (file == NULL)
+    if ( f == NULL ) {
+        exit(-1);
+    }
+
+    size_t size = fread(memory,16384,1,f);
+
+    if (ferror(file)) {
+        exit(-1);
+    }
 }
 
 
