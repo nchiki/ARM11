@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/*
 
 u_int32_t *loadFile(char *path, u_int32_t *pointer) {
     FILE *binFile = 0; //all memory locations and registers initialised to 0
@@ -15,6 +16,15 @@ u_int32_t *loadFile(char *path, u_int32_t *pointer) {
     fread(pointer, 1, (size_t) size, binFile);
     fclose(binFile);
     return pointer;
+}
+
+*/
+
+
+void loadFile (char *fname, uint32_t *memory) {
+    File *f = fopen(fname,"rb");
+
+    assert (file == NULL)
 }
 
 

@@ -3,11 +3,39 @@
 #include "memoryImplementation.h"
 #include "binaryloader.c"
 
+
+
+
   int main(int argc, char **argv) {
 
+
+    // check if the correct number of inputs have been provided? ? ? ?
+
+    // function to load file
+    //void loadFile(char *fileName,
+
+    for ( int i = 0 ; i < 17; ++i ) {
+      machine.registers[i] = 0;
+    }
+
+    for ( int i = 0 ; i < 16384; ++i ) {
+      machine.memoryAlloc[i] = 0;
+    }
+
+    assert(argc == 2);
+
+    char *givenFile = argv[1];
+
+    // could use this to initialise to zero?
     uint32_t *memArray = (uint32_t *) calloc(16384, sizeof(uint32_t));
-    uint32_t *start = *loadFile(argv[1], 0);
+    machine.memoryAlloc = memArray;
     uint32_t *registerArray = (uint32_t *) calloc(17, sizeof(uint32_t));
+    machine.registers = registerArray;
+
+    // i'm assuming traversing through the array and then using calloc is redundant, but im still going to keep it in
+
+
+
     bool finalise = false;
 
     while (!finalise) {
