@@ -1,8 +1,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
+#include <assert.h>
 #include "memoryImplementation.h"
 #include "binaryloader.c"
-
+#include "execute.h"
 
 
 
@@ -23,10 +24,11 @@
     }*/
 
     // could use this to initialise to zero?
+    machine_type *machine;
     uint32_t *memArray = (uint32_t *) calloc(16384, sizeof(uint32_t));
-    machine.memoryAlloc = memArray;
+    machine->memoryAlloc = memArray; //not sure how to do this
     uint32_t *registerArray = (uint32_t *) calloc(17, sizeof(uint32_t));
-    machine.registers = registerArray;
+    machine->registers = registerArray;
     // i'm assuming traversing through the array and then using calloc is redundant, but im still going to keep it in
 
     assert(argc == 2 && "Incorrect number of arguments");
@@ -35,7 +37,7 @@
 
     // read from binary file into memory array
     // i wonder if i could do this : loadFile(givenFile, memArray) -> technically it should be fine because they both point to memAlloc[0]?
-    loadFile(givenFile,machine.memoryAlloc);
+    loadFile(givenFile,machine->memoryAlloc);
 
 
     /* for the main while loop of emulate:
@@ -59,18 +61,20 @@
 
 
 
-    bool finalise = false;
+    bool finalise = false; //finalise will become true when the instruction is the zero instruction: halt
 
     while (!finalise) {
-      uint32_t instruction = *registerArray[PC];
-      int cond = instruction >> 28;
-      switch (cond) {
 
-      }
-      int i = 0;
-      for (; i < 17; i++) {
-        printf("%d\n", registerArray[i]);
-      }
+      //execute
+      execute(*machine);
+
+      //decode
+      //needed a file that decodes the instructions
+
+      //fetch: takes the next instruction from program counter (what happens if the instruction is halt?)
+
+      registerArray[PC] += 4; // four bytes because is 4-byte addresable
+
 
       free(*registerArray);
       free(*memArray);
@@ -80,18 +84,4 @@
 
   }
 
-    // i honestly have no clue what this bit here does - niranjan 25 may
-    uint32_t fetch(uint32_t registerArray) {
-    uint32_t instr = (*registerArray)[15]; //taking the address stored in the PC
-    *registerArray[PC]++; // incrementing PC
-    return instr;
-  }
 
-  bool decode(uint32_t instruction) {
-
-    return true;
-}
-
-  void execute(uint32_t instruction) {
-
-}
