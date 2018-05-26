@@ -8,4 +8,4 @@ add_executable(C_code
         src/emulate.c
         src/binaryloader.c
         src/branch.c
-        src/memoryImplementation.h src/usefulConstants.h)
+        src/memoryImplementation.h src/usefulTools.h)

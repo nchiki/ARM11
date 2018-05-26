@@ -14,13 +14,13 @@
      * exist before this, does it?
     */
 
-    for ( int i = 0 ; i < 17; ++i ) {
+    /*for ( int i = 0 ; i < 17; ++i ) {
       machine.registers[i] = 0;
     }
 
     for ( int i = 0 ; i < 16384; ++i ) {
       machine.memoryAlloc[i] = 0;
-    }
+    }*/
 
     // could use this to initialise to zero?
     uint32_t *memArray = (uint32_t *) calloc(16384, sizeof(uint32_t));
@@ -73,6 +73,7 @@
       }
 
       free(*registerArray);
+      free(*memArray);
       return 0;
     }
 
