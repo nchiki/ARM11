@@ -1,3 +1,0 @@
-/home/nahida/Documents/C/C_code/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/nahida/Documents/C/C_code/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/nahida/Documents/C/C_code/cmake-build-debug/CMakeFiles/C_code.dir
