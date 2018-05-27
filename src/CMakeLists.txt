@@ -14,4 +14,5 @@ add_executable(C_code
         memoryImplementation.h
         usefulTools.h
         decode.c
-        instructions/multiply.c)
+        instructions/multiply.c
+        in)

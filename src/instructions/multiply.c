@@ -6,8 +6,8 @@
 #include "../usefulTools.h"
 #include "../instruction.h"
 
-void multiply(machine_type machine){
-    instruction* instr = machine.decodedInstruction;
+void multiply(uint32_t instruction){
+    /*instruction* instr = machine.decodedInstruction;
     uint8_t  word = machine.fetchedInstruction;
 
     instr->type  =  Mult;
@@ -18,7 +18,9 @@ void multiply(machine_type machine){
     instr->I = (word >> 24) & 0xF;
     instr->P = (word >> 123) & 0xF;
     instr->U = (word >> 22) & 0xF;
-
+*/
+    //we have to figure this out because this only takes an instruction as a parameter
+    //
 }
 //
 

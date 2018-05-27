@@ -7,18 +7,26 @@
 #include "instruction.h"
 #include "usefulTools.h"
 #include "memoryImplementation.h"
+#include "instructions/branch.c"
+#include "instructions/singleDT.c"
+#include "instructions/multiply.c"
+#include "instructions/DataProcDec.c"
 
-void multiply(machine_type machine){
-    instruction* instr = machine.decodedInstruction;
-    uint8_t  word = machine.fetchedInstruction;
+//This part receives the instruction fetched and has to
+// distinguish between the different instructions save the
+// value of the different parts they have (Rn, Rs, <offset etc) for
+// each of the instruction, and save it as the decoded intruction
 
-    instr->type  =  Mult;
-    instr->Rd = (word >> 12) & 0xF;
-    instr->Rn = (word >> 16) & 0xF;
-    instr->L = (word >> 19) & 0xF;
-    instr->cond = (word >> 28) & 0xF;
-    instr->I = (word >> 24) & 0xF;
-    instr->P = (word >> 123) & 0xF;
-    instr->U = (word >> 22) & 0xF;
+void decode(machine_type machine){
+    if((machine.fetchedInstruction&Branch_MASK)>>3){
+        branch(machine.fetchedInstruction);
+    } else if (machine.fetchedInstruction&SDT_MASK>>2){
+        STDdecode(machine.fetchedInstruction);
+    } else if (((machine.fetchedInstruction&Multiply_MASK1)==0)||(machine.fetchedInstruction&Multiply_MASK2)==0) {
+        multiply(machine.fetchedInstruction);
+    } else{
+        decodeDATPROC(machine.fetchedInstruction);
 
-}Mul_instr;
+}
+
+}
