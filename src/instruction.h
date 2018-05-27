@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include "usefulTools.h"
 
 typedef struct {
@@ -23,6 +24,7 @@ typedef struct {
     bool P;
     bool S;
     bool L;
+    bool U;
 
     //inmediate value
     uint16_t inmediateValue;
