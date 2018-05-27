@@ -4,6 +4,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdint.h>
 
 /*
 
@@ -22,7 +23,7 @@ u_int32_t *loadFile(char *path, u_int32_t *pointer) {
 
 
 void loadFile (char *fname, uint32_t *memory) {
-    File *f = fopen(fname,"rb");
+    FILE *f = fopen(fname,"rb");
 
     if ( f == NULL ) {
         exit(-1);
@@ -30,7 +31,7 @@ void loadFile (char *fname, uint32_t *memory) {
 
     size_t size = fread(memory,16384,1,f);
 
-    if (ferror(file)) {
+    if (ferror(f)) {
         exit(-1);
     }
 }

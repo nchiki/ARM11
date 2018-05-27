@@ -7,10 +7,11 @@ add_executable(C_code
         assemble.c
         emulate.c
         binaryloader.c
-        branch.c
+        instructions/singleDT.c
+        execute.h
+        execute.c
+        instruction.h
         memoryImplementation.h
         usefulTools.h
-        execute.c
-        execute.h
-        instruction.h
-        )
+        decode.c
+        instructions/multiply.c)

@@ -1,10 +1,11 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <assert.h>
+#include <stdint.h>
 #include "memoryImplementation.h"
 #include "binaryloader.c"
 #include "execute.h"
-
+#include <string.h>
 
 
   int main(int argc, char **argv) {
