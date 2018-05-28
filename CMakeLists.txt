@@ -5,4 +5,13 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(C_code
         src/assemble.c
-        src/emulate.c src/binaryloader.c src/singleDT.c)
+        src/emulate.c
+        src/binaryloader.c
+        src/branch.c
+        src/memoryImplementation.h
+        src/usefulTools.h
+        src/execute.c
+        src/execute.h
+        src/instruction.h
+        src/singleDT.c
+        src/decode.c)
