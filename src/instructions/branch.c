@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <stdio.h>
+#include <stdint.h>
 
 void branch(uint32_t instruction) {
     uint32_t offset = instruction & 0xFFFFFF; //24 bit offset

@@ -106,7 +106,10 @@ void execute_Halt(machine_type *machine){
 }
 
 void execute_branch(machine_type *machine){
-    //not implemented yet
+    //24-bit long offset turned into 32-bit long offset
+    int32_t offset = getBitRange(machine->decodedInstruction, 0, 24) | 0x000000;
+    machine->instructionFetched = false;
+    machine->registers[PC] = signedtwos_to_unsigned(offset);
 }
 
 void execute_SDT(machine_type *machine){
@@ -131,6 +134,15 @@ void printBits(uint32_t reg) {
         reg = reg << 1;
     }
     printf("\n");
+}
+
+//checks for negative value and turns offset into positive binary
+uint32_t signedtwos_to_unsigned(int32_t signednum){
+    if(signednum >> 31){
+        signednum = (~signednum) + 1;
+        signednum *= -1;
+    }
+    return signednum;
 }
 
 
