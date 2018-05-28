@@ -29,6 +29,7 @@ void decode(machine_type machine){
 }
 
 //extracts any number of bits from any starting index
+//start won't be included
 uint32_t getBitRange(uint32_t num, int start, int length){
     uint32_t res = 0;
     for(int i = start; i < start + length; i++){

@@ -5,6 +5,7 @@
 #include "instruction.h"
 #include <execute.h>
 #include "decode.c"
+#include "usefulTools.h"
 
 int checkCondition(machine_type *machine) {
     //checking whether the condition set in the cond field of the instruction correspond to the flags of the CPSR
@@ -40,7 +41,7 @@ int execute(machine_type *machine) {
                 execute_Halt(machine);
                 break;
             case None:
-                goto next;
+              //  goto next;
                 break;
             case DProc:
                 //execute code for data processing
@@ -49,7 +50,7 @@ int execute(machine_type *machine) {
                 //execute code for single data transfer
                 break;
             case Mult:
-                //execute code for multiply
+                execute_MulI(machine);
                 break;
             case Branch:
                 //execute code for branch
@@ -59,26 +60,62 @@ int execute(machine_type *machine) {
                 return EXIT_FAILURE;
         }
 
-        //moves to next instruction
-        next: machine->registers[PC] += 4;
+        //moves to next instruction, NOT NEEDED
+      //  next: machine->registers[PC] += 4;
 
     }
 }
 
-void execute_MulI(){
+void execute_MulI(machine_type *machine){
+    //simple multiplication
+    uint32_t result = machine->registers[getBitRange(machine->decodedInstruction,0,3)] *
+            machine->registers[getBitRange(machine->decodedInstruction,8,3)];
 
-    //still needs to be implemented
+    //if A is set, then add accumulator
+    if(getBitRange(machine->decodedInstruction,21,1)){
+        result += machine->registers[getBitRange(machine->decodedInstruction,12,3)];
+    }
+
+    //if S is set, update CPSR flag
+    if(getBitRange(machine->decodedInstruction,20,1)){
+        //N will be updated to the last bit of the result, rest of CPSR stays the same
+        machine->registers[CPSR] = (getBitRange(result, 31, 1) << 31) | getBitRange(machine->registers[CPSR],0,31);
+
+        //if result is zero, Z bit is set and the rest of CPSR stays the same
+        if(result == 0){
+            machine->registers[CPSR] = Z_MASK_32 | machine->registers[CPSR];
+        }
+    }
+
+
 
 }
 
-//still have to add printing every non zero memory location
 void execute_Halt(machine_type *machine){
     //printing the value of each register to standard output
     for(int i = 0; i < 17; i++){
         printBits(machine->registers[i]);
     }
+
+    //prints all non-zero memory locations
+    for(int i = 0; i < 16384; i++){
+        if(!(machine->memoryAlloc[i] == 0)){
+            printBits(machine->memoryAlloc[i]);
+        }
+    }
 }
 
+void execute_branch(machine_type *machine){
+    //not implemented yet
+}
+
+void execute_SDT(machine_type *machine){
+    //not implemented yet
+}
+
+void execute_DPI(machine_type *machine){
+    //not implemented yet
+}
 
 //prints bit sequence of register
 void printBits(uint32_t reg) {

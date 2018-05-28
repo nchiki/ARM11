@@ -5,7 +5,7 @@
 #include "../instruction.h"
 
 void multiply(uint32_t instruction){
-    instruction_type *instr = machine_type.decodedInstruction;
+  /*  instruction *instr = machine_type.decodedInstruction;
     uint8_t  word = machine_type.fetchedInstruction;
 
     instr->type  =  Mult;
@@ -16,5 +16,6 @@ void multiply(uint32_t instruction){
     instr->I = (word >> 24) & 0xF;
     instr->P = (word >> 123) & 0xF;
     instr->U = (word >> 22) & 0xF;
+    */
 }
 
