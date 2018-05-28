@@ -16,13 +16,13 @@
 
 void decode(machine_type machine){
     if((machine.fetchedInstruction&Branch_MASK)>>3){
-        branch(machine.fetchedInstruction);
+        branch(machine.fetchedInstruction, machine);
     } else if (machine.fetchedInstruction&SDT_MASK>>2){
-        STDdecode(machine.fetchedInstruction);
+        STDdecode(machine.fetchedInstruction, machine);
     } else if (((machine.fetchedInstruction&Multiply_MASK1)==0)||(machine.fetchedInstruction&Multiply_MASK2)==0) {
-        multiply(machine.fetchedInstruction);
+        multiply(machine.fetchedInstruction, machine);
     } else{
-        decodeDATPROC(machine.fetchedInstruction);
+        decodeDATPROC(machine.fetchedInstruction, machine);
 
 }
 
