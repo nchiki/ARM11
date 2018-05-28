@@ -1,5 +1,3 @@
-//
-// Created by Blanca Tebar on 26/05/2018.
 
 #include <stdio.h>
 #include <stdlib.h>

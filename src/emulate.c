@@ -27,9 +27,9 @@
     // could use this to initialise to zero?
     machine_type *machine;
     uint32_t *memArray = (uint32_t *) calloc(16384, sizeof(uint32_t));
-    machine->memoryAlloc = memArray; //not sure how to do this
+    *machine->memoryAlloc = memArray; //not sure how to do this
     uint32_t *registerArray = (uint32_t *) calloc(17, sizeof(uint32_t));
-    machine->registers = registerArray;
+    *machine->registers = registerArray;
     // i'm assuming traversing through the array and then using calloc is redundant, but im still going to keep it in
 
     assert(argc == 2 && "Incorrect number of arguments");

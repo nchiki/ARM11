@@ -1,6 +1,3 @@
-//
-// Created by Blanca Tebar on 25/05/2018.
-//
 
 #ifndef ARM11_28_MEMORYIMPLEMENTATION_H
 #define ARM11_28_MEMORYIMPLEMENTATION_H

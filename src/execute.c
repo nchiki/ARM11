@@ -1,11 +1,10 @@
-//
-// Created by Blanca Tebar on 26/05/2018.
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "memoryImplementation.h"
 #include "instruction.h"
 #include <execute.h>
+#include "decode.c"
 
 int checkCondition(machine_type *machine) {
     //checking whether the condition set in the cond field of the instruction correspond to the flags of the CPSR
@@ -38,9 +37,10 @@ int execute(machine_type *machine) {
     if (checkCondition(machine)) {
         switch (machine->decodedInstruction->type) {
             case Halt:
+                execute_Halt(machine);
                 break;
             case None:
-                //simply waiting for the next instruction?
+                goto next;
                 break;
             case DProc:
                 //execute code for data processing
@@ -58,8 +58,47 @@ int execute(machine_type *machine) {
                 fprintf(stderr, "invalid instruction");
                 return EXIT_FAILURE;
         }
+
+        //moves to next instruction
+        next: machine->registers[PC] += 4;
+
     }
 }
+
+void execute_MulI(){
+
+    //still needs to be implemented
+
+}
+
+//still have to add printing every non zero memory location
+void execute_Halt(machine_type *machine){
+    //printing the value of each register to standard output
+    for(int i = 0; i < 17; i++){
+        printBits(machine->registers[i]);
+    }
+}
+
+
+//prints bit sequence of register
+void printBits(uint32_t reg) {
+    int i;
+    uint32_t mask = 1 << 31;
+    for(i=0; i<32; ++i) {
+        if((reg & mask) == 0){
+            printf("0");
+        }
+        else {
+            printf("1");
+        }
+        reg = reg << 1;
+    }
+    printf("\n");
+}
+
+
+
+
 
 
 //

@@ -1,6 +1,3 @@
-//
-// Created by nb1317 on 5/25/18.
-//
 
 #ifndef PROJECT_USEFULCONSTANTS_H
 #define PROJECT_USEFULCONSTANTS_H
@@ -10,6 +7,11 @@
 #define Z_MASK 0X4
 #define C_MASK 0x2
 #define V_MASK 0x1
+#define Branch_MASK 0x08000000
+#define SDT_MASK 0x04000000
+#define Multiply_MASK1 0x00000080
+#define Multiply_MASK2 0x00000010
+
 
 typedef enum {
     EQ = 0,
@@ -29,5 +31,7 @@ typedef enum {
     SDT,
     DProc
 } instruction_type;
+
+
 
 #endif //PROJECT_USEFULCONSTANTS_H

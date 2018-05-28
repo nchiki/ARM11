@@ -1,6 +1,3 @@
-//
-// Created by Blanca Tebar on 26/05/2018.
-//
 
 #ifndef C_CODE_EXECUTE_H
 #define C_CODE_EXECUTE_H
