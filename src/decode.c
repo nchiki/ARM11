@@ -14,15 +14,15 @@
 // value of the different parts they have (Rn, Rs, <offset etc) for
 // each of the instruction, and save it as the decoded intruction
 
-void decode(MACHINE machine){
-    if((machine.c.fetchedInstruction&Branch_MASK)){
-        branch(machine.c.fetchedInstruction, machine);
-    } else if (machine.c.fetchedInstruction&SDT_MASK){
-        STDdecode(machine.c.fetchedInstruction, machine);
-    } else if (((machine.c.fetchedInstruction&Multiply_MASK1)==0)||(machine.c.fetchedInstruction&Multiply_MASK2)==0) {
-        decodeDATPROC(machine.c.fetchedInstruction, machine);
+void decode(MACHINE *machine){
+    if((machine->c.fetchedInstruction&Branch_MASK)){
+        branch(machine->c.fetchedInstruction, machine);
+    } else if (machine->c.fetchedInstruction&SDT_MASK){
+        STDdecode(machine->c.fetchedInstruction, machine);
+    } else if (((machine->c.fetchedInstruction&Multiply_MASK1)==0)||(machine->c.fetchedInstruction&Multiply_MASK2)==0) {
+        decodeDATPROC(machine->c.fetchedInstruction, machine);
     } else{
-        multiply(machine.c.fetchedInstruction, machine);
+        multiply(machine->c.fetchedInstruction, machine);
 }
 
 }

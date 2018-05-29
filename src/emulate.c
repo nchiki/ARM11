@@ -73,6 +73,7 @@
     while (!finalise) {
 
       //execute
+      // Do we need * here?
       execute(*machine);
 
       //decode
@@ -82,7 +83,7 @@
 
       registerArray[PC] += 4; // four bytes because is 4-byte addresable
 
-
+      // Do we need *?
       free(*registerArray);
       free(*memArray);
       return 0;
