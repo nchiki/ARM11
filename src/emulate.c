@@ -25,11 +25,17 @@
     }*/
 
     // could use this to initialise to zero?
-    machine_type *machine;
+    MACHINE *machine;
+
     uint32_t *memArray = (uint32_t *) calloc(16384, sizeof(uint32_t));
-    *machine->memoryAlloc = memArray; //not sure how to do this
+
+
+    (*machine)->mem.memoryAlloc = memArray; //not sure how to do this
+
+
     uint32_t *registerArray = (uint32_t *) calloc(17, sizeof(uint32_t));
-    *machine->registers = registerArray;
+
+    *machine->c.registers = registerArray;
     // i'm assuming traversing through the array and then using calloc is redundant, but im still going to keep it in
 
     assert(argc == 2 && "Incorrect number of arguments");
@@ -38,7 +44,7 @@
 
     // read from binary file into memory array
     // i wonder if i could do this : loadFile(givenFile, memArray) -> technically it should be fine because they both point to memAlloc[0]?
-    loadFile(givenFile,machine->memoryAlloc);
+    loadFile(givenFile,machine->mem.memoryAlloc);
 
 
     /* for the main while loop of emulate:

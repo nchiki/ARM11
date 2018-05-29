@@ -7,12 +7,12 @@
 #include "decode.c"
 #include "usefulTools.h"
 
-int checkCondition(machine_type *machine) {
+int checkCondition(MACHINE *machine) {
     //checking whether the condition set in the cond field of the instruction correspond to the flags of the CPSR
 
-    int cpsrFlags = machine->registers[CPSR] >> 28; //getting the four last bits of the CPSR
+    int cpsrFlags = machine->c.registers[CPSR] >> 28; //getting the four last bits of the CPSR
 
-    switch(machine->decodedInstruction->cond) {
+    switch(machine->c.decodedInstruction->cond) {
 
         case EQ:
             return cpsrFlags&Z_MASK; // equal
@@ -34,9 +34,9 @@ int checkCondition(machine_type *machine) {
 }
 //here we need something that distinguish between the different instructions, and applies the code that each of us
 //implemented before to execute it depending on the instruction
-void execute(machine_type *machine) {
+void execute(MACHINE *machine) {
     if (checkCondition(machine)) {
-        switch (machine->decodedInstruction->type) {
+        switch (machine->c.decodedInstruction->type) {
             case Halt:
                 execute_Halt(machine);
                 break;
@@ -61,25 +61,25 @@ void execute(machine_type *machine) {
     }
 }
 
-void execute_MulI(machine_type *machine){
+void execute_MulI(MACHINE *machine){
     //simple multiplication
-    uint32_t result = machine->registers[getBitRange(machine->decodedInstruction,0,4)] *
-            machine->registers[getBitRange(machine->decodedInstruction,8,4)];
+    uint32_t result = machine->c.registers[getBitRange(machine->c.decodedInstruction,0,4)] *
+            machine->c.registers[getBitRange(machine->c.decodedInstruction,8,4)];
 
     //if A is set, then add accumulator
-    if(getBitRange(machine->decodedInstruction,21,1)){
-        result += machine->registers[getBitRange(machine->decodedInstruction,12,4)];
+    if(getBitRange(machine->c.decodedInstruction,21,1)){
+        result += machine->c.registers[getBitRange(machine->c.decodedInstruction,12,4)];
     }
 
     //if S is set, update CPSR flag
-    if(getBitRange(machine->decodedInstruction,20,1)){
+    if(getBitRange(machine->c.decodedInstruction,20,1)){
         //N will be updated to the last bit of the result, rest of CPSR stays the same
 
-        machine->registers[CPSR] = (getBitRange(result, 31, 1) << 31) | getBitRange(machine->registers[CPSR],0,31);
+        machine->c.registers[CPSR] = (getBitRange(result, 31, 1) << 31) | getBitRange(machine->c.registers[CPSR],0,31);
 
         //if result is zero, Z bit is set and the rest of CPSR stays the same
         if(result == 0){
-            machine->registers[CPSR] = Z_MASK_32 | machine->registers[CPSR];
+            machine->c.registers[CPSR] = Z_MASK_32 | machine->c.registers[CPSR];
         }
     }
 
@@ -87,21 +87,21 @@ void execute_MulI(machine_type *machine){
 
 }
 
-void execute_Halt(machine_type *machine){
+void execute_Halt(MACHINE *machine){
     //printing the value of each register to standard output
     for(int i = 0; i < 17; i++){
-        printBits(machine->registers[i]);
+        printBits(machine->c.registers[i]);
     }
 
     //prints all non-zero memory locations
     for(int i = 0; i < 16384; i++){
-        if((machine->memoryAlloc[i] != 0)){
-            printBits(machine->memoryAlloc[i]);
+        if((machine->mem.memoryAlloc[i] != 0)){
+            printBits(machine->mem.memoryAlloc[i]);
         }
     }
 }
 
-void execute_branch(machine_type *machine){
+void execute_branch(MACHINE *machine){
     //24-bit long offset turned into 32-bit long offset
 
     //I don't know if this does the same thing as well
@@ -113,18 +113,18 @@ void execute_branch(machine_type *machine){
         offset |= 0xFC000000;
     }*/
 
-    int32_t offset = getBitRange(machine->decodedInstruction, 0, 24) | 0x000000;
-    machine->instructionFetched = false;
-    machine->registers[PC] = signedtwos_to_unsigned(offset);
+    int32_t offset = getBitRange(machine->c.decodedInstruction, 0, 24) | 0x000000;
+    machine->c.instructionFetched = false;
+    machine->c.registers[PC] = signedtwos_to_unsigned(offset);
 }
 
 
 
-void execute_SDT(machine_type *machine){
+void execute_SDT(MACHINE *machine){
     //not implemented yet
 }
 
-void execute_DPI(machine_type *machine){
+void execute_DPI(MACHINE *machine){
     //not implemented yet
 }
 
