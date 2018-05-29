@@ -33,6 +33,21 @@ typedef enum {
     DProc
 } instruction_type;
 
+typedef enum{
+    AND = 0000,
+    EOR = 0001,
+    SUB = 0010,
+    RSB = 0011,
+    ADD = 0100,
+    TST = 1000,
+    TEQ = 1001,
+    CMP = 1010,
+    ORR = 1100,
+    MOV = 1101
+} OPCODE;
+
+
+
 
 
 #endif //PROJECT_USEFULCONSTANTS_H

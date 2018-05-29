@@ -103,6 +103,16 @@ void execute_Halt(machine_type *machine){
 
 void execute_branch(machine_type *machine){
     //24-bit long offset turned into 32-bit long offset
+
+    //I don't know if this does the same thing as well
+    /*offset <<=2; // shift left
+
+    //sign extension for two's complement
+    if (offset >> 23 & 0x1) {
+        // the number is negative
+        offset |= 0xFC000000;
+    }*/
+
     int32_t offset = getBitRange(machine->decodedInstruction, 0, 24) | 0x000000;
     machine->instructionFetched = false;
     machine->registers[PC] = signedtwos_to_unsigned(offset);

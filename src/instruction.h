@@ -26,6 +26,9 @@ typedef struct {
 
     //inmediate value
     uint16_t inmediateValue;
+    
+    //operand2
+    uint16_t operand2;
 
 } instruction;
 //
