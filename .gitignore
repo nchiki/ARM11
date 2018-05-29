@@ -4,6 +4,8 @@
 cmake-build-debug/
 .idea/
 _mac/
+debugger.xml
+ide.general.xml
 
 #ignore temp files
 *~
