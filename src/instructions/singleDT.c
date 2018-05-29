@@ -5,7 +5,8 @@
 #include "instruction.h"
 #include "usefulTools.h"
 
-void STDdecode(uint32_t instruction, MACHINE *machine) {
+void SDTdecode(uint32_t instruction, MACHINE *machine) {
+	machine->c.decodedInstruction->type = SDT;
     machine->c.decodedInstruction->I = instruction&0x2000000;
     machine->c.decodedInstruction->P = instruction&0x1000000;
     machine->c.decodedInstruction->U = instruction&0x800000;
