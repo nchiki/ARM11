@@ -23,9 +23,9 @@ int checkCondition(machine_type *machine) {
         case LT:
             return (cpsrFlags&N_MASK) != ((cpsrFlags&V_MASK) >> 3); //less than
         case GT:
-            return (!(cpsrFlags&Z_MASK) & (cpsrFlags&N_MASK) == ((cpsrFlags&V_MASK) >> 3)); // greater than
+            return (!(cpsrFlags&Z_MASK) && (cpsrFlags&N_MASK) == ((cpsrFlags&V_MASK) << 3)); // greater than
         case LE:
-            return (cpsrFlags&Z_MASK) & (cpsrFlags&N_MASK) != ((cpsrFlags&V_MASK) >> 3); //less than or equal
+            return (cpsrFlags&Z_MASK) || ((cpsrFlags&N_MASK) != ((cpsrFlags&V_MASK) << 3)); //less than or equal
         case AL:
             return 1; //always
     }
@@ -34,7 +34,7 @@ int checkCondition(machine_type *machine) {
 }
 //here we need something that distinguish between the different instructions, and applies the code that each of us
 //implemented before to execute it depending on the instruction
-int execute(machine_type *machine) {
+void execute(machine_type *machine) {
     if (checkCondition(machine)) {
         switch (machine->decodedInstruction->type) {
             case Halt:
@@ -57,7 +57,6 @@ int execute(machine_type *machine) {
                 break;
             default:
                 fprintf(stderr, "invalid instruction");
-                return EXIT_FAILURE;
         }
 
         //moves to next instruction, NOT NEEDED
@@ -68,17 +67,18 @@ int execute(machine_type *machine) {
 
 void execute_MulI(machine_type *machine){
     //simple multiplication
-    uint32_t result = machine->registers[getBitRange(machine->decodedInstruction,0,3)] *
-            machine->registers[getBitRange(machine->decodedInstruction,8,3)];
+    uint32_t result = machine->registers[getBitRange(machine->decodedInstruction,0,4)] *
+            machine->registers[getBitRange(machine->decodedInstruction,8,4)];
 
     //if A is set, then add accumulator
     if(getBitRange(machine->decodedInstruction,21,1)){
-        result += machine->registers[getBitRange(machine->decodedInstruction,12,3)];
+        result += machine->registers[getBitRange(machine->decodedInstruction,12,4)];
     }
 
     //if S is set, update CPSR flag
     if(getBitRange(machine->decodedInstruction,20,1)){
         //N will be updated to the last bit of the result, rest of CPSR stays the same
+
         machine->registers[CPSR] = (getBitRange(result, 31, 1) << 31) | getBitRange(machine->registers[CPSR],0,31);
 
         //if result is zero, Z bit is set and the rest of CPSR stays the same
@@ -99,7 +99,7 @@ void execute_Halt(machine_type *machine){
 
     //prints all non-zero memory locations
     for(int i = 0; i < 16384; i++){
-        if(!(machine->memoryAlloc[i] == 0)){
+        if((machine->memoryAlloc[i] != 0)){
             printBits(machine->memoryAlloc[i]);
         }
     }
@@ -134,14 +134,9 @@ void execute_DPI(machine_type *machine){
 void printBits(uint32_t reg) {
     int i;
     uint32_t mask = 1 << 31;
-    for(i=0; i<32; ++i) {
-        if((reg & mask) == 0){
-            printf("0");
-        }
-        else {
-            printf("1");
-        }
-        reg = reg << 1;
+    for (i = 0; i < 32; ++i) {
+        printf("%i", (reg & mask) != 0);
+        reg <<= 1;
     }
     printf("\n");
 }
@@ -154,11 +149,4 @@ uint32_t signedtwos_to_unsigned(int32_t signednum){
     }
     return signednum;
 }
-
-
-
-
-
-
-//
 
