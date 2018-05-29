@@ -42,9 +42,7 @@
 
     char *givenFile = argv[1];
 
-    // read from binary file into memory array
-    // i wonder if i could do this : loadFile(givenFile, memArray) -> technically it should be fine because they both point to memAlloc[0]?
-    loadFile(givenFile,machine->mem.memoryAlloc);
+  
 
 
     /* for the main while loop of emulate:
@@ -63,10 +61,46 @@
      * essentially, it comes down to having a helper functions to perform decode, or having decode within the struct      
      * design decision here
      */
+     instruction NullInstruction {
+      type = None;
+      cond = 1111;
+      opcode = -1;
 
+      offset = 0;
 
+    //registers
+      Rn = -1;
+      Rd = -1;
+      Rs = -1;
+      Rm = -1;
 
+    //flags for operations
+      A = 0;
+      I = 0;
+      P = 0;
+      S = 0;
+      L = 0;
+      U = 0;
 
+    //immediate value
+      immediateValue = 0;
+    
+    //operand2
+      operand2 = 0;
+     }
+
+    machine->c.decodedInstruction = malloc(sizeof(instruction)); //creates space for the decoded instruction
+    machine->c.decodedInstruction = NullInstruction;
+
+    // read from binary file into memory array
+    // i wonder if i could do this : loadFile(givenFile, memArray) -> technically it should be fine because they both point to memAlloc[0]?
+    loadFile(givenFile,machine->mem.memoryAlloc);
+    
+
+    // --------------------MAIN WHILE LOOP---------------------------
+    //we need a if condition in fetch that checks if the instruction that has just been decoded is Halt, 
+    //if its so -> finalise to true and don't fetch
+    //if not -> fetch
 
     bool finalise = false; //finalise will become true when the instruction is the zero instruction: halt
 
@@ -77,13 +111,24 @@
       execute(*machine);
 
       //decode
-      //needed a file that decodes the instructions
+      *(machine->c.decodedInstruction) = NullInstruction;
+      decode(*machine);
 
-      //fetch: takes the next instruction from program counter (what happens if the instruction is halt?)
+      //fetch
+      uint16_t address = machine->c.registers[PC];
+      uint32_t fetched = 0;
+      //we need 4 iterations of the loop because each instruction is 4 bytes, and each iteration reads one byte
+      //shifting by 8 (1 byte = 8 bits)
+      for(int i = 0; i < 4; i++) {
+        value |= ((uint32_t) machine->mem.memory[address + i]) << (i * 8)) 
+      }
+      machine->c.fetchedInstruction = value;
+      machine->c.instructionFetched = true;
 
       registerArray[PC] += 4; // four bytes because is 4-byte addresable
 
       // Do we need *?
+      free(machine->c.decodedInstruction);
       free(*registerArray);
       free(*memArray);
       return 0;
