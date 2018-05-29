@@ -24,8 +24,8 @@ typedef struct {
     bool L;
     bool U;
 
-    //inmediate value
-    uint16_t inmediateValue;
+    //immediate value
+    uint16_t immediateValue;
     
     //operand2
     uint16_t operand2;

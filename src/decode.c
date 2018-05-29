@@ -15,21 +15,19 @@
 // each of the instruction, and save it as the decoded intruction
 
 void decode(machine_type machine){
-    if((machine.fetchedInstruction&Branch_MASK)>>3){
+    if((machine.fetchedInstruction&Branch_MASK)){
         branch(machine.fetchedInstruction, machine);
-    } else if (machine.fetchedInstruction&SDT_MASK>>2){
+    } else if (machine.fetchedInstruction&SDT_MASK){
         STDdecode(machine.fetchedInstruction, machine);
     } else if (((machine.fetchedInstruction&Multiply_MASK1)==0)||(machine.fetchedInstruction&Multiply_MASK2)==0) {
-        multiply(machine.fetchedInstruction, machine);
-    } else{
         decodeDATPROC(machine.fetchedInstruction, machine);
-
+    } else{
+        multiply(machine.fetchedInstruction, machine);
 }
 
 }
 
 //extracts any number of bits from any starting index
-//start won't be included
 uint32_t getBitRange(uint32_t num, int start, int length){
     uint32_t res = 0;
     for(int i = start; i < start + length; i++){
