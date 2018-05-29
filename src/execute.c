@@ -41,7 +41,6 @@ int execute(machine_type *machine) {
                 execute_Halt(machine);
                 break;
             case None:
-              //  goto next;
                 break;
             case DProc:
                 //execute code for data processing
@@ -53,15 +52,12 @@ int execute(machine_type *machine) {
                 execute_MulI(machine);
                 break;
             case Branch:
-                //execute code for branch
+                execute_branch(machine);
                 break;
             default:
                 fprintf(stderr, "invalid instruction");
                 return EXIT_FAILURE;
         }
-
-        //moves to next instruction, NOT NEEDED
-      //  next: machine->registers[PC] += 4;
 
     }
 }
@@ -111,6 +107,8 @@ void execute_branch(machine_type *machine){
     machine->instructionFetched = false;
     machine->registers[PC] = signedtwos_to_unsigned(offset);
 }
+
+
 
 void execute_SDT(machine_type *machine){
     //not implemented yet
