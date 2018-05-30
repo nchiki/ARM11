@@ -36,5 +36,4 @@ typedef struct {
     SHIFT_CODE shift;
 
 } instruction;
-//
 
