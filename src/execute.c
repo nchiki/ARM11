@@ -5,8 +5,7 @@
 #include "instruction.h"
 #include <execute.h>
 #include "decode.c"
-#include "usefulTools.h" 
-#include "usefulFuncs.c"
+
 
 int checkCondition(MACHINE *machine) {
     //checking whether the condition set in the cond field of the instruction correspond to the flags of the CPSR
@@ -37,6 +36,7 @@ int checkCondition(MACHINE *machine) {
 //here we need something that distinguish between the different instructions, and applies the code that each of us
 //implemented before to execute it depending on the instruction
 void execute(MACHINE *machine) {
+    // just a useless comment
     if (checkCondition(machine)) {
         switch (machine->c.decodedInstruction->type) {
             case Halt:
