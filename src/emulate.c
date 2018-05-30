@@ -45,14 +45,15 @@
 
     char *givenFile = argv[1];
 
-<<<<<<< Updated upstream
-  
-=======
+
+
+    // another useless comment
+            
     // read from binary file into memory array
     // i wonder if i could do this : loadFile(givenFile, memArray) -> technically it should be fine because they both point to memAlloc[0]?
 
-    loadFile(givenFile,machine->memoryAlloc);
->>>>>>> Stashed changes
+    loadFile(givenFile,machine->mem.memoryAlloc);
+
 
 
     /* for the main while loop of emulate:
