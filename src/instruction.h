@@ -10,6 +10,8 @@ typedef struct {
     uint8_t cond;
     uint8_t opcode;
 
+    uint32_t offset;
+
     //registers
     uint8_t Rn;
     uint8_t Rd;
