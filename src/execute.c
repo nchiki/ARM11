@@ -136,6 +136,8 @@ void execute_DPI(MACHINE *machine){
         //rotated times the number specified in bit 8 to 11
         int numberRot = getBitRange(instr, 8, 4) * 0x2;
         instr->operand2 = rotate(operand,numberRot);
+    } else{
+
     }
 
     //carry-out bit
