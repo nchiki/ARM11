@@ -110,6 +110,17 @@ void execute_branch(MACHINE *machine){
 
 
 void execute_SDT(MACHINE *machine){
+   if (machine->c.decodedInstruction->I) {
+       uint8_t shift = getBitRange(machine->c.decodedInstruction, 4, 8);
+       int shifterReg = getBitRange(machine->c.decodedInstruction, 0, 4);
+       machine->c.decodedInstruction->Rm = shifterReg;
+   } else {
+       machine->c.decodedInstruction->immediateValue = (machine->c.decodedInstruction->offset) & 0xFFF;
+   }
+
+   if(machine->c.decodedInstruction->P) {
+
+   }
 
 }
 
