@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <memoryImplementation.h>
-#include <instruction.h>
-#include "instruction.h"
-#include "memoryImplementation.h"
-#include "decode.c"
+#include <stdint.h>
+#include "../instruction.h"
+#include "../decode.c"
+#include "../memoryImplementation.h"
 
 void decodeDATPROC(uint32_t instruction, MACHINE *machine){
     machine->c.decodedInstruction->type = DProc;

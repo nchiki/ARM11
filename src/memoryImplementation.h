@@ -30,6 +30,3 @@ typedef struct {
 } MACHINE;
 
 #endif //ARM11_28_MEMORYIMPLEMENTATION_H
-
-
-memory mach

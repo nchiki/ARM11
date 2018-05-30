@@ -3,8 +3,6 @@ project(arm11_28 C)
 
 set(CMAKE_C_STANDARD 11)
 
-include_directories(src)
-
 add_executable(arm11_28
         src/instructions/branch.c
         src/instructions/DataProcDec.c

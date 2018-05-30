@@ -102,17 +102,6 @@ void execute_Halt(MACHINE *machine){
 }
 
 void execute_branch(MACHINE *machine){
-    //24-bit long offset turned into 32-bit long offset
-
-    //I don't know if this does the same thing as well
-    /*offset <<=2; // shift left
-
-    //sign extension for two's complement
-    if (offset >> 23 & 0x1) {
-        // the number is negative
-        offset |= 0xFC000000;
-    }*/
-
     int32_t offset = getBitRange(machine->c.decodedInstruction, 0, 24) | 0x000000;
     machine->c.instructionFetched = false;
     machine->c.registers[PC] = signedtwos_to_unsigned(offset);
@@ -121,11 +110,38 @@ void execute_branch(MACHINE *machine){
 
 
 void execute_SDT(MACHINE *machine){
-    //not implemented yet
+
 }
 
+
+//flags still need to be added
 void execute_DPI(MACHINE *machine){
-    //not implemented yet
+
+    //opcode is checked and saved in local variable result
+    instruction *instr = machine->c.decodedInstruction;
+    uint32_t result;
+    switch(machine->c.decodedInstruction->opcode){
+        case AND:
+        case TST: result = instr->Rn && instr->operand2;
+        break;
+        case EOR:
+        case TEQ: result = instr->Rn ^ instr->operand2;
+        break;
+        case SUB:
+        case CMP: result = instr->Rn - instr->operand2;
+        break;
+        case RSB: result = instr->operand2 - instr->Rn;
+        break;
+        case ADD: result = instr->Rn + instr->operand2;
+        break;
+        case ORR: result = instr->Rn || instr->operand2;
+        case MOV: result = instr->operand2;
+    }
+
+    //if one of these instructions, result is not written!
+    if(instr->opcode == TST || instr->opcode == TEQ || instr->opcode == CMP) {
+        machine->c.registers[machine->c.decodedInstruction->Rd] = result;
+    }
 }
 
 //prints bit sequence of register
