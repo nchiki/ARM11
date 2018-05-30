@@ -36,6 +36,7 @@ int checkCondition(MACHINE *machine) {
 //here we need something that distinguish between the different instructions, and applies the code that each of us
 //implemented before to execute it depending on the instruction
 void execute(MACHINE *machine) {
+    // just a useless comment
     if (checkCondition(machine)) {
         switch (machine->c.decodedInstruction->type) {
             case Halt:
@@ -157,7 +158,8 @@ void execute_DPI(MACHINE *machine){
         int numberRot = getBitRange(instr, 8, 4) * 0x2;
         instr->operand2 = rotate(operand,numberRot);
     } else{
-
+        uint16_t operand = shiftReg(instr->operand2, machine);
+        instr->operand2 = operand;
     }
 
     //carry-out bit
@@ -192,6 +194,7 @@ void execute_DPI(MACHINE *machine){
         machine->c.registers[CPSR];
 
     }
+    machine-
 
 
 }
@@ -274,12 +277,8 @@ uint16_t shiftReg(uint16_t operand, MACHINE *machine) {
             (machine->c.registers[machine->c.decodedInstruction->Rm]) =
                     ((machine->c.registers[machine->c.decodedInstruction->Rm])>> amount) | maskRotate;
             break;
-
-
-
-
-
     }
+    return machine->c.registers[machine->c.decodedInstruction->Rm];
 
 }
 
@@ -287,10 +286,25 @@ uint16_t shiftReg(uint16_t operand, MACHINE *machine) {
 
 //rotates with right shifts and takes number of rotations as parameter
 uint32_t rotate(uint32_t operand, int numberRot){
-    for(int i = 0; i < numberRot; i++){
+    int num = binToDec(numberRot);
+    for(int i = 0; i < num; i++){
         int firstBit = getBitRange(operand, 0, 1);
         operand = (firstBit << 31) | (operand >> 1);
     }
     return operand;
 }
 
+int binToDec(int n)
+{
+    int number = 0;
+    int i = 0;
+    int remainder;
+    while (n!=0)
+    {
+        remainder = n%10;
+        n /= 10;
+        number += remainder*pow(2,i);
+        ++i;
+    }
+    return number;
+}
