@@ -7,6 +7,8 @@
 #include "decode.c"
 #include "usefulTools.h"
 #include "usefulFuncs.c"
+#include<math.h>
+
 
 int checkCondition(MACHINE *machine) {
     //checking whether the condition set in the cond field of the instruction correspond to the flags of the CPSR

@@ -15,3 +15,4 @@ void multiply(uint32_t instruction, MACHINE *machine){
     machine->c.decodedInstruction->Rm = getBitRange(instruction, 0, 4);
 }
 
+

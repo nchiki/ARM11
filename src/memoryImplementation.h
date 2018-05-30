@@ -11,7 +11,10 @@
 
 //holds the state of the program
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 typedef struct{
     uint32_t memoryAlloc[16384];
 } MEMORY;

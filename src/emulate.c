@@ -14,6 +14,9 @@
      * one and have to mess around with pointers and what not?
      * at the start of this function, main, just initialise everything to zero. doesn't mean the struct variable cant
      * exist before this, does it?
+     *
+     * global var may be changed elsewhere unknowingly
+     *
     */
 
     /*for ( int i = 0 ; i < 17; ++i ) {
@@ -42,7 +45,14 @@
 
     char *givenFile = argv[1];
 
+<<<<<<< Updated upstream
   
+=======
+    // read from binary file into memory array
+    // i wonder if i could do this : loadFile(givenFile, memArray) -> technically it should be fine because they both point to memAlloc[0]?
+
+    loadFile(givenFile,machine->memoryAlloc);
+>>>>>>> Stashed changes
 
 
     /* for the main while loop of emulate:
@@ -128,12 +138,25 @@
 
       registerArray[PC] += 4; // four bytes because is 4-byte addressable
 
+<<<<<<< Updated upstream
       //execute
       execute(machine);
 
       //decode
       *(machine->c.decodedInstruction) = NullInstruction;
       decode(machine);
+=======
+
+      //decode
+      //needed a file that decodes the instructions
+
+      //fetch: takes the next instruction from program counter (what happens if the instruction is halt?)
+
+      registerArray[PC] += 4; // four bytes because is 4-byte addresable
+
+      //execute
+      execute(*machine);
+>>>>>>> Stashed changes
 
       free(machine->c.decodedInstruction);
       free(*registerArray);
