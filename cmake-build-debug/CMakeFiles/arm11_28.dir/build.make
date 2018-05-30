@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /homes/gp2617/clion-2018.1.3/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/nb1317/clion-2018.1.2/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /homes/gp2617/clion-2018.1.3/bin/cmake/bin/cmake -E remove -f
+RM = /home/nb1317/clion-2018.1.2/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /homes/gp2617/Documents/arm11_28
+CMAKE_SOURCE_DIR = /home/nb1317/arm11_28
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /homes/gp2617/Documents/arm11_28/cmake-build-debug
+CMAKE_BINARY_DIR = /home/nb1317/arm11_28/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/arm11_28.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/arm11_28.dir/flags.make
 
 CMakeFiles/arm11_28.dir/src/instructions/branch.c.o: CMakeFiles/arm11_28.dir/flags.make
 CMakeFiles/arm11_28.dir/src/instructions/branch.c.o: ../src/instructions/branch.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/gp2617/Documents/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/arm11_28.dir/src/instructions/branch.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/instructions/branch.c.o   -c /homes/gp2617/Documents/arm11_28/src/instructions/branch.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/arm11_28.dir/src/instructions/branch.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/instructions/branch.c.o   -c /home/nb1317/arm11_28/src/instructions/branch.c
 
 CMakeFiles/arm11_28.dir/src/instructions/branch.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/instructions/branch.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /homes/gp2617/Documents/arm11_28/src/instructions/branch.c > CMakeFiles/arm11_28.dir/src/instructions/branch.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/nb1317/arm11_28/src/instructions/branch.c > CMakeFiles/arm11_28.dir/src/instructions/branch.c.i
 
 CMakeFiles/arm11_28.dir/src/instructions/branch.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/instructions/branch.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /homes/gp2617/Documents/arm11_28/src/instructions/branch.c -o CMakeFiles/arm11_28.dir/src/instructions/branch.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/nb1317/arm11_28/src/instructions/branch.c -o CMakeFiles/arm11_28.dir/src/instructions/branch.c.s
 
 CMakeFiles/arm11_28.dir/src/instructions/branch.c.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/arm11_28.dir/src/instructions/branch.c.o.provides.build: CMakeFiles/a
 
 CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.o: CMakeFiles/arm11_28.dir/flags.make
 CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.o: ../src/instructions/DataProcDec.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/gp2617/Documents/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.o   -c /homes/gp2617/Documents/arm11_28/src/instructions/DataProcDec.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.o   -c /home/nb1317/arm11_28/src/instructions/DataProcDec.c
 
 CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /homes/gp2617/Documents/arm11_28/src/instructions/DataProcDec.c > CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/nb1317/arm11_28/src/instructions/DataProcDec.c > CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.i
 
 CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /homes/gp2617/Documents/arm11_28/src/instructions/DataProcDec.c -o CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/nb1317/arm11_28/src/instructions/DataProcDec.c -o CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.s
 
 CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.o.provides.build: CMakeFi
 
 CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o: CMakeFiles/arm11_28.dir/flags.make
 CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o: ../src/instructions/multiply.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/gp2617/Documents/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o   -c /homes/gp2617/Documents/arm11_28/src/instructions/multiply.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o   -c /home/nb1317/arm11_28/src/instructions/multiply.c
 
 CMakeFiles/arm11_28.dir/src/instructions/multiply.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/instructions/multiply.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /homes/gp2617/Documents/arm11_28/src/instructions/multiply.c > CMakeFiles/arm11_28.dir/src/instructions/multiply.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/nb1317/arm11_28/src/instructions/multiply.c > CMakeFiles/arm11_28.dir/src/instructions/multiply.c.i
 
 CMakeFiles/arm11_28.dir/src/instructions/multiply.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/instructions/multiply.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /homes/gp2617/Documents/arm11_28/src/instructions/multiply.c -o CMakeFiles/arm11_28.dir/src/instructions/multiply.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/nb1317/arm11_28/src/instructions/multiply.c -o CMakeFiles/arm11_28.dir/src/instructions/multiply.c.s
 
 CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o.provides.build: CMakeFiles
 
 CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.o: CMakeFiles/arm11_28.dir/flags.make
 CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.o: ../src/instructions/singleDT.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/gp2617/Documents/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.o   -c /homes/gp2617/Documents/arm11_28/src/instructions/singleDT.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.o   -c /home/nb1317/arm11_28/src/instructions/singleDT.c
 
 CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /homes/gp2617/Documents/arm11_28/src/instructions/singleDT.c > CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/nb1317/arm11_28/src/instructions/singleDT.c > CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.i
 
 CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /homes/gp2617/Documents/arm11_28/src/instructions/singleDT.c -o CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/nb1317/arm11_28/src/instructions/singleDT.c -o CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.s
 
 CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.o.requires:
 
@@ -155,16 +155,16 @@ CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.o.provides.build: CMakeFiles
 
 CMakeFiles/arm11_28.dir/src/assemble.c.o: CMakeFiles/arm11_28.dir/flags.make
 CMakeFiles/arm11_28.dir/src/assemble.c.o: ../src/assemble.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/gp2617/Documents/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/arm11_28.dir/src/assemble.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/assemble.c.o   -c /homes/gp2617/Documents/arm11_28/src/assemble.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/arm11_28.dir/src/assemble.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/assemble.c.o   -c /home/nb1317/arm11_28/src/assemble.c
 
 CMakeFiles/arm11_28.dir/src/assemble.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/assemble.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /homes/gp2617/Documents/arm11_28/src/assemble.c > CMakeFiles/arm11_28.dir/src/assemble.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/nb1317/arm11_28/src/assemble.c > CMakeFiles/arm11_28.dir/src/assemble.c.i
 
 CMakeFiles/arm11_28.dir/src/assemble.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/assemble.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /homes/gp2617/Documents/arm11_28/src/assemble.c -o CMakeFiles/arm11_28.dir/src/assemble.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/nb1317/arm11_28/src/assemble.c -o CMakeFiles/arm11_28.dir/src/assemble.c.s
 
 CMakeFiles/arm11_28.dir/src/assemble.c.o.requires:
 
@@ -179,16 +179,16 @@ CMakeFiles/arm11_28.dir/src/assemble.c.o.provides.build: CMakeFiles/arm11_28.dir
 
 CMakeFiles/arm11_28.dir/src/binaryloader.c.o: CMakeFiles/arm11_28.dir/flags.make
 CMakeFiles/arm11_28.dir/src/binaryloader.c.o: ../src/binaryloader.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/gp2617/Documents/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/arm11_28.dir/src/binaryloader.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/binaryloader.c.o   -c /homes/gp2617/Documents/arm11_28/src/binaryloader.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/arm11_28.dir/src/binaryloader.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/binaryloader.c.o   -c /home/nb1317/arm11_28/src/binaryloader.c
 
 CMakeFiles/arm11_28.dir/src/binaryloader.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/binaryloader.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /homes/gp2617/Documents/arm11_28/src/binaryloader.c > CMakeFiles/arm11_28.dir/src/binaryloader.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/nb1317/arm11_28/src/binaryloader.c > CMakeFiles/arm11_28.dir/src/binaryloader.c.i
 
 CMakeFiles/arm11_28.dir/src/binaryloader.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/binaryloader.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /homes/gp2617/Documents/arm11_28/src/binaryloader.c -o CMakeFiles/arm11_28.dir/src/binaryloader.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/nb1317/arm11_28/src/binaryloader.c -o CMakeFiles/arm11_28.dir/src/binaryloader.c.s
 
 CMakeFiles/arm11_28.dir/src/binaryloader.c.o.requires:
 
@@ -203,16 +203,16 @@ CMakeFiles/arm11_28.dir/src/binaryloader.c.o.provides.build: CMakeFiles/arm11_28
 
 CMakeFiles/arm11_28.dir/src/decode.c.o: CMakeFiles/arm11_28.dir/flags.make
 CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/decode.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/gp2617/Documents/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/arm11_28.dir/src/decode.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/decode.c.o   -c /homes/gp2617/Documents/arm11_28/src/decode.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/arm11_28.dir/src/decode.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/decode.c.o   -c /home/nb1317/arm11_28/src/decode.c
 
 CMakeFiles/arm11_28.dir/src/decode.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/decode.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /homes/gp2617/Documents/arm11_28/src/decode.c > CMakeFiles/arm11_28.dir/src/decode.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/nb1317/arm11_28/src/decode.c > CMakeFiles/arm11_28.dir/src/decode.c.i
 
 CMakeFiles/arm11_28.dir/src/decode.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/decode.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /homes/gp2617/Documents/arm11_28/src/decode.c -o CMakeFiles/arm11_28.dir/src/decode.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/nb1317/arm11_28/src/decode.c -o CMakeFiles/arm11_28.dir/src/decode.c.s
 
 CMakeFiles/arm11_28.dir/src/decode.c.o.requires:
 
@@ -227,16 +227,16 @@ CMakeFiles/arm11_28.dir/src/decode.c.o.provides.build: CMakeFiles/arm11_28.dir/s
 
 CMakeFiles/arm11_28.dir/src/emulate.c.o: CMakeFiles/arm11_28.dir/flags.make
 CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/emulate.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/gp2617/Documents/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/arm11_28.dir/src/emulate.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/emulate.c.o   -c /homes/gp2617/Documents/arm11_28/src/emulate.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/arm11_28.dir/src/emulate.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/emulate.c.o   -c /home/nb1317/arm11_28/src/emulate.c
 
 CMakeFiles/arm11_28.dir/src/emulate.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/emulate.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /homes/gp2617/Documents/arm11_28/src/emulate.c > CMakeFiles/arm11_28.dir/src/emulate.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/nb1317/arm11_28/src/emulate.c > CMakeFiles/arm11_28.dir/src/emulate.c.i
 
 CMakeFiles/arm11_28.dir/src/emulate.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/emulate.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /homes/gp2617/Documents/arm11_28/src/emulate.c -o CMakeFiles/arm11_28.dir/src/emulate.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/nb1317/arm11_28/src/emulate.c -o CMakeFiles/arm11_28.dir/src/emulate.c.s
 
 CMakeFiles/arm11_28.dir/src/emulate.c.o.requires:
 
@@ -251,16 +251,16 @@ CMakeFiles/arm11_28.dir/src/emulate.c.o.provides.build: CMakeFiles/arm11_28.dir/
 
 CMakeFiles/arm11_28.dir/src/execute.c.o: CMakeFiles/arm11_28.dir/flags.make
 CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/execute.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/homes/gp2617/Documents/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/arm11_28.dir/src/execute.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/execute.c.o   -c /homes/gp2617/Documents/arm11_28/src/execute.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/arm11_28.dir/src/execute.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/execute.c.o   -c /home/nb1317/arm11_28/src/execute.c
 
 CMakeFiles/arm11_28.dir/src/execute.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/execute.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /homes/gp2617/Documents/arm11_28/src/execute.c > CMakeFiles/arm11_28.dir/src/execute.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/nb1317/arm11_28/src/execute.c > CMakeFiles/arm11_28.dir/src/execute.c.i
 
 CMakeFiles/arm11_28.dir/src/execute.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/execute.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /homes/gp2617/Documents/arm11_28/src/execute.c -o CMakeFiles/arm11_28.dir/src/execute.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/nb1317/arm11_28/src/execute.c -o CMakeFiles/arm11_28.dir/src/execute.c.s
 
 CMakeFiles/arm11_28.dir/src/execute.c.o.requires:
 
@@ -273,6 +273,30 @@ CMakeFiles/arm11_28.dir/src/execute.c.o.provides: CMakeFiles/arm11_28.dir/src/ex
 CMakeFiles/arm11_28.dir/src/execute.c.o.provides.build: CMakeFiles/arm11_28.dir/src/execute.c.o
 
 
+CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o: CMakeFiles/arm11_28.dir/flags.make
+CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o: ../src/usefulFuncs.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o   -c /home/nb1317/arm11_28/src/usefulFuncs.c
+
+CMakeFiles/arm11_28.dir/src/usefulFuncs.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/usefulFuncs.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/nb1317/arm11_28/src/usefulFuncs.c > CMakeFiles/arm11_28.dir/src/usefulFuncs.c.i
+
+CMakeFiles/arm11_28.dir/src/usefulFuncs.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/usefulFuncs.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/nb1317/arm11_28/src/usefulFuncs.c -o CMakeFiles/arm11_28.dir/src/usefulFuncs.c.s
+
+CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.requires:
+
+.PHONY : CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.requires
+
+CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.provides: CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.requires
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.provides.build
+.PHONY : CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.provides
+
+CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.provides.build: CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o
+
+
 # Object files for target arm11_28
 arm11_28_OBJECTS = \
 "CMakeFiles/arm11_28.dir/src/instructions/branch.c.o" \
@@ -283,7 +307,8 @@ arm11_28_OBJECTS = \
 "CMakeFiles/arm11_28.dir/src/binaryloader.c.o" \
 "CMakeFiles/arm11_28.dir/src/decode.c.o" \
 "CMakeFiles/arm11_28.dir/src/emulate.c.o" \
-"CMakeFiles/arm11_28.dir/src/execute.c.o"
+"CMakeFiles/arm11_28.dir/src/execute.c.o" \
+"CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o"
 
 # External object files for target arm11_28
 arm11_28_EXTERNAL_OBJECTS =
@@ -297,9 +322,10 @@ arm11_28: CMakeFiles/arm11_28.dir/src/binaryloader.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/decode.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/emulate.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/execute.c.o
+arm11_28: CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o
 arm11_28: CMakeFiles/arm11_28.dir/build.make
 arm11_28: CMakeFiles/arm11_28.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/homes/gp2617/Documents/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking C executable arm11_28"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking C executable arm11_28"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/arm11_28.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -316,6 +342,7 @@ CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/binaryloader.c.o.r
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/decode.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/execute.c.o.requires
+CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.requires
 
 .PHONY : CMakeFiles/arm11_28.dir/requires
 
@@ -324,6 +351,6 @@ CMakeFiles/arm11_28.dir/clean:
 .PHONY : CMakeFiles/arm11_28.dir/clean
 
 CMakeFiles/arm11_28.dir/depend:
-	cd /homes/gp2617/Documents/arm11_28/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /homes/gp2617/Documents/arm11_28 /homes/gp2617/Documents/arm11_28 /homes/gp2617/Documents/arm11_28/cmake-build-debug /homes/gp2617/Documents/arm11_28/cmake-build-debug /homes/gp2617/Documents/arm11_28/cmake-build-debug/CMakeFiles/arm11_28.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/nb1317/arm11_28/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/nb1317/arm11_28 /home/nb1317/arm11_28 /home/nb1317/arm11_28/cmake-build-debug /home/nb1317/arm11_28/cmake-build-debug /home/nb1317/arm11_28/cmake-build-debug/CMakeFiles/arm11_28.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/arm11_28.dir/depend
 

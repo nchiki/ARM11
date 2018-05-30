@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /homes/gp2617/clion-2018.1.3/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/nb1317/clion-2018.1.2/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /homes/gp2617/clion-2018.1.3/bin/cmake/bin/cmake -E remove -f
+RM = /home/nb1317/clion-2018.1.2/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /homes/gp2617/Documents/arm11_28
+CMAKE_SOURCE_DIR = /home/nb1317/arm11_28
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /homes/gp2617/Documents/arm11_28/cmake-build-debug
+CMAKE_BINARY_DIR = /home/nb1317/arm11_28/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /homes/gp2617/Documents/arm11_28/cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/homes/gp2617/clion-2018.1.3/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/nb1317/clion-2018.1.2/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -70,7 +70,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/homes/gp2617/clion-2018.1.3/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/nb1317/clion-2018.1.2/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /homes/gp2617/Documents/arm11_28/cmake-build-debug/CMakeFiles /homes/gp2617/Documents/arm11_28/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nb1317/arm11_28/cmake-build-debug/CMakeFiles /home/nb1317/arm11_28/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /homes/gp2617/Documents/arm11_28/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nb1317/arm11_28/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -366,6 +366,33 @@ src/instructions/singleDT.c.s:
 	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.s
 .PHONY : src/instructions/singleDT.c.s
 
+src/usefulFuncs.o: src/usefulFuncs.c.o
+
+.PHONY : src/usefulFuncs.o
+
+# target to build an object file
+src/usefulFuncs.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o
+.PHONY : src/usefulFuncs.c.o
+
+src/usefulFuncs.i: src/usefulFuncs.c.i
+
+.PHONY : src/usefulFuncs.i
+
+# target to preprocess a source file
+src/usefulFuncs.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/usefulFuncs.c.i
+.PHONY : src/usefulFuncs.c.i
+
+src/usefulFuncs.s: src/usefulFuncs.c.s
+
+.PHONY : src/usefulFuncs.s
+
+# target to generate assembly for a file
+src/usefulFuncs.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/usefulFuncs.c.s
+.PHONY : src/usefulFuncs.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -402,6 +429,9 @@ help:
 	@echo "... src/instructions/singleDT.o"
 	@echo "... src/instructions/singleDT.i"
 	@echo "... src/instructions/singleDT.s"
+	@echo "... src/usefulFuncs.o"
+	@echo "... src/usefulFuncs.i"
+	@echo "... src/usefulFuncs.s"
 .PHONY : help
 
 

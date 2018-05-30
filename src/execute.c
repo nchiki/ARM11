@@ -205,6 +205,8 @@ void execute_DPI(MACHINE *machine){
 //prints bit sequence of register
 void printBits(uint32_t reg) {
     int i;
+    reg = __bswap_32(reg);
+    // flip the bits before output 
     uint32_t mask = 1 << 31;
     for (i = 0; i < 32; ++i) {
         printf("%i", (reg & mask) != 0);

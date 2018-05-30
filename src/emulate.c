@@ -7,6 +7,7 @@
 #include "execute.c"
 #include <string.h>
 #include "decode.c"
+#include<byteswap.h>
 
   int main(int argc, char **argv) {
     /* explanation:
@@ -116,6 +117,11 @@
     for(int i = 0; i < 4; i++) {
             fetched |= ((uint32_t) machine->mem.memoryAlloc[address + i]) << (i * 8);
         }
+
+
+    fetched = bswap_32(fetched);
+    // flipped the bits here
+
     machine->c.fetchedInstruction= fetched;
     registerArray[PC] += 4;
     decode(machine);
@@ -134,6 +140,10 @@
       for(int i = 0; i < 4; i++) {
         fetched |= ((uint32_t) machine->mem.memoryAlloc[address + i]) << (i * 8);
       }
+
+      fetched = bswap_32(fetched);
+      //flippd the bits here
+
       machine->c.fetchedInstruction = fetched;
       finalise = fetched == 0;
 
