@@ -138,32 +138,22 @@
 
       registerArray[PC] += 4; // four bytes because is 4-byte addressable
 
-<<<<<<< Updated upstream
+
       //execute
       execute(machine);
 
       //decode
       *(machine->c.decodedInstruction) = NullInstruction;
       decode(machine);
-=======
-
-      //decode
-      //needed a file that decodes the instructions
-
-      //fetch: takes the next instruction from program counter (what happens if the instruction is halt?)
 
       registerArray[PC] += 4; // four bytes because is 4-byte addresable
 
-      //execute
-      execute(*machine);
->>>>>>> Stashed changes
-
-      free(machine->c.decodedInstruction);
-      free(*registerArray);
-      free(*memArray);
     }
 
     execute(machine);
+    free(machine->c.decodedInstruction);
+    free(*registerArray);
+    free(*memArray);
     return 0;
   }
 
