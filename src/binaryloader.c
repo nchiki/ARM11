@@ -18,7 +18,7 @@ u_int32_t *loadFile(char *path, u_int32_t *pointer) {
 
 */
 
-
+// this is just a test comment
 void loadFile (char *fname, uint32_t *memory) {
     FILE *f = fopen(fname,"rb");
 
