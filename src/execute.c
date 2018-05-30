@@ -13,7 +13,6 @@ int checkCondition(MACHINE *machine) {
     int cpsrFlags = machine->c.registers[CPSR] >> 28; //getting the four last bits of the CPSR
 
     switch(machine->c.decodedInstruction->cond) {
-
         case EQ:
             return cpsrFlags&Z_MASK; // equal
         case NE:
@@ -28,6 +27,8 @@ int checkCondition(MACHINE *machine) {
             return (cpsrFlags&Z_MASK) || ((cpsrFlags&N_MASK) != ((cpsrFlags&V_MASK) << 3)); //less than or equal
         case AL:
             return 1; //always
+        default:
+            return 0;
     }
 
 
@@ -40,13 +41,11 @@ void execute(MACHINE *machine) {
             case Halt:
                 execute_Halt(machine);
                 break;
-            case None:
-                break;
             case DProc:
-                //execute code for data processing
+                execute_DPI(machine);
                 break;
             case SDT:
-                //execute code for single data transfer
+                execute_SDT(machine);
                 break;
             case Mult:
                 execute_MulI(machine);
@@ -92,18 +91,10 @@ void execute_Halt(MACHINE *machine){
     for(int i = 0; i < 17; i++){
         printBits(machine->c.registers[i]);
     }
-
-    //prints all non-zero memory locations
-    for(int i = 0; i < 16384; i++){
-        if((machine->mem.memoryAlloc[i] != 0)){
-            printBits(machine->mem.memoryAlloc[i]);
-        }
-    }
 }
 
 void execute_branch(MACHINE *machine){
     int32_t offset = getBitRange(machine->c.decodedInstruction, 0, 24) | 0x000000;
-    machine->c.instructionFetched = false;
     machine->c.registers[PC] = signedtwos_to_unsigned(offset);
 }
 

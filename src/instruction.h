@@ -33,5 +33,4 @@ typedef struct {
     uint16_t operand2;
 
 } instruction;
-//
 

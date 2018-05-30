@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include "memoryImplementation.h"
 #include "binaryloader.c"
-#include "execute.h"
+#include "execute.c"
 #include <string.h>
 #include "decode.c"
 
@@ -64,7 +64,7 @@
      instruction NullInstruction = {
       None,
       1111,
-      -1,
+      2, //Random value not equal to any know cond codes
       0,
 
     //registers
@@ -89,55 +89,56 @@
      };
 
     machine->c.decodedInstruction = malloc(sizeof(instruction)); //creates space for the decoded instruction
-     *(machine->c.decodedInstruction) = NullInstruction;
+    *(machine->c.decodedInstruction) = NullInstruction;
 
     // read from binary file into memory array
     // i wonder if i could do this : loadFile(givenFile, memArray) -> technically it should be fine because they both point to memAlloc[0]?
     loadFile(givenFile,machine->mem.memoryAlloc);
-    
+
+    // Fill the pipeline before you begin
+
+    uint16_t address = machine->c.registers[PC];
+    uint32_t fetched = 0;
+    for(int i = 0; i < 4; i++) {
+            fetched |= ((uint32_t) machine->mem.memoryAlloc[address + i]) << (i * 8);
+        }
+    machine->c.fetchedInstruction= fetched;
+    registerArray[PC] += 4;
+    decode(machine);
+
 
     // --------------------MAIN WHILE LOOP---------------------------
-    //we need a if condition in fetch that checks if the instruction that has just been decoded is Halt, 
-    //if its so -> finalise to true and don't fetch
-    //if not -> fetch
 
     bool finalise = false; //finalise will become true when the instruction is the zero instruction: halt
 
     while (!finalise) {
+      //fetch
+      address = machine->c.registers[PC];
+      fetched = 0;
+      //we need 4 iterations of the loop because each instruction is 4 bytes, and each iteration reads one byte
+      //shifting by 8 (1 byte = 8 bits)
+      for(int i = 0; i < 4; i++) {
+        fetched |= ((uint32_t) machine->mem.memoryAlloc[address + i]) << (i * 8);
+      }
+      machine->c.fetchedInstruction = fetched;
+      finalise = fetched == 0;
+
+      registerArray[PC] += 4; // four bytes because is 4-byte addressable
 
       //execute
-<<<<<<< HEAD
-      execute(*machine);
-=======
-      // Do we need * here?
       execute(machine);
->>>>>>> refs/remotes/origin/master
 
       //decode
       *(machine->c.decodedInstruction) = NullInstruction;
       decode(machine);
 
-      //fetch
-      uint16_t address = machine->c.registers[PC];
-      uint32_t fetched = 0;
-      //we need 4 iterations of the loop because each instruction is 4 bytes, and each iteration reads one byte
-      //shifting by 8 (1 byte = 8 bits)
-      for(int i = 0; i < 4; i++) {
-        address |= ((uint32_t) machine->mem.memoryAlloc[address + i]) << (i * 8);
-      }
-      machine->c.fetchedInstruction = address;
-      machine->c.instructionFetched = true;
-
-      registerArray[PC] += 4; // four bytes because is 4-byte addresable
-
-      // Do we need *?
       free(machine->c.decodedInstruction);
       free(*registerArray);
       free(*memArray);
-      return 0;
     }
 
-
+    execute(machine);
+    return 0;
   }
 
 
