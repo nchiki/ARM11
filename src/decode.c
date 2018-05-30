@@ -1,5 +1,5 @@
 
-//interface for all isntructions
+//interface for alltructions
 
 #include "instruction.h"
 #include "usefulTools.h"
@@ -25,15 +25,8 @@ void decode(MACHINE *machine){
     } else{
         multiply(machine->c.fetchedInstruction, machine);
     }
-    *(machine->c.decodedInstruction) = machine->c.fetchedInstruction;
+    (machine->c.decodedInstruction) = machine->c.fetchedInstruction;
 
 }
 
-//extracts any number of bits from any starting index
-uint32_t getBitRange(uint32_t num, int start, int length){
-    uint32_t res = 0;
-    for(int i = start; i < start + length; i++){
-        res += (1 << i) & num;
-    }
-    return res >> start;
-}
+

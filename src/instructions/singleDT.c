@@ -1,9 +1,10 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <stdio.h>
-#include "memoryImplementation.h"
-#include "instruction.h"
-#include "usefulTools.h"
+#include "../memoryImplementation.h"
+#include "../instruction.h"
+#include "../usefulTools.h"
+#include "../usefulFuncs.c"
 
 void SDTdecode(uint32_t instruction, MACHINE *machine) {
 	machine->c.decodedInstruction->type = SDT;
