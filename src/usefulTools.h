@@ -46,6 +46,13 @@ typedef enum{
     MOV = 1101
 } OPCODE;
 
+typedef enum {
+    LSL = 00,
+    LSR = 01,
+    ASR = 10,
+    ROR = 11
+} SHIFT_CODE;
+
 
 
 

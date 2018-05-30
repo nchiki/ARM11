@@ -32,6 +32,8 @@ typedef struct {
     //operand2
     uint16_t operand2;
 
+    uint16_t carry;
+    SHIFT_CODE shift;
+
 } instruction;
-//
 

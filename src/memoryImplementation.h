@@ -18,7 +18,6 @@ typedef struct{
 
 typedef struct{
     uint32_t registers[17];
-    bool instructionFetched;
     uint32_t fetchedInstruction;
     instruction *decodedInstruction;
 } CPU;
