@@ -3,7 +3,7 @@
 #include "../memoryImplementation.h"
 #include "../usefulTools.h"
 #include "../instruction.h"
-#include "decode.c"
+#include "../usefulFuncs.c"
 
 void multiply(uint32_t instruction, MACHINE *machine){
 	machine->c.decodedInstruction->type = Mult;

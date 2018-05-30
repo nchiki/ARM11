@@ -6,7 +6,7 @@
 #include "binaryloader.c"
 #include "execute.h"
 #include <string.h>
-
+#include "decode.c"
 
   int main(int argc, char **argv) {
     /* explanation:
@@ -30,12 +30,12 @@
     uint32_t *memArray = (uint32_t *) calloc(16384, sizeof(uint32_t));
 
 
-    (*machine)->mem.memoryAlloc = memArray; //not sure how to do this
+      *(machine->mem.memoryAlloc) = memArray; //not sure how to do this
 
 
     uint32_t *registerArray = (uint32_t *) calloc(17, sizeof(uint32_t));
 
-    *machine->c.registers = registerArray;
+      *(machine->c.registers) = registerArray;
     // i'm assuming traversing through the array and then using calloc is redundant, but im still going to keep it in
 
     assert(argc == 2 && "Incorrect number of arguments");
@@ -61,36 +61,35 @@
      * essentially, it comes down to having a helper functions to perform decode, or having decode within the struct      
      * design decision here
      */
-     instruction NullInstruction {
-      type = None;
-      cond = 1111;
-      opcode = -1;
-
-      offset = 0;
+     instruction NullInstruction = {
+      None,
+      1111,
+      -1,
+      0,
 
     //registers
-      Rn = -1;
-      Rd = -1;
-      Rs = -1;
-      Rm = -1;
+      -1,
+      -1,
+      -1,
+      -1,
 
     //flags for operations
-      A = 0;
-      I = 0;
-      P = 0;
-      S = 0;
-      L = 0;
-      U = 0;
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
 
     //immediate value
-      immediateValue = 0;
+      0,
     
     //operand2
-      operand2 = 0;
-     }
+      0
+     };
 
     machine->c.decodedInstruction = malloc(sizeof(instruction)); //creates space for the decoded instruction
-    machine->c.decodedInstruction = NullInstruction;
+     *(machine->c.decodedInstruction) = NullInstruction;
 
     // read from binary file into memory array
     // i wonder if i could do this : loadFile(givenFile, memArray) -> technically it should be fine because they both point to memAlloc[0]?
@@ -108,11 +107,11 @@
 
       //execute
       // Do we need * here?
-      execute(*machine);
+      execute(machine);
 
       //decode
       *(machine->c.decodedInstruction) = NullInstruction;
-      decode(*machine);
+      decode(machine);
 
       //fetch
       uint16_t address = machine->c.registers[PC];
@@ -120,9 +119,9 @@
       //we need 4 iterations of the loop because each instruction is 4 bytes, and each iteration reads one byte
       //shifting by 8 (1 byte = 8 bits)
       for(int i = 0; i < 4; i++) {
-        value |= ((uint32_t) machine->mem.memory[address + i]) << (i * 8)) 
+        address |= ((uint32_t) machine->mem.memoryAlloc[address + i]) << (i * 8);
       }
-      machine->c.fetchedInstruction = value;
+      machine->c.fetchedInstruction = address;
       machine->c.instructionFetched = true;
 
       registerArray[PC] += 4; // four bytes because is 4-byte addresable
