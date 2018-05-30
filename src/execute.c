@@ -114,6 +114,8 @@ void execute_SDT(MACHINE *machine){
        uint8_t shift = getBitRange(machine->c.decodedInstruction, 4, 8);
        int shifterReg = getBitRange(machine->c.decodedInstruction, 0, 4);
        machine->c.decodedInstruction->Rm = shifterReg;
+       shiftReg(machine->c.decodedInstruction->offset & 0xFFF, machine);
+
    } else {
        machine->c.decodedInstruction->immediateValue = (machine->c.decodedInstruction->offset) & 0xFFF;
    }
@@ -174,4 +176,71 @@ uint32_t signedtwos_to_unsigned(int32_t signednum){
     }
     return signednum;
 }
+//need commenting ----------------------------------
+uint16_t shiftReg(uint16_t operand, MACHINE *machine) {
+    int amount;
+    if (operand & 1) {
+        amount = getBitRange(machine->c.registers[getBitRange(operand, 8, 4)], 0, 8);
+    } else {
+        amount = getBitRange(operand, 7, 5);
+    }
+    switch(getBitRange(operand, 4, 2)) {
+        case 00: //logical shift left
+            machine->c.decodedInstruction->shift = LSL;
+            if (machine->c.decodedInstruction->S) {
+                uint32_t mask = 1 << (32 - amount);
+                machine->c.registers[CPSR] &= 0xDFFFFFFF;
+                mask = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29;
+                machine->c.registers[CPSR] |= mask;
+            }
+            (machine->c.registers[machine->c.decodedInstruction->Rm]) <<= amount;
+            break;
+        case 01: //logical shift right
+            machine->c.decodedInstruction->shift = LSR;
+            if (machine->c.decodedInstruction->S) {
+                uint32_t mask = 1 << (amount - 1);
+                machine->c.registers[CPSR] &= 0xDFFFFFFF;
+                mask = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29;
+                machine->c.registers[CPSR] |= mask;
+            }
+            (machine->c.registers[machine->c.decodedInstruction->Rm]) >>= amount;
+            break;
+        case 10: //arithmetic shift right
+            machine->c.decodedInstruction->shift = ASR;
+            if (machine->c.decodedInstruction->S) {
+                uint32_t mask = 1 << (amount - 1);
+                machine->c.registers[CPSR] &= 0xDFFFFFFF;
+                mask = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29;
+                machine->c.registers[CPSR] |= mask;
+            }
+            int signBit = (machine->c.registers[machine->c.decodedInstruction->Rm] &800000000) >> 31;
+            uint32_t maskASR = 0;
+            for (int i = 0; i < amount; i++) {
+                maskASR |= signBit << (32-i);
+            }
+            (machine->c.registers[machine->c.decodedInstruction->Rm]) = ((machine->c.registers[machine->c.decodedInstruction->Rm])>> amount) | maskASR;
+            break;
+        case 11: // right shift right
+            machine->c.decodedInstruction->shift = ASR;
+            if (machine->c.decodedInstruction->S) {
+                uint32_t mask = 1 << (amount - 1);
+                machine->c.registers[CPSR] &= 0xDFFFFFFF;
+                mask = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29;
+                machine->c.registers[CPSR] |= mask;
+            }
+            uint32_t maskRotate = 0;
+            for (int i = 0; i < amount; i++) {
+                maskRotate |= signBit << i;
+            }
+            (machine->c.registers[machine->c.decodedInstruction->Rm]) = ((machine->c.registers[machine->c.decodedInstruction->Rm])>> amount) | maskRotate;
+            break;
+
+
+
+
+
+    }
+
+}
+
 

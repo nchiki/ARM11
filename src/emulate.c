@@ -85,7 +85,10 @@
       0,
     
     //operand2
-      0
+      0,
+      0,
+      -1,
+
      };
 
     machine->c.decodedInstruction = malloc(sizeof(instruction)); //creates space for the decoded instruction
