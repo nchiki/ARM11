@@ -118,10 +118,21 @@ void execute_SDT(MACHINE *machine){
 
 //flags still need to be added
 void execute_DPI(MACHINE *machine){
-
-    //opcode is checked and saved in local variable result
     instruction *instr = machine->c.decodedInstruction;
     uint32_t result;
+
+    if(instr->I){
+        //value is zero-extended to 32 bits
+        uint32_t operand = instr->operand2 | 0x00000000;
+        //rotated times the number specified in bit 8 to 11
+        int numberRot = getBitRange(instr, 8, 4) * 0x2;
+        instr->operand2 = rotate(operand,numberRot);
+    }
+
+    //carry-out bit
+    bool flag = 0;
+    //opcode is checked and saved in local variable result
+            //flags needed
     switch(machine->c.decodedInstruction->opcode){
         case AND:
         case TST: result = instr->Rn && instr->operand2;
@@ -140,10 +151,18 @@ void execute_DPI(MACHINE *machine){
         case MOV: result = instr->operand2;
     }
 
-    //if one of these instructions, result is not written!
+//if one of these instructions, result is not written
     if(instr->opcode == TST || instr->opcode == TEQ || instr->opcode == CMP) {
         machine->c.registers[machine->c.decodedInstruction->Rd] = result;
     }
+
+    //if S flag is set, CPSR flags have to be set in the following way
+    if (instr->S){
+        machine->c.registers[CPSR];
+
+    }
+
+
 }
 
 //prints bit sequence of register
@@ -164,5 +183,15 @@ uint32_t signedtwos_to_unsigned(int32_t signednum){
         signednum *= -1;
     }
     return signednum;
+}
+
+
+//rotates with right shifts and takes number of rotations as parameter
+uint32_t rotate(uint32_t operand, int numberRot){
+    for(int i = 0; i < numberRot; i++){
+        int firstBit = getBitRange(operand, 0, 1);
+        operand = (firstBit << 31) | (operand >> 1);
+    }
+    return operand;
 }
 
