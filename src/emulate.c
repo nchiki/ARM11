@@ -6,7 +6,7 @@
 #include "binaryloader.c"
 #include "execute.h"
 #include <string.h>
-
+#include "decode.c"
 
   int main(int argc, char **argv) {
     /* explanation:
@@ -107,7 +107,6 @@
     while (!finalise) {
 
       //execute
-      // Do we need * here?
       execute(*machine);
 
       //decode
