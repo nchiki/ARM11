@@ -5,7 +5,10 @@
 #include "instruction.h"
 #include <execute.h>
 #include "decode.c"
-
+#include <math.h>
+#include "usefulTools.h"
+#include "usefulFuncs.c"
+// fixed a merge conflict here
 
 int checkCondition(MACHINE *machine) {
     //checking whether the condition set in the cond field of the instruction correspond to the flags of the CPSR
