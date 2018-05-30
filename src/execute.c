@@ -6,6 +6,7 @@
 #include <execute.h>
 #include "decode.c"
 #include "usefulTools.h"
+#include "usefulFuncs.c"
 
 int checkCondition(MACHINE *machine) {
     //checking whether the condition set in the cond field of the instruction correspond to the flags of the CPSR
@@ -100,22 +101,49 @@ void execute_branch(MACHINE *machine){
 
 
 
-void execute_SDT(MACHINE *machine){
-   if (machine->c.decodedInstruction->I) {
-       uint8_t shift = getBitRange(machine->c.decodedInstruction, 4, 8);
-       int shifterReg = getBitRange(machine->c.decodedInstruction, 0, 4);
-       machine->c.decodedInstruction->Rm = shifterReg;
-       shiftReg(machine->c.decodedInstruction->offset & 0xFFF, machine);
+void execute_SDT(MACHINE *machine) {
+    if ((machine->c.decodedInstruction->Rn == PC) && &(machine->c.decodedInstruction) != machine->c.registers[PC] - 8 ){
+        fprintf(stderr, "PC doesn't contain the correct instruction");
+        exit(EXIT_FAILURE);
+    }
+    uint32_t offsetValue;
+    if (machine->c.decodedInstruction->I) {
+        uint8_t shift = getBitRange(machine->c.decodedInstruction, 4, 8);
+        int shifterReg = getBitRange(machine->c.decodedInstruction, 0, 4);
+        machine->c.decodedInstruction->Rm = shifterReg;
+        shiftReg(machine->c.decodedInstruction->offset & 0xFFF, machine);
+        offsetValue = machine->c.registers[machine->c.decodedInstruction->Rm];
+    } else {
+        offsetValue = (machine->c.decodedInstruction->offset) & 0xFFF;
+    }
+    uint32_t newAddress;
+    if (machine->c.decodedInstruction->U) {
+        newAddress = machine->c.registers[machine->c.decodedInstruction->Rn] +
+                     offsetValue;
+    } else {
+        newAddress = machine->c.registers[machine->c.decodedInstruction->Rn] -
+                     offsetValue;
+    }
+    if (machine->c.decodedInstruction->L) {
+        if (machine->c.decodedInstruction->P) {
+            machine->c.registers[machine->c.decodedInstruction->Rd] = machine->mem.memoryAlloc[newAddress];
+        } else {
+            machine->c.registers[machine->c.decodedInstruction->Rd] = machine->mem.memoryAlloc[offsetValue];
+            machine->c.registers[machine->c.decodedInstruction->Rn] = newAddress;
+        }
+    } else {
+        if (machine->c.decodedInstruction->P) {
+            machine->mem.memoryAlloc[newAddress] = machine->c.registers[machine->c.decodedInstruction->Rd];
+        } else {
+            machine->c.registers[machine->c.decodedInstruction->Rd] = machine->mem.memoryAlloc[offsetValue];
+            machine->c.registers[machine->c.decodedInstruction->Rn] = newAddress;
+        }
 
-   } else {
-       machine->c.decodedInstruction->immediateValue = (machine->c.decodedInstruction->offset) & 0xFFF;
-   }
-
-   if(machine->c.decodedInstruction->P) {
-
-   }
+    }
 
 }
+
+
 
 
 //flags still need to be added
@@ -230,7 +258,7 @@ uint16_t shiftReg(uint16_t operand, MACHINE *machine) {
             }
             (machine->c.registers[machine->c.decodedInstruction->Rm]) = ((machine->c.registers[machine->c.decodedInstruction->Rm])>> amount) | maskASR;
             break;
-        case 11: // right shift right
+        case 11: // rotate shift right
             machine->c.decodedInstruction->shift = ASR;
             if (machine->c.decodedInstruction->S) {
                 uint32_t mask = 1 << (amount - 1);
@@ -240,9 +268,10 @@ uint16_t shiftReg(uint16_t operand, MACHINE *machine) {
             }
             uint32_t maskRotate = 0;
             for (int i = 0; i < amount; i++) {
-                maskRotate |= signBit << i;
+                maskRotate |= 1 << i;
             }
-            (machine->c.registers[machine->c.decodedInstruction->Rm]) = ((machine->c.registers[machine->c.decodedInstruction->Rm])>> amount) | maskRotate;
+            (machine->c.registers[machine->c.decodedInstruction->Rm]) =
+                    ((machine->c.registers[machine->c.decodedInstruction->Rm])>> amount) | maskRotate;
             break;
 
 
