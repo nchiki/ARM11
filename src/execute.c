@@ -5,9 +5,6 @@
 #include "instruction.h"
 #include <execute.h>
 #include "decode.c"
-#include "usefulTools.h"
-#include "usefulFuncs.c"
-#include<math.h>
 
 
 int checkCondition(MACHINE *machine) {
