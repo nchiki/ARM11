@@ -4,6 +4,8 @@
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{multicol}
 
 %% Sets page size and margins
 \usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
@@ -58,41 +60,39 @@ For future tasks, we plan on discussing the basic design (structs, header files 
 \section*{}
 
 \section*{3. Emulator implementation}
-Lorem  ipsum  dolor  sit  amet,  consectetuer  adipiscing  
-elit.   Etiam  lobortisfacilisis sem.  Nullam nec mi et 
-\subsection*{3.1 Structure}
-Lorem  ipsum  dolor  sit  amet,  consectetuer  adipiscing  
-elit.   Etiam  lobortisfacilisis sem.  Nullam nec mi et 
-neque pharetra sollicitudin.  Praesent imperdietmi nec ante. 
-Donec ullamcorper, felis non sodales...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-\subsubsection*{3.2 Reusable Parts}
-Lorem  ipsum  dolor  sit  amet,  consectetuer  adipiscing  
-elit.   Etiam  lobortisfacilisis sem.  Nullam nec mi et 
-neque pharetra sollicitudin.  Praesent imperdietmi nec ante. 
-Donec ullamcorper, felis non sodales...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+Initially, we decided that the best way to implement the ARM-11 processor would be to have a single struct with arrays to represent the memory and registers, and a struct to represent an instruction and its components. As per the spec, we were dealing with 32-bit integers, so \verb|uint32_t| was the obvious choice for low level representation and implementation. \\
+After a meeting with our supervisor, it would be much more convenient to separate the CPU part (registers et al) and the memory (\verb|uint32_t memory[16384]|), and have them as data member of an all encompassing third struct. As it stands, this is how the ARM-11 machine has been implemented:
+\begin{lstlisting} 
+typedef struct{
+    uint32_t memoryAlloc[16384];
+} MEMORY;
+
+typedef struct{
+    uint32_t registers[17];
+    uint32_t fetchedInstruction;
+    instruction *decodedInstruction;
+} CPU;
+
+typedef struct {
+    MEMORY mem;
+    CPU c ;
+} MACHINE;
+
+\end{lstlisting}
+
+\subsubsection*{3.1 Reusable Parts}
 
 
 \section*{}
 
 \section*{4. Possible roadblocks}
-Lorem  ipsum  dolor  sit  amet,  consectetuer  adipiscing  
-elit.   Etiam  lobortisfacilisis sem.  Nullam nec mi et 
-neque pharetra sollicitudin.  Praesent imperdietmi nec ante. 
-Lorem  ipsum  dolor  sit  amet,  consectetuer  adipiscing  
-elit.   Etiam  lobortisfacilisis sem.  Nullam nec mi et 
-neque pharetra sollicitudin.  Praesent imperdietmi nec ante. 
+At the moment, we're unsure of how Part-3 will turn out, as none of us have worked with a Raspberry Pi before. However, some of us have worked with Arduinos extensively, so we're not as anxious about that as we are about the challenge of interfacing our code with the hardware. \\ 
+As for Part 4, the problem right now is that we have \textit{too many} good ideas, and we're not able to decide upon which we want to go ahead with. \\
+We've run into problems with debugging and CLion, and we expect to face them again in the coming weeks
 \subsection*{4.1 Solutions planned}
-Lorem  ipsum  dolor  sit  amet,  consectetuer  adipiscing  
-elit.   Etiam  lobortisfacilisis sem.  Nullam nec mi et 
-neque pharetra sollicitudin.  Praesent imperdietmi nec ante. 
-Donec ullamcorper, felis non sodales...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-enim ad minim veniam, quis nostrud exercitation ullamco laboris..
- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-enim ad minim veniam, quis nostrud exercita...
+We've all started watching an extensive tutorial series on YouTube which explains the working of a Raspberry Pi ground up, and we expect that finishing said tutorial series will make our experience with working the RPi much easier. \\
+We have decided to have a group meeting where we will weigh the pros and cons of each idea for the extension, and make sure that we decide upon something that is in line with our limited experience in C and within the given time frame. \\
+We have started writing our own Makefiles, and have all agreed upon what settings to work with within CLion. As for debugging, we plan to make extensive use of Valgrind and gdb, as opposed to  the rudimentary debugging we've carried out so far with printf statements and assertions. 
 
 
 
