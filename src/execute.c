@@ -168,23 +168,40 @@ void execute_DPI(MACHINE *machine){
     //carry-out bit
     bool flag = 0;
     //opcode is checked and saved in local variable result
-            //flags needed
+            // flags are set and saved in local variable flag
     switch(machine->c.decodedInstruction->opcode){
         case AND:
         case TST: result = instr->Rn && instr->operand2;
+        flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
         break;
         case EOR:
         case TEQ: result = instr->Rn ^ instr->operand2;
-        break;
+            flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
+            break;
         case SUB:
         case CMP: result = instr->Rn - instr->operand2;
+            if((!(instr->Rn) && (instr->operand2 || ((machine->c.registers[CPSR] >> 29) & C_MASK))) ||
+                    (instr->operand2 && ((machine->c.registers[CPSR] >> 29) & C_MASK))){
+                flag = 1;
+            }
         break;
         case RSB: result = instr->operand2 - instr->Rn;
+            if((((machine->c.registers[CPSR] >> 29) & C_MASK) && ((instr->Rn) >> 31 || (instr->operand2) >> 31))
+               || ((instr->Rn) >> 31 && (instr->operand2) >> 31)){
+                flag = 1;
+            }
         break;
         case ADD: result = instr->Rn + instr->operand2;
+        if((((machine->c.registers[CPSR] >> 29) & C_MASK) && ((instr->Rn) >> 31 || (instr->operand2) >> 31))
+           || ((instr->Rn) >> 31 && (instr->operand2) >> 31)){
+            flag = 1;
+        }
         break;
         case ORR: result = instr->Rn || instr->operand2;
+        break;
         case MOV: result = instr->operand2;
+            flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
+            break;
     }
 
 //if one of these instructions, result is not written
@@ -194,12 +211,17 @@ void execute_DPI(MACHINE *machine){
 
     //if S flag is set, CPSR flags have to be set in the following way
     if (instr->S){
-        machine->c.registers[CPSR];
-
+        //if result is all zeros, Z bit will be set
+        if(result == 0){
+            machine->c.registers[CPSR] |= Z_MASK_32;
+        }
+        //N bit will be set to bit 31 of result
+        uint32_t nvalue = result >> 31;
+        machine->c.registers[CPSR] |= nvalue;
+        //flag C is set to flag value but shifted to right position
+        uint32_t flagC = flag << 29;
+        machine->c.registers[CPSR] |= flagC;
     }
-    machine-
-
-
 }
 
 //prints bit sequence of register
@@ -284,7 +306,6 @@ uint16_t shiftReg(uint16_t operand, MACHINE *machine) {
             break;
     }
     return machine->c.registers[machine->c.decodedInstruction->Rm];
-
 }
 
 

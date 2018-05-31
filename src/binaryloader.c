@@ -34,3 +34,4 @@ void loadFile (char *fname, uint32_t *memory) {
 }
 
 
+//c is 29
