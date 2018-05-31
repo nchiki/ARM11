@@ -28,12 +28,9 @@
 \section*{1. Group Organization}
 
 \subsection*{1.1 Task Sharing}
-Our group decided to split the tasks according to the different instructions: MULTIPLY, SINGLE DATA TRANSFER, DATA PROCESSING and BRANCH. This was thought so we can think about how only one of these work, and then figure out how do the main program works together.
-Therefore, our intention was to begin with the design of each of the instructions and to move onto the general design once we knew how do the most specific tasks work.
-In the main program, some of us started implementing the basic functions, to begin with the ‘skeleton’ that was going to be implemented and corrected by the others. That gave us the possibility of working faster, and the mistakes were quickly amended.
+We decided to split the emulator into its 4 main functions, with each of us implementing one of \verb|Multiply, Branch, Data Processing, Single Data Transfer|. The main advantage of working in this manner was that we were able to discuss in detail the working of each of these instructions before implementing the main file, \verb|emulate.c|. \\
+First off, we began writing a skeleton file, which we then added to, corrected and debugged when someone was done with their implementation. This ensured that each section of code was seen by more than one pair of eyes, while parallelizing our workload and making sure that every group member understood each part. 
 
-
-We split the four functions - Multiply, Single Data Transfer, Data Processing, and Branch - among ourselves, and proceeded to implement these in our own ways based on the memory implementation we agreed on. 
 
 \subsection*{1.2 Co-ordination}
 Lorem  ipsum  dolor  sit  amet,  consectetuer  adipiscing  
