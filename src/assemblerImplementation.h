@@ -14,10 +14,7 @@ struct symbol {
     uint32_t address;
     struct symbol *next;
 
-    void clear() {
-        free(this->label);
-        free(this);
-    }
+
 };
 
 // purposely did not use typedef because typedef breaks a couple of things in the implementation of addLabel in assemblerImplementation.c

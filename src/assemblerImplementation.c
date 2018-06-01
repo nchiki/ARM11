@@ -45,12 +45,16 @@ void helperFunction(struct symbol* something) {
     if (something->next != NULL ) {
         helperFunction(something->next);
     }
-    something->clear();
+    free(something->label);
+    free(something);
+
 
 }
 void clearSymbolTable() {
     if (symbolTableHead->next != NULL) {
         helperFunction(symbolTableHead->next);
     }
-   symbolTableHead->clear();
+   free(symbolTableHead->label);
+    free(symbolTableHead);
+
 }
