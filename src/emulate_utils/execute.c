@@ -29,31 +29,6 @@ int checkCondition(MACHINE *machine) {
 }
 //here we need something that distinguish between the different instructions, and applies the code that each of us
 //implemented before to execute it depending on the instructions
-void execute(MACHINE *machine) {
-    // just a useless comment
-    if (checkCondition(machine)) {
-        switch (machine->c.decodedInstruction->type) {
-            case Halt:
-                execute_Halt(machine);
-                break;
-            case DProc:
-                execute_DPI(machine);
-                break;
-            case SDT:
-                execute_SDT(machine);
-                break;
-            case Mult:
-                execute_MulI(machine);
-                break;
-            case Branch:
-                execute_branch(machine);
-                break;
-            default:
-                fprintf(stderr, "invalid instructions");
-        }
-
-    }
-}
 
 void execute_MulI(MACHINE *machine){
     //simple multiplication
@@ -321,5 +296,31 @@ void execute_DPI(MACHINE *machine){
         //flag C is set to flag value but shifted to right position
         uint32_t flagC = flag << 29;
         machine->c.registers[CPSR] |= flagC;
+    }
+}
+
+void execute(MACHINE *machine) {
+    // just a useless comment
+    if (checkCondition(machine)) {
+        switch (machine->c.decodedInstruction->type) {
+            case Halt:
+                execute_Halt(machine);
+                break;
+            case DProc:
+                execute_DPI(machine);
+                break;
+            case SDT:
+                execute_SDT(machine);
+                break;
+            case Mult:
+                execute_MulI(machine);
+                break;
+            case Branch:
+                execute_branch(machine);
+                break;
+            default:
+                fprintf(stderr, "invalid instructions");
+        }
+
     }
 }
