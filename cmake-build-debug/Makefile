@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/nahida/clion-2018.1.3/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/nb1317/clion-2018.1.2/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /home/nahida/clion-2018.1.3/bin/cmake/bin/cmake -E remove -f
+RM = /home/nb1317/clion-2018.1.2/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nahida/arm11_28
+CMAKE_SOURCE_DIR = /home/nb1317/arm11_28
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nahida/arm11_28/cmake-build-debug
+CMAKE_BINARY_DIR = /home/nb1317/arm11_28/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/nahida/arm11_28/cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/nahida/clion-2018.1.3/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/nb1317/clion-2018.1.2/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -70,7 +70,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/nahida/clion-2018.1.3/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/nb1317/clion-2018.1.2/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nahida/arm11_28/cmake-build-debug/CMakeFiles /home/nahida/arm11_28/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nb1317/arm11_28/cmake-build-debug/CMakeFiles /home/nb1317/arm11_28/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nahida/arm11_28/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nb1317/arm11_28/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -150,59 +150,32 @@ src/assemble.c.s:
 	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble.c.s
 .PHONY : src/assemble.c.s
 
-src/binaryloader.o: src/binaryloader.c.o
+src/assemble_utils/assemblerImplementation.o: src/assemble_utils/assemblerImplementation.c.o
 
-.PHONY : src/binaryloader.o
-
-# target to build an object file
-src/binaryloader.c.o:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/binaryloader.c.o
-.PHONY : src/binaryloader.c.o
-
-src/binaryloader.i: src/binaryloader.c.i
-
-.PHONY : src/binaryloader.i
-
-# target to preprocess a source file
-src/binaryloader.c.i:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/binaryloader.c.i
-.PHONY : src/binaryloader.c.i
-
-src/binaryloader.s: src/binaryloader.c.s
-
-.PHONY : src/binaryloader.s
-
-# target to generate assembly for a file
-src/binaryloader.c.s:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/binaryloader.c.s
-.PHONY : src/binaryloader.c.s
-
-src/decode.o: src/decode.c.o
-
-.PHONY : src/decode.o
+.PHONY : src/assemble_utils/assemblerImplementation.o
 
 # target to build an object file
-src/decode.c.o:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/decode.c.o
-.PHONY : src/decode.c.o
+src/assemble_utils/assemblerImplementation.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.o
+.PHONY : src/assemble_utils/assemblerImplementation.c.o
 
-src/decode.i: src/decode.c.i
+src/assemble_utils/assemblerImplementation.i: src/assemble_utils/assemblerImplementation.c.i
 
-.PHONY : src/decode.i
+.PHONY : src/assemble_utils/assemblerImplementation.i
 
 # target to preprocess a source file
-src/decode.c.i:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/decode.c.i
-.PHONY : src/decode.c.i
+src/assemble_utils/assemblerImplementation.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.i
+.PHONY : src/assemble_utils/assemblerImplementation.c.i
 
-src/decode.s: src/decode.c.s
+src/assemble_utils/assemblerImplementation.s: src/assemble_utils/assemblerImplementation.c.s
 
-.PHONY : src/decode.s
+.PHONY : src/assemble_utils/assemblerImplementation.s
 
 # target to generate assembly for a file
-src/decode.c.s:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/decode.c.s
-.PHONY : src/decode.c.s
+src/assemble_utils/assemblerImplementation.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.s
+.PHONY : src/assemble_utils/assemblerImplementation.c.s
 
 src/emulate.o: src/emulate.c.o
 
@@ -231,140 +204,194 @@ src/emulate.c.s:
 	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate.c.s
 .PHONY : src/emulate.c.s
 
-src/execute.o: src/execute.c.o
+src/emulate_utils/binaryloader.o: src/emulate_utils/binaryloader.c.o
 
-.PHONY : src/execute.o
-
-# target to build an object file
-src/execute.c.o:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/execute.c.o
-.PHONY : src/execute.c.o
-
-src/execute.i: src/execute.c.i
-
-.PHONY : src/execute.i
-
-# target to preprocess a source file
-src/execute.c.i:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/execute.c.i
-.PHONY : src/execute.c.i
-
-src/execute.s: src/execute.c.s
-
-.PHONY : src/execute.s
-
-# target to generate assembly for a file
-src/execute.c.s:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/execute.c.s
-.PHONY : src/execute.c.s
-
-src/instructions/DataProcDec.o: src/instructions/DataProcDec.c.o
-
-.PHONY : src/instructions/DataProcDec.o
+.PHONY : src/emulate_utils/binaryloader.o
 
 # target to build an object file
-src/instructions/DataProcDec.c.o:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.o
-.PHONY : src/instructions/DataProcDec.c.o
+src/emulate_utils/binaryloader.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/binaryloader.c.o
+.PHONY : src/emulate_utils/binaryloader.c.o
 
-src/instructions/DataProcDec.i: src/instructions/DataProcDec.c.i
+src/emulate_utils/binaryloader.i: src/emulate_utils/binaryloader.c.i
 
-.PHONY : src/instructions/DataProcDec.i
+.PHONY : src/emulate_utils/binaryloader.i
 
 # target to preprocess a source file
-src/instructions/DataProcDec.c.i:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.i
-.PHONY : src/instructions/DataProcDec.c.i
+src/emulate_utils/binaryloader.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/binaryloader.c.i
+.PHONY : src/emulate_utils/binaryloader.c.i
 
-src/instructions/DataProcDec.s: src/instructions/DataProcDec.c.s
+src/emulate_utils/binaryloader.s: src/emulate_utils/binaryloader.c.s
 
-.PHONY : src/instructions/DataProcDec.s
+.PHONY : src/emulate_utils/binaryloader.s
 
 # target to generate assembly for a file
-src/instructions/DataProcDec.c.s:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.s
-.PHONY : src/instructions/DataProcDec.c.s
+src/emulate_utils/binaryloader.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/binaryloader.c.s
+.PHONY : src/emulate_utils/binaryloader.c.s
 
-src/instructions/branch.o: src/instructions/branch.c.o
+src/emulate_utils/decode.o: src/emulate_utils/decode.c.o
 
-.PHONY : src/instructions/branch.o
+.PHONY : src/emulate_utils/decode.o
 
 # target to build an object file
-src/instructions/branch.c.o:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/instructions/branch.c.o
-.PHONY : src/instructions/branch.c.o
+src/emulate_utils/decode.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/decode.c.o
+.PHONY : src/emulate_utils/decode.c.o
 
-src/instructions/branch.i: src/instructions/branch.c.i
+src/emulate_utils/decode.i: src/emulate_utils/decode.c.i
 
-.PHONY : src/instructions/branch.i
+.PHONY : src/emulate_utils/decode.i
 
 # target to preprocess a source file
-src/instructions/branch.c.i:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/instructions/branch.c.i
-.PHONY : src/instructions/branch.c.i
+src/emulate_utils/decode.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/decode.c.i
+.PHONY : src/emulate_utils/decode.c.i
 
-src/instructions/branch.s: src/instructions/branch.c.s
+src/emulate_utils/decode.s: src/emulate_utils/decode.c.s
 
-.PHONY : src/instructions/branch.s
+.PHONY : src/emulate_utils/decode.s
 
 # target to generate assembly for a file
-src/instructions/branch.c.s:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/instructions/branch.c.s
-.PHONY : src/instructions/branch.c.s
+src/emulate_utils/decode.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/decode.c.s
+.PHONY : src/emulate_utils/decode.c.s
 
-src/instructions/multiply.o: src/instructions/multiply.c.o
+src/emulate_utils/execute.o: src/emulate_utils/execute.c.o
 
-.PHONY : src/instructions/multiply.o
+.PHONY : src/emulate_utils/execute.o
 
 # target to build an object file
-src/instructions/multiply.c.o:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o
-.PHONY : src/instructions/multiply.c.o
+src/emulate_utils/execute.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.o
+.PHONY : src/emulate_utils/execute.c.o
 
-src/instructions/multiply.i: src/instructions/multiply.c.i
+src/emulate_utils/execute.i: src/emulate_utils/execute.c.i
 
-.PHONY : src/instructions/multiply.i
+.PHONY : src/emulate_utils/execute.i
 
 # target to preprocess a source file
-src/instructions/multiply.c.i:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/instructions/multiply.c.i
-.PHONY : src/instructions/multiply.c.i
+src/emulate_utils/execute.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.i
+.PHONY : src/emulate_utils/execute.c.i
 
-src/instructions/multiply.s: src/instructions/multiply.c.s
+src/emulate_utils/execute.s: src/emulate_utils/execute.c.s
 
-.PHONY : src/instructions/multiply.s
+.PHONY : src/emulate_utils/execute.s
 
 # target to generate assembly for a file
-src/instructions/multiply.c.s:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/instructions/multiply.c.s
-.PHONY : src/instructions/multiply.c.s
+src/emulate_utils/execute.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.s
+.PHONY : src/emulate_utils/execute.c.s
 
-src/instructions/singleDT.o: src/instructions/singleDT.c.o
+src/emulate_utils/instructions/DataProcDec.o: src/emulate_utils/instructions/DataProcDec.c.o
 
-.PHONY : src/instructions/singleDT.o
+.PHONY : src/emulate_utils/instructions/DataProcDec.o
 
 # target to build an object file
-src/instructions/singleDT.c.o:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.o
-.PHONY : src/instructions/singleDT.c.o
+src/emulate_utils/instructions/DataProcDec.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o
+.PHONY : src/emulate_utils/instructions/DataProcDec.c.o
 
-src/instructions/singleDT.i: src/instructions/singleDT.c.i
+src/emulate_utils/instructions/DataProcDec.i: src/emulate_utils/instructions/DataProcDec.c.i
 
-.PHONY : src/instructions/singleDT.i
+.PHONY : src/emulate_utils/instructions/DataProcDec.i
 
 # target to preprocess a source file
-src/instructions/singleDT.c.i:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.i
-.PHONY : src/instructions/singleDT.c.i
+src/emulate_utils/instructions/DataProcDec.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.i
+.PHONY : src/emulate_utils/instructions/DataProcDec.c.i
 
-src/instructions/singleDT.s: src/instructions/singleDT.c.s
+src/emulate_utils/instructions/DataProcDec.s: src/emulate_utils/instructions/DataProcDec.c.s
 
-.PHONY : src/instructions/singleDT.s
+.PHONY : src/emulate_utils/instructions/DataProcDec.s
 
 # target to generate assembly for a file
-src/instructions/singleDT.c.s:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.s
-.PHONY : src/instructions/singleDT.c.s
+src/emulate_utils/instructions/DataProcDec.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.s
+.PHONY : src/emulate_utils/instructions/DataProcDec.c.s
+
+src/emulate_utils/instructions/branch.o: src/emulate_utils/instructions/branch.c.o
+
+.PHONY : src/emulate_utils/instructions/branch.o
+
+# target to build an object file
+src/emulate_utils/instructions/branch.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o
+.PHONY : src/emulate_utils/instructions/branch.c.o
+
+src/emulate_utils/instructions/branch.i: src/emulate_utils/instructions/branch.c.i
+
+.PHONY : src/emulate_utils/instructions/branch.i
+
+# target to preprocess a source file
+src/emulate_utils/instructions/branch.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.i
+.PHONY : src/emulate_utils/instructions/branch.c.i
+
+src/emulate_utils/instructions/branch.s: src/emulate_utils/instructions/branch.c.s
+
+.PHONY : src/emulate_utils/instructions/branch.s
+
+# target to generate assembly for a file
+src/emulate_utils/instructions/branch.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.s
+.PHONY : src/emulate_utils/instructions/branch.c.s
+
+src/emulate_utils/instructions/multiply.o: src/emulate_utils/instructions/multiply.c.o
+
+.PHONY : src/emulate_utils/instructions/multiply.o
+
+# target to build an object file
+src/emulate_utils/instructions/multiply.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o
+.PHONY : src/emulate_utils/instructions/multiply.c.o
+
+src/emulate_utils/instructions/multiply.i: src/emulate_utils/instructions/multiply.c.i
+
+.PHONY : src/emulate_utils/instructions/multiply.i
+
+# target to preprocess a source file
+src/emulate_utils/instructions/multiply.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.i
+.PHONY : src/emulate_utils/instructions/multiply.c.i
+
+src/emulate_utils/instructions/multiply.s: src/emulate_utils/instructions/multiply.c.s
+
+.PHONY : src/emulate_utils/instructions/multiply.s
+
+# target to generate assembly for a file
+src/emulate_utils/instructions/multiply.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.s
+.PHONY : src/emulate_utils/instructions/multiply.c.s
+
+src/emulate_utils/instructions/singleDT.o: src/emulate_utils/instructions/singleDT.c.o
+
+.PHONY : src/emulate_utils/instructions/singleDT.o
+
+# target to build an object file
+src/emulate_utils/instructions/singleDT.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o
+.PHONY : src/emulate_utils/instructions/singleDT.c.o
+
+src/emulate_utils/instructions/singleDT.i: src/emulate_utils/instructions/singleDT.c.i
+
+.PHONY : src/emulate_utils/instructions/singleDT.i
+
+# target to preprocess a source file
+src/emulate_utils/instructions/singleDT.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.i
+.PHONY : src/emulate_utils/instructions/singleDT.c.i
+
+src/emulate_utils/instructions/singleDT.s: src/emulate_utils/instructions/singleDT.c.s
+
+.PHONY : src/emulate_utils/instructions/singleDT.s
+
+# target to generate assembly for a file
+src/emulate_utils/instructions/singleDT.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.s
+.PHONY : src/emulate_utils/instructions/singleDT.c.s
 
 src/usefulFuncs.o: src/usefulFuncs.c.o
 
@@ -405,30 +432,33 @@ help:
 	@echo "... src/assemble.o"
 	@echo "... src/assemble.i"
 	@echo "... src/assemble.s"
-	@echo "... src/binaryloader.o"
-	@echo "... src/binaryloader.i"
-	@echo "... src/binaryloader.s"
-	@echo "... src/decode.o"
-	@echo "... src/decode.i"
-	@echo "... src/decode.s"
+	@echo "... src/assemble_utils/assemblerImplementation.o"
+	@echo "... src/assemble_utils/assemblerImplementation.i"
+	@echo "... src/assemble_utils/assemblerImplementation.s"
 	@echo "... src/emulate.o"
 	@echo "... src/emulate.i"
 	@echo "... src/emulate.s"
-	@echo "... src/execute.o"
-	@echo "... src/execute.i"
-	@echo "... src/execute.s"
-	@echo "... src/instructions/DataProcDec.o"
-	@echo "... src/instructions/DataProcDec.i"
-	@echo "... src/instructions/DataProcDec.s"
-	@echo "... src/instructions/branch.o"
-	@echo "... src/instructions/branch.i"
-	@echo "... src/instructions/branch.s"
-	@echo "... src/instructions/multiply.o"
-	@echo "... src/instructions/multiply.i"
-	@echo "... src/instructions/multiply.s"
-	@echo "... src/instructions/singleDT.o"
-	@echo "... src/instructions/singleDT.i"
-	@echo "... src/instructions/singleDT.s"
+	@echo "... src/emulate_utils/binaryloader.o"
+	@echo "... src/emulate_utils/binaryloader.i"
+	@echo "... src/emulate_utils/binaryloader.s"
+	@echo "... src/emulate_utils/decode.o"
+	@echo "... src/emulate_utils/decode.i"
+	@echo "... src/emulate_utils/decode.s"
+	@echo "... src/emulate_utils/execute.o"
+	@echo "... src/emulate_utils/execute.i"
+	@echo "... src/emulate_utils/execute.s"
+	@echo "... src/emulate_utils/instructions/DataProcDec.o"
+	@echo "... src/emulate_utils/instructions/DataProcDec.i"
+	@echo "... src/emulate_utils/instructions/DataProcDec.s"
+	@echo "... src/emulate_utils/instructions/branch.o"
+	@echo "... src/emulate_utils/instructions/branch.i"
+	@echo "... src/emulate_utils/instructions/branch.s"
+	@echo "... src/emulate_utils/instructions/multiply.o"
+	@echo "... src/emulate_utils/instructions/multiply.i"
+	@echo "... src/emulate_utils/instructions/multiply.s"
+	@echo "... src/emulate_utils/instructions/singleDT.o"
+	@echo "... src/emulate_utils/instructions/singleDT.i"
+	@echo "... src/emulate_utils/instructions/singleDT.s"
 	@echo "... src/usefulFuncs.o"
 	@echo "... src/usefulFuncs.i"
 	@echo "... src/usefulFuncs.s"

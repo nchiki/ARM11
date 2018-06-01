@@ -1,4 +1,9 @@
 #include "decode.h"
+#include "instructions/halt.h"
+#include "instructions/branch.h"
+#include "instructions/singleDT.h"
+#include "instructions/DataProcDec.h"
+#include "instructions/multiply.h"
 
 
 void decode(MACHINE *machine){

@@ -2,7 +2,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include "../../memoryImplementation.h"
-#include "../emulate/instruction_basic.h"
+#include "../../emulate_utils/instruction_basic.h"
 #include "../../usefulTools.h"
 #include "../../usefulFuncs.h"
 

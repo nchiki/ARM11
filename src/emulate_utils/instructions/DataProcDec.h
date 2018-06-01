@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include "../emulate/instruction_basic.h"
+#include "../../emulate_utils/instruction_basic.h"
 #include "../../usefulFuncs.h"
 #include "../../memoryImplementation.h"
 

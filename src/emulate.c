@@ -3,10 +3,10 @@
 #include <assert.h>
 #include <stdint.h>
 #include "memoryImplementation.h"
-#include "emulate/binaryloader.c"
-#include "emulate/execute.c"
+#include "emulate_utils/binaryloader.c"
+#include "emulate_utils/execute.c"
 #include <string.h>
-#include "emulate/decode.c"
+#include "emulate_utils/decode.c"
 #include<byteswap.h>
 
 uint32_t getBitRange(uint32_t num, int start, int length);
