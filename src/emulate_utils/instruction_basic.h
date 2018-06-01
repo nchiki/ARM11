@@ -11,16 +11,16 @@
 
 typedef struct {
     instruction_type type;
-    uint8_t cond;
-    uint8_t opcode;
+    uint32_t cond;
+    uint32_t opcode;
 
     uint32_t offset;
 
     //registers
-    uint8_t Rn;
-    uint8_t Rd;
-    uint8_t Rs;
-    uint8_t Rm;
+    uint32_t Rn;
+    uint32_t Rd;
+    uint32_t Rs;
+    uint32_t Rm;
 
     //flags for operations
     bool A;
@@ -31,12 +31,12 @@ typedef struct {
     bool U;
 
     //immediate value
-    uint16_t immediateValue;
+    uint32_t immediateValue;
 
     //operand2
-    uint16_t operand2;
+    uint32_t operand2;
 
-    uint16_t carry;
+    uint32_t carry;
     SHIFT_CODE shift;
 
 } instructions;
