@@ -2,16 +2,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "memoryImplementation.h"
-#include "instruction.h"
-#include <execute.h>
+#include "instruction_basic.h"
+#include "execute.h"
 #include "decode.c"
 #include <math.h>
 #include "usefulTools.h"
-#include "usefulFuncs.c"
-// fixed a merge conflict here
+#include "usefulFuncs.h"// fixed a merge conflict here
 
 int checkCondition(MACHINE *machine) {
-    //checking whether the condition set in the cond field of the instruction correspond to the flags of the CPSR
+    //checking whether the condition set in the cond field of the instructions correspond to the flags of the CPSR
 
     int cpsrFlags = machine->c.registers[CPSR] >> 28; //getting the four last bits of the CPSR
 
@@ -37,7 +36,7 @@ int checkCondition(MACHINE *machine) {
 
 }
 //here we need something that distinguish between the different instructions, and applies the code that each of us
-//implemented before to execute it depending on the instruction
+//implemented before to execute it depending on the instructions
 void execute(MACHINE *machine) {
     // just a useless comment
     if (checkCondition(machine)) {
@@ -58,7 +57,7 @@ void execute(MACHINE *machine) {
                 execute_branch(machine);
                 break;
             default:
-                fprintf(stderr, "invalid instruction");
+                fprintf(stderr, "invalid instructions");
         }
 
     }
@@ -103,10 +102,9 @@ void execute_branch(MACHINE *machine){
 }
 
 
-
 void execute_SDT(MACHINE *machine) {
     if ((machine->c.decodedInstruction->Rn == PC) && &(machine->c.decodedInstruction) != machine->c.registers[PC] - 8 ){
-        fprintf(stderr, "PC doesn't contain the correct instruction");
+        fprintf(stderr, "PC doesn't contain the correct instructions");
         exit(EXIT_FAILURE);
     }
     uint32_t offsetValue;
@@ -151,7 +149,7 @@ void execute_SDT(MACHINE *machine) {
 
 //flags still need to be added
 void execute_DPI(MACHINE *machine){
-    instruction *instr = machine->c.decodedInstruction;
+    instructions *instr = machine->c.decodedInstruction;
     uint32_t result;
 
     if(instr->I){
@@ -159,10 +157,10 @@ void execute_DPI(MACHINE *machine){
         uint32_t operand = instr->operand2 | 0x00000000;
         //rotated times the number specified in bit 8 to 11
         int numberRot = getBitRange(instr, 8, 4) * 0x2;
-        instr->operand2 = rotate(operand,numberRot);
+        instr->Rm = rotate(operand,numberRot);
     } else{
-        uint16_t operand = shiftReg(instr->operand2, machine);
-        instr->operand2 = operand;
+        uint32_t operand = shiftReg(instr->operand2, machine);
+        instr->Rm = operand;
     }
 
     //carry-out bit
@@ -238,7 +236,7 @@ void printBits(uint32_t reg) {
 }
 
 //checks for negative value and turns offset into positive binary
-uint32_t signedtwos_to_unsigned(int32_t signednum){
+int32_t signedtwos_to_unsigned(int32_t signednum){
     if(signednum >> 31){
         signednum = (~signednum) + 1;
         signednum *= -1;
@@ -246,7 +244,7 @@ uint32_t signedtwos_to_unsigned(int32_t signednum){
     return signednum;
 }
 //need commenting ----------------------------------
-uint16_t shiftReg(uint16_t operand, MACHINE *machine) {
+uint32_t shiftReg(uint16_t operand, MACHINE *machine) {
     int amount;
     if (operand & 1) {
         amount = getBitRange(machine->c.registers[getBitRange(operand, 8, 4)], 0, 8);

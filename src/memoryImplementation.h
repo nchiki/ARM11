@@ -4,7 +4,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "instruction.h"
+#include "instruction_basic.h"
 
 #define PC 15
 #define CPSR 16
@@ -18,7 +18,7 @@ typedef struct{
 typedef struct{
     uint32_t registers[17];
     uint32_t fetchedInstruction;
-    instruction *decodedInstruction;
+    instructions *decodedInstruction;
 } CPU;
 
 

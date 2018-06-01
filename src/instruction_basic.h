@@ -1,4 +1,8 @@
 
+#ifndef C_CODE_INSTRUCTION_BASIC_H
+#define C_CODE_INSTRUCTION_BASIC_H
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -28,12 +32,13 @@ typedef struct {
 
     //immediate value
     uint16_t immediateValue;
-    
+
     //operand2
     uint16_t operand2;
 
     uint16_t carry;
     SHIFT_CODE shift;
 
-} instruction;
+} instructions;
 
+#endif //C_CODE_EXECUTE_H

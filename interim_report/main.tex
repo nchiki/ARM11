@@ -51,7 +51,7 @@ For future tasks, we plan on discussing the basic design before dividing the wor
 
 \section*{3. Emulator implementation}
 Our initial idea to implement the processor was to have a struct with arrays of \verb|uint32_t| to represent the memory and registers, and several other data members to represent instructions and flags. \\ \\
-We made the decision to work with \verb|uint32_t| as we were to deal with 32-bit instructions, which have been implemented as a standalone struct. The struct \verb|instruction| contains a number of \verb|uint8_t| data members to represent registers, conditions and OPCodes, \verb|uint16_t| data members to represent immediate values and operands, \verb|bool| data members to represent flags, and a single \verb|uint32_t| to represent the offset. Each object of type \verb|instruction| has an \verb|intruction_type| which is an enumerated data type which indicates the type of instruction (\verb|Halt, Branch, Mult, SDT, DProc| or \verb|None|). \\
+We made the decision to work with \verb|uint32_t| as we were to deal with 32-bit instructions, which have been implemented as a standalone struct. The struct \verb|instructions| contains a number of \verb|uint8_t| data members to represent registers, conditions and OPCodes, \verb|uint16_t| data members to represent immediate values and operands, \verb|bool| data members to represent flags, and a single \verb|uint32_t| to represent the offset. Each object of type \verb|instructions| has an \verb|intruction_type| which is an enumerated data type which indicates the type of instructions (\verb|Halt, Branch, Mult, SDT, DProc| or \verb|None|). \\
 
 After a meeting with our supervisor, we realized it would be much more efficient to have separate structs for the CPU part (registers et al) and the memory (\verb|uint32_t memory[16384]|), and then as data members of an all encompassing third struct, \verb|MACHINE|. As it stands, this is implementation we're working with: 
 
@@ -63,7 +63,7 @@ typedef struct{
 typedef struct{
     uint32_t registers[17];
     uint32_t fetchedInstruction;
-    instruction *decodedInstruction;
+    instructions *decodedInstruction;
 } CPU;
 
 typedef struct {

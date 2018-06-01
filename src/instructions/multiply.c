@@ -2,8 +2,9 @@
 #include <stdio.h>
 #include "../memoryImplementation.h"
 #include "../usefulTools.h"
-#include "../instruction.h"
+#include "../instruction_basic.h"
 #include "../usefulFuncs.c"
+
 
 void multiply(uint32_t instruction, MACHINE *machine){
 	machine->c.decodedInstruction->type = Mult;
