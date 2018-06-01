@@ -6,7 +6,3 @@
 #include<assemblerImplementation.h>
 
 
-
-
-
-int getCurrentSize ()

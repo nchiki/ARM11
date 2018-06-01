@@ -15,13 +15,14 @@ typedef struct {
     struct symbol *next;
 } symbol;
 
-typedef struct {
-    struct symbol *head;
-}symbolTable;
+symbol *symbolTableHead;
 
+void initSymbolTable(void);
 
+void addLabel (char*, uint32_t) ;
 
+uint32_t getAddress (char*);
 
-
+void clearSymbolTable(void);
 
 #endif //ARM11_28_ASSEMBLERIMPLEMENTATION_H
