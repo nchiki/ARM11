@@ -16,4 +16,4 @@ add_executable(arm11_28
         src/execute.h
         src/instruction.h
         src/memoryImplementation.h
-        src/usefulTools.h src/usefulFuncs.c)
+        src/usefulTools.h src/usefulFuncs.c src/assemblerImplementation.h src/assemblerImplementation.c)

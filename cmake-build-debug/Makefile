@@ -150,6 +150,33 @@ src/assemble.c.s:
 	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble.c.s
 .PHONY : src/assemble.c.s
 
+src/assemblerImplementation.o: src/assemblerImplementation.c.o
+
+.PHONY : src/assemblerImplementation.o
+
+# target to build an object file
+src/assemblerImplementation.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemblerImplementation.c.o
+.PHONY : src/assemblerImplementation.c.o
+
+src/assemblerImplementation.i: src/assemblerImplementation.c.i
+
+.PHONY : src/assemblerImplementation.i
+
+# target to preprocess a source file
+src/assemblerImplementation.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemblerImplementation.c.i
+.PHONY : src/assemblerImplementation.c.i
+
+src/assemblerImplementation.s: src/assemblerImplementation.c.s
+
+.PHONY : src/assemblerImplementation.s
+
+# target to generate assembly for a file
+src/assemblerImplementation.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemblerImplementation.c.s
+.PHONY : src/assemblerImplementation.c.s
+
 src/binaryloader.o: src/binaryloader.c.o
 
 .PHONY : src/binaryloader.o
@@ -405,6 +432,9 @@ help:
 	@echo "... src/assemble.o"
 	@echo "... src/assemble.i"
 	@echo "... src/assemble.s"
+	@echo "... src/assemblerImplementation.o"
+	@echo "... src/assemblerImplementation.i"
+	@echo "... src/assemblerImplementation.s"
 	@echo "... src/binaryloader.o"
 	@echo "... src/binaryloader.i"
 	@echo "... src/binaryloader.s"

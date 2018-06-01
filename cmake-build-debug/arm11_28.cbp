@@ -81,6 +81,12 @@
 		<Unit filename="/home/nb1317/arm11_28/src/assemble.c">
 			<Option target="arm11_28"/>
 		</Unit>
+		<Unit filename="/home/nb1317/arm11_28/src/assemblerImplementation.c">
+			<Option target="arm11_28"/>
+		</Unit>
+		<Unit filename="/home/nb1317/arm11_28/src/assemblerImplementation.h">
+			<Option target="arm11_28"/>
+		</Unit>
 		<Unit filename="/home/nb1317/arm11_28/src/binaryloader.c">
 			<Option target="arm11_28"/>
 		</Unit>

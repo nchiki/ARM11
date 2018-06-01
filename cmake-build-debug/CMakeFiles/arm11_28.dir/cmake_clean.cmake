@@ -9,6 +9,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/arm11_28.dir/src/emulate.c.o"
   "CMakeFiles/arm11_28.dir/src/execute.c.o"
   "CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o"
+  "CMakeFiles/arm11_28.dir/src/assemblerImplementation.c.o"
   "arm11_28.pdb"
   "arm11_28"
 )
