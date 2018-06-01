@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include "../instruction_basic.h"
-#include "../usefulFuncs.c"
+#include "../usefulFuncs.h"
 #include "../memoryImplementation.h"
 
 void decodeDATPROC(uint32_t instruction, MACHINE *machine){

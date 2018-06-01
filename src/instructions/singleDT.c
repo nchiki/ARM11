@@ -4,7 +4,7 @@
 #include "../memoryImplementation.h"
 #include "../instruction_basic.h"
 #include "../usefulTools.h"
-#include "../usefulFuncs.c"
+#include "../usefulFuncs.h"
 
 void SDTdecode(uint32_t instruction, MACHINE *machine) {
 	machine->c.decodedInstruction->type = SDT;

@@ -3,7 +3,7 @@
 #include "../memoryImplementation.h"
 #include "../usefulTools.h"
 #include "../instruction_basic.h"
-#include "../usefulFuncs.c"
+#include "../usefulFuncs.h"
 
 
 void multiply(uint32_t instruction, MACHINE *machine){

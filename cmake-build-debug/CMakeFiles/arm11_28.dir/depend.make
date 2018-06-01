@@ -52,7 +52,6 @@ CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/usefulTools.h
 CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.o: ../src/instruction_basic.h
 CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.o: ../src/instructions/DataProcDec.c
 CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.o: ../src/memoryImplementation.h
-CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.o: ../src/usefulFuncs.c
 CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.o: ../src/usefulFuncs.h
 CMakeFiles/arm11_28.dir/src/instructions/DataProcDec.c.o: ../src/usefulTools.h
 
@@ -64,7 +63,6 @@ CMakeFiles/arm11_28.dir/src/instructions/branch.c.o: ../src/usefulTools.h
 CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o: ../src/instruction_basic.h
 CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o: ../src/instructions/multiply.c
 CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o: ../src/memoryImplementation.h
-CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o: ../src/usefulFuncs.c
 CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o: ../src/usefulFuncs.h
 CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o: ../src/usefulTools.h
 
