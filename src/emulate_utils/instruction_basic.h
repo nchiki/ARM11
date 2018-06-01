@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include "usefulTools.h"
+#include "../usefulTools.h"
 
 typedef struct {
     instruction_type type;

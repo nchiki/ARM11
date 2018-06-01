@@ -7,9 +7,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include "../instruction_basic.h"
-#include "../usefulFuncs.h"
-#include "../memoryImplementation.h"
+#include "../emulate/instruction_basic.h"
+#include "../../usefulFuncs.h"
+#include "../../memoryImplementation.h"
 
 void decodeDATPROC(uint32_t , MACHINE* );
 #endif //ARM11_28_DATAPROCDEC_H

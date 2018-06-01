@@ -4,13 +4,13 @@
 //interface for alltructions
 
 #include "instruction_basic.h"
-#include "usefulTools.h"
-#include "memoryImplementation.h"
-#include "instructions/branch.h"
-#include "instructions/singleDT.h"
-#include "instructions/multiply.h"
-#include "instructions/DataProcDec.h"
-#include "instructions/halt.h"
+#include "../usefulTools.h"
+#include "../memoryImplementation.h"
+#include "../instructions/branch.h"
+#include "../instructions/singleDT.h"
+#include "../instructions/multiply.h"
+#include "../instructions/DataProcDec.h"
+#include "../instructions/halt.h"
 
 //This part receives the instructions fetched and has to
 // distinguish between the different instructions save the

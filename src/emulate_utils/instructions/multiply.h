@@ -6,10 +6,10 @@
 #define ARM11_28_MULTIPLY_H
 #include <stdlib.h>
 #include <stdio.h>
-#include "../memoryImplementation.h"
-#include "../usefulTools.h"
-#include "../instruction_basic.h"
-#include "../usefulFuncs.h"
+#include "../../memoryImplementation.h"
+#include "../../usefulTools.h"
+#include "../emulate/instruction_basic.h"
+#include "../../usefulFuncs.h"
 
 void multiply(uint32_t , MACHINE* );
 

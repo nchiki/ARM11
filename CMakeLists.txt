@@ -4,16 +4,16 @@ project(arm11_28 C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(arm11_28
-        src/instructions/branch.c
-        src/instructions/DataProcDec.c
-        src/instructions/multiply.c
-        src/instructions/singleDT.c
+        src/emulate_utils/instructions/branch.c
+        src/emulate_utils/instructions/DataProcDec.c
+        src/emulate_utils/instructions/multiply.c
+        src/emulate_utils/instructions/singleDT.c
         src/assemble.c
-        src/binaryloader.c
-        src/decode.c
+        src/emulate_utils/binaryloader.c
+        src/emulate_utils/decode.c
         src/emulate.c
-        src/execute.c
-        src/execute.h
-        src/instruction_basic.h
+        src/emulate_utils/execute.c
+        src/emulate_utils/execute.h
+        src/emulate_utils/instruction_basic.h
         src/memoryImplementation.h
-        src/usefulTools.h src/usefulFuncs.c src/assemblerImplementation.h src/assemblerImplementation.c src/usefulFuncs.h src/instructions/branch.h src/instructions/DataProcDec.h src/instructions/halt.h src/instructions/multiply.h src/instructions/singleDT.h src/binaryloader.h src/decode.h)
+        src/usefulTools.h src/usefulFuncs.c src/assemble_utils/assemblerImplementation.h src/assemble_utils/assemblerImplementation.c src/usefulFuncs.h src/emulate_utils/instructions/branch.h src/emulate_utils/instructions/DataProcDec.h src/emulate_utils/instructions/halt.h src/emulate_utils/instructions/multiply.h src/emulate_utils/instructions/singleDT.h src/emulate_utils/binaryloader.h src/emulate_utils/decode.h)

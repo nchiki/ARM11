@@ -6,7 +6,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdint.h>
-#include "../memoryImplementation.h"
+#include "../../memoryImplementation.h"
 
 void halt(MACHINE *machine) {
     machine->c.decodedInstruction->type = Halt;

@@ -4,7 +4,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "instruction_basic.h"
+#include "emulate/instruction_basic.h"
 
 #define PC 15
 #define CPSR 16

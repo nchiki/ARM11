@@ -3,10 +3,10 @@
 #include <assert.h>
 #include <stdint.h>
 #include "memoryImplementation.h"
-#include "binaryloader.c"
-#include "execute.c"
+#include "emulate/binaryloader.c"
+#include "emulate/execute.c"
 #include <string.h>
-#include "decode.c"
+#include "emulate/decode.c"
 #include<byteswap.h>
 
 uint32_t getBitRange(uint32_t num, int start, int length);
@@ -60,7 +60,7 @@ uint32_t getBitRange(uint32_t num, int start, int length);
 
 
 
-    /* for the main while loop of emulate:
+    /* for the main while loop of emulate_utils:
      * is it better to create a struct for instructions, and then extract one uint32 from memory and use it, or is it
      * better to not do any such thing and just process the "instructions" in a 3-staggered while loop?
      * if instructions is it's own struct:
