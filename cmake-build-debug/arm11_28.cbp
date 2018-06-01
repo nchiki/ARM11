@@ -111,6 +111,9 @@
 		<Unit filename="/home/nb1317/arm11_28/src/instructions/branch.c">
 			<Option target="arm11_28"/>
 		</Unit>
+		<Unit filename="/home/nb1317/arm11_28/src/instructions/branch.h">
+			<Option target="arm11_28"/>
+		</Unit>
 		<Unit filename="/home/nb1317/arm11_28/src/instructions/multiply.c">
 			<Option target="arm11_28"/>
 		</Unit>

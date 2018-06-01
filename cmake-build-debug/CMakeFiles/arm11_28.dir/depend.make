@@ -15,7 +15,6 @@ CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/instructions/halt.c
 CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/instructions/multiply.c
 CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/instructions/singleDT.c
 CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/memoryImplementation.h
-CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/usefulFuncs.c
 CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/usefulFuncs.h
 CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/usefulTools.h
 
@@ -31,7 +30,6 @@ CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/instructions/halt.c
 CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/instructions/multiply.c
 CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/instructions/singleDT.c
 CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/memoryImplementation.h
-CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/usefulFuncs.c
 CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/usefulFuncs.h
 CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/usefulTools.h
 
@@ -45,7 +43,6 @@ CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/instructions/halt.c
 CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/instructions/multiply.c
 CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/instructions/singleDT.c
 CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/memoryImplementation.h
-CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/usefulFuncs.c
 CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/usefulFuncs.h
 CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/usefulTools.h
 
@@ -69,7 +66,6 @@ CMakeFiles/arm11_28.dir/src/instructions/multiply.c.o: ../src/usefulTools.h
 CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.o: ../src/instruction_basic.h
 CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.o: ../src/instructions/singleDT.c
 CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.o: ../src/memoryImplementation.h
-CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.o: ../src/usefulFuncs.c
 CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.o: ../src/usefulFuncs.h
 CMakeFiles/arm11_28.dir/src/instructions/singleDT.c.o: ../src/usefulTools.h
 
