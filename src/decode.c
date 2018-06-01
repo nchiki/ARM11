@@ -1,19 +1,4 @@
-
-//interface for alltructions
-
-#include "instruction_basic.h"
-#include "usefulTools.h"
-#include "memoryImplementation.h"
-#include "instructions/branch.h"
-#include "instructions/singleDT.h"
-#include "instructions/multiply.h"
-#include "instructions/DataProcDec.h"
-#include "instructions/halt.h"
-
-//This part receives the instructions fetched and has to
-// distinguish between the different instructions save the
-// value of the different parts they have (Rn, Rs, <offset etc) for
-// each of the instructions, and save it as the decoded intruction
+#include "decode.h"
 
 
 void decode(MACHINE *machine){
@@ -30,5 +15,6 @@ void decode(MACHINE *machine){
     }
     (machine->c.decodedInstruction) = machine->c.fetchedInstruction;
 }
+
 
 

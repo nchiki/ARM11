@@ -101,127 +101,6 @@ void execute_branch(MACHINE *machine){
     machine->c.registers[PC] = signedtwos_to_unsigned(offset);
 }
 
-
-void execute_SDT(MACHINE *machine) {
-    if ((machine->c.decodedInstruction->Rn == PC) && &(machine->c.decodedInstruction) != machine->c.registers[PC] - 8 ){
-        fprintf(stderr, "PC doesn't contain the correct instructions");
-        exit(EXIT_FAILURE);
-    }
-    uint32_t offsetValue;
-    if (machine->c.decodedInstruction->I) {
-        uint8_t shift = getBitRange(machine->c.decodedInstruction, 4, 8);
-        int shifterReg = getBitRange(machine->c.decodedInstruction, 0, 4);
-        machine->c.decodedInstruction->Rm = shifterReg;
-        shiftReg(machine->c.decodedInstruction->offset & 0xFFF, machine);
-        offsetValue = machine->c.registers[machine->c.decodedInstruction->Rm];
-    } else {
-        offsetValue = (machine->c.decodedInstruction->offset) & 0xFFF;
-    }
-    uint32_t newAddress;
-    if (machine->c.decodedInstruction->U) {
-        newAddress = machine->c.registers[machine->c.decodedInstruction->Rn] +
-                     offsetValue;
-    } else {
-        newAddress = machine->c.registers[machine->c.decodedInstruction->Rn] -
-                     offsetValue;
-    }
-    if (machine->c.decodedInstruction->L) {
-        if (machine->c.decodedInstruction->P) {
-            machine->c.registers[machine->c.decodedInstruction->Rd] = machine->mem.memoryAlloc[newAddress];
-        } else {
-            machine->c.registers[machine->c.decodedInstruction->Rd] = machine->mem.memoryAlloc[offsetValue];
-            machine->c.registers[machine->c.decodedInstruction->Rn] = newAddress;
-        }
-    } else {
-        if (machine->c.decodedInstruction->P) {
-            machine->mem.memoryAlloc[newAddress] = machine->c.registers[machine->c.decodedInstruction->Rd];
-        } else {
-            machine->c.registers[machine->c.decodedInstruction->Rd] = machine->mem.memoryAlloc[offsetValue];
-            machine->c.registers[machine->c.decodedInstruction->Rn] = newAddress;
-        }
-
-    }
-
-}
-
-
-
-
-//flags still need to be added
-void execute_DPI(MACHINE *machine){
-    instructions *instr = machine->c.decodedInstruction;
-    uint32_t result;
-
-    if(instr->I){
-        //value is zero-extended to 32 bits
-        uint32_t operand = instr->operand2 | 0x00000000;
-        //rotated times the number specified in bit 8 to 11
-        int numberRot = getBitRange(instr, 8, 4) * 0x2;
-        instr->Rm = rotate(operand,numberRot);
-    } else{
-        uint32_t operand = shiftReg(instr->operand2, machine);
-        instr->Rm = operand;
-    }
-
-    //carry-out bit
-    bool flag = 0;
-    //opcode is checked and saved in local variable result
-            // flags are set and saved in local variable flag
-    switch(machine->c.decodedInstruction->opcode){
-        case AND:
-        case TST: result = instr->Rn && instr->operand2;
-        flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
-        break;
-        case EOR:
-        case TEQ: result = instr->Rn ^ instr->operand2;
-            flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
-            break;
-        case SUB:
-        case CMP: result = instr->Rn - instr->operand2;
-            if((!(instr->Rn) && (instr->operand2 || ((machine->c.registers[CPSR] >> 29) & C_MASK))) ||
-                    (instr->operand2 && ((machine->c.registers[CPSR] >> 29) & C_MASK))){
-                flag = 1;
-            }
-        break;
-        case RSB: result = instr->operand2 - instr->Rn;
-            if((((machine->c.registers[CPSR] >> 29) & C_MASK) && ((instr->Rn) >> 31 || (instr->operand2) >> 31))
-               || ((instr->Rn) >> 31 && (instr->operand2) >> 31)){
-                flag = 1;
-            }
-        break;
-        case ADD: result = instr->Rn + instr->operand2;
-        if((((machine->c.registers[CPSR] >> 29) & C_MASK) && ((instr->Rn) >> 31 || (instr->operand2) >> 31))
-           || ((instr->Rn) >> 31 && (instr->operand2) >> 31)){
-            flag = 1;
-        }
-        break;
-        case ORR: result = instr->Rn || instr->operand2;
-        break;
-        case MOV: result = instr->operand2;
-            flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
-            break;
-    }
-
-//if one of these instructions, result is not written
-    if(instr->opcode == TST || instr->opcode == TEQ || instr->opcode == CMP) {
-        machine->c.registers[machine->c.decodedInstruction->Rd] = result;
-    }
-
-    //if S flag is set, CPSR flags have to be set in the following way
-    if (instr->S){
-        //if result is all zeros, Z bit will be set
-        if(result == 0){
-            machine->c.registers[CPSR] |= Z_MASK_32;
-        }
-        //N bit will be set to bit 31 of result
-        uint32_t nvalue = result >> 31;
-        machine->c.registers[CPSR] |= nvalue;
-        //flag C is set to flag value but shifted to right position
-        uint32_t flagC = flag << 29;
-        machine->c.registers[CPSR] |= flagC;
-    }
-}
-
 //prints bit sequence of register
 void printBits(uint32_t reg) {
     int i;
@@ -331,4 +210,124 @@ int binToDec(int n)
         ++i;
     }
     return number;
+}
+
+void execute_SDT(MACHINE *machine) {
+    if ((machine->c.decodedInstruction->Rn == PC) && &(machine->c.decodedInstruction) != machine->c.registers[PC] - 8 ){
+        fprintf(stderr, "PC doesn't contain the correct instructions");
+        exit(EXIT_FAILURE);
+    }
+    uint32_t offsetValue;
+    if (machine->c.decodedInstruction->I) {
+        uint8_t shift = getBitRange(machine->c.decodedInstruction, 4, 8);
+        int shifterReg = getBitRange(machine->c.decodedInstruction, 0, 4);
+        machine->c.decodedInstruction->Rm = shifterReg;
+        shiftReg(machine->c.decodedInstruction->offset & 0xFFF, machine);
+        offsetValue = machine->c.registers[machine->c.decodedInstruction->Rm];
+    } else {
+        offsetValue = (machine->c.decodedInstruction->offset) & 0xFFF;
+    }
+    uint32_t newAddress;
+    if (machine->c.decodedInstruction->U) {
+        newAddress = machine->c.registers[machine->c.decodedInstruction->Rn] +
+                     offsetValue;
+    } else {
+        newAddress = machine->c.registers[machine->c.decodedInstruction->Rn] -
+                     offsetValue;
+    }
+    if (machine->c.decodedInstruction->L) {
+        if (machine->c.decodedInstruction->P) {
+            machine->c.registers[machine->c.decodedInstruction->Rd] = machine->mem.memoryAlloc[newAddress];
+        } else {
+            machine->c.registers[machine->c.decodedInstruction->Rd] = machine->mem.memoryAlloc[offsetValue];
+            machine->c.registers[machine->c.decodedInstruction->Rn] = newAddress;
+        }
+    } else {
+        if (machine->c.decodedInstruction->P) {
+            machine->mem.memoryAlloc[newAddress] = machine->c.registers[machine->c.decodedInstruction->Rd];
+        } else {
+            machine->c.registers[machine->c.decodedInstruction->Rd] = machine->mem.memoryAlloc[offsetValue];
+            machine->c.registers[machine->c.decodedInstruction->Rn] = newAddress;
+        }
+
+    }
+
+}
+
+
+
+
+//flags still need to be added
+void execute_DPI(MACHINE *machine){
+    instructions *instr = machine->c.decodedInstruction;
+    uint32_t result;
+
+    if(instr->I){
+        //value is zero-extended to 32 bits
+        uint32_t operand = instr->operand2 | 0x00000000;
+        //rotated times the number specified in bit 8 to 11
+        int numberRot = getBitRange(instr, 8, 4) * 0x2;
+        instr->Rm = rotate(operand,numberRot);
+    } else{
+        uint32_t operand = shiftReg(instr->operand2, machine);
+        instr->Rm = operand;
+    }
+
+    //carry-out bit
+    bool flag = 0;
+    //opcode is checked and saved in local variable result
+    // flags are set and saved in local variable flag
+    switch(machine->c.decodedInstruction->opcode){
+        case AND:
+        case TST: result = instr->Rn && instr->operand2;
+            flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
+            break;
+        case EOR:
+        case TEQ: result = instr->Rn ^ instr->operand2;
+            flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
+            break;
+        case SUB:
+        case CMP: result = instr->Rn - instr->operand2;
+            if((!(instr->Rn) && (instr->operand2 || ((machine->c.registers[CPSR] >> 29) & C_MASK))) ||
+               (instr->operand2 && ((machine->c.registers[CPSR] >> 29) & C_MASK))){
+                flag = 1;
+            }
+            break;
+        case RSB: result = instr->operand2 - instr->Rn;
+            if((((machine->c.registers[CPSR] >> 29) & C_MASK) && ((instr->Rn) >> 31 || (instr->operand2) >> 31))
+               || ((instr->Rn) >> 31 && (instr->operand2) >> 31)){
+                flag = 1;
+            }
+            break;
+        case ADD: result = instr->Rn + instr->operand2;
+            if((((machine->c.registers[CPSR] >> 29) & C_MASK) && ((instr->Rn) >> 31 || (instr->operand2) >> 31))
+               || ((instr->Rn) >> 31 && (instr->operand2) >> 31)){
+                flag = 1;
+            }
+            break;
+        case ORR: result = instr->Rn || instr->operand2;
+            break;
+        case MOV: result = instr->operand2;
+            flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
+            break;
+    }
+
+//if one of these instructions, result is not written
+    if(instr->opcode == TST || instr->opcode == TEQ || instr->opcode == CMP) {
+        machine->c.registers[machine->c.decodedInstruction->Rd] = result;
+    }
+
+    //if S flag is set, CPSR flags have to be set in the following way
+    if (instr->S){
+        //if result is all zeros, Z bit will be set
+        if(result == 0){
+            machine->c.registers[CPSR] |= Z_MASK_32;
+        }
+        //N bit will be set to bit 31 of result
+        uint32_t nvalue = result >> 31;
+        machine->c.registers[CPSR] |= nvalue;
+        //flag C is set to flag value but shifted to right position
+        uint32_t flagC = flag << 29;
+        machine->c.registers[CPSR] |= flagC;
+    }
 }
