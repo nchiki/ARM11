@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include "../instruction.h"
+#include "../instruction_basic.h"
 #include "../usefulFuncs.c"
 #include "../memoryImplementation.h"
 

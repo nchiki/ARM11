@@ -9,6 +9,9 @@
 #include "decode.c"
 #include<byteswap.h>
 
+uint32_t getBitRange(uint32_t num, int start, int length);
+
+
   int main(int argc, char **argv) {
     /* explanation:
      * would it not be easier to just use the global variable machine from memImplementation.h rather than create a new
@@ -62,10 +65,10 @@
      * better to not do any such thing and just process the "instructions" in a 3-staggered while loop?
      * if instructions is it's own struct:
      *      then it can have data members instruction_type, cond and a bunch of others to store the effects and particulars
-     *      of that particular instruction, but this may lead to problems with dereferencing later
+     *      of that particular instructions, but this may lead to problems with dereferencing later
      * if instructions is NOT it's own struct:
      *      then as soon as we extract from memory, there needs to be a helper function which extracts all the necessary
-     *      information like instructionType, cond, opcode and other particulars of the instruction. could stick these
+     *      information like instructionType, cond, opcode and other particulars of the instructions. could stick these
      *      functions into a .h and .c file of their own, or could have them inside the while loop which would make it
      *      quite messy
      *      ^^^ oh i was talking about decode here and in the point above.
@@ -73,7 +76,7 @@
      * essentially, it comes down to having a helper functions to perform decode, or having decode within the struct      
      * design decision here
      */
-     instruction NullInstruction = {
+     instructions NullInstruction = {
       None,
       1111,
       2, //Random value not equal to any know cond codes
@@ -103,8 +106,8 @@
 
      };
 
-    machine->c.decodedInstruction = malloc(sizeof(instruction)); //creates space for the decoded instruction
-    *(machine->c.decodedInstruction) = NullInstruction;
+    machine->c.decodedInstruction = (instructions *) malloc(sizeof(instructions)); //creates space for the decoded instructions
+    machine->c.decodedInstruction = &NullInstruction;
 
     // read from binary file into memory array
     // i wonder if i could do this : loadFile(givenFile, memArray) -> technically it should be fine because they both point to memAlloc[0]?
@@ -129,13 +132,13 @@
 
     // --------------------MAIN WHILE LOOP---------------------------
 
-    bool finalise = false; //finalise will become true when the instruction is the zero instruction: halt
+    bool finalise = false; //finalise will become true when the instructions is the zero instructions: halt
 
     while (!finalise) {
       //fetch
       address = machine->c.registers[PC];
       fetched = 0;
-      //we need 4 iterations of the loop because each instruction is 4 bytes, and each iteration reads one byte
+      //we need 4 iterations of the loop because each instructions is 4 bytes, and each iteration reads one byte
       //shifting by 8 (1 byte = 8 bits)
       for(int i = 0; i < 4; i++) {
         fetched |= ((uint32_t) machine->mem.memoryAlloc[address + i]) << (i * 8);
@@ -154,7 +157,7 @@
       execute(machine);
 
       //decode
-      *(machine->c.decodedInstruction) = NullInstruction;
+      machine->c.decodedInstruction = &NullInstruction;
       decode(machine);
 
       registerArray[PC] += 4; // four bytes because is 4-byte addresable
