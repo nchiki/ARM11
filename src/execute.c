@@ -1,13 +1,5 @@
-
-#include <stdlib.h>
-#include <stdio.h>
-#include "memoryImplementation.h"
-#include "instruction_basic.h"
 #include "execute.h"
-#include "decode.c"
-#include <math.h>
-#include "usefulTools.h"
-#include "usefulFuncs.h"// fixed a merge conflict here
+
 
 int checkCondition(MACHINE *machine) {
     //checking whether the condition set in the cond field of the instructions correspond to the flags of the CPSR

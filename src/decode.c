@@ -15,6 +15,3 @@ void decode(MACHINE *machine){
     }
     (machine->c.decodedInstruction) = machine->c.fetchedInstruction;
 }
-
-
-
