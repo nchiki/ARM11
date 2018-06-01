@@ -96,6 +96,9 @@
 		<Unit filename="/home/nb1317/arm11_28/src/decode.c">
 			<Option target="arm11_28"/>
 		</Unit>
+		<Unit filename="/home/nb1317/arm11_28/src/decode.h">
+			<Option target="arm11_28"/>
+		</Unit>
 		<Unit filename="/home/nb1317/arm11_28/src/emulate.c">
 			<Option target="arm11_28"/>
 		</Unit>

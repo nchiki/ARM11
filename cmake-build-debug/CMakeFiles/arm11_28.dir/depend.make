@@ -4,16 +4,17 @@
 CMakeFiles/arm11_28.dir/src/assemble.c.o: ../src/assemble.c
 
 CMakeFiles/arm11_28.dir/src/assemblerImplementation.c.o: ../src/assemblerImplementation.c
+CMakeFiles/arm11_28.dir/src/assemblerImplementation.c.o: ../src/assemblerImplementation.h
 
 CMakeFiles/arm11_28.dir/src/binaryloader.c.o: ../src/binaryloader.c
 
 CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/decode.c
 CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/instruction_basic.h
-CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/instructions/DataProcDec.c
-CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/instructions/branch.c
-CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/instructions/halt.c
-CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/instructions/multiply.c
-CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/instructions/singleDT.c
+CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/instructions/DataProcDec.h
+CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/instructions/branch.h
+CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/instructions/halt.h
+CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/instructions/multiply.h
+CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/instructions/singleDT.h
 CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/memoryImplementation.h
 CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/usefulFuncs.h
 CMakeFiles/arm11_28.dir/src/decode.c.o: ../src/usefulTools.h
@@ -24,11 +25,11 @@ CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/emulate.c
 CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/execute.c
 CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/execute.h
 CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/instruction_basic.h
-CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/instructions/DataProcDec.c
-CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/instructions/branch.c
-CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/instructions/halt.c
-CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/instructions/multiply.c
-CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/instructions/singleDT.c
+CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/instructions/DataProcDec.h
+CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/instructions/branch.h
+CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/instructions/halt.h
+CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/instructions/multiply.h
+CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/instructions/singleDT.h
 CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/memoryImplementation.h
 CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/usefulFuncs.h
 CMakeFiles/arm11_28.dir/src/emulate.c.o: ../src/usefulTools.h
@@ -37,11 +38,11 @@ CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/decode.c
 CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/execute.c
 CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/execute.h
 CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/instruction_basic.h
-CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/instructions/DataProcDec.c
-CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/instructions/branch.c
-CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/instructions/halt.c
-CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/instructions/multiply.c
-CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/instructions/singleDT.c
+CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/instructions/DataProcDec.h
+CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/instructions/branch.h
+CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/instructions/halt.h
+CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/instructions/multiply.h
+CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/instructions/singleDT.h
 CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/memoryImplementation.h
 CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/usefulFuncs.h
 CMakeFiles/arm11_28.dir/src/execute.c.o: ../src/usefulTools.h
