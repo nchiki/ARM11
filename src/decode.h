@@ -1,9 +1,7 @@
-//
-// Created by nb1317 on 01/06/18.
-//
-
 #ifndef ARM11_28_DECODE_H
 #define ARM11_28_DECODE_H
+
+//interface for alltructions
 
 #include "instruction_basic.h"
 #include "usefulTools.h"
@@ -14,6 +12,12 @@
 #include "instructions/DataProcDec.h"
 #include "instructions/halt.h"
 
-void decode(MACHINE* );
+//This part receives the instructions fetched and has to
+// distinguish between the different instructions save the
+// value of the different parts they have (Rn, Rs, <offset etc) for
+// each of the instructions, and save it as the decoded intruction
+
+
+void decode(MACHINE *machine);
 
 #endif //ARM11_28_DECODE_H
