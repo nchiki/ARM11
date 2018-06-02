@@ -7,7 +7,7 @@
 #include "emulate_utils/execute.c"
 #include <string.h>
 #include "emulate_utils/decode.c"
-#include "byteswap.h"
+#include <byteswap.h>
 
 uint32_t getBitRange(uint32_t num, int start, int length);
 
