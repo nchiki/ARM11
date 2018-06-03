@@ -32,11 +32,33 @@ MNEMONIC takeMnemonic(char *word) {
         return mla;
     } //to be continued
 }
+
+
 char **tokenizeHelper(char *line) {
-    char **returnValue;
-    // magic 
-    return returnValue;
+
+    char new_line[MAX_LINE_SIZE];
+    char *tokenized[10];
+    // 10 is just a random number, but each instruction definitely has less than 10 arguments.
+    // if theres only 2 arguments, the rest of them will be set to null so it wont be a problem
+    // only have to check for null when we're using the sentence in decode (presumably)
+    int i = 0;
+
+    strcpy(new_line, line); /* can't use strtok on string literal */
+    char *temp1 = strtok(new_line, "[");
+    char *temp2 = strtok(NULL, "[");
+
+    temp1 = strtok(temp1, " ,");
+
+    while(temp1) {
+        tokenized[i++] = temp1;
+        temp1 = strtok(NULL, " ,");
+    }
+    tokenized[i] = temp2;
+
+
+    return tokenized;
 }
+
 // the idea here is to be able to make a switch function which takes the mnemonic
 // and returns, using the defs in usefulTools, the code of both the condition and the opcodes
 
