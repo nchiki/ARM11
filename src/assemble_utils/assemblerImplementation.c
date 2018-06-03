@@ -17,7 +17,7 @@ void initSymbolTable(void) {
     symbolTableHead->address = 0;
 }
 
-//not sure about this one, why parameters?-------------------------------
+
 void addLabel( char* newLabel, uint32_t givAddress ) {
     struct symbol *temp = symbolTableHead;
 
@@ -28,9 +28,13 @@ void addLabel( char* newLabel, uint32_t givAddress ) {
     temp->next = (struct symbol*)(malloc(sizeof(struct symbol)));
     temp->next->label = NULL;
     temp->next->address = 0;
+    temp->next->next = NULL;
+    temp->label = malloc(strlen(newLabel)+1);
+    strcpy(temp->label,newLabel);
+    temp->address = givAddress;
 
 }
-//------------------------------------------------------------------------
+
 uint32_t getAddress(char *givLabel) {
     struct symbol *temp = symbolTableHead;
     while (temp->next != NULL ) {
