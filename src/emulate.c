@@ -103,6 +103,7 @@ uint32_t getBitRange(uint32_t num, int start, int length);
       0,
       0,
       -1,
+      -1
 
      };
 

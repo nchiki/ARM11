@@ -4,6 +4,7 @@
 #include "instructions/singleDT.h"
 #include "instructions/DataProcDec.h"
 #include "instructions/multiply.h"
+#include "instruction_basic.h"
 
 
 void decode(MACHINE *machine){
@@ -18,5 +19,5 @@ void decode(MACHINE *machine){
     } else {
         multiply(machine->c.fetchedInstruction, machine);
     }
-    (machine->c.decodedInstruction) = machine->c.fetchedInstruction;
+    (machine->c.decodedInstruction->binary) = machine->c.fetchedInstruction;
 }

@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
     char b = 65;
     char c = 65;
     for(int i = 0; i < 511 ; i++) {
-        temp->label = a + b + c + ":"; //concatenation of three letters
+        temp->label = a + b + c + ':'; //concatenation of three letters
         temp->address = address; //sets address
         temp = temp->next; // next instruction to be translated
         if((int )a == 90) { // jumps to lower case letters

@@ -5,5 +5,5 @@
 #include <stdint.h>
 #include "emulate_utils/instruction_basic.h"
 
-uint32_t getBitRange(instructions num, int start, int length);
+uint32_t getBitRange(uint32_t instruction, int start, int length);
 #endif //ARM11_28_USEFULFUNCS_H

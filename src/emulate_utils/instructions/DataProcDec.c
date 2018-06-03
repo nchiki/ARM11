@@ -7,6 +7,7 @@
 #include "../../usefulTools.h"
 
 void decodeDATPROC(uint32_t instruction, MACHINE *machine){
+    machine->c.decodedInstruction->binary = instruction;
     machine->c.decodedInstruction->type = DProc;
     machine->c.decodedInstruction->Rn = getBitRange(instruction, 16, 4);
     machine->c.decodedInstruction->Rd = getBitRange(instruction, 12, 15);
