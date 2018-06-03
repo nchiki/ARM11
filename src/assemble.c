@@ -46,10 +46,9 @@ int main(int argc, char **argv) {
         address+= 4; //increments the address by four bits
     }
 
-
-
-
-
-    }
-
+    //need sth that reads each line of the file, taking it to a "distinguishInstruction" method that would return the
+            // type of the instruction, and with a switch(by the different instructions in usefulTools)
+                    // in a helper method that splits the following code depending on the instruction (as in decode for emulator)
+                            // and using the structs in .h encode the different fields of each instruction
+                                    //would it be useful to have a method that encodes different instructions?
 }

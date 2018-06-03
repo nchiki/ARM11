@@ -17,6 +17,7 @@ void initSymbolTable(void) {
     symbolTableHead->address = 0;
 }
 
+//not sure about this one, why parameters?-------------------------------
 void addLabel( char* newLabel, uint32_t givAddress ) {
     struct symbol *temp = symbolTableHead;
 
@@ -29,7 +30,7 @@ void addLabel( char* newLabel, uint32_t givAddress ) {
     temp->next->address = 0;
 
 }
-
+//------------------------------------------------------------------------
 uint32_t getAddress(char *givLabel) {
     struct symbol *temp = symbolTableHead;
     while (temp->next != NULL ) {
@@ -58,3 +59,4 @@ void clearSymbolTable() {
     free(symbolTableHead);
 
 }
+
