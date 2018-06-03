@@ -8,6 +8,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "../usefulTools.h"
+#include "assemblerImplementation.h"
+#include "defs.h"
 
 struct symbol {
 
@@ -23,6 +25,7 @@ struct symbol {
 
 //typedefs for each of the instruction. To turn them into a uint32_t we might have to add them using masks...
 typedef struct {
+    MNEMONIC mnemonic;
     cond_code cond;
     OPCODE opcode;
     int Rn;
@@ -31,6 +34,7 @@ typedef struct {
 } DataProcInstr_t;
 
 typedef struct {
+    MNEMONIC mnemonic;
     cond_code cond;
     char A;
     char S;
@@ -41,6 +45,7 @@ typedef struct {
 } MultiplyInstr_t;
 
 typedef struct {
+    MNEMONIC mnemonic;
     cond_code cond;
     char P;
     char U;
@@ -51,6 +56,7 @@ typedef struct {
 } SDTinstr_t;
 
 typedef struct {
+    MNEMONIC mnemonic;
     cond_code cond;
     uint32_t offset;
 } BranchInstr_t;
@@ -65,5 +71,7 @@ void addLabel (char*, uint32_t) ;
 uint32_t getAddress (char*);
 
 void clearSymbolTable();
+
+uint32_t parse(char*);
 
 #endif //ARM11_28_ASSEMBLERIMPLEMENTATION_H

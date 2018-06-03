@@ -51,4 +51,14 @@ int main(int argc, char **argv) {
                     // in a helper method that splits the following code depending on the instruction (as in decode for emulator)
                             // and using the structs in .h encode the different fields of each instruction
                                     //would it be useful to have a method that encodes different instructions?
+
+    char chr;
+    char *line;
+    while (chr != feof(sourceFile)) {
+        while (chr != '/n') {
+           chr = fgets(line, 512, sourceFile);
+        }
+    }
+
+    fclose(sourceFile);
 }

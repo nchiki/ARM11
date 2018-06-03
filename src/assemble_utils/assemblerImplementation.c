@@ -51,12 +51,27 @@ void helperFunction(struct symbol* something) {
 
 
 }
+
 void clearSymbolTable() {
     if (symbolTableHead->next != NULL) {
         helperFunction(symbolTableHead->next);
     }
    free(symbolTableHead->label);
     free(symbolTableHead);
+}
+
+
+uint32_t parse(char *line) {
+    int i = 0;
+    char *addr = line;
+    char *word = "";
+    while (line[i] != ' '){
+        if(line[i] != ' ') {
+            *word += line[i];//saves the first word;
+        }
+        addr ++; // increments the addres of the array
+    }
+
 
 }
 
