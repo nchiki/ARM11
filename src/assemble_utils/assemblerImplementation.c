@@ -60,6 +60,10 @@ void clearSymbolTable() {
     free(symbolTableHead);
 }
 
+uint32_t encodeInstr(char *firstW, char *line) {
+
+
+}
 
 uint32_t parse(char *line) {
     int i = 0;
@@ -71,7 +75,5 @@ uint32_t parse(char *line) {
         }
         addr ++; // increments the addres of the array
     }
-
-
 }
 

@@ -177,6 +177,33 @@ src/assemble_utils/assemblerImplementation.c.s:
 	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.s
 .PHONY : src/assemble_utils/assemblerImplementation.c.s
 
+src/assemble_utils/defs.o: src/assemble_utils/defs.c.o
+
+.PHONY : src/assemble_utils/defs.o
+
+# target to build an object file
+src/assemble_utils/defs.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.o
+.PHONY : src/assemble_utils/defs.c.o
+
+src/assemble_utils/defs.i: src/assemble_utils/defs.c.i
+
+.PHONY : src/assemble_utils/defs.i
+
+# target to preprocess a source file
+src/assemble_utils/defs.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.i
+.PHONY : src/assemble_utils/defs.c.i
+
+src/assemble_utils/defs.s: src/assemble_utils/defs.c.s
+
+.PHONY : src/assemble_utils/defs.s
+
+# target to generate assembly for a file
+src/assemble_utils/defs.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.s
+.PHONY : src/assemble_utils/defs.c.s
+
 src/emulate.o: src/emulate.c.o
 
 .PHONY : src/emulate.o
@@ -435,6 +462,9 @@ help:
 	@echo "... src/assemble_utils/assemblerImplementation.o"
 	@echo "... src/assemble_utils/assemblerImplementation.i"
 	@echo "... src/assemble_utils/assemblerImplementation.s"
+	@echo "... src/assemble_utils/defs.o"
+	@echo "... src/assemble_utils/defs.i"
+	@echo "... src/assemble_utils/defs.s"
 	@echo "... src/emulate.o"
 	@echo "... src/emulate.i"
 	@echo "... src/emulate.s"

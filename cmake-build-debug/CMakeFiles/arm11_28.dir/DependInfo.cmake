@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "/Users/blanca/arm11_28/src/assemble.c" "/Users/blanca/arm11_28/cmake-build-debug/CMakeFiles/arm11_28.dir/src/assemble.c.o"
   "/Users/blanca/arm11_28/src/assemble_utils/assemblerImplementation.c" "/Users/blanca/arm11_28/cmake-build-debug/CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.o"
+  "/Users/blanca/arm11_28/src/assemble_utils/defs.c" "/Users/blanca/arm11_28/cmake-build-debug/CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.o"
   "/Users/blanca/arm11_28/src/emulate.c" "/Users/blanca/arm11_28/cmake-build-debug/CMakeFiles/arm11_28.dir/src/emulate.c.o"
   "/Users/blanca/arm11_28/src/emulate_utils/binaryloader.c" "/Users/blanca/arm11_28/cmake-build-debug/CMakeFiles/arm11_28.dir/src/emulate_utils/binaryloader.c.o"
   "/Users/blanca/arm11_28/src/emulate_utils/decode.c" "/Users/blanca/arm11_28/cmake-build-debug/CMakeFiles/arm11_28.dir/src/emulate_utils/decode.c.o"

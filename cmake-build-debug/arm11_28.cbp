@@ -89,6 +89,9 @@
 		<Unit filename="/Users/blanca/arm11_28/src/assemble_utils/assemblerImplementation.h">
 			<Option target="arm11_28"/>
 		</Unit>
+		<Unit filename="/Users/blanca/arm11_28/src/assemble_utils/defs.c">
+			<Option target="arm11_28"/>
+		</Unit>
 		<Unit filename="/Users/blanca/arm11_28/src/assemble_utils/defs.h">
 			<Option target="arm11_28"/>
 		</Unit>
