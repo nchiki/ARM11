@@ -32,7 +32,11 @@ MNEMONIC takeMnemonic(char *word) {
         return mla;
     } //to be continued
 }
-
+char **tokenizeHelper(char *line) {
+    char **returnValue;
+    // magic 
+    return returnValue;
+}
 // the idea here is to be able to make a switch function which takes the mnemonic
 // and returns, using the defs in usefulTools, the code of both the condition and the opcodes
 

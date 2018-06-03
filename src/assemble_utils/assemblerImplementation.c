@@ -69,6 +69,15 @@ uint32_t encodeInstr(char *firstW, char *line) {
 
 }
 
+bool containsLabel(char *givenLabel) {
+    struct symbol *temp = symbolTableHead;
+    while (temp->next != NULL ) {
+        if (strcmp(temp->label,givenLabel) == 0) {
+            return true;
+        }
+    }
+    return false;
+}
 uint32_t parse(char *line) {
     int i = 0;
     char *addr = line;

@@ -72,6 +72,7 @@ uint32_t getAddress (char*);
 
 void clearSymbolTable();
 
+bool containsLabel(char*);
 uint32_t parse(char*);
 
 #endif //ARM11_28_ASSEMBLERIMPLEMENTATION_H

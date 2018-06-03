@@ -31,4 +31,7 @@ typedef enum {
     lsl,
     andeq
 } MNEMONIC;
+
+char **tokenizeHelper(char*);
+#define MAX_LINE_SIZE 511
 #endif //ARM11_28_DEFS_H
