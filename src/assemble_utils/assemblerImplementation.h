@@ -14,7 +14,7 @@
 struct symbol {
 
     char *label;
-    uint32_t address;
+    uint16_t address;
     struct symbol *next;
 
 
@@ -64,8 +64,8 @@ typedef struct {
 // purposely did not use typedef because typedef breaks a couple of things in the implementation of addLabel in assemblerImplementation.c
 // DO NOT CHANGE TO TYPEDEF STRUCT {..}SYMBOL;
 
-// all the opcodes, not entirely too sure what to do for the special instructions 
-static const char *Opcodes[][] = {
+// all the opcodes, not entirely too sure what to do for the special instructions
+static const char *Opcodes[][10] = {
         {"add", "sub", "rsb", "and", "eor", "orr", "mov", "tst", "teq", "cmp"},
         {"mul", "mla"},
         {"ldr", "str"},
@@ -73,15 +73,34 @@ static const char *Opcodes[][] = {
 
 };
 
+// there should be an enum for instrtype
+struct instruction {
+    char *opcode;
+    enum instrType type;
 
+    char *Rd;
+    char *Rn;
+    char *operand2;
+
+    char *Rm;
+    char *Rs;
+
+    char *address;
+    char *expression;
+
+    uint16_t memoryAddr;
+};
+
+
+struct instruction decode(char**, uint16_t);
 
 struct symbol *symbolTableHead;
 
 void initSymbolTable(void);
 
-void addLabel (char*, uint32_t) ;
+void addLabel (char*, uint16_t) ;
 
-uint32_t getAddress (char*);
+uint16_t getAddress (char*);
 
 void clearSymbolTable();
 

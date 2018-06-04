@@ -18,7 +18,7 @@ void initSymbolTable(void) {
 }
 
 
-void addLabel( char* newLabel, uint32_t givAddress ) {
+void addLabel( char* newLabel, uint16_t givAddress ) {
     struct symbol *temp = symbolTableHead;
 
     while (temp->next!= NULL) {
@@ -35,7 +35,7 @@ void addLabel( char* newLabel, uint32_t givAddress ) {
 
 }
 
-uint32_t getAddress(char *givLabel) {
+uint16_t getAddress(char *givLabel) {
     struct symbol *temp = symbolTableHead;
     while (temp->next != NULL ) {
         if (strcmp(temp->label,givLabel) == 0) {
@@ -87,3 +87,6 @@ uint32_t parse(char *line) {
     }
 }
 
+struct instruction decode(char** line, uint16_t memoryAddr) {
+    
+}
