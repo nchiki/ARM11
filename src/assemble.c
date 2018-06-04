@@ -13,14 +13,16 @@ int main(int argc, char **argv) {
 
     char *destFile = argv[2];
 
-    uint32_t address = 0;
+    uint16_t address = 0;
 
     char line[MAX_LINE_SIZE] ;
+
+    // first pass
 
     while (fgets(line, MAX_LINE_SIZE, sourceFile)) {
         char **tokenizedLine = tokenizeHelper(line);
 
-        // tokenizeHelper takes a line and return a 2D char array where the first sentence will the instruction or label
+        // tokenizeHelper takes a line and return a 2D char array where the first sentence will be the instruction or label
         // it will be a label iff the last char of the first line is :
         // otherwise send it to decode;
 
@@ -44,13 +46,5 @@ int main(int argc, char **argv) {
                             // and using the structs in .h encode the different fields of each instruction
                                     //would it be useful to have a method that encodes different instructions?
 
-    char chr;
 
-    while (chr != feof(sourceFile)) {
-        while (chr != '/n') {
-           chr = fgets(line, 512, sourceFile);
-        }
-    }
-
-    fclose(sourceFile);
 }

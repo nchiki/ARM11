@@ -73,6 +73,11 @@ static const char *Opcodes[][10] = {
 
 };
 
+
+enum instrType {
+    DATA_PROCESSING, MULTIPLY, SINGLE_DATA_TRANSFER, BRANCH, SPECIAL
+};
+
 // there should be an enum for instrtype
 struct instruction {
     char *opcode;

@@ -88,5 +88,51 @@ uint32_t parse(char *line) {
 }
 
 struct instruction decode(char** line, uint16_t memoryAddr) {
-    
+    struct instruction instr;
+    instr.opcode  = line[0];
+    instr.memoryAddr = memoryAddr;
+
+    for ( int i = 0 ; i < 4 ; ++i ) {
+        char *codes = Opcodes[i];
+        int len = sizeof(codes)/ sizeof(codes[0]);
+
+        for (int j = 0 ; j < len; ++j) {
+            if (!strcmp(codes[j],line[0])) {
+                instr.type = i;
+                break;
+            }
+
+        }
+
+    }
+
+    switch(instr.type) {
+        case DATA_PROCESSING:
+            if (!strcmp(line[0], "mov")) {
+                instr.Rd = line[1];
+                instr.operand2 = line[2];
+            } else if (!strcmp(line[0],"tst") || !strcmp(line[0],"teq") || !strcmp(line[0],"cmp")) {
+                instr.Rn = line[1];
+                instr.operand2 = line[2];
+            } else {
+                instr.Rd = line[1];
+                instr.Rn = line[2];
+                instr.operand2 = line[3];
+            }
+            break;
+
+        case MULTIPLY:
+            instr.Rd = line[1];
+            instr.Rm = line[2];
+            instr.Rs = line[3];
+
+            if (!strcmp(line[0],"mla")) {
+                instr.Rn = line[4];
+            }
+
+            break;
+        case SINGLE_DATA_TRANSFER:
+
+            
+    }
 }
