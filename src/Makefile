@@ -1,27 +1,27 @@
-CC      = gcc
-CFLAGS  = -Wall -g -D_POSIX_SOURCE -D_BSD_SOURCE -D_DEFAULT_SOURCE -std=c99 -Werror -pedantic
+TARGET = src
+LIBS = -lm
+CC = gcc
+CFLAGS = -g -Wall
 
-ASSEMBLE_SOURCES = assemble.c $(wildcard assemble_src/*.c)
-ASSEMBLE_OBJECTS = assemble.o $(ASSEMBLE_SOURCES:.c=.o)
+.PHONY: default all clean
 
-EMULATE_SOURCES = emulate.c $(wildcard emulate_src/*.c)
-EMULATE_OBJECTS = emulate.o $(EMULATE_SOURCES:.c=.o)
+default: $(TARGET)
+all: default
 
-.SUFFIXES: .c .o
+OBJECTS = $(patsubst %.c, %.o, $(wildcard *.c))
+HEADERS = $(wildcard *.h)
 
-.PHONY: all clean
+%.o: %.c $(HEADERS)
+    $(CC) $(CFLAGS) -c $< -o $@
 
-all: assemble emulate
+.PRECIOUS: $(TARGET) $(OBJECTS)
 
-assemble: $(ASSEMBLE_OBJECTS)
-
-emulate: $(EMULATE_OBJECTS)
+$(TARGET): $(OBJECTS)
+    $(CC) $(OBJECTS) -Wall $(LIBS) -o $@
 
 clean:
-    rm -f $(ASSEMBLE_OBJECTS)
-    rm -f $(EMULATE_OBJECTS)
-    rm -f assemble
-    rm -f emulate
+    -rm -f *.o
+    -rm -f $(TARGET)
 
 test:
     make

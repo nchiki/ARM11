@@ -18,5 +18,4 @@ void decode(MACHINE *machine){
     } else {
         multiply(machine->c.fetchedInstruction, machine);
     }
-    (machine->c.decodedInstruction) = machine->c.fetchedInstruction;
 }

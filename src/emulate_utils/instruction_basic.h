@@ -17,10 +17,10 @@ typedef struct {
     uint32_t offset;
 
     //registers
-    uint32_t Rn;
-    uint32_t Rd;
-    uint32_t Rs;
-    uint32_t Rm;
+    int32_t Rn;
+    int32_t Rd;
+    int32_t Rs;
+    int32_t Rm;
 
     //flags for operations
     bool A;

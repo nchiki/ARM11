@@ -1,4 +1,6 @@
 #include "execute.h"
+#include "instruction_basic.h"
+#include "../memoryImplementation.h"
 
 
 int checkCondition(MACHINE *machine) {
@@ -32,28 +34,25 @@ int checkCondition(MACHINE *machine) {
 
 void execute_MulI(MACHINE *machine){
     //simple multiplication
-    uint32_t result = machine->c.registers[getBitRange(machine->c.decodedInstruction,0,4)] *
-            machine->c.registers[getBitRange(machine->c.decodedInstruction,8,4)];
+    uint32_t result = machine->c.registers[machine->c.decodedInstruction->Rm] *
+            machine->c.registers[machine->c.decodedInstruction->Rs];
 
     //if A is set, then add accumulator
-    if(getBitRange(machine->c.decodedInstruction,21,1)){
-        result += machine->c.registers[getBitRange(machine->c.decodedInstruction,12,4)];
+    if(machine->c.decodedInstruction->A){
+        result += machine->c.registers[machine->c.decodedInstruction->Rn];
     }
 
     //if S is set, update CPSR flag
-    if(getBitRange(machine->c.decodedInstruction,20,1)){
+    if(machine->c.decodedInstruction->S){
         //N will be updated to the last bit of the result, rest of CPSR stays the same
 
-        machine->c.registers[CPSR] = (getBitRange(result, 31, 1) << 31) | getBitRange(machine->c.registers[CPSR],0,31);
+        machine->c.registers[CPSR] = (getBitRange(result, 31, 1) | getBitRange(machine->c.registers[CPSR],0,31));
 
         //if result is zero, Z bit is set and the rest of CPSR stays the same
         if(result == 0){
             machine->c.registers[CPSR] = Z_MASK_32 | machine->c.registers[CPSR];
         }
     }
-
-
-
 }
 
 void execute_Halt(MACHINE *machine){
@@ -64,7 +63,7 @@ void execute_Halt(MACHINE *machine){
 }
 
 void execute_branch(MACHINE *machine){
-    int32_t offset = getBitRange(machine->c.decodedInstruction, 0, 24) | 0x000000;
+    int32_t offset = machine->c.decodedInstruction->offset;
     machine->c.registers[PC] = signedtwos_to_unsigned(offset);
 }
 
@@ -73,26 +72,26 @@ void printBits(uint32_t reg) {
     int i;
     reg = __bswap_32(reg);
     // flip the bits before output
-    uint32_t mask = 1 << 31;
+    int32_t mask = 1 << 31;
     for (i = 0; i < 32; ++i) {
-        printf("%i", (reg & mask) != 0);
+        printf("%i", (reg && mask) != 0);
         reg <<= 1;
     }
     printf("\n");
 }
 
 //checks for negative value and turns offset into positive binary
-int32_t signedtwos_to_unsigned(int32_t signednum){
+uint32_t signedtwos_to_unsigned(int32_t signednum){
     if(signednum >> 31){
         signednum = (~signednum) + 1;
         signednum *= -1;
     }
-    return signednum;
+    return (uint32_t) signednum;
 }
 //need commenting ----------------------------------
-uint32_t shiftReg(uint16_t operand, MACHINE *machine) {
+uint32_t shiftReg(uint32_t operand, MACHINE *machine) {
     int amount;
-    if (operand & 1) {
+    if (operand != 0) {
         amount = getBitRange(machine->c.registers[getBitRange(operand, 8, 4)], 0, 8);
     } else {
         amount = getBitRange(operand, 7, 5);
@@ -101,7 +100,7 @@ uint32_t shiftReg(uint16_t operand, MACHINE *machine) {
         case 00: //logical shift left
             machine->c.decodedInstruction->shift = LSL;
             if (machine->c.decodedInstruction->S) {
-                uint32_t mask = 1 << (32 - amount);
+                int32_t mask = 1 << (32 - amount);
                 machine->c.registers[CPSR] &= 0xDFFFFFFF;
                 mask = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29;
                 machine->c.registers[CPSR] |= mask;
@@ -111,7 +110,7 @@ uint32_t shiftReg(uint16_t operand, MACHINE *machine) {
         case 01: //logical shift right
             machine->c.decodedInstruction->shift = LSR;
             if (machine->c.decodedInstruction->S) {
-                uint32_t mask = 1 << (amount - 1);
+                int32_t mask = 1 << (amount - 1);
                 machine->c.registers[CPSR] &= 0xDFFFFFFF;
                 mask = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29;
                 machine->c.registers[CPSR] |= mask;
@@ -121,7 +120,7 @@ uint32_t shiftReg(uint16_t operand, MACHINE *machine) {
         case 10: //arithmetic shift right
             machine->c.decodedInstruction->shift = ASR;
             if (machine->c.decodedInstruction->S) {
-                uint32_t mask = 1 << (amount - 1);
+                int32_t mask = 1 << (amount - 1);
                 machine->c.registers[CPSR] &= 0xDFFFFFFF;
                 mask = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29;
                 machine->c.registers[CPSR] |= mask;
@@ -136,7 +135,7 @@ uint32_t shiftReg(uint16_t operand, MACHINE *machine) {
         case 11: // rotate shift right
             machine->c.decodedInstruction->shift = ASR;
             if (machine->c.decodedInstruction->S) {
-                uint32_t mask = 1 << (amount - 1);
+                int32_t mask = 1 << (amount - 1);
                 machine->c.registers[CPSR] &= 0xDFFFFFFF;
                 mask = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29;
                 machine->c.registers[CPSR] |= mask;
@@ -148,6 +147,7 @@ uint32_t shiftReg(uint16_t operand, MACHINE *machine) {
             (machine->c.registers[machine->c.decodedInstruction->Rm]) =
                     ((machine->c.registers[machine->c.decodedInstruction->Rm])>> amount) | maskRotate;
             break;
+        default: break;
     }
     return machine->c.registers[machine->c.decodedInstruction->Rm];
 }
@@ -180,14 +180,16 @@ int binToDec(int n)
 }
 
 void execute_SDT(MACHINE *machine) {
-    if ((machine->c.decodedInstruction->Rn == PC) && &(machine->c.decodedInstruction) != machine->c.registers[PC] - 8 ){
+
+    //this line needs to be corrected
+    if ((machine->c.decodedInstruction->Rn == PC) && ((machine->c.decodedInstruction) != (machine->c.registers[PC] - 8))){
         fprintf(stderr, "PC doesn't contain the correct instructions");
         exit(EXIT_FAILURE);
     }
     uint32_t offsetValue;
     if (machine->c.decodedInstruction->I) {
-        uint8_t shift = getBitRange(machine->c.decodedInstruction, 4, 8);
-        int shifterReg = getBitRange(machine->c.decodedInstruction, 0, 4);
+        uint8_t shift = (uint8_t) ((getBitRange(machine->c.decodedInstruction->operand2, 4, 8)) >> 4);
+        uint32_t shifterReg = getBitRange(machine->c.decodedInstruction->operand2, 0, 4);
         machine->c.decodedInstruction->Rm = shifterReg;
         shiftReg(machine->c.decodedInstruction->offset & 0xFFF, machine);
         offsetValue = machine->c.registers[machine->c.decodedInstruction->Rm];
@@ -222,8 +224,6 @@ void execute_SDT(MACHINE *machine) {
 }
 
 
-
-
 //flags still need to be added
 void execute_DPI(MACHINE *machine){
     instructions *instr = machine->c.decodedInstruction;
@@ -246,7 +246,7 @@ void execute_DPI(MACHINE *machine){
     // flags are set and saved in local variable flag
     switch(machine->c.decodedInstruction->opcode){
         case AND:
-        case TST: result = instr->Rn && instr->operand2;
+        case TST: result = instr->Rn & instr->operand2;
             flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
             break;
         case EOR:
@@ -272,11 +272,12 @@ void execute_DPI(MACHINE *machine){
                 flag = 1;
             }
             break;
-        case ORR: result = instr->Rn || instr->operand2;
+        case ORR: result = instr->Rn | instr->operand2;
             break;
         case MOV: result = instr->operand2;
             flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
             break;
+        default: break;
     }
 
 //if one of these instructions, result is not written
@@ -294,13 +295,12 @@ void execute_DPI(MACHINE *machine){
         uint32_t nvalue = result >> 31;
         machine->c.registers[CPSR] |= nvalue;
         //flag C is set to flag value but shifted to right position
-        uint32_t flagC = flag << 29;
+        uint32_t flagC = (uint32_t) flag << 29;
         machine->c.registers[CPSR] |= flagC;
     }
 }
 
 void execute(MACHINE *machine) {
-    // just a useless comment
     if (checkCondition(machine)) {
         switch (machine->c.decodedInstruction->type) {
             case Halt:

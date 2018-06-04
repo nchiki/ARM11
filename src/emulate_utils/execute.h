@@ -23,9 +23,9 @@ void execute_branch(MACHINE*);
 
 void printBits(uint32_t);
 
-int32_t signedtwos_to_unsigned(int32_t);
+uint32_t signedtwos_to_unsigned(int32_t);
 
-uint32_t shiftReg(uint16_t, MACHINE*);
+uint32_t shiftReg(uint32_t, MACHINE*);
 
 uint32_t rotate(uint32_t , int);
 

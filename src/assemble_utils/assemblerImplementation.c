@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include "assemblerImplementation.h"
 #include <strings.h>
-#include<string.h>
+#include <string.h>
 
 
 void initSymbolTable(void) {

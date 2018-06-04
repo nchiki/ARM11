@@ -11,7 +11,7 @@
 #define SDT_MASK 0x04000000
 #define Multiply_MASK1 0x00000080
 #define Multiply_MASK2 0x00000010
-#define Z_MASK_32 0x400000
+#define Z_MASK_32 0x40000000
 
 
 typedef enum {

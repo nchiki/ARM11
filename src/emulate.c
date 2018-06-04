@@ -37,12 +37,12 @@ uint32_t getBitRange(uint32_t num, int start, int length);
     uint32_t *memArray = (uint32_t *) calloc(16384, sizeof(uint32_t));
 
 
-      *(machine->mem.memoryAlloc) = memArray; //not sure how to do this
+      *(machine->mem.memoryAlloc) = *memArray;
 
 
     uint32_t *registerArray = (uint32_t *) calloc(17, sizeof(uint32_t));
 
-      *(machine->c.registers) = registerArray;
+      *(machine->c.registers) = *registerArray;
     // i'm assuming traversing through the array and then using calloc is redundant, but im still going to keep it in
 
     assert(argc == 2 && "Incorrect number of arguments");
@@ -102,7 +102,7 @@ uint32_t getBitRange(uint32_t num, int start, int length);
     //operand2
       0,
       0,
-      -1,
+      NULL,
 
      };
 
@@ -115,7 +115,7 @@ uint32_t getBitRange(uint32_t num, int start, int length);
 
     // Fill the pipeline before you begin
 
-    uint16_t address = machine->c.registers[PC];
+    uint32_t address = machine->c.registers[PC];
     uint32_t fetched = 0;
     for(int i = 0; i < 4; i++) {
             fetched |= ((uint32_t) machine->mem.memoryAlloc[address + i]) << (i * 8);
@@ -166,8 +166,8 @@ uint32_t getBitRange(uint32_t num, int start, int length);
 
     execute(machine);
     free(machine->c.decodedInstruction);
-    free(*registerArray);
-    free(*memArray);
+    free(registerArray);
+    free(memArray);
     return 0;
   }
 
