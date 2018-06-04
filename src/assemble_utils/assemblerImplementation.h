@@ -20,10 +20,10 @@ struct symbol {
 
 };
 
-// purposely did not use typedef because typedef breaks a couple of things in the implementation of addLabel in assemblerImplementation.c
-// DO NOT CHANGE TO TYPEDEF STRUCT {..}SYMBOL;
+// this was just extra effort, instead, let there be an overall data structure like the one in emulate which has a subtype type
 
 //typedefs for each of the instruction. To turn them into a uint32_t we might have to add them using masks...
+/*
 typedef struct {
     MNEMONIC mnemonic;
     cond_code cond;
@@ -59,7 +59,20 @@ typedef struct {
     MNEMONIC mnemonic;
     cond_code cond;
     uint32_t offset;
-} BranchInstr_t;
+} BranchInstr_t; */
+
+// purposely did not use typedef because typedef breaks a couple of things in the implementation of addLabel in assemblerImplementation.c
+// DO NOT CHANGE TO TYPEDEF STRUCT {..}SYMBOL;
+
+// all the opcodes, not entirely too sure what to do for the special instructions 
+static const char *Opcodes[][] = {
+        {"add", "sub", "rsb", "and", "eor", "orr", "mov", "tst", "teq", "cmp"},
+        {"mul", "mla"},
+        {"ldr", "str"},
+        { "beq", "bne", "bge", "blt", "bgt", "ble", "b"}
+
+};
+
 
 
 struct symbol *symbolTableHead;

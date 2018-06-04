@@ -64,10 +64,7 @@ void clearSymbolTable() {
     free(symbolTableHead);
 }
 
-uint32_t encodeInstr(char *firstW, char *line) {
 
-
-}
 
 bool containsLabel(char *givenLabel) {
     struct symbol *temp = symbolTableHead;
