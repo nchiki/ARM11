@@ -13,13 +13,23 @@ int main(int argc, char **argv) {
 
     char *destFile = argv[2];
 
+    struct instruction instArr[];
+    // i'll have to count the number of lines, so zeroth pass?
+
     uint16_t address = 0;
 
     char line[MAX_LINE_SIZE] ;
 
     // first pass
 
-    while (fgets(line, MAX_LINE_SIZE, sourceFile)) {
+    FILE *input;
+
+    if ((input = fopen(argv[1],"r")) == NULL) {
+        printf("Could not open the file");
+        exit(-1);
+    }
+
+    while (fgets(line, MAX_LINE_SIZE, input)) {
         char **tokenizedLine = tokenizeHelper(line);
 
         // tokenizeHelper takes a line and return a 2D char array where the first sentence will be the instruction or label
@@ -31,13 +41,28 @@ int main(int argc, char **argv) {
                 addLabel(tokenizedLine[0],address);
             }
         } else {
-            address+=1;
+
             // send it to decode
+            instArr[address] = decode(tokenizedLine,address*4);
+            // parameter mismatch?
+            address+=1;
         }
     }
 
+    fclose(input);
 
-    //first pass
+
+    FILE *output;
+
+    if ((output = fopen(argv[2],"wb"))==NULL) {
+        printf("Could not open output file");
+        exit(-1);
+    }
+
+    // second pass
+
+
+
 
 
     //need sth that reads each line of the file, taking it to a "distinguishInstruction" method that would return the

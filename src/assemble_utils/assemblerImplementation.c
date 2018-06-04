@@ -93,11 +93,11 @@ struct instruction decode(char** line, uint16_t memoryAddr) {
     instr.memoryAddr = memoryAddr;
 
     for ( int i = 0 ; i < 4 ; ++i ) {
-        char *codes = Opcodes[i];
-        int len = sizeof(codes)/ sizeof(codes[0]);
+        //char *codes = ;
+        int len = sizeof(Opcodes[i])/ sizeof(Opcodes[i][0]);
 
         for (int j = 0 ; j < len; ++j) {
-            if (!strcmp(codes[j],line[0])) {
+            if (!strcmp(Opcodes[i][j],line[0])) {
                 instr.type = i;
                 break;
             }
@@ -132,7 +132,21 @@ struct instruction decode(char** line, uint16_t memoryAddr) {
 
             break;
         case SINGLE_DATA_TRANSFER:
+            instr.Rd = line[1];
+            instr.address = line[2];
+            break;
 
-            
+        case BRANCH:
+            instr.expression = line[1];
+            break;
+
+        case LSL:
+            instr.Rn = line[1];
+            instr.expression = line[2];
+            break;
+
+        case ANDEQ:
+            break;
     }
+    return instr;
 }

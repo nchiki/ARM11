@@ -7,7 +7,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "../usefulTools.h"
+//#include "../usefulTools.h"
 #include "assemblerImplementation.h"
 #include "defs.h"
 
@@ -74,14 +74,14 @@ static const char *Opcodes[][10] = {
 };
 
 
-enum instrType {
-    DATA_PROCESSING, MULTIPLY, SINGLE_DATA_TRANSFER, BRANCH, SPECIAL
-};
+typedef enum {
+    DATA_PROCESSING, MULTIPLY, SINGLE_DATA_TRANSFER, BRANCH, LSL, ANDEQ
+}instrType ;
 
 // there should be an enum for instrtype
 struct instruction {
     char *opcode;
-    enum instrType type;
+    instrType type;
 
     char *Rd;
     char *Rn;
