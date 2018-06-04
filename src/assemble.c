@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <assert.h>
+#include <memory.h>
 #include "memoryImplementation.h"
 #include "emulate_utils/instruction_basic.h"
 #include "assemble_utils/assemblerImplementation.h"
@@ -12,43 +13,63 @@ int main(int argc, char **argv) {
 
     char *destFile = argv[2];
 
-    uint32_t address = 0;
-    struct symbol *temp = symbolTableHead;
-    //first pass
-    char a = 65; // ascii value of 'A'
-    char b = 65;
-    char c = 65;
-    for(int i = 0; i < 511 ; i++) {
-        temp->label = a + b + c + ":"; //concatenation of three letters
-        temp->address = address; //sets address
-        temp = temp->next; // next instruction to be translated
-        if((int )a == 90) { // jumps to lower case letters
-            a = 97;
-        }else if((int )a == 122) {
-            a = 65;
-            if((int )b == 90) {
-                b = 97;
-            }else if((int )b == 122) {
-                b = 65;
-                if((int )c == 90) {
-                    c = 97;
-                }else if((int )c == 122) {
-                    c = 65;
-                } else {
-                    c += 1;
-                }
-            } else {
-                b += 1;
+    struct instruction instArr[];
+    // i'll have to count the number of lines, so zeroth pass?
+
+    uint16_t address = 0;
+
+    char line[MAX_LINE_SIZE] ;
+
+    // first pass
+
+    FILE *input;
+
+    if ((input = fopen(argv[1],"r")) == NULL) {
+        printf("Could not open the file");
+        exit(-1);
+    }
+
+    while (fgets(line, MAX_LINE_SIZE, input)) {
+        char **tokenizedLine = tokenizeHelper(line);
+
+        // tokenizeHelper takes a line and return a 2D char array where the first sentence will be the instruction or label
+        // it will be a label iff the last char of the first line is :
+        // otherwise send it to decode;
+
+        if (tokenizedLine[0][strlen(tokenizedLine[0])-1] == ':') {
+            if (containsLabel(tokenizedLine[0])==0) {
+                addLabel(tokenizedLine[0],address);
             }
         } else {
-            a += 1;
+
+            // send it to decode
+            instArr[address] = decode(tokenizedLine,address*4);
+            // parameter mismatch?
+            address+=1;
         }
-        address+= 4; //increments the address by four bits
     }
+
+    fclose(input);
+
+
+    FILE *output;
+
+    if ((output = fopen(argv[2],"wb"))==NULL) {
+        printf("Could not open output file");
+        exit(-1);
+    }
+
+    // second pass
+
+
+
+
 
     //need sth that reads each line of the file, taking it to a "distinguishInstruction" method that would return the
             // type of the instruction, and with a switch(by the different instructions in usefulTools)
                     // in a helper method that splits the following code depending on the instruction (as in decode for emulator)
                             // and using the structs in .h encode the different fields of each instruction
                                     //would it be useful to have a method that encodes different instructions?
+
+
 }

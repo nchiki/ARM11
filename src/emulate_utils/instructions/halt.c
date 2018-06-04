@@ -9,5 +9,6 @@
 #include "../../memoryImplementation.h"
 
 void halt(MACHINE *machine) {
+    machine->c.decodedInstruction->binary = 0;
     machine->c.decodedInstruction->type = Halt;
 }

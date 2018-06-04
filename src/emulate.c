@@ -102,7 +102,12 @@ uint32_t getBitRange(uint32_t num, int start, int length);
     //operand2
       0,
       0,
+<<<<<<< HEAD
       NULL,
+=======
+      -1,
+      -1
+>>>>>>> 0380e4f6ca64a6d802532d42acf19b41efd1ae01
 
      };
 

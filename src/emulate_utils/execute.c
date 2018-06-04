@@ -1,6 +1,9 @@
 #include "execute.h"
 #include "instruction_basic.h"
+<<<<<<< HEAD
 #include "../memoryImplementation.h"
+=======
+>>>>>>> 0380e4f6ca64a6d802532d42acf19b41efd1ae01
 
 
 int checkCondition(MACHINE *machine) {
@@ -12,7 +15,7 @@ int checkCondition(MACHINE *machine) {
         case EQ:
             return cpsrFlags&Z_MASK; // equal
         case NE:
-            return !cpsrFlags&Z_MASK; //not equal
+            return !(cpsrFlags&Z_MASK); //not equal
         case GE:
             return (cpsrFlags&N_MASK) == ((cpsrFlags&V_MASK) >> 3); //greater or equal
         case LT:
@@ -34,6 +37,7 @@ int checkCondition(MACHINE *machine) {
 
 void execute_MulI(MACHINE *machine){
     //simple multiplication
+<<<<<<< HEAD
     uint32_t result = machine->c.registers[machine->c.decodedInstruction->Rm] *
             machine->c.registers[machine->c.decodedInstruction->Rs];
 
@@ -44,6 +48,18 @@ void execute_MulI(MACHINE *machine){
 
     //if S is set, update CPSR flag
     if(machine->c.decodedInstruction->S){
+=======
+    uint32_t result = machine->c.registers[getBitRange(machine->c.decodedInstruction->binary,0,4)] *
+            machine->c.registers[getBitRange(machine->c.decodedInstruction->binary,8,4)];
+
+    //if A is set, then add accumulator
+    if(getBitRange(machine->c.decodedInstruction->binary,21,1)){
+        result += machine->c.registers[getBitRange(machine->c.decodedInstruction->binary,12,4)];
+    }
+
+    //if S is set, update CPSR flag
+    if(getBitRange(machine->c.decodedInstruction->binary,20,1)){
+>>>>>>> 0380e4f6ca64a6d802532d42acf19b41efd1ae01
         //N will be updated to the last bit of the result, rest of CPSR stays the same
 
         machine->c.registers[CPSR] = (getBitRange(result, 31, 1) | getBitRange(machine->c.registers[CPSR],0,31));
@@ -63,14 +79,18 @@ void execute_Halt(MACHINE *machine){
 }
 
 void execute_branch(MACHINE *machine){
+<<<<<<< HEAD
     int32_t offset = machine->c.decodedInstruction->offset;
+=======
+    int32_t offset = getBitRange(machine->c.decodedInstruction->binary, 0, 24) | 0x000000;
+>>>>>>> 0380e4f6ca64a6d802532d42acf19b41efd1ae01
     machine->c.registers[PC] = signedtwos_to_unsigned(offset);
 }
 
 //prints bit sequence of register
 void printBits(uint32_t reg) {
     int i;
-    reg = __bswap_32(reg);
+    reg = bswap_32(reg);
     // flip the bits before output
     int32_t mask = 1 << 31;
     for (i = 0; i < 32; ++i) {
@@ -180,16 +200,25 @@ int binToDec(int n)
 }
 
 void execute_SDT(MACHINE *machine) {
+<<<<<<< HEAD
 
     //this line needs to be corrected
     if ((machine->c.decodedInstruction->Rn == PC) && ((machine->c.decodedInstruction) != (machine->c.registers[PC] - 8))){
+=======
+    if ((machine->c.decodedInstruction->Rn == PC) && (machine->c.decodedInstruction->binary) != machine->c.registers[PC] - 8 ){
+>>>>>>> 0380e4f6ca64a6d802532d42acf19b41efd1ae01
         fprintf(stderr, "PC doesn't contain the correct instructions");
         exit(EXIT_FAILURE);
     }
     uint32_t offsetValue;
     if (machine->c.decodedInstruction->I) {
+<<<<<<< HEAD
         uint8_t shift = (uint8_t) ((getBitRange(machine->c.decodedInstruction->operand2, 4, 8)) >> 4);
         uint32_t shifterReg = getBitRange(machine->c.decodedInstruction->operand2, 0, 4);
+=======
+        uint8_t shift = getBitRange(machine->c.decodedInstruction->binary, 4, 8);
+        int shifterReg = getBitRange(machine->c.decodedInstruction->binary, 0, 4);
+>>>>>>> 0380e4f6ca64a6d802532d42acf19b41efd1ae01
         machine->c.decodedInstruction->Rm = shifterReg;
         shiftReg(machine->c.decodedInstruction->offset & 0xFFF, machine);
         offsetValue = machine->c.registers[machine->c.decodedInstruction->Rm];
@@ -233,7 +262,7 @@ void execute_DPI(MACHINE *machine){
         //value is zero-extended to 32 bits
         uint32_t operand = instr->operand2 | 0x00000000;
         //rotated times the number specified in bit 8 to 11
-        int numberRot = getBitRange(instr, 8, 4) * 0x2;
+        int numberRot = getBitRange(instr->binary, 8, 4) * 0x2;
         instr->Rm = rotate(operand,numberRot);
     } else{
         uint32_t operand = shiftReg(instr->operand2, machine);
@@ -246,12 +275,17 @@ void execute_DPI(MACHINE *machine){
     // flags are set and saved in local variable flag
     switch(machine->c.decodedInstruction->opcode){
         case AND:
+<<<<<<< HEAD
         case TST: result = instr->Rn & instr->operand2;
             flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
+=======
+        case TST: result = instr->Rn && instr->operand2;
+            flag = (machine->c.registers[CPSR] >> 29) & C_MASK;
+>>>>>>> 0380e4f6ca64a6d802532d42acf19b41efd1ae01
             break;
         case EOR:
         case TEQ: result = instr->Rn ^ instr->operand2;
-            flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
+            flag = (machine->c.registers[CPSR] >> 29) & C_MASK;
             break;
         case SUB:
         case CMP: result = instr->Rn - instr->operand2;
@@ -275,7 +309,7 @@ void execute_DPI(MACHINE *machine){
         case ORR: result = instr->Rn | instr->operand2;
             break;
         case MOV: result = instr->operand2;
-            flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
+            flag = ((machine->c.registers[CPSR] >> 29) & C_MASK) >> 29;
             break;
         default: break;
     }

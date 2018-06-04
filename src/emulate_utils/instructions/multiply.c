@@ -7,6 +7,7 @@
 
 
 void multiply(uint32_t instruction, MACHINE *machine){
+    machine->c.decodedInstruction->binary = instruction;
 	machine->c.decodedInstruction->type = Mult;
     machine->c.decodedInstruction->A = instruction&0x200000;
     machine->c.decodedInstruction->S = instruction&0x100000;

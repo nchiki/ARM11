@@ -7,6 +7,7 @@
 #include "../../usefulFuncs.h"
 
 void SDTdecode(uint32_t instruction, MACHINE *machine) {
+    machine->c.decodedInstruction->binary = instruction;
 	machine->c.decodedInstruction->type = SDT;
     machine->c.decodedInstruction->I = instruction&0x2000000;
     machine->c.decodedInstruction->P = instruction&0x1000000;

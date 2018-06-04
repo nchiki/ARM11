@@ -18,7 +18,7 @@ void initSymbolTable(void) {
 }
 
 
-void addLabel( char* newLabel, uint32_t givAddress ) {
+void addLabel( char* newLabel, uint16_t givAddress ) {
     struct symbol *temp = symbolTableHead;
 
     while (temp->next!= NULL) {
@@ -35,7 +35,7 @@ void addLabel( char* newLabel, uint32_t givAddress ) {
 
 }
 
-uint32_t getAddress(char *givLabel) {
+uint16_t getAddress(char *givLabel) {
     struct symbol *temp = symbolTableHead;
     while (temp->next != NULL ) {
         if (strcmp(temp->label,givLabel) == 0) {
@@ -55,12 +55,98 @@ void helperFunction(struct symbol* something) {
 
 
 }
+
 void clearSymbolTable() {
     if (symbolTableHead->next != NULL) {
         helperFunction(symbolTableHead->next);
     }
    free(symbolTableHead->label);
     free(symbolTableHead);
-
 }
 
+
+
+bool containsLabel(char *givenLabel) {
+    struct symbol *temp = symbolTableHead;
+    while (temp->next != NULL ) {
+        if (strcmp(temp->label,givenLabel) == 0) {
+            return true;
+        }
+    }
+    return false ;
+}
+uint32_t parse(char *line) {
+    int i = 0;
+    char *addr = line;
+    char *word = "";
+    while (line[i] != ' '){
+        if(line[i] != ' ') {
+            *word += line[i];//saves the first word;
+        }
+        addr ++; // increments the addres of the array
+    }
+}
+
+struct instruction decode(char** line, uint16_t memoryAddr) {
+    struct instruction instr;
+    instr.opcode  = line[0];
+    instr.memoryAddr = memoryAddr;
+
+    for ( int i = 0 ; i < 4 ; ++i ) {
+        //char *codes = ;
+        int len = sizeof(Opcodes[i])/ sizeof(Opcodes[i][0]);
+
+        for (int j = 0 ; j < len; ++j) {
+            if (!strcmp(Opcodes[i][j],line[0])) {
+                instr.type = i;
+                break;
+            }
+
+        }
+
+    }
+
+    switch(instr.type) {
+        case DATA_PROCESSING:
+            if (!strcmp(line[0], "mov")) {
+                instr.Rd = line[1];
+                instr.operand2 = line[2];
+            } else if (!strcmp(line[0],"tst") || !strcmp(line[0],"teq") || !strcmp(line[0],"cmp")) {
+                instr.Rn = line[1];
+                instr.operand2 = line[2];
+            } else {
+                instr.Rd = line[1];
+                instr.Rn = line[2];
+                instr.operand2 = line[3];
+            }
+            break;
+
+        case MULTIPLY:
+            instr.Rd = line[1];
+            instr.Rm = line[2];
+            instr.Rs = line[3];
+
+            if (!strcmp(line[0],"mla")) {
+                instr.Rn = line[4];
+            }
+
+            break;
+        case SINGLE_DATA_TRANSFER:
+            instr.Rd = line[1];
+            instr.address = line[2];
+            break;
+
+        case BRANCH:
+            instr.expression = line[1];
+            break;
+
+        case LSL:
+            instr.Rn = line[1];
+            instr.expression = line[2];
+            break;
+
+        case ANDEQ:
+            break;
+    }
+    return instr;
+}
