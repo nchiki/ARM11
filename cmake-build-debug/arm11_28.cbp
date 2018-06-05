@@ -93,6 +93,12 @@
 		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/defs.h">
 			<Option target="arm11_28"/>
 		</Unit>
+		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/instruction_defs.h">
+			<Option target="arm11_28"/>
+		</Unit>
+		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/multiply.c">
+			<Option target="arm11_28"/>
+		</Unit>
 		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate.c">
 			<Option target="arm11_28"/>
 		</Unit>

@@ -204,6 +204,33 @@ src/assemble_utils/defs.c.s:
 	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.s
 .PHONY : src/assemble_utils/defs.c.s
 
+src/assemble_utils/multiply.o: src/assemble_utils/multiply.c.o
+
+.PHONY : src/assemble_utils/multiply.o
+
+# target to build an object file
+src/assemble_utils/multiply.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o
+.PHONY : src/assemble_utils/multiply.c.o
+
+src/assemble_utils/multiply.i: src/assemble_utils/multiply.c.i
+
+.PHONY : src/assemble_utils/multiply.i
+
+# target to preprocess a source file
+src/assemble_utils/multiply.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.i
+.PHONY : src/assemble_utils/multiply.c.i
+
+src/assemble_utils/multiply.s: src/assemble_utils/multiply.c.s
+
+.PHONY : src/assemble_utils/multiply.s
+
+# target to generate assembly for a file
+src/assemble_utils/multiply.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.s
+.PHONY : src/assemble_utils/multiply.c.s
+
 src/emulate.o: src/emulate.c.o
 
 .PHONY : src/emulate.o
@@ -465,6 +492,9 @@ help:
 	@echo "... src/assemble_utils/defs.o"
 	@echo "... src/assemble_utils/defs.i"
 	@echo "... src/assemble_utils/defs.s"
+	@echo "... src/assemble_utils/multiply.o"
+	@echo "... src/assemble_utils/multiply.i"
+	@echo "... src/assemble_utils/multiply.s"
 	@echo "... src/emulate.o"
 	@echo "... src/emulate.i"
 	@echo "... src/emulate.s"
