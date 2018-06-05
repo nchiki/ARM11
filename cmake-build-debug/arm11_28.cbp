@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/nahida/C Project/arm11_28/cmake-build-debug"/>
+				<Option working_dir="/homes/bt3917/arm11_28/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/nahida/C Project/arm11_28/cmake-build-debug"/>
+				<Option working_dir="/homes/bt3917/arm11_28/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/nahida/C Project/arm11_28/cmake-build-debug"/>
+				<Option working_dir="/homes/bt3917/arm11_28/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="arm11_28">
-				<Option output="/home/nahida/C Project/arm11_28/cmake-build-debug/arm11_28" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/nahida/C Project/arm11_28/cmake-build-debug"/>
+				<Option output="/homes/bt3917/arm11_28/cmake-build-debug/arm11_28" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/homes/bt3917/arm11_28/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -51,15 +51,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 arm11_28"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 arm11_28"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="arm11_28/fast">
-				<Option output="/home/nahida/C Project/arm11_28/cmake-build-debug/arm11_28" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/nahida/C Project/arm11_28/cmake-build-debug"/>
+				<Option output="/homes/bt3917/arm11_28/cmake-build-debug/arm11_28" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/homes/bt3917/arm11_28/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -71,28 +71,29 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 arm11_28/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nahida/C\ Project/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 arm11_28/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/homes/bt3917/arm11_28/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble.c">
+		<Unit filename="/homes/bt3917/arm11_28/src/assemble.c">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/assemblerImplementation.c">
+		<Unit filename="/homes/bt3917/arm11_28/src/assemble_utils/assemblerImplementation.c">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/assemblerImplementation.h">
+		<Unit filename="/homes/bt3917/arm11_28/src/assemble_utils/assemblerImplementation.h">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/defs.c">
+		<Unit filename="/homes/bt3917/arm11_28/src/assemble_utils/defs.c">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/defs.h">
+		<Unit filename="/homes/bt3917/arm11_28/src/assemble_utils/defs.h">
 			<Option target="arm11_28"/>
 		</Unit>
+<<<<<<< HEAD
 		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/instruction_defs.h">
 			<Option target="arm11_28"/>
 		</Unit>
@@ -100,69 +101,75 @@
 			<Option target="arm11_28"/>
 		</Unit>
 		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate.c">
+=======
+		<Unit filename="/homes/bt3917/arm11_28/src/assemble_utils/instructions/branch.c">
+>>>>>>> 3928cc7912b9fee71ca9b591d1129bc151fc9fbd
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/binaryloader.c">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate.c">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/binaryloader.h">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/binaryloader.c">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/decode.c">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/binaryloader.h">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/decode.h">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/decode.c">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/execute.c">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/decode.h">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/execute.h">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/execute.c">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/instruction_basic.h">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/execute.h">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/DataProcDec.c">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/instruction_basic.h">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/DataProcDec.h">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/instructions/DataProcDec.c">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/branch.c">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/instructions/DataProcDec.h">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/branch.h">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/instructions/branch.c">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/halt.h">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/instructions/branch.h">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/multiply.c">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/instructions/halt.h">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/multiply.h">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/instructions/multiply.c">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/singleDT.c">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/instructions/multiply.h">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/singleDT.h">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/instructions/singleDT.c">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/memoryImplementation.h">
+		<Unit filename="/homes/bt3917/arm11_28/src/emulate_utils/instructions/singleDT.h">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/usefulFuncs.c">
+		<Unit filename="/homes/bt3917/arm11_28/src/memoryImplementation.h">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/usefulFuncs.h">
+		<Unit filename="/homes/bt3917/arm11_28/src/usefulFuncs.c">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/src/usefulTools.h">
+		<Unit filename="/homes/bt3917/arm11_28/src/usefulFuncs.h">
 			<Option target="arm11_28"/>
 		</Unit>
-		<Unit filename="/home/nahida/C Project/arm11_28/CMakeLists.txt">
+		<Unit filename="/homes/bt3917/arm11_28/src/usefulTools.h">
+			<Option target="arm11_28"/>
+		</Unit>
+		<Unit filename="/homes/bt3917/arm11_28/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
