@@ -27,4 +27,4 @@ add_executable(arm11_28
         src/emulate_utils/instructions/multiply.h
         src/emulate_utils/instructions/singleDT.h
         src/emulate_utils/binaryloader.h
-        src/emulate_utils/decode.h src/assemble_utils/defs.h src/assemble_utils/defs.c)
+        src/emulate_utils/decode.h src/assemble_utils/defs.h src/assemble_utils/defs.c src/assemble_utils/instructions/branch.c)
