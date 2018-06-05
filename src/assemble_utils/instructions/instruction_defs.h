@@ -6,8 +6,8 @@
 #define ARM11_28_INSTRUCTION_DEFS_H
 
 #include <stdint.h>
-#include "../usefulTools.h"
-#include "defs.h"
+#include "../../usefulTools.h"
+#include "../defs.h"
 
 typedef struct {
     MNEMONIC mnemonic;

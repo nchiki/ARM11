@@ -10,7 +10,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../CMakeLists.txt"
   "CMakeFiles/3.10.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.10.3/CMakeSystem.cmake"
-<<<<<<< HEAD
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeCInformation.cmake"
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake"
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
@@ -27,24 +26,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/Platform/Linux.cmake"
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/Platform/UnixPaths.cmake"
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/ProcessorCount.cmake"
-=======
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeCInformation.cmake"
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake"
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeFindCodeBlocks.cmake"
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeGenericSystem.cmake"
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeLanguageInformation.cmake"
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeSystemSpecificInformation.cmake"
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeSystemSpecificInitialize.cmake"
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/Compiler/GNU-C.cmake"
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/Compiler/GNU.cmake"
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/Platform/Linux-GNU-C.cmake"
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/Platform/Linux-GNU.cmake"
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/Platform/Linux.cmake"
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/Platform/UnixPaths.cmake"
-  "/homes/bt3917/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/ProcessorCount.cmake"
->>>>>>> 3928cc7912b9fee71ca9b591d1129bc151fc9fbd
   )
 
 # The corresponding makefile is:

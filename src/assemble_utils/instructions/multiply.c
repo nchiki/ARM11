@@ -1,5 +1,5 @@
 #include "instruction_defs.h"
-#include "assemblerImplementation.h"
+#include "../assemblerImplementation.h"
 
 
  MultiplyInstr_t *multiply(struct instruction instr){

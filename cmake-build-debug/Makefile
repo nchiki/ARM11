@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /homes/bt3917/clion-2018.1.3/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/nahida/clion-2018.1.3/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /homes/bt3917/clion-2018.1.3/bin/cmake/bin/cmake -E remove -f
+RM = /home/nahida/clion-2018.1.3/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /homes/bt3917/arm11_28
+CMAKE_SOURCE_DIR = "/home/nahida/C Project/arm11_28"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /homes/bt3917/arm11_28/cmake-build-debug
+CMAKE_BINARY_DIR = "/home/nahida/C Project/arm11_28/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /homes/bt3917/arm11_28/cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/homes/bt3917/clion-2018.1.3/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/nahida/clion-2018.1.3/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -70,7 +70,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/homes/bt3917/clion-2018.1.3/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/nahida/clion-2018.1.3/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /homes/bt3917/arm11_28/cmake-build-debug/CMakeFiles /homes/bt3917/arm11_28/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" "/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /homes/bt3917/arm11_28/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -204,34 +204,33 @@ src/assemble_utils/defs.c.s:
 	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.s
 .PHONY : src/assemble_utils/defs.c.s
 
-<<<<<<< HEAD
-src/assemble_utils/multiply.o: src/assemble_utils/multiply.c.o
+src/assemble_utils/instructions/DataProc.o: src/assemble_utils/instructions/DataProc.c.o
 
-.PHONY : src/assemble_utils/multiply.o
+.PHONY : src/assemble_utils/instructions/DataProc.o
 
 # target to build an object file
-src/assemble_utils/multiply.c.o:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o
-.PHONY : src/assemble_utils/multiply.c.o
+src/assemble_utils/instructions/DataProc.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o
+.PHONY : src/assemble_utils/instructions/DataProc.c.o
 
-src/assemble_utils/multiply.i: src/assemble_utils/multiply.c.i
+src/assemble_utils/instructions/DataProc.i: src/assemble_utils/instructions/DataProc.c.i
 
-.PHONY : src/assemble_utils/multiply.i
+.PHONY : src/assemble_utils/instructions/DataProc.i
 
 # target to preprocess a source file
-src/assemble_utils/multiply.c.i:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.i
-.PHONY : src/assemble_utils/multiply.c.i
+src/assemble_utils/instructions/DataProc.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.i
+.PHONY : src/assemble_utils/instructions/DataProc.c.i
 
-src/assemble_utils/multiply.s: src/assemble_utils/multiply.c.s
+src/assemble_utils/instructions/DataProc.s: src/assemble_utils/instructions/DataProc.c.s
 
-.PHONY : src/assemble_utils/multiply.s
+.PHONY : src/assemble_utils/instructions/DataProc.s
 
 # target to generate assembly for a file
-src/assemble_utils/multiply.c.s:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.s
-.PHONY : src/assemble_utils/multiply.c.s
-=======
+src/assemble_utils/instructions/DataProc.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.s
+.PHONY : src/assemble_utils/instructions/DataProc.c.s
+
 src/assemble_utils/instructions/branch.o: src/assemble_utils/instructions/branch.c.o
 
 .PHONY : src/assemble_utils/instructions/branch.o
@@ -258,7 +257,60 @@ src/assemble_utils/instructions/branch.s: src/assemble_utils/instructions/branch
 src/assemble_utils/instructions/branch.c.s:
 	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.s
 .PHONY : src/assemble_utils/instructions/branch.c.s
->>>>>>> 3928cc7912b9fee71ca9b591d1129bc151fc9fbd
+
+src/assemble_utils/instructions/multiply.o: src/assemble_utils/instructions/multiply.c.o
+
+.PHONY : src/assemble_utils/instructions/multiply.o
+
+# target to build an object file
+src/assemble_utils/instructions/multiply.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o
+.PHONY : src/assemble_utils/instructions/multiply.c.o
+
+src/assemble_utils/instructions/multiply.i: src/assemble_utils/instructions/multiply.c.i
+
+.PHONY : src/assemble_utils/instructions/multiply.i
+
+# target to preprocess a source file
+src/assemble_utils/instructions/multiply.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.i
+.PHONY : src/assemble_utils/instructions/multiply.c.i
+
+src/assemble_utils/instructions/multiply.s: src/assemble_utils/instructions/multiply.c.s
+
+.PHONY : src/assemble_utils/instructions/multiply.s
+
+# target to generate assembly for a file
+src/assemble_utils/instructions/multiply.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.s
+.PHONY : src/assemble_utils/instructions/multiply.c.s
+
+src/assemble_utils/instructions/specialInstr.o: src/assemble_utils/instructions/specialInstr.c.o
+
+.PHONY : src/assemble_utils/instructions/specialInstr.o
+
+# target to build an object file
+src/assemble_utils/instructions/specialInstr.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/specialInstr.c.o
+.PHONY : src/assemble_utils/instructions/specialInstr.c.o
+
+src/assemble_utils/instructions/specialInstr.i: src/assemble_utils/instructions/specialInstr.c.i
+
+.PHONY : src/assemble_utils/instructions/specialInstr.i
+
+# target to preprocess a source file
+src/assemble_utils/instructions/specialInstr.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/specialInstr.c.i
+.PHONY : src/assemble_utils/instructions/specialInstr.c.i
+
+src/assemble_utils/instructions/specialInstr.s: src/assemble_utils/instructions/specialInstr.c.s
+
+.PHONY : src/assemble_utils/instructions/specialInstr.s
+
+# target to generate assembly for a file
+src/assemble_utils/instructions/specialInstr.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/specialInstr.c.s
+.PHONY : src/assemble_utils/instructions/specialInstr.c.s
 
 src/emulate.o: src/emulate.c.o
 
@@ -521,15 +573,18 @@ help:
 	@echo "... src/assemble_utils/defs.o"
 	@echo "... src/assemble_utils/defs.i"
 	@echo "... src/assemble_utils/defs.s"
-<<<<<<< HEAD
-	@echo "... src/assemble_utils/multiply.o"
-	@echo "... src/assemble_utils/multiply.i"
-	@echo "... src/assemble_utils/multiply.s"
-=======
+	@echo "... src/assemble_utils/instructions/DataProc.o"
+	@echo "... src/assemble_utils/instructions/DataProc.i"
+	@echo "... src/assemble_utils/instructions/DataProc.s"
 	@echo "... src/assemble_utils/instructions/branch.o"
 	@echo "... src/assemble_utils/instructions/branch.i"
 	@echo "... src/assemble_utils/instructions/branch.s"
->>>>>>> 3928cc7912b9fee71ca9b591d1129bc151fc9fbd
+	@echo "... src/assemble_utils/instructions/multiply.o"
+	@echo "... src/assemble_utils/instructions/multiply.i"
+	@echo "... src/assemble_utils/instructions/multiply.s"
+	@echo "... src/assemble_utils/instructions/specialInstr.o"
+	@echo "... src/assemble_utils/instructions/specialInstr.i"
+	@echo "... src/assemble_utils/instructions/specialInstr.s"
 	@echo "... src/emulate.o"
 	@echo "... src/emulate.i"
 	@echo "... src/emulate.s"
