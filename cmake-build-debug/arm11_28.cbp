@@ -93,6 +93,33 @@
 		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/defs.h">
 			<Option target="arm11_28"/>
 		</Unit>
+		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/DataProc.c">
+			<Option target="arm11_28"/>
+		</Unit>
+		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/DataProc.h">
+			<Option target="arm11_28"/>
+		</Unit>
+		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/branch.c">
+			<Option target="arm11_28"/>
+		</Unit>
+		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/branch.h">
+			<Option target="arm11_28"/>
+		</Unit>
+		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/instruction_defs.h">
+			<Option target="arm11_28"/>
+		</Unit>
+		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/multiply.c">
+			<Option target="arm11_28"/>
+		</Unit>
+		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/multiply.h">
+			<Option target="arm11_28"/>
+		</Unit>
+		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/specialInstr.c">
+			<Option target="arm11_28"/>
+		</Unit>
+		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/specialInstr.h">
+			<Option target="arm11_28"/>
+		</Unit>
 		<Unit filename="/home/nahida/C Project/arm11_28/src/emulate.c">
 			<Option target="arm11_28"/>
 		</Unit>

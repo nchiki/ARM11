@@ -204,6 +204,114 @@ src/assemble_utils/defs.c.s:
 	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.s
 .PHONY : src/assemble_utils/defs.c.s
 
+src/assemble_utils/instructions/DataProc.o: src/assemble_utils/instructions/DataProc.c.o
+
+.PHONY : src/assemble_utils/instructions/DataProc.o
+
+# target to build an object file
+src/assemble_utils/instructions/DataProc.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o
+.PHONY : src/assemble_utils/instructions/DataProc.c.o
+
+src/assemble_utils/instructions/DataProc.i: src/assemble_utils/instructions/DataProc.c.i
+
+.PHONY : src/assemble_utils/instructions/DataProc.i
+
+# target to preprocess a source file
+src/assemble_utils/instructions/DataProc.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.i
+.PHONY : src/assemble_utils/instructions/DataProc.c.i
+
+src/assemble_utils/instructions/DataProc.s: src/assemble_utils/instructions/DataProc.c.s
+
+.PHONY : src/assemble_utils/instructions/DataProc.s
+
+# target to generate assembly for a file
+src/assemble_utils/instructions/DataProc.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.s
+.PHONY : src/assemble_utils/instructions/DataProc.c.s
+
+src/assemble_utils/instructions/branch.o: src/assemble_utils/instructions/branch.c.o
+
+.PHONY : src/assemble_utils/instructions/branch.o
+
+# target to build an object file
+src/assemble_utils/instructions/branch.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o
+.PHONY : src/assemble_utils/instructions/branch.c.o
+
+src/assemble_utils/instructions/branch.i: src/assemble_utils/instructions/branch.c.i
+
+.PHONY : src/assemble_utils/instructions/branch.i
+
+# target to preprocess a source file
+src/assemble_utils/instructions/branch.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.i
+.PHONY : src/assemble_utils/instructions/branch.c.i
+
+src/assemble_utils/instructions/branch.s: src/assemble_utils/instructions/branch.c.s
+
+.PHONY : src/assemble_utils/instructions/branch.s
+
+# target to generate assembly for a file
+src/assemble_utils/instructions/branch.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.s
+.PHONY : src/assemble_utils/instructions/branch.c.s
+
+src/assemble_utils/instructions/multiply.o: src/assemble_utils/instructions/multiply.c.o
+
+.PHONY : src/assemble_utils/instructions/multiply.o
+
+# target to build an object file
+src/assemble_utils/instructions/multiply.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o
+.PHONY : src/assemble_utils/instructions/multiply.c.o
+
+src/assemble_utils/instructions/multiply.i: src/assemble_utils/instructions/multiply.c.i
+
+.PHONY : src/assemble_utils/instructions/multiply.i
+
+# target to preprocess a source file
+src/assemble_utils/instructions/multiply.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.i
+.PHONY : src/assemble_utils/instructions/multiply.c.i
+
+src/assemble_utils/instructions/multiply.s: src/assemble_utils/instructions/multiply.c.s
+
+.PHONY : src/assemble_utils/instructions/multiply.s
+
+# target to generate assembly for a file
+src/assemble_utils/instructions/multiply.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.s
+.PHONY : src/assemble_utils/instructions/multiply.c.s
+
+src/assemble_utils/instructions/specialInstr.o: src/assemble_utils/instructions/specialInstr.c.o
+
+.PHONY : src/assemble_utils/instructions/specialInstr.o
+
+# target to build an object file
+src/assemble_utils/instructions/specialInstr.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/specialInstr.c.o
+.PHONY : src/assemble_utils/instructions/specialInstr.c.o
+
+src/assemble_utils/instructions/specialInstr.i: src/assemble_utils/instructions/specialInstr.c.i
+
+.PHONY : src/assemble_utils/instructions/specialInstr.i
+
+# target to preprocess a source file
+src/assemble_utils/instructions/specialInstr.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/specialInstr.c.i
+.PHONY : src/assemble_utils/instructions/specialInstr.c.i
+
+src/assemble_utils/instructions/specialInstr.s: src/assemble_utils/instructions/specialInstr.c.s
+
+.PHONY : src/assemble_utils/instructions/specialInstr.s
+
+# target to generate assembly for a file
+src/assemble_utils/instructions/specialInstr.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/specialInstr.c.s
+.PHONY : src/assemble_utils/instructions/specialInstr.c.s
+
 src/emulate.o: src/emulate.c.o
 
 .PHONY : src/emulate.o
@@ -465,6 +573,18 @@ help:
 	@echo "... src/assemble_utils/defs.o"
 	@echo "... src/assemble_utils/defs.i"
 	@echo "... src/assemble_utils/defs.s"
+	@echo "... src/assemble_utils/instructions/DataProc.o"
+	@echo "... src/assemble_utils/instructions/DataProc.i"
+	@echo "... src/assemble_utils/instructions/DataProc.s"
+	@echo "... src/assemble_utils/instructions/branch.o"
+	@echo "... src/assemble_utils/instructions/branch.i"
+	@echo "... src/assemble_utils/instructions/branch.s"
+	@echo "... src/assemble_utils/instructions/multiply.o"
+	@echo "... src/assemble_utils/instructions/multiply.i"
+	@echo "... src/assemble_utils/instructions/multiply.s"
+	@echo "... src/assemble_utils/instructions/specialInstr.o"
+	@echo "... src/assemble_utils/instructions/specialInstr.i"
+	@echo "... src/assemble_utils/instructions/specialInstr.s"
 	@echo "... src/emulate.o"
 	@echo "... src/emulate.i"
 	@echo "... src/emulate.s"

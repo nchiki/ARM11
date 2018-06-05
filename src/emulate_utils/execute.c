@@ -1,9 +1,8 @@
 #include "execute.h"
 #include "instruction_basic.h"
-<<<<<<< HEAD
+
 #include "../memoryImplementation.h"
-=======
->>>>>>> 0380e4f6ca64a6d802532d42acf19b41efd1ae01
+
 
 
 int checkCondition(MACHINE *machine) {
@@ -37,7 +36,7 @@ int checkCondition(MACHINE *machine) {
 
 void execute_MulI(MACHINE *machine){
     //simple multiplication
-<<<<<<< HEAD
+
     uint32_t result = machine->c.registers[machine->c.decodedInstruction->Rm] *
             machine->c.registers[machine->c.decodedInstruction->Rs];
 
@@ -48,7 +47,7 @@ void execute_MulI(MACHINE *machine){
 
     //if S is set, update CPSR flag
     if(machine->c.decodedInstruction->S){
-=======
+
     uint32_t result = machine->c.registers[getBitRange(machine->c.decodedInstruction->binary,0,4)] *
             machine->c.registers[getBitRange(machine->c.decodedInstruction->binary,8,4)];
 
@@ -59,7 +58,7 @@ void execute_MulI(MACHINE *machine){
 
     //if S is set, update CPSR flag
     if(getBitRange(machine->c.decodedInstruction->binary,20,1)){
->>>>>>> 0380e4f6ca64a6d802532d42acf19b41efd1ae01
+
         //N will be updated to the last bit of the result, rest of CPSR stays the same
 
         machine->c.registers[CPSR] = (getBitRange(result, 31, 1) | getBitRange(machine->c.registers[CPSR],0,31));
@@ -79,11 +78,11 @@ void execute_Halt(MACHINE *machine){
 }
 
 void execute_branch(MACHINE *machine){
-<<<<<<< HEAD
+
     int32_t offset = machine->c.decodedInstruction->offset;
-=======
+
     int32_t offset = getBitRange(machine->c.decodedInstruction->binary, 0, 24) | 0x000000;
->>>>>>> 0380e4f6ca64a6d802532d42acf19b41efd1ae01
+
     machine->c.registers[PC] = signedtwos_to_unsigned(offset);
 }
 
@@ -275,13 +274,13 @@ void execute_DPI(MACHINE *machine){
     // flags are set and saved in local variable flag
     switch(machine->c.decodedInstruction->opcode){
         case AND:
-<<<<<<< HEAD
+
         case TST: result = instr->Rn & instr->operand2;
             flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
-=======
+
         case TST: result = instr->Rn && instr->operand2;
             flag = (machine->c.registers[CPSR] >> 29) & C_MASK;
->>>>>>> 0380e4f6ca64a6d802532d42acf19b41efd1ae01
+
             break;
         case EOR:
         case TEQ: result = instr->Rn ^ instr->operand2;
