@@ -25,7 +25,7 @@ struct symbol {
 
 //typedefs for each of the instruction. To turn them into a uint32_t we might have to add them using masks...
 
-typedef struct {
+/*typedef struct {
     MNEMONIC mnemonic;
     cond_code cond;
     OPCODE opcode;
@@ -60,7 +60,7 @@ typedef struct {
     MNEMONIC mnemonic;
     cond_code cond;
     uint32_t offset;
-} BranchInstr_t;
+} BranchInstr_t;*/
 
 // purposely did not use typedef because typedef breaks a couple of things in the implementation of addLabel in assemblerImplementation.c
 // DO NOT CHANGE TO TYPEDEF STRUCT {..}SYMBOL;
