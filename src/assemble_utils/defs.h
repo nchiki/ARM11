@@ -41,4 +41,7 @@ char **tokenizeHelper(char*);
 uint32_t *distinguish(struct instruction, struct symbol *);
 
 
+uint16_t convertToWriteableFormat(char*);
+
+uint16_t textToInt(char*);
 #endif //ARM11_28_DEFS_H

@@ -140,7 +140,7 @@ struct instruction decode(char** line, uint16_t memoryAddr) {
             instr.expression = line[1];
             break;
 
-        case LSL:
+        case LsL:
             instr.Rn = line[1];
             instr.expression = line[2];
             break;

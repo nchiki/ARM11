@@ -75,7 +75,7 @@ uint32_t *distingush(struct instruction inst, struct symbol *symbolTable) {
         // HOW DO I HANDLE LSL FOR GODS SAKE WHY DOES IT SAY DUPLICATE CASE VALUE
         case LsL:
             // call to function, where will you convert to uint32?
-            break; 
+            break;
 
         case SINGLE_DATA_TRANSFER:
             // call to function? where will you convert internal struct to uint32?
@@ -96,7 +96,34 @@ uint32_t *distingush(struct instruction inst, struct symbol *symbolTable) {
 // the idea here is to be able to make a switch function which takes the mnemonic
 // and returns, using the defs in usefulTools, the code of both the condition and the opcodes
 
+uint16_t convertToWriteableFormat(char* givenStr) {
+    uint16_t returnVal = 0 ;
 
+    switch(givenStr[0]) {
+        case 'r' :
+            // if its a register
+            returnVal = textToInt(givenStr);
+            break;
+        case '#' :
+            // this is where we convert Immediates to text
+            break;
+        case '=' :
+            returnVal = textToint(givenStr);
+            break;
+    }
+    return returnVal;
+}
+
+uint16_t textToInt(char *givenStr) {
+    // the first character of giveStr will definitely be # = or r
+    uint16_t returnVal = 0 ;
+    int len = strlen(givenStr);
+
+    for (int i = 1 ; i < len ; ++i ) {
+        returnVal = returnVal*10 + (givenStr[i] - '0');
+    }
+    return returnVal;
+}
 
 
 

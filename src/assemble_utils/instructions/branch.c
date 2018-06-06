@@ -7,7 +7,7 @@
 #include "../assemblerImplementation.h"
 #include "instruction_defs.h"
 
-uint32_t branch(struct instruction instruction) {
+uint32_t* branch(struct instruction instruction, struct symbol* tableHead) {
     BranchInstr_t branchInstr;
     char *cond = instruction.opcode + 1; //it takes rid of the initial "b" of the mnemonic
     //compares the condition part of the instruction's mnemonic to the different conditions and 
@@ -28,7 +28,7 @@ uint32_t branch(struct instruction instruction) {
         branchInstr.cond = AL;
     }
 
-    struct symbol *curr = symbolTableHead;
+    struct symbol *curr = tableHead;
 
     while (curr != NULL) { //looks for the label in the symbol table
         if(!strcmp(curr.label, instruction.expression)) { // compares each label of the elements in the symbol table to find the correct one
@@ -41,4 +41,43 @@ uint32_t branch(struct instruction instruction) {
             branchInstr.offset = absVal; // sets the offset to the two's complement
         }
     }
+
+
+    // just rewriting the damm thing
+    uint8_t cond_code;
+    uint32_t *returnValue = 0 ;
+
+    if (!strcmp(instruction.opcode,"beq")) {
+        cond_code = 0;
+    } else if (!strcmp(instruction.opcode, "bne")) {
+        cond_code = 1;
+    } else if (!strcmp(instruction.opcode, "bge"))  {
+        cond_code = 10 ;
+    } else if (!strcmp(instruction.opcode, "blt")) {
+        cond_code = 11;
+    } else if (!strcmp(instruction.opcode, "bgt")) {
+        cond_code = 12;
+    } else if (!strcmp(instruction.opcode,"ble")) {
+        cond_code = 13;
+    } else {
+        cond_code = 14;
+    }
+
+    cond_code <<= 4;
+    cond_code |= 10;
+
+    // difference of 8 to account for pipeline?
+    int offset;
+
+    if (containsLabel(instruction.expression)) {
+        offset = getAddress(instruction.expression);
+    } else {
+        offset = convertToWriteableFormat(instruction.expression);
+    }
+    offset = offset - (int)(instruction.address);
+    offset >>= 2;
+
+    *returnValue = ((cond_code << 24) | offset);
+    return returnValue;
+
 }
