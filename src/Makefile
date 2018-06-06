@@ -1,24 +1,36 @@
-TARGET = src
-LIBS = -lm
-CC = gcc
-CFLAGS = -g -Wall
+CC      = gcc
+CFLAGS  = -Wall -g -D_POSIX_SOURCE -D_BSD_SOURCE -D_DEFAULT_SOURCE -std=c99
 
-        .PHONY: default all clean
+ASSEMBLE_SOURCES = assemble.c $(wildcard assemble_utils/*.c)
+ASSEMBLE_OBJECTS = assemble.o $(ASSEMBLE_SOURCES:.c=.o)
 
-default: $(TARGET)
-all: default
+EMULATE_SOURCES = emulate.c $(wildcard emulate_utils/*.c) $(wildcard emulate_utils/instructions/*.c)
+EMULATE_OBJECTS = emulate.o $(EMULATE_SOURCES:.c=.o)
 
-OBJECTS = $(patsubst %.c, %.o, $(wildcard *.c))
-HEADERS = $(wildcard *.h)
+.SUFFIXES: .c .o
 
+.PHONY: all clean
 
-%.o: %.c $(HEADERS) $(CC)   $(CFLAGS)   -c  $<  -o  $@
+all: assemble emulate
 
-.PRECIOUS: $(TARGET) $(OBJECTS)
+assemble: $(ASSEMBLE_OBJECTS)
 
-$(TARGET): $(OBJECTS)   $(CC)   $(OBJECTS)  -Wall   $(LIBS) -o  $@
+emulate: $(EMULATE_OBJECTS)
 
-clean:  -rm -f *.o  -rm -f $(TARGET)
+clean:
+	rm -f $(ASSEMBLE_OBJECTS)
+	rm -f $(EMULATE_OBJECTS)
+	rm -f assemble
+	rm -f emulate
+	rm -f out
 
-test:   make    @echo "Make sure arm11_1718_testsuite is cloned in the same directory as arm11_TEAMNUMBER"  ruby ../../arm11_1718_testsuite/testserver.rb .
+test:
+	make
+	@echo "Make sure arm11_1718_testsuite is cloned in the same directory as arm11_TEAMNUMBER"
+	ruby ../../arm11_1718_testsuite/testserver.rb .
 
+gdb:
+	make
+	@echo "Make sure arm11_1718_testsuite is cloned in the same directory as arm11_TEAMNUMBER"
+	@echo "use like this: make gdb what=(assemble/emulate) test=NAME_OF_TEST.s"
+	gdb --args $(what) ../../arm11_1718_testsuite/test_cases/$(test) out

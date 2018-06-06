@@ -18,7 +18,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/nb1317/arm11_28/src/emulate_utils/instructions/branch.c" "/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o"
   "/home/nb1317/arm11_28/src/emulate_utils/instructions/multiply.c" "/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o"
   "/home/nb1317/arm11_28/src/emulate_utils/instructions/singleDT.c" "/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o"
-  "/home/nb1317/arm11_28/src/usefulFuncs.c" "/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o"
+  "/home/nb1317/arm11_28/src/emulate_utils/usefulFuncs.c" "/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

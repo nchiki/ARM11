@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include "../../emulate_utils/instruction_basic.h"
-#include "../../usefulFuncs.h"
+#include "../usefulFuncs.h"
 #include "../../memoryImplementation.h"
 
 void decodeDATPROC(uint32_t , MACHINE* );

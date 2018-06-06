@@ -9,7 +9,7 @@
 #include "decode.h"
 #include <math.h>
 #include "../usefulTools.h"
-#include "../usefulFuncs.h"// fixed a merge conflict here
+#include "usefulFuncs.h"// fixed a merge conflict here
 
 void execute(MACHINE *machine);
 

@@ -11,6 +11,6 @@
 #include "../../memoryImplementation.h"
 #include "../../emulate_utils/instruction_basic.h"
 #include "../../usefulTools.h"
-#include "../../usefulFuncs.h"
+#include "../usefulFuncs.h"
 void SDTdecode(uint32_t, MACHINE* );
 #endif //ARM11_28_SINGLEDT_H

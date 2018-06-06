@@ -1,8 +1,4 @@
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdint.h>
-
 /*
 
 u_int32_t *loadFile(char *path, u_int32_t *pointer) {
@@ -17,6 +13,8 @@ u_int32_t *loadFile(char *path, u_int32_t *pointer) {
 }
 
 */
+
+#include "binaryloader.h"
 
 // this is just a test comment
 void loadFile (char *fname, uint32_t *memory) {

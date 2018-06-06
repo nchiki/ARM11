@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "usefulFuncs.h"
-#include "emulate_utils/instruction_basic.h"
-#include "memoryImplementation.h"
+#include "instruction_basic.h"
+#include "../memoryImplementation.h"
 
 //extracts any number of bits from any starting index
 

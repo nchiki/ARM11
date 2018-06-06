@@ -1,9 +1,5 @@
 #include <byteswap.h>
 #include "execute.h"
-#include "instruction_basic.h"
-
-#include "../memoryImplementation.h"
-
 
 
 int checkCondition(MACHINE *machine) {

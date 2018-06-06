@@ -273,28 +273,28 @@ CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.o.provides: CMakeFiles/arm11
 CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.o.provides.build: CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.o
 
 
-CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o: CMakeFiles/arm11_28.dir/flags.make
-CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o: ../src/usefulFuncs.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o   -c /home/nb1317/arm11_28/src/usefulFuncs.c
+CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o: CMakeFiles/arm11_28.dir/flags.make
+CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o: ../src/emulate_utils/usefulFuncs.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nb1317/arm11_28/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o   -c /home/nb1317/arm11_28/src/emulate_utils/usefulFuncs.c
 
-CMakeFiles/arm11_28.dir/src/usefulFuncs.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/usefulFuncs.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/nb1317/arm11_28/src/usefulFuncs.c > CMakeFiles/arm11_28.dir/src/usefulFuncs.c.i
+CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/nb1317/arm11_28/src/emulate_utils/usefulFuncs.c > CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.i
 
-CMakeFiles/arm11_28.dir/src/usefulFuncs.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/usefulFuncs.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/nb1317/arm11_28/src/usefulFuncs.c -o CMakeFiles/arm11_28.dir/src/usefulFuncs.c.s
+CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/nb1317/arm11_28/src/emulate_utils/usefulFuncs.c -o CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.s
 
-CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.requires:
+CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.requires:
 
-.PHONY : CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.requires
+.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.requires
 
-CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.provides: CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.requires
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.provides.build
-.PHONY : CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.provides
+CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.provides: CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.requires
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.provides.build
+.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.provides
 
-CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.provides.build: CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o
+CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.provides.build: CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o
 
 
 CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.o: CMakeFiles/arm11_28.dir/flags.make
@@ -428,7 +428,7 @@ arm11_28_OBJECTS = \
 "CMakeFiles/arm11_28.dir/src/emulate_utils/decode.c.o" \
 "CMakeFiles/arm11_28.dir/src/emulate.c.o" \
 "CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.o" \
-"CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o" \
+"CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o" \
 "CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.o" \
 "CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.o" \
 "CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o" \
@@ -447,7 +447,7 @@ arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/binaryloader.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/decode.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/emulate.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.o
-arm11_28: CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o
+arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o
@@ -472,7 +472,7 @@ CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/bina
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/decode.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.o.requires
-CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.requires
+CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o.requires

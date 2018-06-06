@@ -8,7 +8,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/arm11_28.dir/src/emulate_utils/decode.c.o"
   "CMakeFiles/arm11_28.dir/src/emulate.c.o"
   "CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.o"
-  "CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o"
+  "CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o"
   "CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.o"
   "CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.o"
   "CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o"

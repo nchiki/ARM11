@@ -501,32 +501,32 @@ src/emulate_utils/instructions/singleDT.c.s:
 	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.s
 .PHONY : src/emulate_utils/instructions/singleDT.c.s
 
-src/usefulFuncs.o: src/usefulFuncs.c.o
+src/emulate_utils/usefulFuncs.o: src/emulate_utils/usefulFuncs.c.o
 
-.PHONY : src/usefulFuncs.o
+.PHONY : src/emulate_utils/usefulFuncs.o
 
 # target to build an object file
-src/usefulFuncs.c.o:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o
-.PHONY : src/usefulFuncs.c.o
+src/emulate_utils/usefulFuncs.c.o:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o
+.PHONY : src/emulate_utils/usefulFuncs.c.o
 
-src/usefulFuncs.i: src/usefulFuncs.c.i
+src/emulate_utils/usefulFuncs.i: src/emulate_utils/usefulFuncs.c.i
 
-.PHONY : src/usefulFuncs.i
+.PHONY : src/emulate_utils/usefulFuncs.i
 
 # target to preprocess a source file
-src/usefulFuncs.c.i:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/usefulFuncs.c.i
-.PHONY : src/usefulFuncs.c.i
+src/emulate_utils/usefulFuncs.c.i:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.i
+.PHONY : src/emulate_utils/usefulFuncs.c.i
 
-src/usefulFuncs.s: src/usefulFuncs.c.s
+src/emulate_utils/usefulFuncs.s: src/emulate_utils/usefulFuncs.c.s
 
-.PHONY : src/usefulFuncs.s
+.PHONY : src/emulate_utils/usefulFuncs.s
 
 # target to generate assembly for a file
-src/usefulFuncs.c.s:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/usefulFuncs.c.s
-.PHONY : src/usefulFuncs.c.s
+src/emulate_utils/usefulFuncs.c.s:
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.s
+.PHONY : src/emulate_utils/usefulFuncs.c.s
 
 # Help Target
 help:
@@ -579,9 +579,9 @@ help:
 	@echo "... src/emulate_utils/instructions/singleDT.o"
 	@echo "... src/emulate_utils/instructions/singleDT.i"
 	@echo "... src/emulate_utils/instructions/singleDT.s"
-	@echo "... src/usefulFuncs.o"
-	@echo "... src/usefulFuncs.i"
-	@echo "... src/usefulFuncs.s"
+	@echo "... src/emulate_utils/usefulFuncs.o"
+	@echo "... src/emulate_utils/usefulFuncs.i"
+	@echo "... src/emulate_utils/usefulFuncs.s"
 .PHONY : help
 
 
