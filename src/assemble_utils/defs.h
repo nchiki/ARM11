@@ -5,6 +5,10 @@
 #ifndef ARM11_28_DEFS_H
 #define ARM11_28_DEFS_H
 
+#include <stdint.h>
+#include <stdint-gcc.h>
+
+#define MAX_LINE_SIZE 511
 
 typedef enum {
     add,
@@ -33,5 +37,8 @@ typedef enum {
 } MNEMONIC;
 
 char **tokenizeHelper(char*);
-#define MAX_LINE_SIZE 511
+
+uint32_t *distinguish(struct instruction, struct symbol*);
+
+
 #endif //ARM11_28_DEFS_H

@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
     struct instruction instArr[numLines];
     // i'll have to count the number of lines, so zeroth pass?
 
-
+    initSymbolTable();
 
     while (fgets(line, MAX_LINE_SIZE, input)) {
         char **tokenizedLine = tokenizeHelper(line);
@@ -63,12 +63,13 @@ int main(int argc, char **argv) {
     }
 
     // second pass
+    uint32_t *valueToBeWritten = NULL;
 
     for ( int i = 0 ; i < numLines; ++i ) {
         struct instruction currentInst = instArr[i];
         if (currentInst.type != NULL) {
             // process it
-            fwrite()
+            valueToBeWritten = distinguish(currentInst, symbolTableHead);
             // write it to the file
 
         }
