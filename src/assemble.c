@@ -64,6 +64,15 @@ int main(int argc, char **argv) {
 
     // second pass
 
+    for ( int i = 0 ; i < numLines; ++i ) {
+        struct instruction currentInst = instArr[i];
+        if (currentInst.type != NULL) {
+            // process it
+            fwrite()
+            // write it to the file
+
+        }
+    }
 
 
 
