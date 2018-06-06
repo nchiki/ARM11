@@ -8,6 +8,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdint-gcc.h>
+#include <stdio.h>
 //#include "../usefulTools.h"
 #include "assemblerImplementation.h"
 #include "defs.h"
@@ -98,7 +99,7 @@ struct instruction {
     uint16_t memoryAddr;
 };
 
-
+int countLines(FILE*);
 struct instruction decode(char**, uint16_t);
 
 struct symbol *symbolTableHead;
