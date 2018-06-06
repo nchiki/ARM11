@@ -1,6 +1,6 @@
 #include <assert.h>
-#include "emulate_utils/binaryloader.c"
-#include "emulate_utils/execute.c"
+#include "emulate_utils/binaryloader.h"
+#include "emulate_utils/execute.h"
 #include <string.h>
 #include <byteswap.h>
 
@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
     memArray = (uint32_t *) calloc(16384, sizeof(uint32_t));
 
 
-      *(machine->mem.memoryAlloc) = memArray;
+    *(machine->mem.memoryAlloc) = memArray;
 
 
     registerArray = (uint32_t *) calloc(17, sizeof(uint32_t));

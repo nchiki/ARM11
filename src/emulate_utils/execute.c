@@ -190,7 +190,7 @@ int binToDec(int n)
     {
         remainder = n%10;
         n /= 10;
-        number += remainder*pow(2,i);
+        number += remainder*(1 << i);
         ++i;
     }
     return number;
