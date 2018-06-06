@@ -10,12 +10,12 @@
 #include <byteswap.h>
 
 uint32_t memArray;
-uint32_t *registerArray
+uint32_t *registerArray;
 
 uint32_t getBitRange(uint32_t num, int start, int length);
 
 
-  int main(int argc, char **argv) {
+int main(int argc, char **argv) {
     /* explanation:
      * would it not be easier to just use the global variable machine from memImplementation.h rather than create a new
      * one and have to mess around with pointers and what not?

@@ -38,7 +38,7 @@ typedef enum {
 
 char **tokenizeHelper(char*);
 
-uint32_t *distinguish(struct instruction, struct symbol*);
+uint32_t *distinguish(struct instruction, struct symbol *);
 
 
 #endif //ARM11_28_DEFS_H

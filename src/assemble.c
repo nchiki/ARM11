@@ -69,6 +69,7 @@ int main(int argc, char **argv) {
         struct instruction currentInst = instArr[i];
         if (currentInst.type != NULL) {
             // process it
+//probe=lem with the first parameter, says its type of formal parameter 1 is incomplete
             valueToBeWritten = distinguish(currentInst, symbolTableHead);
             // write it to the file
 

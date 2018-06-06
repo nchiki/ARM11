@@ -10,7 +10,7 @@
 #include <stdint-gcc.h>
 #include <stdio.h>
 //#include "../usefulTools.h"
-#include "assemblerImplementation.h"
+//#include "assemblerImplementation.h"
 #include "defs.h"
 //#include "../usefulTools.h"
 
@@ -39,7 +39,7 @@ static const char *Opcodes[][10] = {
 
 
 typedef enum {
-    DATA_PROCESSING, MULTIPLY, SINGLE_DATA_TRANSFER, BRANCH, LSL, ANDEQ
+    DATA_PROCESSING, MULTIPLY, SINGLE_DATA_TRANSFER, BRANCH, LsL, ANDEQ
 }instrType ;
 
 // there should be an enum for instrtype
