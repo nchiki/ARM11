@@ -4,5 +4,8 @@
 
 #ifndef ARM11_28_BRANCH_H
 #define ARM11_28_BRANCH_H
-uint32_t *branch(struct instruction instruction);
+
+#include <stdint.h>
+
+uint32_t *branch(struct instruction, struct symbol*);
 #endif //ARM11_28_BRANCH_H

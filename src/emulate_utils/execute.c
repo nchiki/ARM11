@@ -1,3 +1,4 @@
+#include <byteswap.h>
 #include "execute.h"
 #include "instruction_basic.h"
 
@@ -211,7 +212,6 @@ void execute_SDT(MACHINE *machine) {
         /*uint8_t shift = (uint8_t) ((getBitRange(machine->c.decodedInstruction->operand2, 4, 8)) >> 4);
         uint32_t shifterReg = getBitRange(machine->c.decodedInstruction->operand2, 0, 4);*/
 
-        uint8_t shift = getBitRange(machine->c.decodedInstruction->binary, 4, 8);
         int shifterReg = getBitRange(machine->c.decodedInstruction->binary, 0, 4);
 
         machine->c.decodedInstruction->Rm = shifterReg;
