@@ -2,7 +2,6 @@
 #ifndef ARM11_28_USEFULFUNCS_H
 #define ARM11_28_USEFULFUNCS_H
 
-#include <stdint.h>
 #include "instruction_basic.h"
 
 

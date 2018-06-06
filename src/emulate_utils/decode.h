@@ -3,9 +3,6 @@
 
 //interface for alltructions
 
-#include "instruction_basic.h"
-#include "../usefulTools.h"
-#include "../memoryImplementation.h"
 #include "branch.h"
 #include "singleDT.h"
 #include "multiply.h"

@@ -1,10 +1,4 @@
-#include <stdlib.h>
-#include <assert.h>
-#include <stdio.h>
-#include "../memoryImplementation.h"
-#include "instruction_basic.h"
-#include "../usefulTools.h"
-#include "usefulFuncs.h"
+#include "singleDT.h"
 
 void SDTdecode(uint32_t instruction, MACHINE *machine) {
     machine->c.decodedInstruction->binary = instruction;

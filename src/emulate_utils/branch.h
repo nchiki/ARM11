@@ -4,10 +4,7 @@
 
 #ifndef ARM11_28_BRANCH_H
 #define ARM11_28_BRANCH_H
-#include <stdlib.h>
 #include <assert.h>
-#include <stdio.h>
-#include <stdint.h>
 #include "../memoryImplementation.h"
 
 void branch(uint32_t, MACHINE*);

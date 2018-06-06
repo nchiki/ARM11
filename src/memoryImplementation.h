@@ -2,9 +2,7 @@
 #ifndef ARM11_28_MEMORYIMPLEMENTATION_H
 #define ARM11_28_MEMORYIMPLEMENTATION_H
 
-#include <stdlib.h>
-#include <stdio.h>
-#include "emulate_utils/instruction_basic.h"
+#include "emulate_utils/usefulFuncs.h"
 
 #define PC 15
 #define CPSR 16

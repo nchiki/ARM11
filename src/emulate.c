@@ -1,12 +1,7 @@
-#include <stdlib.h>
-#include <stdbool.h>
 #include <assert.h>
-#include <stdint.h>
-#include "memoryImplementation.h"
 #include "emulate_utils/binaryloader.c"
 #include "emulate_utils/execute.c"
 #include <string.h>
-#include "emulate_utils/decode.c"
 #include <byteswap.h>
 
 uint32_t memArray;

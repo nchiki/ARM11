@@ -5,10 +5,8 @@
 #ifndef ARM11_28_HALT_H
 #define ARM11_28_HALT_H
 
-#include <stdlib.h>
+
 #include <assert.h>
-#include <stdio.h>
-#include <stdint.h>
 #include "../memoryImplementation.h"
 
 void halt (MACHINE* );

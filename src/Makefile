@@ -4,7 +4,7 @@ CFLAGS  = -Wall -g -D_POSIX_SOURCE -D_BSD_SOURCE -D_DEFAULT_SOURCE -std=c99
 ASSEMBLE_SOURCES = assemble.c $(wildcard assemble_utils/*.c)
 ASSEMBLE_OBJECTS = assemble.o $(ASSEMBLE_SOURCES:.c=.o)
 
-EMULATE_SOURCES = emulate.c $(wildcard emulate_utils/*.c) $(wildcard emulate_utils/instructions/*.c)
+EMULATE_SOURCES = emulate.c $(wildcard emulate_utils/*.c)
 EMULATE_OBJECTS = emulate.o $(EMULATE_SOURCES:.c=.o)
 
 .SUFFIXES: .c .o

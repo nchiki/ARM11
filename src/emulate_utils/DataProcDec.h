@@ -4,11 +4,6 @@
 
 #ifndef ARM11_28_DATAPROCDEC_H
 #define ARM11_28_DATAPROCDEC_H
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include "instruction_basic.h"
-#include "usefulFuncs.h"
 #include "../memoryImplementation.h"
 
 void decodeDATPROC(uint32_t , MACHINE* );
