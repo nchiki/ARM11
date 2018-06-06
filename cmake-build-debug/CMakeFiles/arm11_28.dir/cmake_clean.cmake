@@ -14,7 +14,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o"
   "CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o"
   "CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o"
-  "CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/specialInstr.c.o"
   "arm11_28.pdb"
   "arm11_28"
 )

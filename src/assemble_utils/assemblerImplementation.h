@@ -7,10 +7,11 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdint-gcc.h>
 //#include "../usefulTools.h"
 #include "assemblerImplementation.h"
 #include "defs.h"
-#include "../usefulTools.h"
+//#include "../usefulTools.h"
 
 struct symbol {
 
@@ -101,7 +102,6 @@ struct instruction {
 struct instruction decode(char**, uint16_t);
 
 struct symbol *symbolTableHead;
-
 void initSymbolTable(void);
 
 void addLabel (char*, uint16_t) ;
