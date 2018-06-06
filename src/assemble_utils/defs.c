@@ -47,7 +47,10 @@ char **tokenizeHelper(char *line) {
     strcpy(new_line, line); /* can't use strtok on string literal */
     char *temp1 = strtok(new_line, "[");
     char *temp2 = strtok(NULL, "[");
-
+    //IMPORTANT---------------------------------------------------
+    // needed a flag for the pre/post indexing in sdt (PFlag?)
+    //look at sdt.c, PFlag in instruction would have to be set if the address
+    //is of the form [Rn, <#expression>] instead of [Rn], <#expression>
     temp1 = strtok(temp1, " ,");
 
     while(temp1) {
@@ -87,15 +90,9 @@ uint32_t *distingush(struct instruction inst, struct symbol *symbolTable) {
             break;
     }
 
-    return returnVal; 
+    return returnVal;
 
 }
 
 // the idea here is to be able to make a switch function which takes the mnemonic
 // and returns, using the defs in usefulTools, the code of both the condition and the opcodes
-
-
-
-
-
-

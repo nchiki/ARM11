@@ -34,7 +34,11 @@ if (!strcmp(instruction.opcode, "ldr")) {
       //have to save the value in the destination file (no clue of how to do that)
       //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
     }
+  }else {
+    SDTinstr.Rn = assignReg(instruction.Rn);
+    SDTinstr.offset = instruction.expression;
 
-    
+    SDTinstr.P = instruction.PFlag; //sets the P bit if the tokenizeHelper decoded an address of the form [Rn, <#expression>]
   }
+
 }

@@ -136,7 +136,11 @@ struct instruction decode(char** line, uint16_t memoryAddr) {
             instr.address = line[2];
             //for cases where there is a complex address;
             instr.Rn = line[2];
+            if (line[3] != NULL) {
             instr.expression = line[3];
+          } else {
+            instr.expression = 0;
+          }
             break;
             //missing the optional cases
 
