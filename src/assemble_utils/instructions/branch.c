@@ -12,17 +12,17 @@ uint32_t branch(struct instruction instruction) {
     char *cond = instruction.opcode + 1; //it takes rid of the initial "b" of the mnemonic
     //compares the condition part of the instruction's mnemonic to the different conditions and 
     //sets the binary of the cond using the struct defined in usefulTools.h
-    if (!strcmp(*cond, "eq")) {
+    if (!strcmp(cond, "eq")) {
         branchInstr.cond = EQ;
-    } else if (!strcmp(*cond, "ne")) {
+    } else if (!strcmp(cond, "ne")) {
         branchInstr.cond = NE;
-    } else if (!strcmp(*cond, "ge")) {
+    } else if (!strcmp(cond, "ge")) {
         branchInstr.cond = GE;
-    } else if (!strcmp(*cond, "lt")) {
+    } else if (!strcmp(cond, "lt")) {
         branchInstr.cond = LT;
-    } else if (!strcmp(*cond, "gt")) {
+    } else if (!strcmp(cond, "gt")) {
         branchInstr.cond = GT;
-    } else if (!strcmp(*cond, "le")) {
+    } else if (!strcmp(cond, "le")) {
         branchInstr.cond = LE;
     } else {
         branchInstr.cond = AL;

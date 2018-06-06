@@ -26,8 +26,6 @@ void loadFile (char *fname, uint32_t *memory) {
         exit(-1);
     }
 
-    size_t size = fread(memory,16384,1,f);
-
     if (ferror(f)) {
         exit(-1);
     }

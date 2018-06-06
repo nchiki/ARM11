@@ -13,30 +13,30 @@ typedef struct {
     MNEMONIC mnemonic;
     cond_code cond;
     OPCODE opcode;
-    int Rn;
-    int Rd;
+    uint32_t Rn;
+    uint32_t Rd;
     uint32_t Operand2;
 } DataProcInstr_t;
 
 typedef struct {
     MNEMONIC mnemonic;
     cond_code cond;
-    char A;
-    char S;
-    int Rn;
-    int Rd;
-    int Rs;
-    int Rm;
+    int A;
+    int S;
+    uint32_t Rn;
+    uint32_t Rd;
+    uint32_t Rs;
+    uint32_t Rm;
 } MultiplyInstr_t;
 
 typedef struct {
     MNEMONIC mnemonic;
     cond_code cond;
-    char P;
-    char U;
-    char L;
-    int Rn;
-    int Rd;
+    int P;
+    int U;
+    int L;
+    uint32_t Rn;
+    uint32_t Rd;
     uint16_t offset;
 } SDTinstr_t;
 

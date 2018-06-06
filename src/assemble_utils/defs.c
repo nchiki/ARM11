@@ -6,6 +6,7 @@
 #include "../usefulTools.h"
 #include "assemblerImplementation.h"
 
+
 MNEMONIC takeMnemonic(char *word) {
     if (!strcmp(word, "add")) {
         return add;
@@ -92,6 +93,8 @@ uint32_t *distingush(struct instruction inst, struct symbol *symbolTable) {
     return returnVal; 
 
 }
+
+
 
 // the idea here is to be able to make a switch function which takes the mnemonic
 // and returns, using the defs in usefulTools, the code of both the condition and the opcodes
