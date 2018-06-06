@@ -150,3 +150,14 @@ struct instruction decode(char** line, uint16_t memoryAddr) {
     }
     return instr;
 }
+
+int countLines (FILE* input) {
+    int returnVal;
+    char line[MAX_LINE_SIZE];
+
+
+    while(fgets(line, sizeof(line),input)) {
+        returnVal++;
+    }
+    return returnVal;
+}

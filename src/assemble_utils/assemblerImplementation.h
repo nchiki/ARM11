@@ -7,10 +7,12 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdint-gcc.h>
+#include <stdio.h>
 //#include "../usefulTools.h"
 #include "assemblerImplementation.h"
 #include "defs.h"
-#include "../usefulTools.h"
+//#include "../usefulTools.h"
 
 struct symbol {
 
@@ -22,45 +24,6 @@ struct symbol {
 };
 
 // this was just extra effort, instead, let there be an overall data structure like the one in emulate which has a subtype type
-
-//typedefs for each of the instruction. To turn them into a uint32_t we might have to add them using masks...
-
-typedef struct {
-    MNEMONIC mnemonic;
-    cond_code cond;
-    OPCODE opcode;
-    int Rn;
-    int Rd;
-    uint32_t Operand2;
-} DataProcInstr_t;
-
-typedef struct {
-    MNEMONIC mnemonic;
-    cond_code cond;
-    char A;
-    char S;
-    int Rn;
-    int Rd;
-    int Rs;
-    int Rm;
-} MultiplyInstr_t;
-
-typedef struct {
-    MNEMONIC mnemonic;
-    cond_code cond;
-    char P;
-    char U;
-    char L;
-    int Rn;
-    int Rd;
-    uint16_t offset;
-} SDTinstr_t;
-
-typedef struct {
-    MNEMONIC mnemonic;
-    cond_code cond;
-    uint32_t offset;
-} BranchInstr_t;
 
 // purposely did not use typedef because typedef breaks a couple of things in the implementation of addLabel in assemblerImplementation.c
 // DO NOT CHANGE TO TYPEDEF STRUCT {..}SYMBOL;
@@ -97,11 +60,10 @@ struct instruction {
     uint16_t memoryAddr;
 };
 
-
+int countLines(FILE*);
 struct instruction decode(char**, uint16_t);
 
 struct symbol *symbolTableHead;
-
 void initSymbolTable(void);
 
 void addLabel (char*, uint16_t) ;

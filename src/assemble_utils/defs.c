@@ -4,6 +4,7 @@
 #include <memory.h>
 #include "defs.h"
 #include "../usefulTools.h"
+#include "assemblerImplementation.h"
 
 MNEMONIC takeMnemonic(char *word) {
     if (!strcmp(word, "add")) {
@@ -57,6 +58,37 @@ char **tokenizeHelper(char *line) {
 
 
     return tokenized;
+}
+
+
+uint32_t *distingush(struct instruction inst, struct symbol *symbolTable) {
+    uint32_t *returnVal = NULL;
+
+    switch(inst.type) {
+        case DATA_PROCESSING:
+            // call to function ?
+            break;
+        case MULTIPLY:
+            // call to function? where will you convert to uint32?
+            break;
+
+        // HOW DO I HANDLE LSL FOR GODS SAKE WHY DOES IT SAY DUPLICATE CASE VALUE
+        //case LSL:
+
+        case SINGLE_DATA_TRANSFER:
+            // call to function? where will you convert internal struct to uint32?
+            break;
+        case BRANCH:
+            //  call to function? where will you convert internal sturct to uint32?
+            // call to function like this: branch(inst, symbolTable), branch hasnt implemented that
+            break;
+        case ANDEQ:
+            returnVal = 0;
+            break;
+    }
+
+    return returnVal; 
+
 }
 
 // the idea here is to be able to make a switch function which takes the mnemonic

@@ -13,9 +13,6 @@ int main(int argc, char **argv) {
 
     char *destFile = argv[2];
 
-    struct instruction instArr[];
-    // i'll have to count the number of lines, so zeroth pass?
-
     uint16_t address = 0;
 
     char line[MAX_LINE_SIZE] ;
@@ -28,6 +25,12 @@ int main(int argc, char **argv) {
         printf("Could not open the file");
         exit(-1);
     }
+
+    const int numLines = countLines(input);
+    struct instruction instArr[numLines];
+    // i'll have to count the number of lines, so zeroth pass?
+
+    initSymbolTable();
 
     while (fgets(line, MAX_LINE_SIZE, input)) {
         char **tokenizedLine = tokenizeHelper(line);
@@ -60,7 +63,17 @@ int main(int argc, char **argv) {
     }
 
     // second pass
+    uint32_t *valueToBeWritten = NULL;
 
+    for ( int i = 0 ; i < numLines; ++i ) {
+        struct instruction currentInst = instArr[i];
+        if (currentInst.type != NULL) {
+            // process it
+            valueToBeWritten = distinguish(currentInst, symbolTableHead);
+            // write it to the file
+
+        }
+    }
 
 
 
