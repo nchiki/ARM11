@@ -5,7 +5,6 @@
 #ifndef ARM11_28_REGISTERS_H
 #define ARM11_28_REGISTERS_H
 
-#include <memory.h>
 
 typedef enum {
     r0 = 0000,
@@ -26,7 +25,7 @@ typedef enum {
 
 }registers;
 
-uint8_t assignReg(char * reg){
+uint8_t assignReg(char *reg){
     uint8_t regstr = NULL;
 
  if(!strcmp(reg, "r0")){

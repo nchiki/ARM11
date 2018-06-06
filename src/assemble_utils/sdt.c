@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "instruction_defs.h"
-#include "../registers.h"
+#include "registers.h"
 
 uint32_t *SDTassembling(struct instruction instruction){
   SDTinstr_t SDTinstr;

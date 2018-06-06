@@ -1,7 +1,7 @@
 //
 // Created by Blanca Tebar on 03/06/2018.
 
-#include <memory.h>
+#include <string.h>
 #include "defs.h"
 #include "../usefulTools.h"
 #include "assemblerImplementation.h"
@@ -114,7 +114,7 @@ uint16_t convertToWriteableFormat(char* givenStr) {
             // this is where we convert Immediates to text
             break;
         case '=' :
-            returnVal = textToint(givenStr);
+            returnVal = textToInt(givenStr);
             break;
     }
     return returnVal;
