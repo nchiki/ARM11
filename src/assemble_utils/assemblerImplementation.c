@@ -134,7 +134,11 @@ struct instruction decode(char** line, uint16_t memoryAddr) {
         case SINGLE_DATA_TRANSFER:
             instr.Rd = line[1];
             instr.address = line[2];
+            //for cases where there is a complex address;
+            instr.Rn = line[2];
+            instr.expression = line[3];
             break;
+            //missing the optional cases
 
         case BRANCH:
             instr.expression = line[1];
