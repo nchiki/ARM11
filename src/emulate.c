@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
     }*/
 
     // could use this to initialise to zero?
-    MACHINE *machine;
+    MACHINE *machine = (MACHINE*)(malloc(sizeof(MACHINE)));
 
     memArray = (uint32_t *) calloc(16384, sizeof(uint32_t));
 
@@ -146,7 +146,7 @@ int main(int argc, char **argv) {
       //flippd the bits here
 
       machine->c.fetchedInstruction = fetched;
-      finalise = fetched == 0;
+      finalise = (fetched == 0);
 
       registerArray[PC] += 4; // four bytes because is 4-byte addressable
 
