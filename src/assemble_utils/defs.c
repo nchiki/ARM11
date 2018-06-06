@@ -73,7 +73,9 @@ uint32_t *distingush(struct instruction inst, struct symbol *symbolTable) {
             break;
 
         // HOW DO I HANDLE LSL FOR GODS SAKE WHY DOES IT SAY DUPLICATE CASE VALUE
-        //case LSL:
+        case LsL:
+            // call to function, where will you convert to uint32?
+            break; 
 
         case SINGLE_DATA_TRANSFER:
             // call to function? where will you convert internal struct to uint32?
