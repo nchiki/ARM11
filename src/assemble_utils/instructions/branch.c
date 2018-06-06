@@ -4,6 +4,7 @@
 
 #include <stdint.h>
 #include <memory.h>
+#include <stdlib.h>
 #include "../assemblerImplementation.h"
 #include "instruction_defs.h"
 
@@ -67,17 +68,23 @@ uint32_t* branch(struct instruction instruction, struct symbol* tableHead) {
     cond_code |= 10;
 
     // difference of 8 to account for pipeline?
-    int offset;
+    uint32_t offset;
 
     if (containsLabel(instruction.expression)) {
         offset = getAddress(instruction.expression);
     } else {
         offset = convertToWriteableFormat(instruction.expression);
     }
-    offset = offset - (int)(instruction.address);
+    offset = offset - (uint32_t)(instruction.memoryAddr - 8);
     offset >>= 2;
 
-    *returnValue = ((cond_code << 24) | offset);
+    int32_t absoffset = abs(offset);
+    if(offset < 0) {
+        *returnValue = (~absoffset) + 1;
+    } else {
+        *returnValue = offset;
+    }
+    *returnValue |= ((cond_code << 24);
     return returnValue;
 
 }
