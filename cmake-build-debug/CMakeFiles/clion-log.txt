@@ -1,4 +1,15 @@
 /home/nb1317/clion-2018.1.2/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/nb1317/arm11_28
 -- Configuring done
+CMake Error at CMakeLists.txt:6 (add_executable):
+  Cannot find source file:
+
+    src/emulate_utils/instructions/branch.c
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .m .M .mm .h .hh .h++ .hm .hpp
+  .hxx .in .txx
+
+
+CMake Error: CMake can not determine linker language for target: arm11_28
+CMake Error: Cannot determine link language for target "arm11_28".
 -- Generating done
 -- Build files have been written to: /home/nb1317/arm11_28/cmake-build-debug

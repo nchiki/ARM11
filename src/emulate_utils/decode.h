@@ -6,11 +6,11 @@
 #include "instruction_basic.h"
 #include "../usefulTools.h"
 #include "../memoryImplementation.h"
-#include "../emulate_utils/instructions/branch.h"
-#include "../emulate_utils/instructions/singleDT.h"
-#include "../emulate_utils/instructions/multiply.h"
-#include "../emulate_utils/instructions/DataProcDec.h"
-#include "../emulate_utils/instructions/halt.h"
+#include "branch.h"
+#include "singleDT.h"
+#include "multiply.h"
+#include "DataProcDec.h"
+#include "halt.h"
 
 //This part receives the instructions fetched and has to
 // distinguish between the different instructions save the

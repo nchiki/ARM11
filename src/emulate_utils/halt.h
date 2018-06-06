@@ -9,7 +9,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdint.h>
-#include "../../memoryImplementation.h"
+#include "../memoryImplementation.h"
 
 void halt (MACHINE* );
 #endif //ARM11_28_HALT_H

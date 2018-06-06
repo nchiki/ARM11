@@ -2,8 +2,8 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdint.h>
-#include "../../memoryImplementation.h"
-#include "../instruction_basic.h"
+#include "../memoryImplementation.h"
+#include "instruction_basic.h"
 
 void branch(uint32_t instruction, MACHINE *machine) {
 	machine->c.decodedInstruction->type = Branch;
