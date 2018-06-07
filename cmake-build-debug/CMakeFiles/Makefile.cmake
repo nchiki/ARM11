@@ -7,9 +7,29 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/CMakeCInformation.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/CMakeFindCodeBlocks.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/CMakeGenericSystem.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/CMakeLanguageInformation.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/CMakeSystemSpecificInformation.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/CMakeSystemSpecificInitialize.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/Compiler/AppleClang-C.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/Compiler/Clang.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/Compiler/GNU.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/Platform/Darwin-AppleClang-C.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/Platform/Darwin-Clang-C.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/Platform/Darwin-Clang.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/Platform/Darwin-Initialize.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/Platform/Darwin.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/Platform/UnixPaths.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/ProcessorCount.cmake"
   "../CMakeLists.txt"
   "CMakeFiles/3.10.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.10.3/CMakeSystem.cmake"
+<<<<<<< HEAD
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeCInformation.cmake"
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake"
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
@@ -26,6 +46,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/Platform/Linux.cmake"
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/Platform/UnixPaths.cmake"
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/ProcessorCount.cmake"
+=======
+>>>>>>> 95b9d4f7336669483fc0ceffc747a29028cab065
   )
 
 # The corresponding makefile is:

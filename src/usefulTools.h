@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 //
 // Created by nahida on 6/7/18.
 //
 
+=======
+>>>>>>> 95b9d4f7336669483fc0ceffc747a29028cab065
 #ifndef PROJECT_USEFULCONSTANTS_H
 #define PROJECT_USEFULCONSTANTS_H
 
@@ -53,7 +56,11 @@ typedef enum {
     LSL = 00,
     LSR = 01,
     ASR = 10,
+<<<<<<< HEAD
     ROR = 11,
+=======
+    ROR = 11
+>>>>>>> 95b9d4f7336669483fc0ceffc747a29028cab065
 } SHIFT_CODE;
 
 
