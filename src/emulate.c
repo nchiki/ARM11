@@ -130,9 +130,9 @@ int main(int argc, char **argv) {
 
     // --------------------MAIN WHILE LOOP---------------------------
 
-    bool finalise = false; //finalise will become true when the instructions is the zero instructions: halt
+    //bool finalise = false; //finalise will become true when the instructions is the zero instructions: halt
 
-    while (!finalise) {
+    while (!(machine->c.decodedInstruction->instruction_type == halt)) {
       //fetch
       address = machine->c.registers[PC];
       fetched = 0;
