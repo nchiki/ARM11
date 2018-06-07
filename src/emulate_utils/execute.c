@@ -105,61 +105,65 @@ uint32_t signedtwos_to_unsigned(int32_t signednum){ //checked
     return (uint32_t) signednum;
 }
 //need commenting ----------------------------------
+// operand are the 12 last bits of the instruction (although it is passed as an uin32_t)
 uint32_t shiftReg(uint32_t operand, MACHINE *machine) { //blanca should check this
-    int amount;
-    if (operand != 0) {
-        amount = getBitRange(machine->c.registers[getBitRange(operand, 8, 4)], 0, 8);
+    int amount; //the number of positions to be shifted
+    if (operand&0x10 != 0) {  //checks if it's shifted by constant amount or by the amount stored in Rs
+        amount = getBitRange(machine->c.registers[getBitRange(operand, 8, 4)], 0, 8); // amount stored in las byte of Rs
     } else {
-        amount = getBitRange(operand, 7, 5);
+        amount = getBitRange(operand, 7, 5); // takes the five bits from bit 7 as a constant value
     }
-    switch(getBitRange(operand, 4, 2)) {
+    switch(getBitRange(operand, 4, 2)) { // bits that determine the type of shift
         case 00: //logical shift left
-            machine->c.decodedInstruction->shift = LSL;
-            if (machine->c.decodedInstruction->S) {
-                int32_t mask = 1 << (32 - amount);
-                machine->c.registers[CPSR] &= 0xDFFFFFFF;
-                mask = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29;
-                machine->c.registers[CPSR] |= mask;
+            machine->c.decodedInstruction->shift = LSL; //sets the type of switch
+            if (machine->c.decodedInstruction->S) { //if S is set then carry flag changes
+                int32_t mask = 1 << (32 - amount); // mask to get the LSB in the original value we are gonna shift later
+                machine->c.registers[CPSR] &= 0xDFFFFFFF; // mask that sets to zero the carry bit so we can set it later
+                mask2 = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29; //takes the bit we need (for setting C in CPSR) and shifts it to its correct position in CPSR
+                machine->c.registers[CPSR] |= mask2; //ors, to set the CPSR C bit
             }
-            (machine->c.registers[machine->c.decodedInstruction->Rm]) <<= amount;
+            (machine->c.registers[machine->c.decodedInstruction->Rm]) <<= amount; //shifts
             break;
         case 01: //logical shift right
-            machine->c.decodedInstruction->shift = LSR;
-            if (machine->c.decodedInstruction->S) {
-                int32_t mask = 1 << (amount - 1);
-                machine->c.registers[CPSR] &= 0xDFFFFFFF;
-                mask = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29;
-                machine->c.registers[CPSR] |= mask;
+            machine->c.decodedInstruction->shift = LSR;//sets the type of switch
+            if (machine->c.decodedInstruction->S) { //if S is set then carry flag changes
+                int32_t mask = 1 << (amount); // mask to get the LSB in the original value we are gonna shift later
+                machine->c.registers[CPSR] &= 0xDFFFFFFF; // mask that sets to zero the carry bit so we can set it later
+                mask2 = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29; //takes the bit we need (for setting C in CPSR) and shifts it to its correct position in CPSR
+                machine->c.registers[CPSR] |= mask2; //ors, to set the CPSR C bit
+
             }
             (machine->c.registers[machine->c.decodedInstruction->Rm]) >>= amount;
             break;
         case 10: //arithmetic shift right
-            machine->c.decodedInstruction->shift = ASR;
-            if (machine->c.decodedInstruction->S) {
-                int32_t mask = 1 << (amount - 1);
+            machine->c.decodedInstruction->shift = ASR; //type of shift
+            if (machine->c.decodedInstruction->S) { //checks if S flag is set so CPSR would be altered
+                int32_t mask = 1 << (amount);
                 machine->c.registers[CPSR] &= 0xDFFFFFFF;
-                mask = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29;
-                machine->c.registers[CPSR] |= mask;
+                mask2 = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29;
+                machine->c.registers[CPSR] |= mask2;
             }
-            int signBit = (machine->c.registers[machine->c.decodedInstruction->Rm] &800000000) >> 31;
+            char signBit = (machine->c.registers[machine->c.decodedInstruction->Rm] &800000000) >> 31; //takes bit 31
             uint32_t maskASR = 0;
             for (int i = 0; i < amount; i++) {
-                maskASR |= signBit << (32-i);
+                maskASR |= signBit << (31-i); //creates a mask for the bits on the left with the value of signbit
             }
+            //shifts it to the right and then sets the bits on the left with signBit
             (machine->c.registers[machine->c.decodedInstruction->Rm]) = ((machine->c.registers[machine->c.decodedInstruction->Rm])>> amount) | maskASR;
             break;
         case 11: // rotate shift right
             machine->c.decodedInstruction->shift = ASR;
             if (machine->c.decodedInstruction->S) {
-                int32_t mask = 1 << (amount - 1);
+                int32_t mask = 1 << (amount);
                 machine->c.registers[CPSR] &= 0xDFFFFFFF;
-                mask = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29;
-                machine->c.registers[CPSR] |= mask;
+                mask2 = (machine->c.registers[machine->c.decodedInstruction->Rm] & mask) << 29;
+                machine->c.registers[CPSR] |= mask2;
             }
             uint32_t maskRotate = 0;
             for (int i = 0; i < amount; i++) {
-                maskRotate |= 1 << i;
+                maskRotate |= 1 << i;// creates a mask to get the last (amount) bits of the value
             }
+            maskRotate <<= 27; //shifts the value because it going to be the right bits of the shifted value
             (machine->c.registers[machine->c.decodedInstruction->Rm]) =
                     ((machine->c.registers[machine->c.decodedInstruction->Rm])>> amount) | maskRotate;
             break;
