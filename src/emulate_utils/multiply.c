@@ -1,12 +1,7 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include "../memoryImplementation.h"
-#include "../usefulTools.h"
-#include "instruction_basic.h"
-#include "usefulFuncs.h"
+#include "multiply.h"
 
 
-void multiply(uint32_t instruction, MACHINE *machine){
+void multiply(uint32_t instruction, MACHINE *machine){ //checked
     machine->c.decodedInstruction->binary = instruction;
 	machine->c.decodedInstruction->type = Mult;
     machine->c.decodedInstruction->A = (bool)((instruction >> 21) & 1);

@@ -4,7 +4,7 @@
 
 #include "halt.h"
 
-void halt(MACHINE *machine) {
+void halt(MACHINE *machine) { //checked
     machine->c.decodedInstruction->binary = 0;
     machine->c.decodedInstruction->type = Halt;
 }
