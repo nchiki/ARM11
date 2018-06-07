@@ -18,7 +18,7 @@ uint32_t getBitRange(uint32_t instruction, int start, int length){
 }
 
 void exitProgr(MACHINE *machine){
-    free(machine->c.decodedInstruction);
+    free(machine->c.decodedinstruction);
     free(machine);
     exit(EXIT_FAILURE);
 }
