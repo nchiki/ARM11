@@ -1,0 +1,72 @@
+//
+// Created by nahida on 6/5/18.
+//
+
+#ifndef ARM11_28_INSTRUCTION_DEFS_H
+#define ARM11_28_INSTRUCTION_DEFS_H
+
+#include <stdint.h>
+#include "../../usefulTools.h"
+#include "../defs.h"
+
+typedef struct {
+    MNEMONIC mnemonic;
+    cond_code cond;
+    OPCODE opcode;
+<<<<<<< HEAD
+    uint8_t Rn;
+    uint8_t Rd;
+=======
+    uint32_t Rn;
+    uint32_t Rd;
+>>>>>>> b00cae09257f9a6e97b5f3627feefcfce93b8a64
+    uint32_t Operand2;
+} DataProcInstr_t;
+
+typedef struct {
+    MNEMONIC mnemonic;
+    cond_code cond;
+<<<<<<< HEAD
+    char A;
+    char S;
+    uint8_t Rn;
+    uint8_t Rd;
+    uint8_t Rs;
+    uint8_t Rm;
+=======
+    int A;
+    int S;
+    uint32_t Rn;
+    uint32_t Rd;
+    uint32_t Rs;
+    uint32_t Rm;
+>>>>>>> b00cae09257f9a6e97b5f3627feefcfce93b8a64
+} MultiplyInstr_t;
+
+typedef struct {
+    MNEMONIC mnemonic;
+    cond_code cond;
+<<<<<<< HEAD
+    char P;
+    char U;
+    char L;
+    uint8_t Rn;
+    uint8_t Rd;
+=======
+    int P;
+    int U;
+    int L;
+    uint32_t Rn;
+    uint32_t Rd;
+>>>>>>> b00cae09257f9a6e97b5f3627feefcfce93b8a64
+    uint16_t offset;
+} SDTinstr_t;
+
+typedef struct {
+    MNEMONIC mnemonic;
+    cond_code cond;
+    uint32_t offset;
+} BranchInstr_t;
+
+
+#endif //ARM11_28_INSTRUCTION_DEFS_H

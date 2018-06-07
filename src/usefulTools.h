@@ -1,10 +1,7 @@
-<<<<<<< HEAD
+
 //
 // Created by nahida on 6/7/18.
 //
-
-=======
->>>>>>> 95b9d4f7336669483fc0ceffc747a29028cab065
 #ifndef PROJECT_USEFULCONSTANTS_H
 #define PROJECT_USEFULCONSTANTS_H
 

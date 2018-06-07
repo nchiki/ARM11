@@ -21,8 +21,8 @@ typedef struct{
 
 
 typedef struct {
-    MEMORY mem;
-    CPU c ;
+    MEMORY memory;
+    CPU cpu ;
 } MACHINE;
 
 #endif //ARM11_28_MEMORYIMPLEMENTATION_H

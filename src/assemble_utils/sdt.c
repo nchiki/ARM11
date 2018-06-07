@@ -25,7 +25,7 @@ if (!strcmp(instruction.opcode, "ldr")) {
     } else { // stores the value at the end of the assemble file and gets the address
       SDTinstr.P = '1';
       int NUMofLines= countLines(sourceFile);
-      SDTinstr.Rn = r16;
+      SDTinstr.Rn = r16; //this should be r15 bc its the PC-----
       SDTinstr.U = '0';
       SDTinstr.I = '1';
       // the address of the value is going to be the actual address adding the number of lines multiplied by 4 so its unique

@@ -5,10 +5,47 @@
 #include <string.h>
 #include <byteswap.h>
 
-uint32_t memArray;
-uint32_t *registerArray;
 
 uint32_t getBitRange(uint32_t num, int start, int length);
+
+const CPU cpuo = {
+  .registers = {0},
+  .fetchedInstruction = {0},
+}
+
+const MEMORY memoArray = {
+  .memoryAlloc = {0};
+}
+
+const instructions NullInstruction = {
+ None,
+ 1111,
+ 2, //Random value not equal to any know cond codes
+ 0,
+
+//registers
+ -1,
+ -1,
+ -1,
+ -1,
+
+//flags for operations
+ 0,
+ 0,
+ 0,
+ 0,
+ 0,
+ 0,
+
+//immediate value
+ 0,
+
+//operand2
+ 0,
+ 0,
+ (SHIFT_CODE) -1,
+ -1
+};
 
 
 int main(int argc, char **argv) {
@@ -31,27 +68,48 @@ int main(int argc, char **argv) {
     }*/
 
     // could use this to initialise to zero?
-    MACHINE *machine = (MACHINE*)(malloc(sizeof(MACHINE)));
-
-    memArray = (uint32_t *) calloc(16384, sizeof(uint32_t));
 
 
-    *(machine->mem.memoryAlloc) = &memArray; 
+    //uint32_t *memArray = (uint32_t *) calloc(16384, sizeof(uint32_t));
 
-
-    registerArray = (uint32_t *) calloc(17, sizeof(uint32_t));
-
-      *(machine->c.registers) = &registerArray;
-    // i'm assuming traversing through the array and then using calloc is redundant, but im still going to keep it in
-
+    //uint32_t *registerArray = (uint32_t *) calloc(17, sizeof(uint32_t));
     assert(argc == 2 && "Incorrect number of arguments");
 
     char *givenFile = argv[1];
+    //-------think is the correct way of initialising the machine---
+    CPU *c = malloc(sizeof(CPU));
+
+    *c = cpuo;
+
+    MEMORY *mem = malloc(sizeof(MEMORY))
+
+    *mem = memoArray;
+    (mem->decodedInstruction) = malloc(sizeof(instructions);
+    *(machine->decodedInstruction) = NullInstruction;
 
 
 
+    MACHINE *machine = (MACHINE*)(malloc(sizeof(MACHINE)));
+
+    *machine = {
+      .cpu = c;
+      .memory = mem;
+    }
+
+    //-------------------------------------
+    /*(machine->mem.memoryAlloc) = &memArray;
+
+
+    uint32_t *registerArray = (uint32_t *) calloc(17, sizeof(uint32_t));
+
+      *(machine->c.registers) = &registerArray;*/
+    // i'm assuming traversing through the array and then using calloc is redundant, but im still going to keep it in
+
+
+
+(memory->decodedInstruction) = malloc(sizeof(instructions);
     // another useless comment
-            
+
     // read from binary file into memory array
     // i wonder if i could do this : loadFile(givenFile, memArray) -> technically it should be fine because they both point to memAlloc[0]?
 
@@ -72,41 +130,12 @@ int main(int argc, char **argv) {
      *      quite messy
      *      ^^^ oh i was talking about decode here and in the point above.
      *
-     * essentially, it comes down to having a helper functions to perform decode, or having decode within the struct      
+     * essentially, it comes down to having a helper functions to perform decode, or having decode within the struct
      * design decision here
      */
-     instructions NullInstruction = {
-      None,
-      1111,
-      2, //Random value not equal to any know cond codes
-      0,
 
-    //registers
-      -1,
-      -1,
-      -1,
-      -1,
-
-    //flags for operations
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-
-    //immediate value
-      0,
-    
-    //operand2
-      0,
-      0,
-      (SHIFT_CODE) -1,
-      -1
-     };
-
-    machine->c.decodedInstruction = (instructions *) malloc(sizeof(instructions)); //creates space for the decoded instructions
-    *(machine->c.decodedInstruction) = NullInstruction;
+    //machine->c.decodedInstruction = (instructions *) malloc(sizeof(instructions)); //creates space for the decoded instructions
+    //*(machine->c.decodedInstruction) = NullInstruction;
 
     // read from binary file into memory array
     // i wonder if i could do this : loadFile(givenFile, memArray) -> technically it should be fine because they both point to memAlloc[0]?
@@ -115,10 +144,10 @@ int main(int argc, char **argv) {
     // Fill the pipeline before you begin
 
     uint32_t address = machine->c.registers[PC];
-    uint32_t fetched = 0;
+    //uint32_t fetched = 0;
     for(int i = 0; i < 4; i++) {
             fetched |= ((uint32_t) machine->mem.memoryAlloc[address + i]) << (i * 8);
-        }
+        }(memory->decodedInstruction) = malloc(sizeof(instructions);
 
 
     fetched = bswap_32(fetched);
@@ -164,10 +193,8 @@ int main(int argc, char **argv) {
     }
 
     execute(machine);
-    free(machine->c.decodedInstruction);
-    free(registerArray);
-    free(memArray);
+    free(memory->decodedInstruction);
+    free(cpuo);
+    free(memory);
     return 0;
   }
-
-

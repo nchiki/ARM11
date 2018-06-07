@@ -1,0 +1,15 @@
+//
+// Created by nahida on 6/5/18.
+//
+
+#ifndef ARM11_28_BRANCH_H
+#define ARM11_28_BRANCH_H
+<<<<<<< HEAD
+uint32_t *branch(struct instruction instruction);
+=======
+
+#include <stdint.h>
+
+uint32_t *branch(struct instruction, struct symbol*);
+>>>>>>> b00cae09257f9a6e97b5f3627feefcfce93b8a64
+#endif //ARM11_28_BRANCH_H
