@@ -9,7 +9,7 @@
 #include <stdint.h>
 #include "../usefulTools.h"
 
-typedef struct {
+typedef struct { //checked
     instruction_type type;
     uint32_t cond;
     uint32_t opcode;

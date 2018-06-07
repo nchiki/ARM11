@@ -1,6 +1,6 @@
 #include "DataProcDec.h"
 
-void decodeDATPROC(uint32_t instruction, MACHINE *machine){
+void decodeDATPROC(uint32_t instruction, MACHINE *machine){ //checked
     machine->c.decodedInstruction->binary = instruction;
     machine->c.decodedInstruction->type = DProc;
     machine->c.decodedInstruction->Rn = getBitRange(instruction, 16, 4);

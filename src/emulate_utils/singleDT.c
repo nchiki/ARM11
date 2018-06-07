@@ -1,6 +1,6 @@
 #include "singleDT.h"
 
-void SDTdecode(uint32_t instruction, MACHINE *machine) {
+void SDTdecode(uint32_t instruction, MACHINE *machine) { //checked
     machine->c.decodedInstruction->binary = instruction;
 	machine->c.decodedInstruction->type = SDT;
     machine->c.decodedInstruction->I = (bool)((instruction >> 25) & 1);
@@ -11,5 +11,5 @@ void SDTdecode(uint32_t instruction, MACHINE *machine) {
     machine->c.decodedInstruction->Rd = getBitRange(instruction, 12, 15);
     machine->c.decodedInstruction->offset = getBitRange(instruction, 0, 12);
 }
-//
+
 

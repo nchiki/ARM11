@@ -18,7 +18,7 @@ u_int3  2_t *loadFile(char *path, u_int32_t *pointer) {
 
 // this is just a test comment
 
-void loadFile (char *fname, uint32_t *memory) {
+void loadFile (char *fname, uint32_t *memory) { //checked
     FILE *f = fopen(fname,"rb");
 
     if ( f == NULL ) {

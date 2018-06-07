@@ -2,7 +2,7 @@
 #include "execute.h"
 
 
-int checkCondition(MACHINE *machine) {
+int checkCondition(MACHINE *machine) { //checked
     //checking whether the condition set in the cond field of the instructions correspond to the flags of the CPSR
 
     int cpsrFlags = machine->c.registers[CPSR] >> 28; //getting the four last bits of the CPSR
@@ -32,7 +32,7 @@ int checkCondition(MACHINE *machine) {
 //here we need something that distinguish between the different instructions, and applies the code that each of us
 //implemented before to execute it depending on the instructions
 
-void execute_MulI(MACHINE *machine){
+void execute_MulI(MACHINE *machine){ //checked
     //simple multiplication
 
     uint32_t result = machine->c.registers[machine->c.decodedInstruction->Rm] *
@@ -58,24 +58,21 @@ void execute_MulI(MACHINE *machine){
 }
 
 
-void execute_Halt(MACHINE *machine){
+void execute_Halt(MACHINE *machine){ //not 100% sure
     //printing the value of each register to standard output
     for(int i = 0; i < 17; i++){
         printBits(machine->c.registers[i]);
     }
 }
 
-void execute_branch(MACHINE *machine){
+void execute_branch(MACHINE *machine){ //checked
 
     int32_t offset = machine->c.decodedInstruction->offset;
-
-    //int32_t offset = getBitRange(machine->c.decodedInstruction->binary, 0, 24) | 0x000000;
-
-    machine->c.registers[PC] = signedtwos_to_unsigned(offset);
+    machine->c.registers[PC] += signedtwos_to_unsigned(offset);
 }
 
 //prints bit sequence of register
-void printBits(uint32_t reg) {
+void printBits(uint32_t reg) { //checked
 
     reg = bswap_32(reg);
     // flip the bits before output
@@ -94,7 +91,7 @@ void printBits(uint32_t reg) {
 
 
 //checks for negative value and turns offset into positive binary
-uint32_t signedtwos_to_unsigned(int32_t signednum){
+uint32_t signedtwos_to_unsigned(int32_t signednum){ //checked
     if(signednum >> 31){
         signednum = (~signednum) + 1;
         signednum *= -1;
@@ -102,7 +99,7 @@ uint32_t signedtwos_to_unsigned(int32_t signednum){
     return (uint32_t) signednum;
 }
 //need commenting ----------------------------------
-uint32_t shiftReg(uint32_t operand, MACHINE *machine) {
+uint32_t shiftReg(uint32_t operand, MACHINE *machine) { //blanca should check this
     int amount;
     if (operand != 0) {
         amount = getBitRange(machine->c.registers[getBitRange(operand, 8, 4)], 0, 8);
@@ -169,7 +166,7 @@ uint32_t shiftReg(uint32_t operand, MACHINE *machine) {
 
 //rotates with right shifts and takes number of rotations as parameter
 uint32_t rotate(uint32_t operand, int numberRot){
-    int num = binToDec(numberRot);
+    int num = binToDec(numberRot);  //number of rotations
     for(int i = 0; i < num; i++){
         int firstBit = getBitRange(operand, 0, 1);
         operand = (firstBit << 31) | (operand >> 1);
@@ -177,7 +174,7 @@ uint32_t rotate(uint32_t operand, int numberRot){
     return operand;
 }
 
-int binToDec(int n)
+int binToDec(int n) //checked
 {
     int number = 0;
     int i = 0;

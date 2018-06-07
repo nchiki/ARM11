@@ -1,7 +1,7 @@
 #include "decode.h"
 
 
-void decode(MACHINE *machine){
+void decode(MACHINE *machine){ //checked
     if (machine->c.fetchedInstruction == 0){
         halt(machine);
     } else if((machine->c.fetchedInstruction&Branch_MASK)){

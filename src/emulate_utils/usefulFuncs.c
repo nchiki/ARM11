@@ -6,7 +6,7 @@
 
 //uint32_t getBitRange(uint32_t num, int start, int length){
 
-uint32_t getBitRange(uint32_t instruction, int start, int length){
+uint32_t getBitRange(uint32_t instruction, int start, int length){ //checked
     //uint32_t num = instruction.binary;
     uint32_t res = 0;
     for(int i = start; i < start + length; i++){
