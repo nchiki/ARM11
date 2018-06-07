@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-/home/nahida/clion-2018.1.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/home/nahida/C Project/arm11_28"
-=======
-/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/blanca/arm11_28
->>>>>>> 95b9d4f7336669483fc0ceffc747a29028cab065
--- Configuring done
--- Generating done
--- Build files have been written to: /Users/blanca/arm11_28/cmake-build-debug
+Cannot generate into /home/nahida/C Project/arm11_28/cmake-build-debug
+It is already used for project /Users/blanca/arm11_28
+
+Please either delete it manually or select another generation directory

@@ -56,11 +56,7 @@ typedef enum {
     LSL = 00,
     LSR = 01,
     ASR = 10,
-<<<<<<< HEAD
     ROR = 11,
-=======
-    ROR = 11
->>>>>>> 95b9d4f7336669483fc0ceffc747a29028cab065
 } SHIFT_CODE;
 
 

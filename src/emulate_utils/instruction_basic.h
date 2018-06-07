@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-//
-// Created by nahida on 6/7/18.
-//
 
-=======
->>>>>>> 95b9d4f7336669483fc0ceffc747a29028cab065
 #ifndef C_CODE_INSTRUCTION_BASIC_H
 #define C_CODE_INSTRUCTION_BASIC_H
 
@@ -44,15 +38,8 @@ typedef struct {
 
     uint32_t carry;
     SHIFT_CODE shift;
-<<<<<<< HEAD
-    int32_t binary;
-} instructions;
-
-#endif //C_CODE_EXECUTE_H
-=======
     uint32_t binary;
 } instructions;
 
 #endif //C_CODE_EXECUTE_H
 
->>>>>>> 95b9d4f7336669483fc0ceffc747a29028cab065

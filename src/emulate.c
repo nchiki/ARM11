@@ -133,11 +133,8 @@ int main(int argc, char **argv) {
 
     //bool finalise = false; //finalise will become true when the instructions is the zero instructions: halt
 
-<<<<<<< HEAD
+
     while (!(machine->c.decodedInstruction->binary = 0)) {
-=======
-    while (!(machine->c.decodedInstruction->type == Halt)) {
->>>>>>> 95b9d4f7336669483fc0ceffc747a29028cab065
       //fetch
       address = machine->c.registers[PC];
       fetched = 0;
