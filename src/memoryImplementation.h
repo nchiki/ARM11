@@ -2,12 +2,12 @@
 #ifndef ARM11_28_MEMORYIMPLEMENTATION_H
 #define ARM11_28_MEMORYIMPLEMENTATION_H
 
-#include "emulate_utils/usefulFuncs.h"
-
 #define PC 15
 #define CPSR 16
 
 //holds the state of the program
+
+#include "emulate_utils/instruction_basic.h"
 
 typedef struct{
     uint32_t memoryAlloc[16384];

@@ -27,9 +27,6 @@ add_executable(arm11_28
         src/emulate_utils/multiply.h
         src/emulate_utils/singleDT.h
         src/emulate_utils/binaryloader.h
-<<<<<<< HEAD
-        )
-=======
         src/emulate_utils/decode.h
         src/assemble_utils/defs.h
         src/assemble_utils/defs.c
@@ -42,4 +39,3 @@ add_executable(arm11_28
         src/assemble_utils/DataProc.h
         src/emulate_utils/instruction_basic.h
         src/usefulTools.h)
->>>>>>> nahida

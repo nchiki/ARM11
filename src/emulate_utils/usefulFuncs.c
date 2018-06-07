@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "usefulFuncs.h"
-#include "instruction_basic.h"
-#include "../memoryImplementation.h"
 
 //extracts any number of bits from any starting index
 
@@ -18,9 +16,9 @@ uint32_t getBitRange(uint32_t instruction, int start, int length){
 }
 
 void exitProgr(MACHINE *machine){
-    free(machine->c.decodedinstruction);
+    free(machine->c.decodedInstruction);
     free(machine);
     exit(EXIT_FAILURE);
 }
-//
+
 
