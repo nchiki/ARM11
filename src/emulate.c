@@ -91,8 +91,8 @@ int main(int argc, char **argv) {
 
     MACHINE *machine = (MACHINE*)(malloc(sizeof(MACHINE)));
 
-    (machine -> c) = *cpu;
-    (machine -> mem) = *memory;
+    (machine->c) = *cpu;
+    (machine->mem) = *memory;
 
     //-------------------------------------
     /*(machine->mem.memoryAlloc) = &memArray;
@@ -138,16 +138,17 @@ int main(int argc, char **argv) {
     uint32_t fetched = 0;
     uint32_t address = machine->c.registers[PC];
     //uint32_t fetched = 0;
-    /*for(int i = 0; i < 4; i++) {
-            fetched |= ((uint32_t) machine->mem.memoryAlloc[address + i]) << (i * 8);
-        }*/
+    //for(int i = 0; i < 4; i++) {
+            fetched |= ((uint32_t) machine->mem.memoryAlloc[address]); //<< (i * 8);
+      //  }
 
 
 
     fetched = bswap_32(fetched);
     // flipped the bits here
 
-    machine->c.fetchedInstruction= fetched;
+    machine->c.fetchedInstruction = fetched;
+    //memcpy(&machine->c.fetchedInstruction,&fetched, sizeof(fetched));
     machine->c.registers[PC] += 1;
     decode(machine);
 
@@ -157,15 +158,15 @@ int main(int argc, char **argv) {
     //bool finalise = false; //finalise will become true when the instructions is the zero instructions: halt
 
 
-    while (!(machine->c->decodedInstruction->binary = 0)) {
+    while (machine->c.decodedInstruction->type != Halt  ) {
       //fetch
       address = machine->c.registers[PC];
       fetched = 0;
       //we need 4 iterations of the loop because each instructions is 4 bytes, and each iteration reads one byte
       //shifting by 8 (1 byte = 8 bits)
-      /*for(int i = 0; i < 4; i++) {
-        fetched |= ((uint32_t) machine->mem.memoryAlloc[address + i]) << (i * 8);
-      }*/
+      //for(int i = 0; i < 4; i++) {
+        fetched |= ((uint32_t) machine->mem.memoryAlloc[address]);// << (i * 8);
+      //}
 
       fetched = bswap_32(fetched);
       //flippd the bits here

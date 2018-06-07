@@ -7,5 +7,5 @@
 void halt(MACHINE *machine) { //checked
     machine->c.decodedInstruction->binary = 0;
     machine->c.decodedInstruction->type = Halt;
-    machine->c.decodedInstruction->cond = 0000;
+    machine->c.decodedInstruction->cond = 1110;
 }
