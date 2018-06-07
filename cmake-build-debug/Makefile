@@ -39,38 +39,27 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/nahida/clion-2018.1.3/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
+RM = /home/nahida/clion-2018.1.3/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/blanca/arm11_28
+CMAKE_SOURCE_DIR = "/home/nahida/C Project/arm11_28"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/blanca/arm11_28/cmake-build-debug
+CMAKE_BINARY_DIR = "/home/nahida/C Project/arm11_28/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/Applications/CLion.app/Contents/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/nahida/clion-2018.1.3/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,11 +67,22 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/home/nahida/clion-2018.1.3/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/blanca/arm11_28/cmake-build-debug/CMakeFiles /Users/blanca/arm11_28/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" "/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/blanca/arm11_28/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -150,33 +150,6 @@ src/assemble.c.s:
 	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble.c.s
 .PHONY : src/assemble.c.s
 
-src/assemble_utils/DataProc.o: src/assemble_utils/DataProc.c.o
-
-.PHONY : src/assemble_utils/DataProc.o
-
-# target to build an object file
-src/assemble_utils/DataProc.c.o:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o
-.PHONY : src/assemble_utils/DataProc.c.o
-
-src/assemble_utils/DataProc.i: src/assemble_utils/DataProc.c.i
-
-.PHONY : src/assemble_utils/DataProc.i
-
-# target to preprocess a source file
-src/assemble_utils/DataProc.c.i:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.i
-.PHONY : src/assemble_utils/DataProc.c.i
-
-src/assemble_utils/DataProc.s: src/assemble_utils/DataProc.c.s
-
-.PHONY : src/assemble_utils/DataProc.s
-
-# target to generate assembly for a file
-src/assemble_utils/DataProc.c.s:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.s
-.PHONY : src/assemble_utils/DataProc.c.s
-
 src/assemble_utils/assemblerImplementation.o: src/assemble_utils/assemblerImplementation.c.o
 
 .PHONY : src/assemble_utils/assemblerImplementation.o
@@ -203,87 +176,6 @@ src/assemble_utils/assemblerImplementation.s: src/assemble_utils/assemblerImplem
 src/assemble_utils/assemblerImplementation.c.s:
 	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.s
 .PHONY : src/assemble_utils/assemblerImplementation.c.s
-
-src/assemble_utils/branch.o: src/assemble_utils/branch.c.o
-
-.PHONY : src/assemble_utils/branch.o
-
-# target to build an object file
-src/assemble_utils/branch.c.o:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o
-.PHONY : src/assemble_utils/branch.c.o
-
-src/assemble_utils/branch.i: src/assemble_utils/branch.c.i
-
-.PHONY : src/assemble_utils/branch.i
-
-# target to preprocess a source file
-src/assemble_utils/branch.c.i:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.i
-.PHONY : src/assemble_utils/branch.c.i
-
-src/assemble_utils/branch.s: src/assemble_utils/branch.c.s
-
-.PHONY : src/assemble_utils/branch.s
-
-# target to generate assembly for a file
-src/assemble_utils/branch.c.s:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.s
-.PHONY : src/assemble_utils/branch.c.s
-
-src/assemble_utils/defs.o: src/assemble_utils/defs.c.o
-
-.PHONY : src/assemble_utils/defs.o
-
-# target to build an object file
-src/assemble_utils/defs.c.o:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.o
-.PHONY : src/assemble_utils/defs.c.o
-
-src/assemble_utils/defs.i: src/assemble_utils/defs.c.i
-
-.PHONY : src/assemble_utils/defs.i
-
-# target to preprocess a source file
-src/assemble_utils/defs.c.i:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.i
-.PHONY : src/assemble_utils/defs.c.i
-
-src/assemble_utils/defs.s: src/assemble_utils/defs.c.s
-
-.PHONY : src/assemble_utils/defs.s
-
-# target to generate assembly for a file
-src/assemble_utils/defs.c.s:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.s
-.PHONY : src/assemble_utils/defs.c.s
-
-src/assemble_utils/multiply.o: src/assemble_utils/multiply.c.o
-
-.PHONY : src/assemble_utils/multiply.o
-
-# target to build an object file
-src/assemble_utils/multiply.c.o:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o
-.PHONY : src/assemble_utils/multiply.c.o
-
-src/assemble_utils/multiply.i: src/assemble_utils/multiply.c.i
-
-.PHONY : src/assemble_utils/multiply.i
-
-# target to preprocess a source file
-src/assemble_utils/multiply.c.i:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.i
-.PHONY : src/assemble_utils/multiply.c.i
-
-src/assemble_utils/multiply.s: src/assemble_utils/multiply.c.s
-
-.PHONY : src/assemble_utils/multiply.s
-
-# target to generate assembly for a file
-src/assemble_utils/multiply.c.s:
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.s
-.PHONY : src/assemble_utils/multiply.c.s
 
 src/emulate.o: src/emulate.c.o
 
@@ -534,27 +426,15 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... rebuild_cache"
 	@echo "... arm11_28"
 	@echo "... src/assemble.o"
 	@echo "... src/assemble.i"
 	@echo "... src/assemble.s"
-	@echo "... src/assemble_utils/DataProc.o"
-	@echo "... src/assemble_utils/DataProc.i"
-	@echo "... src/assemble_utils/DataProc.s"
 	@echo "... src/assemble_utils/assemblerImplementation.o"
 	@echo "... src/assemble_utils/assemblerImplementation.i"
 	@echo "... src/assemble_utils/assemblerImplementation.s"
-	@echo "... src/assemble_utils/branch.o"
-	@echo "... src/assemble_utils/branch.i"
-	@echo "... src/assemble_utils/branch.s"
-	@echo "... src/assemble_utils/defs.o"
-	@echo "... src/assemble_utils/defs.i"
-	@echo "... src/assemble_utils/defs.s"
-	@echo "... src/assemble_utils/multiply.o"
-	@echo "... src/assemble_utils/multiply.i"
-	@echo "... src/assemble_utils/multiply.s"
 	@echo "... src/emulate.o"
 	@echo "... src/emulate.i"
 	@echo "... src/emulate.s"
