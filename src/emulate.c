@@ -109,24 +109,6 @@ int main(int argc, char **argv) {
     loadFile(givenFile,machine->mem.memoryAlloc);
 
 
-
-    /* for the main while loop of emulate_utils:
-     * is it better to create a struct for instructions, and then extract one uint32 from memory and use it, or is it
-     * better to not do any such thing and just process the "instructions" in a 3-staggered while loop?
-     * if instructions is it's own struct:
-     *      then it can have data members instruction_type, cond and a bunch of others to store the effects and particulars
-     *      of that particular instructions, but this may lead to problems with dereferencing later
-     * if instructions is NOT it's own struct:
-     *      then as soon as we extract from memory, there needs to be a helper function which extracts all the necessary
-     *      information like instructionType, cond, opcode and other particulars of the instructions. could stick these
-     *      functions into a .h and .c file of their own, or could have them inside the while loop which would make it
-     *      quite messy
-     *      ^^^ oh i was talking about decode here and in the point above.
-     *
-     * essentially, it comes down to having a helper functions to perform decode, or having decode within the struct
-     * design decision here
-     */
-
     //machine->c.decodedInstruction = (instructions *) malloc(sizeof(instructions)); //creates space for the decoded instructions
     //*(machine->c.decodedInstruction) = NullInstruction;
 

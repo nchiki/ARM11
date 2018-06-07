@@ -38,7 +38,7 @@ typedef struct { //checked
 
     uint32_t carry;
     SHIFT_CODE shift;
-    uint32_t binary;
+    int32_t binary;
 } instructions;
 
 #endif //C_CODE_EXECUTE_H
