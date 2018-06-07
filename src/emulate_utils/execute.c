@@ -23,6 +23,7 @@ int checkCondition(MACHINE *machine) {
         case AL:
             return 1; //always
         default:
+            exitProgr(machine);
             return 0;
     }
 
@@ -34,7 +35,7 @@ int checkCondition(MACHINE *machine) {
 void execute_MulI(MACHINE *machine){
     //simple multiplication
 
-    /*uint32_t result = machine->c.registers[machine->c.decodedInstruction->Rm] *
+    uint32_t result = machine->c.registers[machine->c.decodedInstruction->Rm] *
             machine->c.registers[machine->c.decodedInstruction->Rs];
 
     //if A is set, then add accumulator
@@ -43,18 +44,7 @@ void execute_MulI(MACHINE *machine){
     }
 
     //if S is set, update CPSR flag
-    if(machine->c.decodedInstruction->S){*/
-
-    uint32_t result = machine->c.registers[getBitRange(machine->c.decodedInstruction->binary,0,4)] *
-            machine->c.registers[getBitRange(machine->c.decodedInstruction->binary,8,4)];
-
-    //if A is set, then add accumulator
-    if(getBitRange(machine->c.decodedInstruction->binary,21,1)){
-        result += machine->c.registers[getBitRange(machine->c.decodedInstruction->binary,12,4)];
-    }
-
-    //if S is set, update CPSR flag
-    if(getBitRange(machine->c.decodedInstruction->binary,20,1)){
+    if(machine->c.decodedInstruction->S){
 
         //N will be updated to the last bit of the result, rest of CPSR stays the same
 
