@@ -76,16 +76,22 @@ void execute_branch(MACHINE *machine){
 
 //prints bit sequence of register
 void printBits(uint32_t reg) {
-    int i;
+
     reg = bswap_32(reg);
     // flip the bits before output
-    int32_t mask = 1 << 31;
-    for (i = 0; i < 32; ++i) {
-        printf("%i", (reg && mask) != 0);
-        reg <<= 1;
+    uint32_t mask = 1 << 31;
+    for (int i = 0; i < 32; ++i) {
+        if((reg & mask) == 0) {
+            printf("0");
+        } else {
+            printf("1");
+        }
+    reg = reg << 1;
+
     }
     printf("\n");
-}
+    }
+
 
 //checks for negative value and turns offset into positive binary
 uint32_t signedtwos_to_unsigned(int32_t signednum){
