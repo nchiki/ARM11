@@ -78,6 +78,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+<<<<<<< HEAD
 		<Unit filename="/home/nahida/C Project/arm11_28/src/assemble.c">
 			<Option target="arm11_28"/>
 		</Unit>
@@ -178,6 +179,9 @@
 			<Option target="arm11_28"/>
 		</Unit>
 		<Unit filename="/home/nahida/C Project/arm11_28/CMakeLists.txt">
+=======
+		<Unit filename="/home/nb1317/arm11_28/CMakeLists.txt">
+>>>>>>> 174a42fb720dcecf3424b9137b9cb2f4b9ca5ca1
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

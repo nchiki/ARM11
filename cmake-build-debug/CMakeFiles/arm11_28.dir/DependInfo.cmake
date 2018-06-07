@@ -1,8 +1,8 @@
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "C"
   )
 # The set of files for implicit dependencies of each language:
+<<<<<<< HEAD
 set(CMAKE_DEPENDS_CHECK_C
   "/home/nahida/C Project/arm11_28/src/assemble.c" "/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles/arm11_28.dir/src/assemble.c.o"
   "/home/nahida/C Project/arm11_28/src/assemble_utils/assemblerImplementation.c" "/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.o"
@@ -25,6 +25,8 @@ set(CMAKE_C_COMPILER_ID "GNU")
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
   )
+=======
+>>>>>>> 174a42fb720dcecf3424b9137b9cb2f4b9ca5ca1
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES

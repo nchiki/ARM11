@@ -10,6 +10,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../CMakeLists.txt"
   "CMakeFiles/3.10.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.10.3/CMakeSystem.cmake"
+<<<<<<< HEAD
   "CMakeFiles/feature_tests.c"
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeCCompiler.cmake.in"
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/CMakeCCompilerABI.c"
@@ -77,6 +78,24 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/Platform/Linux.cmake"
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/Platform/UnixPaths.cmake"
   "/home/nahida/clion-2018.1.3/bin/cmake/share/cmake-3.10/Modules/ProcessorCount.cmake"
+=======
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/CMakeCInformation.cmake"
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake"
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/CMakeFindCodeBlocks.cmake"
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/CMakeGenericSystem.cmake"
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/CMakeLanguageInformation.cmake"
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/CMakeSystemSpecificInformation.cmake"
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/CMakeSystemSpecificInitialize.cmake"
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/Compiler/GNU-C.cmake"
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/Compiler/GNU.cmake"
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/Platform/Linux-GNU-C.cmake"
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/Platform/Linux-GNU.cmake"
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/Platform/Linux.cmake"
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/Platform/UnixPaths.cmake"
+  "/home/nb1317/clion-2018.1.2/bin/cmake/share/cmake-3.10/Modules/ProcessorCount.cmake"
+>>>>>>> 174a42fb720dcecf3424b9137b9cb2f4b9ca5ca1
   )
 
 # The corresponding makefile is:
@@ -87,9 +106,6 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
-  "CMakeFiles/3.10.3/CMakeSystem.cmake"
-  "CMakeFiles/3.10.3/CMakeCCompiler.cmake"
-  "CMakeFiles/3.10.3/CMakeCCompiler.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 

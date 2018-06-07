@@ -17,10 +17,10 @@ add_executable(arm11_28
         src/emulate_utils/instruction_basic.h
         src/memoryImplementation.h
         src/usefulTools.h
-        src/usefulFuncs.c
+        src/emulate_utils/usefulFuncs.c
         src/assemble_utils/assemblerImplementation.h
         src/assemble_utils/assemblerImplementation.c
-        src/usefulFuncs.h
+        src/emulate_utils/usefulFuncs.h
         src/emulate_utils/instructions/branch.h
         src/emulate_utils/instructions/DataProcDec.h
         src/emulate_utils/instructions/halt.h

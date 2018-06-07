@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <memory.h>
 #include <stdlib.h>
-#include "../assemblerImplementation.h"
+#include "assemblerImplementation.h"
 #include "instruction_defs.h"
 
 uint32_t* branch(struct instruction instruction, struct symbol* tableHead) {

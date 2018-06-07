@@ -57,6 +57,7 @@ include CMakeFiles/arm11_28.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/arm11_28.dir/flags.make
 
+<<<<<<< HEAD
 CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o: CMakeFiles/arm11_28.dir/flags.make
 CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o: ../src/emulate_utils/instructions/branch.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o"
@@ -478,6 +479,9 @@ CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble_utils/def
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o.requires
+=======
+CMakeFiles/arm11_28.dir/requires:
+>>>>>>> 174a42fb720dcecf3424b9137b9cb2f4b9ca5ca1
 
 .PHONY : CMakeFiles/arm11_28.dir/requires
 

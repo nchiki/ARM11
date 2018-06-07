@@ -1,6 +1,6 @@
 #include "instruction_defs.h"
-#include "../assemblerImplementation.h"
-#include "../registers.h"
+#include "assemblerImplementation.h"
+#include "registers.h"
 
 
  uint32_t *multiply(struct instruction instr){
