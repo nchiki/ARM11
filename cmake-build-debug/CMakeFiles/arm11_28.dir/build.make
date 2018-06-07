@@ -57,101 +57,100 @@ include CMakeFiles/arm11_28.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/arm11_28.dir/flags.make
 
-<<<<<<< HEAD
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o: CMakeFiles/arm11_28.dir/flags.make
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o: ../src/emulate_utils/instructions/branch.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o   -c "/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/branch.c"
+CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.o: CMakeFiles/arm11_28.dir/flags.make
+CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.o: ../src/emulate_utils/branch.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.o   -c "/home/nahida/C Project/arm11_28/src/emulate_utils/branch.c"
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/branch.c" > CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.i
+CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/emulate_utils/branch.c" > CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.i
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/branch.c" -o CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.s
+CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/emulate_utils/branch.c" -o CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.s
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o.requires:
+CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.o.requires:
 
-.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o.requires
+.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.o.requires
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o.provides: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o.requires
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o.provides.build
-.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o.provides
+CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.o.provides: CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.o.requires
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.o.provides.build
+.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.o.provides
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o.provides.build: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o
-
-
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o: CMakeFiles/arm11_28.dir/flags.make
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o: ../src/emulate_utils/instructions/DataProcDec.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o   -c "/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/DataProcDec.c"
-
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/DataProcDec.c" > CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.i
-
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/DataProcDec.c" -o CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.s
-
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o.requires:
-
-.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o.requires
-
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o.provides: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o.requires
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o.provides.build
-.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o.provides
-
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o.provides.build: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o
+CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.o.provides.build: CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.o
 
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o: CMakeFiles/arm11_28.dir/flags.make
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o: ../src/emulate_utils/instructions/multiply.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o   -c "/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/multiply.c"
+CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.o: CMakeFiles/arm11_28.dir/flags.make
+CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.o: ../src/emulate_utils/DataProcDec.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.o   -c "/home/nahida/C Project/arm11_28/src/emulate_utils/DataProcDec.c"
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/multiply.c" > CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.i
+CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/emulate_utils/DataProcDec.c" > CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.i
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/multiply.c" -o CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.s
+CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/emulate_utils/DataProcDec.c" -o CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.s
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o.requires:
+CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.o.requires:
 
-.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o.requires
+.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.o.requires
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o.provides: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o.requires
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o.provides.build
-.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o.provides
+CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.o.provides: CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.o.requires
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.o.provides.build
+.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.o.provides
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o.provides.build: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o
+CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.o.provides.build: CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.o
 
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o: CMakeFiles/arm11_28.dir/flags.make
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o: ../src/emulate_utils/instructions/singleDT.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o   -c "/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/singleDT.c"
+CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.o: CMakeFiles/arm11_28.dir/flags.make
+CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.o: ../src/emulate_utils/multiply.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.o   -c "/home/nahida/C Project/arm11_28/src/emulate_utils/multiply.c"
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/singleDT.c" > CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.i
+CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/emulate_utils/multiply.c" > CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.i
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/emulate_utils/instructions/singleDT.c" -o CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.s
+CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/emulate_utils/multiply.c" -o CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.s
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o.requires:
+CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.o.requires:
 
-.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o.requires
+.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.o.requires
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o.provides: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o.requires
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o.provides.build
-.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o.provides
+CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.o.provides: CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.o.requires
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.o.provides.build
+.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.o.provides
 
-CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o.provides.build: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o
+CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.o.provides.build: CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.o
+
+
+CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.o: CMakeFiles/arm11_28.dir/flags.make
+CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.o: ../src/emulate_utils/singleDT.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.o   -c "/home/nahida/C Project/arm11_28/src/emulate_utils/singleDT.c"
+
+CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/emulate_utils/singleDT.c" > CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.i
+
+CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/emulate_utils/singleDT.c" -o CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.s
+
+CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.o.requires:
+
+.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.o.requires
+
+CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.o.provides: CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.o.requires
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.o.provides.build
+.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.o.provides
+
+CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.o.provides.build: CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.o
 
 
 CMakeFiles/arm11_28.dir/src/assemble.c.o: CMakeFiles/arm11_28.dir/flags.make
@@ -274,28 +273,28 @@ CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.o.provides: CMakeFiles/arm11
 CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.o.provides.build: CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.o
 
 
-CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o: CMakeFiles/arm11_28.dir/flags.make
-CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o: ../src/usefulFuncs.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o   -c "/home/nahida/C Project/arm11_28/src/usefulFuncs.c"
+CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o: CMakeFiles/arm11_28.dir/flags.make
+CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o: ../src/emulate_utils/usefulFuncs.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o   -c "/home/nahida/C Project/arm11_28/src/emulate_utils/usefulFuncs.c"
 
-CMakeFiles/arm11_28.dir/src/usefulFuncs.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/usefulFuncs.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/usefulFuncs.c" > CMakeFiles/arm11_28.dir/src/usefulFuncs.c.i
+CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/emulate_utils/usefulFuncs.c" > CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.i
 
-CMakeFiles/arm11_28.dir/src/usefulFuncs.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/usefulFuncs.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/usefulFuncs.c" -o CMakeFiles/arm11_28.dir/src/usefulFuncs.c.s
+CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/emulate_utils/usefulFuncs.c" -o CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.s
 
-CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.requires:
+CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.requires:
 
-.PHONY : CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.requires
+.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.requires
 
-CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.provides: CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.requires
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.provides.build
-.PHONY : CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.provides
+CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.provides: CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.requires
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.provides.build
+.PHONY : CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.provides
 
-CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.provides.build: CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o
+CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.provides.build: CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o
 
 
 CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.o: CMakeFiles/arm11_28.dir/flags.make
@@ -346,114 +345,114 @@ CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.o.provides: CMakeFiles/arm11_2
 CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.o.provides.build: CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.o
 
 
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o: CMakeFiles/arm11_28.dir/flags.make
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o: ../src/assemble_utils/instructions/multiply.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o   -c "/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/multiply.c"
+CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o: CMakeFiles/arm11_28.dir/flags.make
+CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o: ../src/assemble_utils/multiply.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o   -c "/home/nahida/C Project/arm11_28/src/assemble_utils/multiply.c"
 
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/multiply.c" > CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.i
+CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/assemble_utils/multiply.c" > CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.i
 
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/multiply.c" -o CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.s
+CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/assemble_utils/multiply.c" -o CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.s
 
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o.requires:
+CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o.requires:
 
-.PHONY : CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o.requires
+.PHONY : CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o.requires
 
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o.provides: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o.requires
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o.provides.build
-.PHONY : CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o.provides
+CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o.provides: CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o.requires
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o.provides.build
+.PHONY : CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o.provides
 
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o.provides.build: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o
-
-
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o: CMakeFiles/arm11_28.dir/flags.make
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o: ../src/assemble_utils/instructions/branch.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o   -c "/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/branch.c"
-
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/branch.c" > CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.i
-
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/branch.c" -o CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.s
-
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o.requires:
-
-.PHONY : CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o.requires
-
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o.provides: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o.requires
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o.provides.build
-.PHONY : CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o.provides
-
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o.provides.build: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o
+CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o.provides.build: CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o
 
 
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o: CMakeFiles/arm11_28.dir/flags.make
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o: ../src/assemble_utils/instructions/DataProc.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o   -c "/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/DataProc.c"
+CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o: CMakeFiles/arm11_28.dir/flags.make
+CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o: ../src/assemble_utils/branch.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o   -c "/home/nahida/C Project/arm11_28/src/assemble_utils/branch.c"
 
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/DataProc.c" > CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.i
+CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/assemble_utils/branch.c" > CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.i
 
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/assemble_utils/instructions/DataProc.c" -o CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.s
+CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/assemble_utils/branch.c" -o CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.s
 
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o.requires:
+CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o.requires:
 
-.PHONY : CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o.requires
+.PHONY : CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o.requires
 
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o.provides: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o.requires
-	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o.provides.build
-.PHONY : CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o.provides
+CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o.provides: CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o.requires
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o.provides.build
+.PHONY : CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o.provides
 
-CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o.provides.build: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o
+CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o.provides.build: CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o
+
+
+CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o: CMakeFiles/arm11_28.dir/flags.make
+CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o: ../src/assemble_utils/DataProc.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o   -c "/home/nahida/C Project/arm11_28/src/assemble_utils/DataProc.c"
+
+CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/nahida/C Project/arm11_28/src/assemble_utils/DataProc.c" > CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.i
+
+CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/nahida/C Project/arm11_28/src/assemble_utils/DataProc.c" -o CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.s
+
+CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o.requires:
+
+.PHONY : CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o.requires
+
+CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o.provides: CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o.requires
+	$(MAKE) -f CMakeFiles/arm11_28.dir/build.make CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o.provides.build
+.PHONY : CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o.provides
+
+CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o.provides.build: CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o
 
 
 # Object files for target arm11_28
 arm11_28_OBJECTS = \
-"CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o" \
-"CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o" \
-"CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o" \
-"CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o" \
+"CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.o" \
+"CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.o" \
+"CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.o" \
+"CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.o" \
 "CMakeFiles/arm11_28.dir/src/assemble.c.o" \
 "CMakeFiles/arm11_28.dir/src/emulate_utils/binaryloader.c.o" \
 "CMakeFiles/arm11_28.dir/src/emulate_utils/decode.c.o" \
 "CMakeFiles/arm11_28.dir/src/emulate.c.o" \
 "CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.o" \
-"CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o" \
+"CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o" \
 "CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.o" \
 "CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.o" \
-"CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o" \
-"CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o" \
-"CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o"
+"CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o" \
+"CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o" \
+"CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o"
 
 # External object files for target arm11_28
 arm11_28_EXTERNAL_OBJECTS =
 
-arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o
-arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o
-arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o
-arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o
+arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.o
+arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.o
+arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.o
+arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/assemble.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/binaryloader.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/decode.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/emulate.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.o
-arm11_28: CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o
+arm11_28: CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.o
 arm11_28: CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.o
-arm11_28: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o
-arm11_28: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o
-arm11_28: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o
+arm11_28: CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o
+arm11_28: CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o
+arm11_28: CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o
 arm11_28: CMakeFiles/arm11_28.dir/build.make
 arm11_28: CMakeFiles/arm11_28.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/nahida/C Project/arm11_28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Linking C executable arm11_28"
@@ -464,24 +463,21 @@ CMakeFiles/arm11_28.dir/build: arm11_28
 
 .PHONY : CMakeFiles/arm11_28.dir/build
 
-CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/branch.c.o.requires
-CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/DataProcDec.c.o.requires
-CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/multiply.c.o.requires
-CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/instructions/singleDT.c.o.requires
+CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/branch.c.o.requires
+CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/DataProcDec.c.o.requires
+CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/multiply.c.o.requires
+CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/singleDT.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/binaryloader.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/decode.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/execute.c.o.requires
-CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/usefulFuncs.c.o.requires
+CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/emulate_utils/usefulFuncs.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble_utils/assemblerImplementation.c.o.requires
 CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble_utils/defs.c.o.requires
-CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/multiply.c.o.requires
-CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/branch.c.o.requires
-CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble_utils/instructions/DataProc.c.o.requires
-=======
-CMakeFiles/arm11_28.dir/requires:
->>>>>>> 174a42fb720dcecf3424b9137b9cb2f4b9ca5ca1
+CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble_utils/multiply.c.o.requires
+CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble_utils/branch.c.o.requires
+CMakeFiles/arm11_28.dir/requires: CMakeFiles/arm11_28.dir/src/assemble_utils/DataProc.c.o.requires
 
 .PHONY : CMakeFiles/arm11_28.dir/requires
 
