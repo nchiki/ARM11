@@ -1,6 +1,7 @@
 #include <assert.h>
 #include "emulate_utils/binaryloader.h"
 #include "emulate_utils/execute.h"
+#include "emulate_utils/instruction_basic.h"
 #include <string.h>
 #include <byteswap.h>
 
@@ -100,12 +101,12 @@ int main(int argc, char **argv) {
     //operand2
       0,
       0,
-      -1,
+      (SHIFT_CODE) -1,
       -1
      };
 
     machine->c.decodedInstruction = (instructions *) malloc(sizeof(instructions)); //creates space for the decoded instructions
-    machine->c.decodedInstruction = &NullInstruction;
+    *(machine->c.decodedInstruction) = NullInstruction;
 
     // read from binary file into memory array
     // i wonder if i could do this : loadFile(givenFile, memArray) -> technically it should be fine because they both point to memAlloc[0]?
@@ -132,7 +133,7 @@ int main(int argc, char **argv) {
 
     //bool finalise = false; //finalise will become true when the instructions is the zero instructions: halt
 
-    while (!(machine->c.decodedInstruction->instruction_type == halt)) {
+    while (!(machine->c.decodedInstruction->binary = 0)) {
       //fetch
       address = machine->c.registers[PC];
       fetched = 0;
@@ -146,7 +147,6 @@ int main(int argc, char **argv) {
       //flippd the bits here
 
       machine->c.fetchedInstruction = fetched;
-      finalise = (fetched == 0);
 
       registerArray[PC] += 4; // four bytes because is 4-byte addressable
 
@@ -155,7 +155,7 @@ int main(int argc, char **argv) {
       execute(machine);
 
       //decode
-      machine->c.decodedInstruction = &NullInstruction;
+      *(machine->c.decodedInstruction) = NullInstruction;
       decode(machine);
 
       registerArray[PC] += 4; // four bytes because is 4-byte addresable

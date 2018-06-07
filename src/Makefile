@@ -11,7 +11,7 @@ EMULATE_OBJECTS = emulate.o $(EMULATE_SOURCES:.c=.o)
 
 .PHONY: all clean
 
-all: emulate assemble
+all: emulate
 
 assemble: $(ASSEMBLE_OBJECTS)
 
