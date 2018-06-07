@@ -3,7 +3,7 @@
 #include "assemblerImplementation.h"
 // change the return type of the thing
 
-
+/*
 DataProcInstr_t *dataProc(struct instruction instr){
 
     DataProcInstr_t dataP;
@@ -37,6 +37,50 @@ DataProcInstr_t *dataProc(struct instruction instr){
 
     //still have to complete shifting and so on..
 
+
+}*/
+
+// rewrite
+
+uint32* dataProcessing (struct instruction inst) {
+    uint8_t opcode;
+    bool flag = 0 ;
+    uint8_t cond = 14;
+
+    bool flag2 = 1;
+
+    uint32_t *instruction = malloc(sizeof(uint32_t));
+
+    if (!strcmp(inst.opcode, "and")) {
+        opcode = 0 ;
+    } else if (!strcmp(inst.opcode,"eor")) {
+        opcode = 1;
+    } else if (!strcmp(inst.opcode,"sub")) {
+        opcode = 2;
+    }else if (!strcmp(inst.opcode,"rsb")) {
+        opcode = 3;
+    }else if (!strcmp(inst.opcode,"add")) {
+        opcode = 4;
+    }else if (!strcmp(inst.opcode,"orr")) {
+        opcode = 12;
+    }else if (!strcmp(inst.opcode,"mov")) {
+        opcode = 13;
+    }else if (!strcmp(inst.opcode,"tst")) {
+        opcode = 8;
+        flag = 1;
+    }else if (!strcmp(inst.opcode,"teq")) {
+        opcode = 9;
+        flag = 1;
+    }else if (!strcmp(inst.opcode,"cmp")) {
+        opcode = 10;
+        flag = 1;
+    }
+
+
+
+    *instruction = (cond << 28 | (flag2 << 25) | (opcode << 22) | (flag << 20) | convertToWriteableFormat(inst.Rn) << 16
+            | (convertToWriteableFormat(inst.Rd) << 12 | convertToWriteableFormat(inst.operand2)));
+    return instruction;
 
 }
 

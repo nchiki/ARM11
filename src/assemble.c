@@ -68,22 +68,17 @@ int main(int argc, char **argv) {
     for ( int i = 0 ; i < numLines; ++i ) {
         struct instruction currentInst = instArr[i];
         if (currentInst.type != NULL) {
-            // process it
-//probe=lem with the first parameter, says its type of formal parameter 1 is incomplete
-       //     valueToBeWritten = distinguish(currentInst, symbolTableHead);
+            // process it       //     valueToBeWritten = distinguish(currentInst, symbolTableHead);
             // write it to the file
+
+            valueToBeWritten = distinguish(currentInst,symbolTableHead);
+            // write to the file
 
         }
     }
 
 
 
-
-    //need sth that reads each line of the file, taking it to a "distinguishInstruction" method that would return the
-            // type of the instruction, and with a switch(by the different instructions in usefulTools)
-                    // in a helper method that splits the following code depending on the instruction (as in decode for emulator)
-                            // and using the structs in .h encode the different fields of each instruction
-                                    //would it be useful to have a method that encodes different instructions?
 
 
 }
