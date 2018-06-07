@@ -10,6 +10,5 @@ void multiply(uint32_t instruction, MACHINE *machine){ //checked
     machine->c.decodedInstruction->Rd = getBitRange(instruction, 16, 4);
     machine->c.decodedInstruction->Rs = getBitRange(instruction, 8, 4);
     machine->c.decodedInstruction->Rm = getBitRange(instruction, 0, 4);
+    machine->c.decodedInstruction->cond = getBitRange(instruction, 28, 4) & 0xF;
 }
-
-

@@ -11,7 +11,7 @@
 
 typedef struct { //checked
     instruction_type type;
-    uint32_t cond;
+    int cond;
     uint32_t opcode;
 
     uint32_t offset;
@@ -42,4 +42,3 @@ typedef struct { //checked
 } instructions;
 
 #endif //C_CODE_EXECUTE_H
-
