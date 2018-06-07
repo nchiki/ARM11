@@ -1,4 +1,0 @@
-/home/nahida/clion-2018.1.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/home/nahida/C Project/arm11_28"
--- Configuring done
--- Generating done
--- Build files have been written to: /home/nahida/C Project/arm11_28/cmake-build-debug
