@@ -30,7 +30,6 @@ void loadFile (char *fname, uint32_t *memory) { //checked
     if (ferror(f)) {
         exit(-1);
     }
-
     fclose(f);
 }
 
