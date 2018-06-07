@@ -1,4 +1,0 @@
-Cannot generate into /home/nb1317/arm11_28/cmake-build-debug
-It is already used for project /home/nahida/C Project/arm11_28
-
-Please either delete it manually or select another generation directory
