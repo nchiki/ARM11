@@ -35,12 +35,12 @@ int main(int argc, char **argv) {
     memArray = (uint32_t *) calloc(16384, sizeof(uint32_t));
 
 
-    *(machine->mem.memoryAlloc) = memArray;
+    *(machine->mem.memoryAlloc) = &memArray; 
 
 
     registerArray = (uint32_t *) calloc(17, sizeof(uint32_t));
 
-      *(machine->c.registers) = *registerArray;
+      *(machine->c.registers) = &registerArray;
     // i'm assuming traversing through the array and then using calloc is redundant, but im still going to keep it in
 
     assert(argc == 2 && "Incorrect number of arguments");
@@ -132,7 +132,7 @@ int main(int argc, char **argv) {
 
     //bool finalise = false; //finalise will become true when the instructions is the zero instructions: halt
 
-    while (!(machine->c.decodedInstruction->instruction_type == halt)) {
+    while (!(machine->c.decodedInstruction->type == Halt)) {
       //fetch
       address = machine->c.registers[PC];
       fetched = 0;

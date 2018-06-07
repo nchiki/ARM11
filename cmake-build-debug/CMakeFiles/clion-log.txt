@@ -1,26 +1,4 @@
-<<<<<<< HEAD
-/home/nahida/clion-2018.1.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/home/nahida/C Project/arm11_28"
--- The C compiler identification is GNU 5.4.0
--- Check for working C compiler: /usr/bin/cc
--- Check for working C compiler: /usr/bin/cc -- works
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Detecting C compile features
--- Detecting C compile features - done
-=======
-/home/nb1317/clion-2018.1.2/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/nb1317/arm11_28
->>>>>>> 174a42fb720dcecf3424b9137b9cb2f4b9ca5ca1
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/blanca/arm11_28
 -- Configuring done
-CMake Error at CMakeLists.txt:6 (add_executable):
-  Cannot find source file:
-
-    src/emulate_utils/instructions/branch.c
-
-  Tried extensions .c .C .c++ .cc .cpp .cxx .m .M .mm .h .hh .h++ .hm .hpp
-  .hxx .in .txx
-
-
-CMake Error: CMake can not determine linker language for target: arm11_28
-CMake Error: Cannot determine link language for target "arm11_28".
 -- Generating done
--- Build files have been written to: /home/nahida/C Project/arm11_28/cmake-build-debug
+-- Build files have been written to: /Users/blanca/arm11_28/cmake-build-debug
