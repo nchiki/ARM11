@@ -1,5 +1,6 @@
 #include <byteswap.h>
 #include "execute.h"
+#include "../memoryImplementation.h"
 
 
 int checkCondition(MACHINE *machine) { //checked
@@ -63,7 +64,11 @@ void execute_Halt(MACHINE *machine){ //not 100% sure
     for(int i = 0; i < 17; i++){
         printBits(machine->c.registers[i]);
     }
-        exitProgr(machine);
+    for(int i = 0; i < 16384; i++){
+        if(machine->mem.memoryAlloc[i] != 0)
+        printBits(machine->mem.memoryAlloc[i]);
+    }
+    exitProgr(machine);
 }
 
 void execute_branch(MACHINE *machine){ //checked
