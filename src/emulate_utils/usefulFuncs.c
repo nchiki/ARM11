@@ -16,5 +16,11 @@ uint32_t getBitRange(uint32_t instruction, int start, int length){
     }
     return (res >> start);
 }
+
+void exitProgr(MACHINE *machine){
+    free(machine->c.decodedInstruction);
+    free(machine);
+    exit(EXIT_FAILURE);
+}
 //
 
