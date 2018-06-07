@@ -63,6 +63,7 @@ void execute_Halt(MACHINE *machine){ //not 100% sure
     for(int i = 0; i < 17; i++){
         printBits(machine->c.registers[i]);
     }
+        exitProgr(machine);
 }
 
 void execute_branch(MACHINE *machine){ //checked
