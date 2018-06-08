@@ -9,7 +9,7 @@
 #include "instruction_defs.h"
 
 uint32_t* branch(struct instruction instruction, struct symbol* tableHead) {
-    BranchInstr_t branchInstr;
+   /* BranchInstr_t branchInstr;
     char *cond = instruction.opcode + 1; //it takes rid of the initial "b" of the mnemonic
     //compares the condition part of the instruction's mnemonic to the different conditions and 
     //sets the binary of the cond using the struct defined in usefulTools.h
@@ -41,7 +41,7 @@ uint32_t* branch(struct instruction instruction, struct symbol* tableHead) {
               }
             branchInstr.offset = absVal; // sets the offset to the two's complement
         }
-    }
+    }*/
 
 
     // just rewriting the damm thing

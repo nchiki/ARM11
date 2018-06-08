@@ -68,8 +68,6 @@ int main(int argc, char **argv) {
     for ( int i = 0 ; i < numLines; ++i ) {
         struct instruction currentInst = instArr[i];
         if (currentInst.type != NULL) {
-            // process it       //     valueToBeWritten = distinguish(currentInst, symbolTableHead);
-            // write it to the file
 
             valueToBeWritten = distinguish(currentInst,symbolTableHead);
             // write to the file

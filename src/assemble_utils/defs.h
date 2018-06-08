@@ -7,6 +7,10 @@
 
 #include <stdint.h>
 #include <stdint-gcc.h>
+#include "DataProc.h"
+#include "branch.h"
+#include "multiply.h"
+#include "sdt.h"
 
 #define MAX_LINE_SIZE 511
 

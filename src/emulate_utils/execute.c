@@ -1,7 +1,9 @@
 #include <byteswap.h>
 #include "execute.h"
 #include "../memoryImplementation.h"
-
+//declaration of the methods
+void printBitsofMem(uint32_t memAlloc);
+void printBitsofReg(int32_t reg);
 
 int checkCondition(MACHINE *machine) { //checked
     //checking whether the condition set in the cond field of the instructions correspond to the flags of the CPSR
@@ -63,12 +65,12 @@ void execute_Halt(MACHINE *machine){ //not 100% sure
     //printing the value of each register to standard output
     printf("Registers:\n");
     for(int i = 0; i < 17; i++){
-      if (i != 13 && i != 14) {
+      if (!(i == 13 || i == 14)) {
         if (i == 15){
           printf("PC   :");
         } else if(i == 16){
           printf("CPSR  :");
-        } else if {
+        } else {
         printf("$%d  :", i);
         }
         printBitsofReg(machine->c.registers[i]);
@@ -91,14 +93,19 @@ void execute_branch(MACHINE *machine){ //checked
 }
 
 //prints bit sequence of register
-void printBitsofReg(uint32_t reg) { //checked
-    int valueInDec = binToDec(reg); // this is gonna be the decimal value of the binary value
-    valueInDecflipped = bswap_32(valueInDec); //swapping bits
-    printf("%d (%#0-8x) \n", valueInDec, valueInDecflipped);
-  }
+void printBitsofReg(int32_t reg) { //checked
+    int32_t valueInDec = binToDec(reg); // this is gonna be the decimal value of the binary value
+    int32_t valueInDecflipped = bswap_32(valueInDec); //swapping bits
+    if (valueInDec < 0) { // if the number is ngative we need more space
+      printf("% 11d (%#08x) \n", valueInDec, valueInDecflipped);
+    } else {
+    printf("% 10d (%#08x) \n", valueInDec, valueInDecflipped);
+    }
+}
+
 void printBitsofMem(uint32_t memAlloc) { //checked
       int valueInDec = binToDec(memAlloc); // this is gonna be the decimal value of the binary value
-      valueInDecflipped = bswap_32(valueInDec); //swapping bits
+      int valueInDecflipped = bswap_32(valueInDec); //swapping bits
       printf("%#08x \n", valueInDecflipped);
 }
 
@@ -116,7 +123,7 @@ uint32_t signedtwos_to_unsigned(int32_t signednum){ //checked
 uint32_t shiftReg(uint32_t operand, MACHINE *machine) { //blanca should check this
     int amount; //the number of positions to be shifted
     int32_t mask2; // mask that we are gonna use later
-    if (operand&0x10 != 0) {  //checks if it's shifted by constant amount or by the amount stored in Rs
+    if ((operand & 0x10) != 0) {  //checks if it's shifted by constant amount or by the amount stored in Rs
         amount = getBitRange(machine->c.registers[getBitRange(operand, 8, 4)], 0, 8); // amount stored in las byte of Rs
     } else {
         amount = getBitRange(operand, 7, 5); // takes the five bits from bit 7 as a constant value

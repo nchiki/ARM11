@@ -7,6 +7,7 @@
 #include "assemblerImplementation.h"
 
 
+
 MNEMONIC takeMnemonic(char *word) {
     if (!strcmp(word, "add")) {
         return add;
@@ -46,20 +47,16 @@ char **tokenizeHelper(char *line) {
     int i = 0;
 
     strcpy(new_line, line); /* can't use strtok on string literal */
-    char *temp1 = strtok(new_line, "[");
-    char *temp2 = strtok(NULL, "[");
     //IMPORTANT---------------------------------------------------
     // needed a flag for the pre/post indexing in sdt (PFlag?)
     //look at sdt.c, PFlag in instruction would have to be set if the address
     //is of the form [Rn, <#expression>] instead of [Rn], <#expression>
-    temp1 = strtok(temp1, " ,");
 
-    while(temp1) {
-        tokenized[i++] = temp1;
-        temp1 = strtok(NULL, " ,");
+    tokenized[i] = strtok(new_line, " ");
+    while (tokenized[i] != NULL ) {
+        i++;
+        tokenized[i] = strtok(NULL, ",\n");
     }
-    tokenized[i] = temp2;
-
 
     return tokenized;
 }
@@ -70,10 +67,10 @@ uint32_t *distingush(struct instruction inst, struct symbol *symbolTable) {
 
     switch(inst.type) {
         case DATA_PROCESSING:
-            // call to function ?
+            returnVal = dataProcessing(inst);
             break;
         case MULTIPLY:
-            // call to function? where will you convert to uint32?
+            returnVal = multiply(inst);
             break;
 
         // HOW DO I HANDLE LSL FOR GODS SAKE WHY DOES IT SAY DUPLICATE CASE VALUE
@@ -82,10 +79,10 @@ uint32_t *distingush(struct instruction inst, struct symbol *symbolTable) {
             break;
 
         case SINGLE_DATA_TRANSFER:
-            // call to function? where will you convert internal struct to uint32?
+            returnVal = SDTassembling(inst);
             break;
         case BRANCH:
-            //  call to function? where will you convert internal sturct to uint32?
+            returnVal = branch(inst,symbolTable);
             // call to function like this: branch(inst, symbolTable), branch hasnt implemented that
             break;
         case ANDEQ:
