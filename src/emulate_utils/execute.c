@@ -61,12 +61,25 @@ void execute_MulI(MACHINE *machine){ //checked
 
 void execute_Halt(MACHINE *machine){ //not 100% sure
     //printing the value of each register to standard output
+    printf("Registers:\n");
     for(int i = 0; i < 17; i++){
-        printBits(machine->c.registers[i]);
+      if (i != 13 && i != 14) {
+        if (i == 15){
+          printf("PC   :");
+        } else if(i == 16){
+          printf("CPSR  :");
+        } else if {
+        printf("$%d  :", i);
+        }
+        printBitsofReg(machine->c.registers[i]);
+      }
     }
+    printf("Non-zero memory:\n");
     for(int i = 0; i < 16384; i++){
-        if(machine->mem.memoryAlloc[i] != 0)
-        printBits(machine->mem.memoryAlloc[i]);
+        if(machine->mem.memoryAlloc[i] != 0){
+        printf("%08x: ", i*4);
+        printBitsofMem(machine->mem.memoryAlloc[i]);
+      }
     }
     exitProgr(machine);
 }
@@ -78,22 +91,16 @@ void execute_branch(MACHINE *machine){ //checked
 }
 
 //prints bit sequence of register
-void printBits(uint32_t reg) { //checked
-
-    reg = bswap_32(reg);
-    // flip the bits before output
-    uint32_t mask = 1 << 31;
-    for (int i = 0; i < 32; ++i) {
-        if((reg & mask) == 0) {
-            printf("0");
-        } else {
-            printf("1");
-        }
-    reg = reg << 1;
-
-    }
-    printf("\n");
-    }
+void printBitsofReg(uint32_t reg) { //checked
+    int valueInDec = binToDec(reg); // this is gonna be the decimal value of the binary value
+    valueInDecflipped = bswap_32(valueInDec); //swapping bits
+    printf("%d (%#0-8x) \n", valueInDec, valueInDecflipped);
+  }
+void printBitsofMem(uint32_t memAlloc) { //checked
+      int valueInDec = binToDec(memAlloc); // this is gonna be the decimal value of the binary value
+      valueInDecflipped = bswap_32(valueInDec); //swapping bits
+      printf("%#08x \n", valueInDecflipped);
+}
 
 
 //checks for negative value and turns offset into positive binary
