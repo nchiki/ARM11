@@ -9,19 +9,19 @@ int checkCondition(MACHINE *machine) { //checked
     int cpsrFlags = machine->c.registers[CPSR] >> 28; //getting the four last bits of the CPSR
 
     switch(machine->c.decodedInstruction->cond) {
-        case 0000:
+        case 0b0000:
             return cpsrFlags&Z_MASK; // equal
-        case 0001:
+        case 0b0001:
             return !(cpsrFlags&Z_MASK); //not equal
-        case 1010:
+        case 0b1010:
             return (cpsrFlags&N_MASK) == ((cpsrFlags&V_MASK) >> 3); //greater or equal
-        case 1011:
-            return (cpsrFlags&N_MASK) != ((cpsrFlags&V_MASK) >> 3); //less than
-        case 1100:
+        case 0b1011:
+            return ((cpsrFlags&N_MASK) != ((cpsrFlags&V_MASK) >> 3)); //less than
+        case 0b1100:
             return (!(cpsrFlags&Z_MASK) && (cpsrFlags&N_MASK) == ((cpsrFlags&V_MASK) << 3)); // greater than
-        case 1101:
+        case 0b1101:
             return (cpsrFlags&Z_MASK) || ((cpsrFlags&N_MASK) != ((cpsrFlags&V_MASK) << 3)); //less than or equal
-        case 1110 :
+        case 0b1110 :
             return 1; //always
         default:
             exitProgr(machine);
