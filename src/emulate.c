@@ -136,12 +136,12 @@ int main(int argc, char **argv) {
     uint32_t address = machine->c.registers[PC];
     //uint32_t fetched = 0;
     //for(int i = 0; i < 4; i++) {
-            fetched |= ((uint32_t) machine->mem.memoryAlloc[address]); //<< (i * 8);
+            fetched |= ((uint32_t) machine->mem.memoryAlloc[binToDec(address)]); //<< (i * 8);
       //  }
 
 
 
-    fetched = bswap_32(fetched);
+    //fetched = bswap_32(fetched);
     // flipped the bits here
 
     machine->c.fetchedInstruction = fetched;
@@ -162,15 +162,15 @@ int main(int argc, char **argv) {
       //we need 4 iterations of the loop because each instructions is 4 bytes, and each iteration reads one byte
       //shifting by 8 (1 byte = 8 bits)
       //for(int i = 0; i < 4; i++) {
-        fetched |= ((uint32_t) machine->mem.memoryAlloc[address]);// << (i * 8);
+        fetched |= ((uint32_t) machine->mem.memoryAlloc[binToDec(address)]);// << (i * 8);
       //}
 
-      fetched = bswap_32(fetched);
+      //fetched = bswap_32(fetched);
       //flippd the bits here
 
       machine->c.fetchedInstruction = fetched;
 
-      machine->c.registers[PC] += 1; // four bytes because is 4-byte addressable
+      //machine->c.registers[PC] += 1; // four bytes because is 4-byte addressable
 
 
       //execute
@@ -183,7 +183,7 @@ int main(int argc, char **argv) {
       machine->c.registers[PC] += 1; // four bytes because is 4-byte addresable
 
     }
-
+    machine->c.registers[PC] += 1;
     execute(machine);
     free(machine->c.decodedInstruction);
     free(cpu);
