@@ -108,6 +108,7 @@ uint32_t signedtwos_to_unsigned(int32_t signednum){ //checked
 // operand are the 12 last bits of the instruction (although it is passed as an uin32_t)
 uint32_t shiftReg(uint32_t operand, MACHINE *machine) { //blanca should check this
     int amount; //the number of positions to be shifted
+    int32_t mask2; // mask that we are gonna use later
     if (operand&0x10 != 0) {  //checks if it's shifted by constant amount or by the amount stored in Rs
         amount = getBitRange(machine->c.registers[getBitRange(operand, 8, 4)], 0, 8); // amount stored in las byte of Rs
     } else {
