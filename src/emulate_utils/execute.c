@@ -329,62 +329,6 @@ void execute_DPI(MACHINE *machine){
         machine->c.registers[CPSR] |= (flag << 29);
     }
 }
-    
-
- /*         case AND:
-        case TST: result = RN & instr->operand2;
-            flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
-            break;
-        case EOR:
-        case TEQ: result = RN ^ instr->operand2;
-            flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
-            break;
-        case SUB:
-        case CMP: result = RN + ((~(instr->operand2)) + 1);
-            if(((!(RN) && (instr->operand2) || ((machine->c.registers[CPSR] >> 29) & C_MASK))) ||
-               (instr->operand2 && ((machine->c.registers[CPSR] >> 29) & C_MASK))){
-                flag = 1;
-            }
-            break;
-        case RSB: result = instr->operand2 - RN;
-            if((((machine->c.registers[CPSR] >> 29) & C_MASK) && (RN >> 31 || (instr->operand2) >> 31))
-               || (RN >> 31 && (instr->operand2) >> 31)){
-                flag = 1;
-            }
-            break;
-        case ADD: result = RN + instr->operand2;
-            if((((machine->c.registers[CPSR] >> 29) & C_MASK) && (RN >> 31 || (instr->operand2) >> 31))
-               || (RN >> 31 && (instr->operand2) >> 31)){
-                flag = 1;
-            }
-            break;
-        case ORR: result = RN | instr->operand2;
-            break;
-        case MOV: result = instr->operand2;
-            flag = ((machine->c.registers[CPSR] >> 29) & C_MASK) >> 29;
-            break;
-        default: break;
-    }
-
-//if one of these instructions, result is not written
-    if(instr->opcode == TST || instr->opcode == TEQ || instr->opcode == CMP) {
-        machine->c.registers[machine->c.decodedInstruction->Rd] = result;
-    }
-
-    //if S flag is set, CPSR flags have to be set in the following way
-    if (instr->S){
-        //if result is all zeros, Z bit will be set
-        if(result == 0){
-            machine->c.registers[CPSR] |= Z_MASK_32;
-        }
-        //N bit will be set to bit 31 of result
-        uint32_t nvalue = result >> 31;
-        machine->c.registers[CPSR] |= nvalue;
-        //flag C is set to flag value but shifted to right position
-        uint32_t flagC = (uint32_t) flag << 29;
-        machine->c.registers[CPSR] |= flagC;
-    } */
-}
 
 void execute(MACHINE *machine) {
     if (checkCondition(machine)) {
