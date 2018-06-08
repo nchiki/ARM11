@@ -8,7 +8,7 @@
 #include "assemblerImplementation.h"
 #include "instruction_defs.h"
 
-uint32_t* branch(struct instruction instruction, struct symbol* tableHead) {
+uint32_t* branch(struct instruction instruction) {
    /* BranchInstr_t branchInstr;
     char *cond = instruction.opcode + 1; //it takes rid of the initial "b" of the mnemonic
     //compares the condition part of the instruction's mnemonic to the different conditions and 

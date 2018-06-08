@@ -169,3 +169,17 @@ int countLines (FILE* input) {
     }
     return returnVal;
 }
+
+void setInstNull(struct instruction inst) {
+    inst.opcode = NULL;
+    inst.Rd = NULL;
+    inst.Rn = NULL;
+    inst.operand2 = NULL;
+    inst.Rm = NULL;
+    inst.Rs = NULL;
+
+    inst.address = NULL;
+    inst.expression = NULL;
+    inst.memoryAddr = 0;
+
+}

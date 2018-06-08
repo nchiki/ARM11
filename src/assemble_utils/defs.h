@@ -11,6 +11,7 @@
 #include "branch.h"
 #include "multiply.h"
 #include "sdt.h"
+#include "assemblerImplementation.h"
 
 #define MAX_LINE_SIZE 511
 
@@ -42,7 +43,7 @@ typedef enum {
 
 char **tokenizeHelper(char*);
 
-uint32_t *distinguish(struct instruction, struct symbol *);
+uint32_t *distinguish(struct instruction);
 
 
 uint16_t convertToWriteableFormat(char*);

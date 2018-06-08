@@ -62,7 +62,7 @@ char **tokenizeHelper(char *line) {
 }
 
 
-uint32_t *distingush(struct instruction inst, struct symbol *symbolTable) {
+uint32_t *distinguish(struct instruction inst) {
     uint32_t *returnVal = NULL;
 
     switch(inst.type) {
@@ -82,7 +82,7 @@ uint32_t *distingush(struct instruction inst, struct symbol *symbolTable) {
             returnVal = SDTassembling(inst);
             break;
         case BRANCH:
-            returnVal = branch(inst,symbolTable);
+            returnVal = branch(inst);
             // call to function like this: branch(inst, symbolTable), branch hasnt implemented that
             break;
         case ANDEQ:

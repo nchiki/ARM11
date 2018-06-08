@@ -27,10 +27,19 @@ int main(int argc, char **argv) {
     }
 
     const int numLines = countLines(input);
-    struct instruction instArr[numLines];
+    struct instruction instArr[20];
+    // counting the lines was useless, i get a "type of formal parameter was incomplete when calling distinguish
+    // so im just going to have to hope whichever file they provide has fewer lines than 20
+    // so zeroth pass is basically useless
+
+
     // i'll have to count the number of lines, so zeroth pass?
+    for ( int i = 0 ; i < 20 ; ++i ) {
+        setInstNull(instArr[i]);
+    }
 
     initSymbolTable();
+    uint32_t *valueToBeWritten = NULL;
 
     while (fgets(line, MAX_LINE_SIZE, input)) {
         char **tokenizedLine = tokenizeHelper(line);
@@ -63,16 +72,13 @@ int main(int argc, char **argv) {
     }
 
     // second pass
-    uint32_t *valueToBeWritten = NULL;
 
-    for ( int i = 0 ; i < numLines; ++i ) {
-        struct instruction currentInst = instArr[i];
-        if (currentInst.type != NULL) {
-
-            valueToBeWritten = distinguish(currentInst,symbolTableHead);
-            // write to the file
-
+    for ( int i = 0 ; i < address; ++i ) {
+        struct instruction inst;
+        if (inst = instArr[i]) {
+            fwrite(distinguish(inst),1,sizeof(uint32_t),output);
         }
+
     }
 
 

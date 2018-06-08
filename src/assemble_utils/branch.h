@@ -7,5 +7,5 @@
 
 #include <stdint.h>
 
-uint32_t *branch(struct instruction, struct symbol*);
+uint32_t *branch(struct instruction);
 #endif //ARM11_28_BRANCH_H

@@ -6,5 +6,5 @@
 #define ARM11_28_DATAPROC_H
 // populate this
 
-uint32* dataProcessing (struct instruction);
+uint32_t* dataProcessing (struct instruction);
 #endif //ARM11_28_DATAPROC_H
