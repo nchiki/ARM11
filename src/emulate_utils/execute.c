@@ -89,7 +89,7 @@ void printBits(uint32_t reg) { //checked
         } else {
             printf("1");
         }
-    reg = reg << 1;
+    reg = reg :<< 1;
 
     }
     printf("\n");
@@ -251,16 +251,18 @@ void execute_SDT(MACHINE *machine) {
 void execute_DPI(MACHINE *machine){
     instructions *instr = machine->c.decodedInstruction;
     uint32_t result;
+    uint32_t operand;
+    int32_t RN = machine->c.registers[instr->Rn];
 
     if(instr->I){
         //value is zero-extended to 32 bits
-        uint32_t operand = instr->operand2 | 0x00000000;
+         operand = instr->operand2 | 0x00000000;
         //rotated times the number specified in bit 8 to 11
-        int numberRot = getBitRange(instr->binary, 8, 4) * 0x2;
-        instr->Rm = rotate(operand,numberRot);
+        int numberRot = getBitRange(instr->binary, 8, 4) << 1;
+        machine->c.registers[instr->Rm] = rotate(operand,numberRot);
     } else{
-        uint32_t operand = shiftReg(instr->operand2, machine);
-        instr->Rm = operand;
+        operand = shiftReg(instr->operand2, machine);
+        //instr->Rm = operand;
     }
 
     //carry-out bit
@@ -269,38 +271,33 @@ void execute_DPI(MACHINE *machine){
     // flags are set and saved in local variable flag
     switch(machine->c.decodedInstruction->opcode){
         case AND:
-
-        /*case TST: result = instr->Rn & instr->operand2;
-            flag = (machine->c.registers[CPSR] >> 29) && C_MASK;*/
-
-        case TST: result = instr->Rn && instr->operand2;
-            flag = (machine->c.registers[CPSR] >> 29) & C_MASK;
-
+        case TST: result = RN & instr->operand2;
+            flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
             break;
         case EOR:
-        case TEQ: result = instr->Rn ^ instr->operand2;
-            flag = (machine->c.registers[CPSR] >> 29) & C_MASK;
+        case TEQ: result = RN ^ instr->operand2;
+            flag = (machine->c.registers[CPSR] >> 29) && C_MASK;
             break;
         case SUB:
-        case CMP: result = instr->Rn - instr->operand2;
-            if((!(instr->Rn) && (instr->operand2 || ((machine->c.registers[CPSR] >> 29) & C_MASK))) ||
+        case CMP: result = RN + ((~(instr->operand2)) + 1);
+            if((!(RN) && (instr->operand2) || ((machine->c.registers[CPSR] >> 29) & C_MASK))) ||
                (instr->operand2 && ((machine->c.registers[CPSR] >> 29) & C_MASK))){
                 flag = 1;
             }
             break;
-        case RSB: result = instr->operand2 - instr->Rn;
-            if((((machine->c.registers[CPSR] >> 29) & C_MASK) && ((instr->Rn) >> 31 || (instr->operand2) >> 31))
-               || ((instr->Rn) >> 31 && (instr->operand2) >> 31)){
+        case RSB: result = instr->operand2 - RN;
+            if((((machine->c.registers[CPSR] >> 29) & C_MASK) && (RN >> 31 || (instr->operand2) >> 31))
+               || (RN >> 31 && (instr->operand2) >> 31)){
                 flag = 1;
             }
             break;
-        case ADD: result = instr->Rn + instr->operand2;
-            if((((machine->c.registers[CPSR] >> 29) & C_MASK) && ((instr->Rn) >> 31 || (instr->operand2) >> 31))
-               || ((instr->Rn) >> 31 && (instr->operand2) >> 31)){
+        case ADD: result = RN + instr->operand2;
+            if((((machine->c.registers[CPSR] >> 29) & C_MASK) && (RN >> 31 || (instr->operand2) >> 31))
+               || (RN >> 31 && (instr->operand2) >> 31)){
                 flag = 1;
             }
             break;
-        case ORR: result = instr->Rn | instr->operand2;
+        case ORR: result = RN | instr->operand2;
             break;
         case MOV: result = instr->operand2;
             flag = ((machine->c.registers[CPSR] >> 29) & C_MASK) >> 29;
