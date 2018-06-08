@@ -46,20 +46,16 @@ char **tokenizeHelper(char *line) {
     int i = 0;
 
     strcpy(new_line, line); /* can't use strtok on string literal */
-    char *temp1 = strtok(new_line, "[");
-    char *temp2 = strtok(NULL, "[");
     //IMPORTANT---------------------------------------------------
     // needed a flag for the pre/post indexing in sdt (PFlag?)
     //look at sdt.c, PFlag in instruction would have to be set if the address
     //is of the form [Rn, <#expression>] instead of [Rn], <#expression>
-    temp1 = strtok(temp1, " ,");
 
-    while(temp1) {
-        tokenized[i++] = temp1;
-        temp1 = strtok(NULL, " ,");
+    tokenized[i] = strtok(new_line, " ");
+    while (tokenized[i] != NULL ) {
+        i++;
+        tokenized[i] = strtok(NULL, ",\n"); 
     }
-    tokenized[i] = temp2;
-
 
     return tokenized;
 }
