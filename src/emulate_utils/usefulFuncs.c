@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdint.h>
 #include "usefulFuncs.h"
 
 //extracts any number of bits from any starting index

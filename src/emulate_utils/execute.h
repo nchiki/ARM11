@@ -4,6 +4,7 @@
 
 #include "decode.h"
 #include <math.h>
+#include <byteswap.h>
 
 void execute(MACHINE *machine);
 

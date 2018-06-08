@@ -1,6 +1,5 @@
-#include <byteswap.h>
 #include "execute.h"
-#include "../memoryImplementation.h"
+
 //declaration of the methods
 void printBitsofMem(uint32_t memAlloc);
 void printBitsofReg(int32_t reg);

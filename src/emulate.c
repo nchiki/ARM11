@@ -1,9 +1,6 @@
-#include <assert.h>
 #include "emulate_utils/binaryloader.h"
 #include "emulate_utils/execute.h"
-#include "emulate_utils/instruction_basic.h"
 #include <string.h>
-#include <byteswap.h>
 
 
 uint32_t getBitRange(uint32_t num, int start, int length);

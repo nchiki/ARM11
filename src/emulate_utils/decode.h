@@ -1,7 +1,7 @@
 #ifndef ARM11_28_DECODE_H
 #define ARM11_28_DECODE_H
 
-//interface for alltructions
+//interface for all instructions
 
 #include "branch.h"
 #include "singleDT.h"

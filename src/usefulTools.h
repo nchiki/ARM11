@@ -1,7 +1,4 @@
 
-//
-// Created by nahida on 6/7/18.
-//
 #ifndef PROJECT_USEFULCONSTANTS_H
 #define PROJECT_USEFULCONSTANTS_H
 

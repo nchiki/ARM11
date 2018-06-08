@@ -6,7 +6,6 @@
 #define ARM11_28_SINGLEDT_H
 
 #include <assert.h>
-#include "../memoryImplementation.h"
 #include "usefulFuncs.h"
 
 void SDTdecode(uint32_t, MACHINE* );

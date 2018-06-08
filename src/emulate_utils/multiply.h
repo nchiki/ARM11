@@ -4,12 +4,8 @@
 
 #ifndef ARM11_28_MULTIPLY_H
 #define ARM11_28_MULTIPLY_H
-#include "../memoryImplementation.h"
 #include "usefulFuncs.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <stdint.h>
+
 
 void multiply(uint32_t , MACHINE* );
 
