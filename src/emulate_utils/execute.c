@@ -2,7 +2,7 @@
 
 //declaration of the methods
 void printBitsofMem(uint32_t memAlloc);
-void printBitsofReg(int32_t reg, bool isPC);
+void printBitsofReg(int32_t reg, bool isPC, bool isCPSR);
 
 int checkCondition(MACHINE *machine) { //checked
     //checking whether the condition set in the cond field of the instructions correspond to the flags of the CPSR
@@ -45,15 +45,18 @@ void execute_MulI(MACHINE *machine){ //checked
         result += machine->c.registers[binToDec(machine->c.decodedInstruction->Rn)];
     }
 
+    machine->c.registers[machine->c.decodedInstruction->Rd] = result;
+
     //if S is set, update CPSR flag
     if(machine->c.decodedInstruction->S){
 
         //N will be updated to the last bit of the result, rest of CPSR stays the same
-
-        machine->c.registers[CPSR] = (getBitRange(result, 31, 1) | getBitRange(machine->c.registers[CPSR],0,31));
+        machine->c.registers[CPSR] &= 0x7FFFFFFF;
+        machine->c.registers[CPSR] |= (result>>31) * N_MASK_32;
 
         //if result is zero, Z bit is set and the rest of CPSR stays the same
         if(result == 0){
+            machine->c.registers[CPSR] &= 0xBFFFFFFF;
             machine->c.registers[CPSR] = Z_MASK_32 | machine->c.registers[CPSR];
         }
     }
@@ -64,17 +67,21 @@ void execute_Halt(MACHINE *machine){ //not 100% sure
     //printing the value of each register to standard output
     printf("Registers:\n");
     bool isPC = false;
+    bool isCPSR = false; //CPSR needs a different padding
     for(int i = 0; i < 17; i++){
+      isPC = false;
+      isCPSR = false;
       if (!(i == 13 || i == 14)) {
         if (i == 15){
           printf("PC  :");
           isPC = true;
         } else if(i == 16){
           printf("CPSR:");
+          isCPSR = true;
         } else {
         printf("$%-3i:", i);
         }
-        printBitsofReg(machine->c.registers[i], isPC);
+        printBitsofReg(machine->c.registers[i], isPC, isCPSR);
       }
     }
     printf("Non-zero memory:\n");
@@ -88,22 +95,28 @@ void execute_Halt(MACHINE *machine){ //not 100% sure
 }
 
 void execute_branch(MACHINE *machine){ //checked
-
+    machine->c.instructionIsFetched = false; //ignoring last instruction;
     int32_t offset = machine->c.decodedInstruction->offset;
     machine->c.registers[PC] += signedtwos_to_unsigned(offset);
 }
 
 //prints bit sequence of register
-void printBitsofReg(int32_t reg, bool isPC) { //checked
-    int32_t valueInDec = binToDec(reg); // this is gonna be the decimal value of the binary value
+void printBitsofReg(int32_t reg, bool isPC, bool isCPSR) { //checked
+    // int32_t valueInDec = binToDec(reg); // this is gonna be the decimal value of the binary value
     //int32_t valueInDecflipped = bswap_32(valueInDec); //swapping bits
     //uint32_t valueInDecflipped = bswap_32(reg);
     if (isPC) {
-      printf("% 11d (0x%08x)\n", valueInDec*4, reg*4); //4-byte addressable
-    } else if (valueInDec < 0) { // if the number is ngative we need more space
-      printf("% 12d (0x%08x)\n", valueInDec, reg);
+      printf("% 11d (0x%08x)\n", reg*4, reg*4); //4-byte addressable
+    } else if(isCPSR && (reg<0)){
+      printf("% 12d (0x%08x)\n", reg, reg);
+    } else if (reg < 0) {// if the number is ngative we need more space
+      if (reg <= (-2147483648)) {
+        printf("% 12d (0x%08x)\n", reg, reg);
+      } else {
+        printf("%  11d (0x%08x)\n", signedtwos_to_unsigned(reg), reg);
+      }
     } else {
-    printf("% 11d (0x%08x)\n", valueInDec, reg);
+    printf("% 11d (0x%08x)\n", reg, reg);
     }
 }
 
@@ -197,10 +210,12 @@ uint32_t shiftReg(uint32_t operand, MACHINE *machine) { //blanca should check th
 
 //rotates with right shifts and takes number of rotations as parameter
 uint32_t rotate(uint32_t operand, int numberRot){
-    int num = binToDec(numberRot);  //number of rotations
+    int num = (numberRot);  //number of rotations
     for(int i = 0; i < num; i++){
         int firstBit = getBitRange(operand, 0, 1);
-        operand = (firstBit << 31) | (operand >> 1);
+        operand >>= 1;
+        firstBit <<= 31;
+        operand |= firstBit;
     }
     return operand;
 }
@@ -282,7 +297,7 @@ void execute_DPI(MACHINE *machine){
     int32_t RN = machine->c.registers[binToDec(instr->Rn)];
 
     if(instr->I){
-        op2 = instr->operand2 | 0x00000000;
+        op2 = getBitRange((instr->operand2 | 0x00000000), 0, 8);
         int numberRot = getBitRange(instr->binary, 8, 4) << 1;
         op2 = rotate(op2, numberRot);
     }
@@ -292,53 +307,63 @@ void execute_DPI(MACHINE *machine){
     }
 
     switch(machine->c.decodedInstruction->opcode) {
-        case 0:
-        case 8:
+        case 0: // and
+        case 8: // tst
             result = RN & op2;
             flag = carry * C_MASK;
                     break;
-        case 1:
-        case 9:
+        case 1: // eor
+        case 9: // teq
             result = RN ^ op2;
             flag = carry * C_MASK;
             break;
-        case 2:
-        case 10:
+        case 2: // sub
+        case 10: // cmp
             result = RN + ((~op2) + 1);
-            flag = C_MASK * ((RN >> 31) == (op2 >> 31) != (result >> 31));
+            flag = (C_MASK_32)* ((RN >> 31) == (op2 >> 31) != (result >> 31));
                     break;
-        case 3: result = op2 + ((~RN) +1);
-            flag = C_MASK * ((RN >> 31) == (op2 >> 31) != (result >> 31));
+        case 3: // rsb
+            result = op2 + ((~RN) +1);
+            flag = (C_MASK_32) * ((RN >> 31) == (op2 >> 31) != (result >> 31));
                 break;
-        case 4: result = RN + op2;
-            flag = C_MASK * ((RN >> 31) == (op2 >> 31) != (result >> 31));
+        case 4: // add
+            result = RN + op2;
+            flag =(C_MASK_32) * ((RN >> 31) == (op2 >> 31) != (result >> 31));
                 break;
-        case 12: result = RN | op2;
-            flag = carry * C_MASK;
+        case 12: // orr
+            result = RN | op2;
+            flag = carry * (C_MASK_32);
                 break;
-        case 13: result = op2;
-            flag = carry * C_MASK;
+        case 13: // mov
+            result = op2;
+            flag = carry * (C_MASK_32);
                 break;
-        default: result = 0;
-        exitProgr(machine);
+        default:
+            result = 0;
+            exitProgr(machine);
         break;
     }
 
     //if one of these instructions, result is not written
-    if(!(instr->opcode == TST || instr->opcode == TEQ || instr->opcode == CMP)) {
+    if(!(instr->opcode == 8 || instr->opcode == 9 || instr->opcode == 10)) {
         machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)] = result;
     }
 
     //if S flag is set, CPSR flags have to be set in the following way
     if (instr->S){
-        //if result is all zeros, Z bit will be set
+        // if result is all zeros, Z bit will be set
         if(result == 0){
             machine->c.registers[CPSR] |= Z_MASK_32;
         }
-        //N bit will be set to bit 31 of result
-        machine->c.registers[CPSR] |= (result >> 31);
+        // N bit will be set to bit 31 of result
+        machine->c.registers[CPSR] &= 0x7fffffff;
+        machine->c.registers[CPSR] |= ((result >> 31) * N_MASK) << 28;
+
         //flag C is set to flag value but shifted to right position
-        machine->c.registers[CPSR] |= (flag << 29);
+        machine->c.registers[CPSR] &= 0xDFFFFFFF;
+        machine->c.registers[CPSR] |= (flag);
+
+
     }
 }
 

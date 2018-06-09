@@ -16,7 +16,9 @@ void execute_Halt(MACHINE*);
 
 void execute_branch(MACHINE*);
 
-void printBits(uint32_t);
+void printBitsofReg(int32_t, bool, bool);
+
+void printBitsofMem(uint32_t);
 
 uint32_t signedtwos_to_unsigned(int32_t);
 

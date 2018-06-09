@@ -12,6 +12,9 @@
 #define Multiply_MASK1 0x00000080
 #define Multiply_MASK2 0x00000010
 #define Z_MASK_32 0x40000000
+#define I_MASK_32 0x02000000
+#define C_MASK_32 0x20000000
+#define N_MASK_32 0x80000000
 
 
 typedef enum {

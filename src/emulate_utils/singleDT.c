@@ -11,4 +11,5 @@ void SDTdecode(uint32_t instruction, MACHINE *machine) { //checked
     machine->c.decodedInstruction->Rd = getBitRange(instruction, 12, 15)& 0x7FFF;
     machine->c.decodedInstruction->offset = getBitRange(instruction, 0, 12) & 0xFFF;
     machine->c.decodedInstruction->cond = getBitRange(instruction, 28, 4) & 0xF;
+    machine->c.decodedInstruction->Rm = getBitRange(instruction, 0, 4) &0xF;
 }

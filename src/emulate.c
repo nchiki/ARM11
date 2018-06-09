@@ -145,10 +145,12 @@ int main(int argc, char **argv) {
     // flipped the bits here
 
     machine->c.fetchedInstruction = fetched;
+    machine->c.instructionIsFetched=true;
     //memcpy(&machine->c.fetchedInstruction,&fetched, sizeof(fetched));
     machine->c.registers[PC] += 1;
-    decode(machine);
-
+    if(machine->c.instructionIsFetched){
+      decode(machine);
+    }
 
     // --------------------MAIN WHILE LOOP---------------------------
 
@@ -159,11 +161,8 @@ int main(int argc, char **argv) {
       //fetch
       address = machine->c.registers[PC];
       fetched = 0;
-      //we need 4 iterations of the loop because each instructions is 4 bytes, and each iteration reads one byte
-      //shifting by 8 (1 byte = 8 bits)
-      //for(int i = 0; i < 4; i++) {
-        fetched |= ((uint32_t) machine->mem.memoryAlloc[binToDec(address)]);// << (i * 8);
-      //}
+      fetched |= ((uint32_t) machine->mem.memoryAlloc[binToDec(address)]);// << (i * 8);
+      machine->c.instructionIsFetched = true;
 
       //fetched = bswap_32(fetched);
       //flippd the bits here
@@ -174,11 +173,16 @@ int main(int argc, char **argv) {
 
 
       //execute
+      if (machine->c.decodedInstruction->type != None) {
       execute(machine);
+      }
 
+      
       //decode
       *(machine->c.decodedInstruction) = NullInstruction;
-      decode(machine);
+      if(machine->c.instructionIsFetched){ //check if the instruction has to be decoded
+        decode(machine);
+      }
 
       machine->c.registers[PC] += 1; // four bytes because is 4-byte addresable
 
