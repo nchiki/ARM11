@@ -79,12 +79,12 @@ void execute_Halt(MACHINE *machine){ //not 100% sure
     }
     printf("Non-zero memory:\n");
     for(int i = 0; i < 16384; i++){
-        if(machine->mem.memoryAlloc[i] != 0){
+      if(machine->mem.memoryAlloc[i] != 0){
         printf("0x%08x: ", i*4);
         printBitsofMem(machine->mem.memoryAlloc[i]);
       }
     }
-    exitProgr(machine);
+    // exitProgr(machine);
 }
 
 void execute_branch(MACHINE *machine){ //checked
@@ -99,11 +99,11 @@ void printBitsofReg(int32_t reg, bool isPC) { //checked
     //int32_t valueInDecflipped = bswap_32(valueInDec); //swapping bits
     //uint32_t valueInDecflipped = bswap_32(reg);
     if (isPC) {
-      printf("% 11d (0x%08x) \n", valueInDec*4, reg*4); //4-byte addressable
+      printf("% 11d (0x%08x)\n", valueInDec*4, reg*4); //4-byte addressable
     } else if (valueInDec < 0) { // if the number is ngative we need more space
-      printf("% 12d (0x%08x) \n", valueInDec, reg);
+      printf("% 12d (0x%08x)\n", valueInDec, reg);
     } else {
-    printf("% 11d (0x%08x) \n", valueInDec, reg);
+    printf("% 11d (0x%08x)\n", valueInDec, reg);
     }
 }
 
@@ -111,7 +111,7 @@ void printBitsofMem(uint32_t memAlloc) { //checked
       //int valueInDec = binToDec(memAlloc); // this is gonna be the decimal value of the binary value
       //int valueInDecflipped = bswap_32(valueInDec); //swapping bits
       uint32_t mem = bswap_32(memAlloc);
-      printf("0x%08x \n", mem);
+      printf("0x%08x\n", mem);
 }
 
 

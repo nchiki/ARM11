@@ -189,5 +189,5 @@ int main(int argc, char **argv) {
     free(cpu);
     free(memory);
     free(machine);
-    return 0;
+    return EXIT_SUCCESS;
   }
