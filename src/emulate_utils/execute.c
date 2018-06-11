@@ -235,6 +235,18 @@ int binToDec(int n) //checked
     return number;
 }
 
+
+uint32_t getFromMemory(int address, MACHINE *machine) {
+  uin32_t value = 0;
+  for (int i = 0; i < 4; i++) {
+    value |= machine->mem.memoryAlloc[address] & (0xFF000000 >> (i*8)) << i*8;
+  }
+  return value;
+}
+
+void setMemory(int address, uin32_t value);
+
+
 void execute_SDT(MACHINE *machine) {
     //we must ensure that if Rn is the PC it contains the instruction's address +8 bits bc of the pipeline
     if ((machine->c.decodedInstruction->Rn == PC) && (machine->c.decodedInstruction->binary) != machine->c.registers[PC] - 8 ){
@@ -266,9 +278,9 @@ void execute_SDT(MACHINE *machine) {
     if (machine->c.decodedInstruction->L) { //L set the load, otherwise store
         if (machine->c.decodedInstruction->P) { // P set then pre-indexing
             //stores the value of mem[address] in Rd
-            machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)] = machine->mem.memoryAlloc[binToDec(newAddress)];
+            machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)] = getFromMemory(binToDec(newAddress));
         } else { //Post-indexing (after transferring the data)
-            machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)] = machine->mem.memoryAlloc[binToDec(offsetValue)];
+            machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)] = getFromMemory(binToDec(offsetValue));
             machine->c.registers[binToDec(machine->c.decodedInstruction->Rn)] = newAddress;
         }
     } else {
@@ -277,7 +289,7 @@ void execute_SDT(MACHINE *machine) {
         } else {
             //first loads from the address held in Rn
             machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)] =
-              machine->mem.memoryAlloc[binToDec(machine->c.decodedInstruction->Rn)];
+              getFromMemory(binToDec(machine->c.decodedInstruction->Rn));
             //changes the value of Rn by offset
             machine->c.registers[binToDec(machine->c.decodedInstruction->Rn)] = newAddress;
         }
