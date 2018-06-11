@@ -155,7 +155,7 @@ uint32_t shiftReg(uint32_t operand, MACHINE *machine) { //blanca should check th
                 mask2 = (machine->c.registers[binToDec(machine->c.decodedInstruction->Rm)] & mask) << 29; //takes the bit we need (for setting C in CPSR) and shifts it to its correct position in CPSR
                 machine->c.registers[CPSR] |= mask2; //ors, to set the CPSR C bit
             }
-            (machine->c.registers[binToDec(machine->c.decodedInstruction->Rm)]) <<= amount; //shifts
+            (machine->c.registers[(machine->c.decodedInstruction->Rm)]) <<= amount; //shifts
             break;
         case 01: //logical shift right
             machine->c.decodedInstruction->shift = LSR;//sets the type of switch
@@ -236,23 +236,46 @@ int binToDec(int n) //checked
 }
 
 
-uint32_t getFromMemory(int address, MACHINE *machine) {
-  uin32_t value = 0;
-  for (int i = 0; i < 4; i++) {
-    value |= machine->mem.memoryAlloc[address] & (0xFF000000 >> (i*8)) << i*8;
+uint32_t getFromMemory(uint32_t address, MACHINE *machine) {
+  int addr = (int) address/4;
+  uint32_t value = 0;
+  switch (address % 4) {
+    case 0:
+      value = machine->mem.memoryAlloc[addr];
+      break;
+    case 1:
+      value = (machine->mem.memoryAlloc[addr] & 0xFFFFFF00) >> 8;
+      value |= (machine->mem.memoryAlloc[addr+1] & 0x00FF) << 24;
+      break;
+    case 2:
+      value = (machine->mem.memoryAlloc[addr] & 0xFFFF0000) >> 16;
+      value |= (machine->mem.memoryAlloc[addr+1] & 0x0000FFFF) << 16;
+      break;
+    case 3:
+      value = (machine->mem.memoryAlloc[addr] & 0xFF000000) >> 24;
+      value |= (machine->mem.memoryAlloc[addr+1] & 0x00FFFFFF) <<8;
+      break;
+    default:
+    break;
   }
   return value;
 }
 
-void setMemory(int address, uin32_t value);
+void setMemory(int address, uint32_t value, MACHINE *machine) {
+  for (int i = 0; i < 4; i++) {
+    machine->mem.memoryAlloc[address/4] & (0xFF000000 >> (i*8)) << i*8;
+  }
+}
 
 
 void execute_SDT(MACHINE *machine) {
     //we must ensure that if Rn is the PC it contains the instruction's address +8 bits bc of the pipeline
-    if ((machine->c.decodedInstruction->Rn == PC) && (machine->c.decodedInstruction->binary) != machine->c.registers[PC] - 8 ){
+    if ((machine->c.decodedInstruction->Rn == PC) && (machine->c.decodedInstruction->binary) !=
+     machine->mem.memoryAlloc[(machine->c.registers[PC] - 1)]){
         fprintf(stderr, "PC doesn't contain the correct instructions");
         exit(EXIT_FAILURE);
     }
+    machine->c.registers[PC] = (machine->c.registers[PC]+1)*4;
     int32_t offsetValue; //declaring the value of the offset
     if (machine->c.decodedInstruction->I) { //if I set then the offset is a shifted reg
         //taking the bin code of the register (NOT ITS VALUE)
@@ -269,32 +292,38 @@ void execute_SDT(MACHINE *machine) {
     uint32_t newAddress; //address where to store/load the value
     if (machine->c.decodedInstruction->U) { //U set then the values of base
                                             //register and offset are added
-        newAddress = machine->c.registers[binToDec(machine->c.decodedInstruction->Rn)] +
+        newAddress = machine->c.registers[(machine->c.decodedInstruction->Rn)] +
                      offsetValue;
     } else { //subtraction
-        newAddress = machine->c.registers[binToDec(machine->c.decodedInstruction->Rn)] -
+        newAddress = machine->c.registers[(machine->c.decodedInstruction->Rn)] -
                      offsetValue;
     }
-    if (machine->c.decodedInstruction->L) { //L set the load, otherwise store
-        if (machine->c.decodedInstruction->P) { // P set then pre-indexing
-            //stores the value of mem[address] in Rd
-            machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)] = getFromMemory(binToDec(newAddress));
-        } else { //Post-indexing (after transferring the data)
-            machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)] = getFromMemory(binToDec(offsetValue));
-            machine->c.registers[binToDec(machine->c.decodedInstruction->Rn)] = newAddress;
-        }
+    if(newAddress >= 65536){
+      printf("Error: Out of bounds memory access at address 0x%08x\n", newAddress);
     } else {
-        if (machine->c.decodedInstruction->P) {
-            machine->mem.memoryAlloc[binToDec(newAddress)] = machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)];
-        } else {
-            //first loads from the address held in Rn
-            machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)] =
-              getFromMemory(binToDec(machine->c.decodedInstruction->Rn));
-            //changes the value of Rn by offset
-            machine->c.registers[binToDec(machine->c.decodedInstruction->Rn)] = newAddress;
-        }
+      if (machine->c.decodedInstruction->L) { //L set the load, otherwise store
+          if (machine->c.decodedInstruction->P) { // P set then pre-indexing
+              //stores the value of mem[address] in Rd
+              machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)] = getFromMemory(newAddress, machine);
+          } else { //Post-indexing (after transferring the data)
+              machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)] = getFromMemory(offsetValue, machine);
+              machine->c.registers[binToDec(machine->c.decodedInstruction->Rn)] = newAddress;
+          }
+      } else {
+          if (machine->c.decodedInstruction->P) {
+              machine->mem.memoryAlloc[newAddress/4] =
+                      machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)];
+          } else {
+              //first loads from the address held in Rn
+                machine->mem.memoryAlloc[machine->c.registers[(machine->c.decodedInstruction->Rn)]/4] =
+                    machine->c.registers[(machine->c.decodedInstruction->Rd)]; // , machine);
+              //changes the value of Rn by offset
+              machine->c.registers[machine->c.decodedInstruction->Rn] = newAddress;
+          }
 
+      }
     }
+    machine->c.registers[PC] = (machine->c.registers[PC]/4)-1;
 
 }
 

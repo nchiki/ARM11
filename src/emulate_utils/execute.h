@@ -28,6 +28,10 @@ uint32_t rotate(uint32_t , int);
 
 int binToDec(int);
 
+uint32_t getFromMemory(uint32_t, MACHINE*);
+
+void setMemory(int, uint32_t, MACHINE*);
+
 void execute_SDT(MACHINE*);
 
 void execute_DPI(MACHINE*);
