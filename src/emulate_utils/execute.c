@@ -262,8 +262,32 @@ uint32_t getFromMemory(uint32_t address, MACHINE *machine) {
 }
 
 void setMemory(int address, uint32_t value, MACHINE *machine) {
-  for (int i = 0; i < 4; i++) {
-    machine->mem.memoryAlloc[address/4] & (0xFF000000 >> (i*8)) << i*8;
+int addr = (int) address/4;
+//maybe swapping the value before?
+  switch (address % 4) {
+    case 0:
+      machine->mem.memoryAlloc[addr] = value;
+      break;
+    case 1:
+        (machine->mem.memoryAlloc[addr]) &= 0x000000FF);
+        (machine->mem.memoryAlloc[addr]) |= (value & 0xFFFFFF00);
+        (machine->mem.memoryAlloc[addr+1]) &= 0x00;
+        (machine->mem.memoryAlloc[addr+1]) |= (value & 0xFF)
+      break;
+    case 2:
+        (machine->mem.memoryAlloc[addr]) &= 0x0000FFFF);
+        (machine->mem.memoryAlloc[addr]) |= (value & 0xFFFF00);
+        (machine->mem.memoryAlloc[addr+1]) &= 0x0000;
+        (machine->mem.memoryAlloc[addr+1]) |= (value & 0xFFFF)
+      break;
+    case 3:
+        (machine->mem.memoryAlloc[addr]) &= 0x00FFFFFF);
+        (machine->mem.memoryAlloc[addr]) |= (value & 0xFF000000);
+        (machine->mem.memoryAlloc[addr+1]) &= 0x000000;
+        (machine->mem.memoryAlloc[addr+1]) |= (value & 0xFFFFFF)
+      break;
+    default:
+    break;
   }
 }
 
@@ -298,7 +322,7 @@ void execute_SDT(MACHINE *machine) {
         newAddress = machine->c.registers[(machine->c.decodedInstruction->Rn)] -
                      offsetValue;
     }
-    if(newAddress >= 65536){
+    if(newAddress >= 65536){ // out of bounds memory
       printf("Error: Out of bounds memory access at address 0x%08x\n", newAddress);
     } else {
       if (machine->c.decodedInstruction->L) { //L set the load, otherwise store
