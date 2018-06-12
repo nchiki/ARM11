@@ -126,17 +126,26 @@ void printBitsofMem(uint32_t memAlloc) { //checked
 
 //checks for negative value and turns offset into positive binary
 uint32_t signedtwos_to_unsigned(int32_t signednum){ //checked
+    uint32_t  signednumAbs = (~signednum) + 1;
     if(signednum >> 31){
-        signednum = (~signednum) + 1;
-        signednum *= -1;
+        signednumAbs *= -1;
     }
-    return (uint32_t) signednum;
+    return signednumAbs;
+}
+
+uint32_t signedtwos_to_int(int32_t signednum){ //checked
+    int32_t  signednumAbs = (~signednum) + 1;
+    if(signednum >> 31){
+        signednumAbs *= -1;
+    }
+    return signednumAbs;
 }
 
 void execute_branch(MACHINE *machine){ //checked
     machine->c.instructionIsFetched = false; //ignoring last instruction;
-    int32_t offset = (machine->c.decodedInstruction->offset)/4 - 1;
-    machine->c.registers[PC] += signedtwos_to_unsigned(offset);
+    int32_t offset = (machine->c.decodedInstruction->offset);  // /4 - 1;
+    int offsetValue = (int)(signedtwos_to_int(offset));
+    machine->c.registers[PC] += (offsetValue)/4;
 }
 //need commenting ----------------------------------
 // operand are the 12 last bits of the instruction (although it is passed as an uin32_t)
@@ -272,19 +281,19 @@ int addr = (int) address/4;
     case 1:
         (machine->mem.memoryAlloc[addr]) &= 0x000000FF;
         (machine->mem.memoryAlloc[addr]) |= ((value <<8) & 0xFFFFFF00);
-        (machine->mem.memoryAlloc[addr+1]) &= 0x00;
+        (machine->mem.memoryAlloc[addr+1]) &= 0xFFFFFF00;
         (machine->mem.memoryAlloc[addr+1]) |= ((value>>24) & 0xFF);
       break;
     case 2:
         (machine->mem.memoryAlloc[addr]) &= 0x0000FFFF;
         (machine->mem.memoryAlloc[addr]) |= ((value<<16) & 0xFFFF00);
-        (machine->mem.memoryAlloc[addr+1]) &= 0x0000;
+        (machine->mem.memoryAlloc[addr+1]) &= 0xFFFF0000;
         (machine->mem.memoryAlloc[addr+1]) |= ((value>>16) & 0xFFFF);
       break;
     case 3:
         (machine->mem.memoryAlloc[addr]) &= 0x00FFFFFF;
         (machine->mem.memoryAlloc[addr]) |= ((value<<24) & 0xFF000000);
-        (machine->mem.memoryAlloc[addr+1]) &= 0x000000;
+        (machine->mem.memoryAlloc[addr+1]) &= 0xFF000000;
         (machine->mem.memoryAlloc[addr+1]) |= ((value>>8) & 0xFFFFFF);
       break;
     default:
@@ -419,6 +428,8 @@ void execute_DPI(MACHINE *machine){
         // if result is all zeros, Z bit will be set
         if(result == 0){
             machine->c.registers[CPSR] |= Z_MASK_32;
+        } else {
+          machine->c.registers[CPSR] &= 0xBFFFFFFF;
         }
         // N bit will be set to bit 31 of result
 
