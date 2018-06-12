@@ -1,3 +1,5 @@
+
+
 #include "emulate_utils/binaryloader.h"
 #include "emulate_utils/execute.h"
 #include <string.h>
@@ -177,7 +179,7 @@ int main(int argc, char **argv) {
       execute(machine);
       }
 
-      
+
       //decode
       *(machine->c.decodedInstruction) = NullInstruction;
       if(machine->c.instructionIsFetched){ //check if the instruction has to be decoded

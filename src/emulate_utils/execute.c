@@ -94,11 +94,7 @@ void execute_Halt(MACHINE *machine){ //not 100% sure
     // exitProgr(machine);
 }
 
-void execute_branch(MACHINE *machine){ //checked
-    machine->c.instructionIsFetched = false; //ignoring last instruction;
-    int32_t offset = machine->c.decodedInstruction->offset;
-    machine->c.registers[PC] += signedtwos_to_unsigned(offset);
-}
+
 
 //prints bit sequence of register
 void printBitsofReg(int32_t reg, bool isPC, bool isCPSR) { //checked
@@ -135,6 +131,12 @@ uint32_t signedtwos_to_unsigned(int32_t signednum){ //checked
         signednum *= -1;
     }
     return (uint32_t) signednum;
+}
+
+void execute_branch(MACHINE *machine){ //checked
+    machine->c.instructionIsFetched = false; //ignoring last instruction;
+    int32_t offset = (machine->c.decodedInstruction->offset)/4 - 1;
+    machine->c.registers[PC] += signedtwos_to_unsigned(offset);
 }
 //need commenting ----------------------------------
 // operand are the 12 last bits of the instruction (although it is passed as an uin32_t)
@@ -263,28 +265,27 @@ uint32_t getFromMemory(uint32_t address, MACHINE *machine) {
 
 void setMemory(int address, uint32_t value, MACHINE *machine) {
 int addr = (int) address/4;
-//maybe swapping the value before?
   switch (address % 4) {
     case 0:
       machine->mem.memoryAlloc[addr] = value;
       break;
     case 1:
-        (machine->mem.memoryAlloc[addr]) &= 0x000000FF);
-        (machine->mem.memoryAlloc[addr]) |= (value & 0xFFFFFF00);
+        (machine->mem.memoryAlloc[addr]) &= 0x000000FF;
+        (machine->mem.memoryAlloc[addr]) |= ((value <<8) & 0xFFFFFF00);
         (machine->mem.memoryAlloc[addr+1]) &= 0x00;
-        (machine->mem.memoryAlloc[addr+1]) |= (value & 0xFF)
+        (machine->mem.memoryAlloc[addr+1]) |= ((value>>24) & 0xFF);
       break;
     case 2:
-        (machine->mem.memoryAlloc[addr]) &= 0x0000FFFF);
-        (machine->mem.memoryAlloc[addr]) |= (value & 0xFFFF00);
+        (machine->mem.memoryAlloc[addr]) &= 0x0000FFFF;
+        (machine->mem.memoryAlloc[addr]) |= ((value<<16) & 0xFFFF00);
         (machine->mem.memoryAlloc[addr+1]) &= 0x0000;
-        (machine->mem.memoryAlloc[addr+1]) |= (value & 0xFFFF)
+        (machine->mem.memoryAlloc[addr+1]) |= ((value>>16) & 0xFFFF);
       break;
     case 3:
-        (machine->mem.memoryAlloc[addr]) &= 0x00FFFFFF);
-        (machine->mem.memoryAlloc[addr]) |= (value & 0xFF000000);
+        (machine->mem.memoryAlloc[addr]) &= 0x00FFFFFF;
+        (machine->mem.memoryAlloc[addr]) |= ((value<<24) & 0xFF000000);
         (machine->mem.memoryAlloc[addr+1]) &= 0x000000;
-        (machine->mem.memoryAlloc[addr+1]) |= (value & 0xFFFFFF)
+        (machine->mem.memoryAlloc[addr+1]) |= ((value>>8) & 0xFFFFFF);
       break;
     default:
     break;
@@ -335,12 +336,11 @@ void execute_SDT(MACHINE *machine) {
           }
       } else {
           if (machine->c.decodedInstruction->P) {
-              machine->mem.memoryAlloc[newAddress/4] =
-                      machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)];
+              setMemory(newAddress, machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)], machine);
           } else {
               //first loads from the address held in Rn
-                machine->mem.memoryAlloc[machine->c.registers[(machine->c.decodedInstruction->Rn)]/4] =
-                    machine->c.registers[(machine->c.decodedInstruction->Rd)]; // , machine);
+              setMemory(machine->c.registers[(machine->c.decodedInstruction->Rn)],
+                 machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)], machine);
               //changes the value of Rn by offset
               machine->c.registers[machine->c.decodedInstruction->Rn] = newAddress;
           }
@@ -421,6 +421,7 @@ void execute_DPI(MACHINE *machine){
             machine->c.registers[CPSR] |= Z_MASK_32;
         }
         // N bit will be set to bit 31 of result
+
         machine->c.registers[CPSR] &= 0x7fffffff;
         machine->c.registers[CPSR] |= ((result >> 31) * N_MASK) << 28;
 
