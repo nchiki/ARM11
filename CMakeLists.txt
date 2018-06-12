@@ -38,4 +38,10 @@ add_executable(arm11_28
         src/assemble_utils/branch.h
         src/assemble_utils/DataProc.h
         src/emulate_utils/instruction_basic.h
-        src/usefulTools.h)
+        src/usefulTools.h
+        extension/cell.c
+        extension/cell.h
+        extension/game.c
+        extension/game.h
+        extension/grid.c
+        extension/grid.h)

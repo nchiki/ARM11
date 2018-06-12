@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "grid.h"
 #include "cell.h"
 
@@ -29,7 +30,7 @@ cell **setupGrid(int width, int height) {
     return matrix;
 }
 
-void freeMatrix(double **matrix) {
+void freeMatrix(cell **matrix) {
     free(matrix[0]);
     free(matrix);
 }
@@ -37,12 +38,12 @@ void freeMatrix(double **matrix) {
 void evolve(screen grid, int width, int height) {
     for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
-            evaluateCell(grid, i, j);
+            evaluateCell(grid, i, j, width, height);
         }
     }
 }
 
-void evaluateCell(screen grid, int x, int y) {
+void evaluateCell(screen grid, int x, int y, int width, int height) {
     //Count number of neighbours
     int neighbours = 0;
 
@@ -50,9 +51,11 @@ void evaluateCell(screen grid, int x, int y) {
     for (int i = -1; i <= 1; i++) {
         for (int j = -1; j <= 1; j++) {
             //If not this cell
-            if (!(i == 0 && j == 0)) {
-                if (grid.board[x + i][y + j] == ON) {
-                    neighbours += 1;
+            if (!((x + i) < 0 || (x + i) >= width || (y + j) < 0 || (y + j) >= height)){
+                if (!(i == 0 && j == 0)) {
+                    if (grid.board[x + i][y + j].s == ON) {
+                        neighbours += 1;
+                    }
                 }
             }
         }
