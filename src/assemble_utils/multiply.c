@@ -1,7 +1,7 @@
 #include "instruction_defs.h"
 #include "assemblerImplementation.h"
 #include "registers.h"
-
+#include "multiply.h"
 
  uint32_t *multiply(instruction instr){
 
