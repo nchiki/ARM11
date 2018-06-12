@@ -8,7 +8,7 @@
 #include "assemblerImplementation.h"
 #include "instruction_defs.h"
 
-uint32_t* branch(struct instruction instruction) {
+uint32_t* branch(instruction instruction) {
    /* BranchInstr_t branchInstr;
     char *cond = instruction.opcode + 1; //it takes rid of the initial "b" of the mnemonic
     //compares the condition part of the instruction's mnemonic to the different conditions and 
@@ -84,7 +84,7 @@ uint32_t* branch(struct instruction instruction) {
     } else {
         *returnValue = offset;
     }
-    *returnValue |= ((cond_code << 24);
+    *returnValue |= ((cond_code << 24));
     return returnValue;
 
 }

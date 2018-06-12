@@ -1,4 +1,6 @@
 #ifndef ARM11_28_SDT_H
 #define ARM11_28_SDT_H
-uint32_t *SDTassembling(struct instruction instruction);
+
+#include "assemblerImplementation.h"
+uint32_t *SDTassembling(instruction);
 #endif //ARM11_28_SDT_H

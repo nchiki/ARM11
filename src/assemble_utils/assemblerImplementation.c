@@ -87,8 +87,8 @@ uint32_t parse(char *line) {
     }
 }
 
-struct instruction decode(char** line, uint16_t memoryAddr) {
-    struct instruction instr;
+ instruction decode(char** line, uint16_t memoryAddr) {
+    instruction instr;
     instr.opcode  = line[0];
     instr.memoryAddr = memoryAddr;
 
@@ -170,7 +170,7 @@ int countLines (FILE* input) {
     return returnVal;
 }
 
-void setInstNull(struct instruction inst) {
+void setInstNull(instruction inst) {
     inst.opcode = NULL;
     inst.Rd = NULL;
     inst.Rn = NULL;

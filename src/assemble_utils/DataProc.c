@@ -42,7 +42,7 @@ DataProcInstr_t *dataProc(struct instruction instr){
 
 // rewrite
 
-uint32* dataProcessing (struct instruction inst) {
+uint32_t* dataProcessing (instruction inst) {
     uint8_t opcode;
     bool flag = 0 ;
     uint8_t cond = 14;

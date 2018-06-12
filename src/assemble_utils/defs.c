@@ -62,7 +62,7 @@ char **tokenizeHelper(char *line) {
 }
 
 
-uint32_t *distinguish(struct instruction inst) {
+uint32_t *distinguish(instruction inst) {
     uint32_t *returnVal = NULL;
 
     switch(inst.type) {

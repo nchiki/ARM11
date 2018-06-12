@@ -3,7 +3,7 @@
 #include "instruction_defs.h"
 #include "registers.h"
 
-uint32_t *SDTassembling(struct instruction instruction){
+uint32_t *SDTassembling(instruction instruction){
   SDTinstr_t SDTinstr;
   SDTinstr.cond = AL;
 if (!strcmp(instruction.opcode, "ldr")) {

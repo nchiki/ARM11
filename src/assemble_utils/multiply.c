@@ -3,7 +3,7 @@
 #include "registers.h"
 
 
- uint32_t *multiply(struct instruction instr){
+ uint32_t *multiply(instruction instr){
 
     MultiplyInstr_t mult;
 

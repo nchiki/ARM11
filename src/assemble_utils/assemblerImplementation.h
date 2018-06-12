@@ -41,7 +41,7 @@ typedef enum {
 }instrType ;
 
 // there should be an enum for instrtype
- struct instruction{
+ typedef struct {
     char *opcode;
     instrType type;
 
@@ -56,10 +56,10 @@ typedef enum {
     char *expression;
 
     uint16_t memoryAddr;
-};
+}instruction;
 
 int countLines(FILE*);
-struct instruction decode(char**, uint16_t);
+instruction decode(char**, uint16_t);
 
 struct symbol *symbolTableHead;
 void initSymbolTable(void);
@@ -73,6 +73,6 @@ void clearSymbolTable();
 bool containsLabel(char*);
 uint32_t parse(char*);
 
-void setInstNull (struct instruction);
+void setInstNull (instruction);
 
 #endif //ARM11_28_ASSEMBLERIMPLEMENTATION_H

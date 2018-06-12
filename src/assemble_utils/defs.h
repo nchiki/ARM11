@@ -43,7 +43,7 @@ typedef enum {
 
 char **tokenizeHelper(char*);
 
-uint32_t *distinguish(struct instruction);
+uint32_t *distinguish(instruction);
 
 
 uint16_t convertToWriteableFormat(char*);

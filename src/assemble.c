@@ -4,6 +4,7 @@
 #include "memoryImplementation.h"
 #include "emulate_utils/instruction_basic.h"
 #include "assemble_utils/assemblerImplementation.h"
+#include "assemble_utils/defs.h"
 
 int main(int argc, char **argv) {
 
@@ -27,7 +28,7 @@ int main(int argc, char **argv) {
     }
 
     const int numLines = countLines(input);
-    struct instruction instArr[20];
+    instruction instArr[20];
     // counting the lines was useless, i get a "type of formal parameter was incomplete when calling distinguish
     // so im just going to have to hope whichever file they provide has fewer lines than 20
     // so zeroth pass is basically useless
@@ -74,10 +75,12 @@ int main(int argc, char **argv) {
     // second pass
 
     for ( int i = 0 ; i < address; ++i ) {
-        struct instruction inst;
-        if (inst = instArr[i]) {
-            fwrite(distinguish(inst),1,sizeof(uint32_t),output);
-        }
+        instruction inst;
+        inst = instArr[i];
+        //fwrite(distinguish(inst),1,sizeof(uint32_t),output);
+        uint32_t *writeVal = distinguish(inst);
+        fwrite(writeVal,1,sizeof(uint32_t),output);
+
 
     }
 
