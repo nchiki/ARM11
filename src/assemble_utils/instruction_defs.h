@@ -35,6 +35,7 @@ typedef struct {
     char P;
     char U;
     char L;
+    char I;
     uint8_t Rn;
     uint8_t Rd;
     uint16_t offset;

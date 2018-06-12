@@ -75,4 +75,6 @@ uint32_t parse(char*);
 
 void setInstNull (instruction);
 
+int numberOfLinesInSource;
+
 #endif //ARM11_28_ASSEMBLERIMPLEMENTATION_H

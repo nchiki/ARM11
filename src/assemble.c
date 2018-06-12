@@ -28,6 +28,7 @@ int main(int argc, char **argv) {
     }
 
     const int numLines = countLines(input);
+    numberOfLinesInSource = numLines;
     instruction instArr[20];
     // counting the lines was useless, i get a "type of formal parameter was incomplete when calling distinguish
     // so im just going to have to hope whichever file they provide has fewer lines than 20
