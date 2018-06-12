@@ -67,8 +67,7 @@ int main(int argc, char **argv) {
 
     FILE *output;
 
-    if ((outp
-        ut = fopen(argv[2],"wb"))==NULL) {
+    if ((output = fopen(argv[2],"wb"))==NULL) {
         printf("Could not open output file");
         exit(-1);
     }
