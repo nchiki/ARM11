@@ -49,7 +49,7 @@ uint32_t getOp2(int32_t);
 
 int32_t convertToWriteableFormat(char*);
 
-uint32_t *lsl(instruction);
+uint32_t *lslFunc(instruction);
 
 bool checkIfImmediate(char*);
 

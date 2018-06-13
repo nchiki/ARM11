@@ -38,32 +38,61 @@ MNEMONIC takeMnemonic(char *word) {
 
 
 char **tokenizeHelper(char *line) {
+    char *tempLine;
+    char *tempLine2 = NULL;
 
-    char new_line[MAX_LINE_SIZE];
-    char *tokenized[10];
-    // 10 is just a random number, but each instruction definitely has less than 10 arguments.
-    // if theres only 2 arguments, the rest of them will be set to null so it wont be a problem
-    // only have to check for null when we're using the sentence in decode (presumably)
+    char newline[MAX_LINE_SIZE];
+    char **tokenized = malloc(sizeof(char*)*10);
+    // 10 is just a placeholder, should probably improve it
+
     int i = 0;
-
-    strcpy(new_line, line); /* can't use strtok on string literal */
-    //IMPORTANT---------------------------------------------------
-    // needed a flag for the pre/post indexing in sdt (PFlag?)
-    //look at sdt.c, PFlag in instruction would have to be set if the address
-    //is of the form [Rn, <#expression>] instead of [Rn], <#expression>
-
-    tokenized[i] = strtok(new_line, " ");
-    while (tokenized[i] != NULL ) {
-        i++;
-        tokenized[i] = strtok(NULL, ",\n");
+    if (line[0] == ' ') {
+        strcpy(newline,line+1);
+    } else {
+        strcpy(newline,line);
     }
 
+    if (line[strlen(line)-1] == '\n') {
+        line[strlen(line)-1] = '\0';
+    }
+
+    strcpy(newline,line);
+
+    if(strchr(line,'[') != NULL) {
+        tempLine = strtok(newline,"[");
+        tempLine2 = strtok(NULL,"[");
+    } else {
+        tempLine = newline;
+    }
+    tempLine = strtok(tempLine, ", ");
+
+    while(tempLine) {
+        tokenized[i] = tempLine;
+        i++;
+        tempLine = strtok(NULL, ", ");
+    }
+
+    if ( tempLine2 != NULL && i < 10) {
+        tokenized[i] = tempLine2;
+        i++;
+    }
+
+    while ( i < 10 ) {
+        tokenized[i] = "";
+        i++;
+    }
+
+    for ( int i = 0 ; i < 10 ; ++i ) {
+        if (tokenized[i][0] == ' ') {
+
+        }
+    }
     return tokenized;
 }
 
 
 uint32_t *distinguish(instruction inst) {
-    uint32_t *returnVal = NULL;
+    uint32_t *returnVal;
 
     switch(inst.type) {
         case DATA_PROCESSING:
@@ -72,50 +101,55 @@ uint32_t *distinguish(instruction inst) {
         case MULTIPLY:
             returnVal = multiply(inst);
             break;
-
-        // HOW DO I HANDLE LSL FOR GODS SAKE WHY DOES IT SAY DUPLICATE CASE VALUE
-        case LsL:
-            // call to function, where will you convert to uint32?
-            break;
-
         case SINGLE_DATA_TRANSFER:
             returnVal = SDTassembling(inst);
             break;
+
         case BRANCH:
             returnVal = branch(inst);
             // call to function like this: branch(inst, symbolTable), branch hasnt implemented that
             break;
+
+        case LsL:
+            returnVal = lslFunc(inst);
+            break;
+
+
         case ANDEQ:
+            returnVal = calloc(1,sizeof(uint32_t));
             returnVal = 0;
             break;
     }
 
     return returnVal; 
 
-}
+} // fixed 
 
 
 
 // the idea here is to be able to make a switch function which takes the mnemonic
 // and returns, using the defs in usefulTools, the code of both the condition and the opcodes
 
-int32_t convertToWriteableFormat(char* givenStr) {
-    uint16_t returnVal = 0 ;
-
+int32_t convertToWriteableFormat(char *givenStr) {
+    int32_t returnVal = 0;
+    int32_t temp = 1;
     switch(givenStr[0]) {
-        case 'r' :
-            // if its a register
-            returnVal = textToInt(givenStr);
-            break;
+        case 'r' : returnVal = atoi(givenStr+1); break;
         case '#' :
-            // this is where we convert Immediates to text
-            break;
         case '=' :
-            returnVal = textToInt(givenStr);
+            if (givenStr[1] == '-') {
+                temp = 2;
+            }
+            if (givenStr[temp] == '0' && givenStr[temp+1] == 'x') {
+                returnVal = (int32_t)strtol(givenStr+1,NULL,0);
+            } else {
+                returnVal = atoi(givenStr+1);
+            }
             break;
     }
+
     return returnVal;
-} // check
+} // fixed
 
 uint16_t textToInt(char *givenStr) {
     // the first character of giveStr will definitely be # = or r
@@ -140,9 +174,9 @@ uint32_t getOp2 (int32_t op2) {
 
     shiftVal = (32-shiftVal)/2;
     return (shiftVal << 8)/2;
-}
+} // fixed
 
-uint32_t *lsl(instruction inst) {
+uint32_t *lslFunc(instruction inst) {
     uint32_t *returnValue = calloc(1,sizeof(uint32_t));
     uint8_t condition = 14;
     uint8_t opcode = 13;
@@ -152,7 +186,7 @@ uint32_t *lsl(instruction inst) {
     uint32_t shiftVal = convertToWriteableFormat(inst.expression);
     uint8_t S = 0;
 
-    *returnValue = ((cond << 28) | opcode << 21 | S << 20 | Rn << 12 | (shiftVal << 7) | Rn );
+    *returnValue = ((condition << 28) | opcode << 21 | S << 20 | Rn << 12 | (shiftVal << 7) | Rn );
 
     return returnValue;
 
@@ -165,7 +199,7 @@ bool checkIfImmediate(char *given) {
         case '=' : return true;
     }
     return false;
-}
+} // fixed
 
 
 uint32_t shiftOperand (char *base, char *shiftT, char *shiftA) {
@@ -191,6 +225,7 @@ uint32_t shiftOperand (char *base, char *shiftT, char *shiftA) {
         shiftAmount = 8;
     }
 
-    returnVal = convertToWriteableFormat(shiftA) << shiftAmount | shiftC << 5 | (shiftAmount==8) << 4 | baseVal);
+    returnVal = convertToWriteableFormat(shiftA) << shiftAmount | shiftC << 5 | (shiftAmount==8) << 4 | baseVal;
 
+    return returnVal;
 } // fixed

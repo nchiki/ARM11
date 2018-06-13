@@ -51,7 +51,7 @@ uint32_t* dataProcessing (instruction inst) {
     bool flag2 = 1;
 
     if (inst.operand2[0] == 'r') {
-        I = 0;
+        flag2 = 0;
     } else if ( offset > 0xFF ) {
         offset = getOp2(offset);
     }

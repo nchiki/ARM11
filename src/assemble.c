@@ -29,16 +29,8 @@ int main(int argc, char **argv) {
 
     const int numLines = countLines(input);
     numberOfLinesInSource = numLines;
-    instruction instArr[20];
-    // counting the lines was useless, i get a "type of formal parameter was incomplete when calling distinguish
-    // so im just going to have to hope whichever file they provide has fewer lines than 20
-    // so zeroth pass is basically useless
+    instruction *instArr = calloc(numLines,sizeof(instruction));
 
-
-    // i'll have to count the number of lines, so zeroth pass?
-    for ( int i = 0 ; i < 20 ; ++i ) {
-        setInstNull(instArr[i]);
-    }
 
     initSymbolTable();
     uint32_t *valueToBeWritten = NULL;
@@ -51,8 +43,11 @@ int main(int argc, char **argv) {
         // otherwise send it to decode;
 
         if (tokenizedLine[0][strlen(tokenizedLine[0])-1] == ':') {
-            if (containsLabel(tokenizedLine[0])==0) {
-                addLabel(tokenizedLine[0],address);
+            char *label = malloc(sizeof(tokenizedLine[0]));
+            strcpy(label,tokenizedLine[0]);
+            label[strlen(label)-1] = 0;
+            if (containsLabel(label)==0) {
+                addLabel(label,address);
             }
         } else {
 
@@ -60,6 +55,7 @@ int main(int argc, char **argv) {
             instArr[address] = decode(tokenizedLine,address*4);
             // parameter mismatch?
             address+=1;
+
         }
     }
 
@@ -75,18 +71,15 @@ int main(int argc, char **argv) {
 
     // second pass
 
-    for ( int i = 0 ; i < address; ++i ) {
-        instruction inst;
-        inst = instArr[i];
-        //fwrite(distinguish(inst),1,sizeof(uint32_t),output);
-        uint32_t *writeVal = distinguish(inst);
-        fwrite(writeVal,1,sizeof(uint32_t),output);
-
-
+    for ( int i = 0; i < address; ++i) {
+        uint32_t *writeValue = distinguish(instArr[i]);
+        if (*writeValue != 0 || (*writeValue == 00 && !strcmp(instArr[i].opcode,"andeq"))) {
+            fwrite(writeValue,1, sizeof(uint32_t),output);
+        }
     }
 
 
 
-
+   return EXIT_SUCCESS;
 
 }

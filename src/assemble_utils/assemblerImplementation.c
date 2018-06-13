@@ -87,10 +87,11 @@ uint32_t parse(char *line) {
     }
 }
 
- instruction decode(char** line, uint16_t memoryAddr) {
-    instruction instr;
-    instr.opcode  = line[0];
-    instr.memoryAddr = memoryAddr;
+ instruction *decode(char** line, uint16_t memoryAddr) {
+    instruction *instr = malloc(sizeof(instruction));
+
+    instr->opcode  = line[0];
+    instr->memoryAddr = memoryAddr;
 
     for ( int i = 0 ; i < 4 ; ++i ) {
         //char *codes = ;
@@ -98,7 +99,7 @@ uint32_t parse(char *line) {
 
         for (int j = 0 ; j < len; ++j) {
             if (!strcmp(Opcodes[i][j],line[0])) {
-                instr.type = i;
+                instr->type = i;
                 break;
             }
 
@@ -106,58 +107,55 @@ uint32_t parse(char *line) {
 
     }
 
-    switch(instr.type) {
+    switch(instr->type) {
         case DATA_PROCESSING:
             if (!strcmp(line[0], "mov")) {
-                instr.Rd = line[1];
-                instr.operand2 = line[2];
+                instr->Rd = line[1];
+                instr->Rn = "#0";
+                instr->operand2 = line[2];
             } else if (!strcmp(line[0],"tst") || !strcmp(line[0],"teq") || !strcmp(line[0],"cmp")) {
-                instr.Rn = line[1];
-                instr.operand2 = line[2];
+                instr->Rd = "#0";
+                instr->Rn = line[1];
+                instr->operand2 = line[2];
             } else {
-                instr.Rd = line[1];
-                instr.Rn = line[2];
-                instr.operand2 = line[3];
+                instr->Rd = line[1];
+                instr->Rn = line[2];
+                instr->operand2 = line[3];
             }
             break;
 
         case MULTIPLY:
-            instr.Rd = line[1];
-            instr.Rm = line[2];
-            instr.Rs = line[3];
+            instr->Rd = line[1];
+            instr->Rm = line[2];
+            instr->Rs = line[3];
 
             if (!strcmp(line[0],"mla")) {
-                instr.Rn = line[4];
+                instr->Rn = line[4];
             }
 
             break;
         case SINGLE_DATA_TRANSFER:
-            instr.Rd = line[1];
-            instr.address = line[2];
+            instr->Rd = line[1];
+            instr->address = line[2];
             //for cases where there is a complex address;
-            instr.Rn = line[2];
-            if (line[3] != NULL) {
-            instr.expression = line[3];
-          } else {
-            instr.expression = 0;
-          }
+
             break;
             //missing the optional cases
 
         case BRANCH:
-            instr.expression = line[1];
+            instr->expression = line[1];
             break;
 
         case LsL:
-            instr.Rn = line[1];
-            instr.expression = line[2];
+            instr->Rn = line[1];
+            instr->expression = line[2];
             break;
 
         case ANDEQ:
             break;
     }
     return instr;
-}
+} // fixed, maybe temp because no strcmp on **line?
 
 int countLines (FILE* input) {
     int returnVal;
