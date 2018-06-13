@@ -5,6 +5,8 @@
 #include <ncurses.h>
 #include <zconf.h>
 #include <unistd.h>
+#include <memory.h>
+
 
 //Decide defaults
 #define DEFAULT_WIDTH 50
@@ -22,35 +24,42 @@ void printScreen(cell **board, int width, int height){
 }
 
 int main(int argc, char **argv) {
-    int width = DEFAULT_WIDTH;
-    int height = DEFAULT_HEIGHT;
 
-    if (argc == 4) {
-        int width = atoi(argv[2]);
-        int height = atoi(argv[3]);
-    }
+    char size_mat[6];
+
     initscr();
+    (void) echo;
+
+    addstr("Please enter the size of your matrix (height, width)> ");
+    refresh();
+    getnstr(size_mat, sizeof(size_mat)-1);
+
+    int width = atoi(strtok(size_mat,","));
+    int height = atoi(strtok(NULL,"\n"));
+
+
+    clear();
 
     cell** game = {setupGrid(width, height)};
-    flipCell(&game[10][10]);
-    flipCell(&game[10][11]);
-    flipCell(&game[10][12]);
-    flipCell(&game[10][13]);
-    flipCell(&game[10][14]);
-    flipCell(&game[10][15]);
-    flipCell(&game[10][16]);
-    flipCell(&game[10][17]);
-    flipCell(&game[10][18]);
-    flipCell(&game[10][19]);
+    flipCell(&game[5][10]);
+    flipCell(&game[5][11]);
+    flipCell(&game[5][12]);
+    flipCell(&game[5][13]);
+    flipCell(&game[5][14]);
+    flipCell(&game[5][15]);
+    flipCell(&game[5][16]);
+    flipCell(&game[5][17]);
+    flipCell(&game[5][18]);
+    flipCell(&game[5][19]);
 
     printScreen(game, width, height);
     refresh();
     getchar();
 
     while(1) {
-        evolve(game, width, height);
-        printScreen(game, width, height);
-        refresh();
-        usleep(100000);
+            evolve(game, width, height);
+            printScreen(game, width, height);
+            refresh();
+            usleep(100000);
     }
 }
