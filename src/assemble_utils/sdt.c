@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "instruction_defs.h"
-#include "registers.h"
+
 
 uint32_t *SDTassembling(instruction inst){
   /*SDTinstr_t SDTinstr;
@@ -76,7 +76,7 @@ uint32_t *SDTassembling(instruction inst){
               uint32_t progC = inst.memoryAddr  + 8;
               printf("PC is %d\n",progC);
               rn = 15;
-              offset = findConstOffset(progC, value, constTableHead);
+              //offset = findConstOffset(progC, value, constTableHead);
               *returnVal = condition << 28 | 1 << 26 | i_flag << 25 | p_flag << 23 | l_flag << 20 | rn << 16 | rd << 12 | offset;
                 // CHECK LOOK HERE FIX PFLAG
               return returnVal;
@@ -86,7 +86,7 @@ uint32_t *SDTassembling(instruction inst){
       l_flag =0;
   } else {
       printf("error");
-      exit(EXIT_FAILURE);
+      exit(-1);
   }
 
   strcpy(newAdd,address);

@@ -8,7 +8,7 @@
 
 int main(int argc, char **argv) {
 
-    assert(argc == 2 && "Incorrect number of arguments");
+    
 
     char *sourceFile = argv[1];
 
@@ -52,7 +52,7 @@ int main(int argc, char **argv) {
         } else {
 
             // send it to decode
-            instArr[address] = decode(tokenizedLine,address*4);
+            instArr[address] = *decode(tokenizedLine,address*4);
             // parameter mismatch?
             address+=1;
 
