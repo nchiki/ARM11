@@ -29,9 +29,9 @@ struct symbol {
 // all the opcodes, not entirely too sure what to do for the special instructions
 static const char *Opcodes[][10] = {
         {"add", "sub", "rsb", "and", "eor", "orr", "mov", "tst", "teq", "cmp"},
-        {"mul", "mla"},
-        {"ldr", "str"},
-        { "beq", "bne", "bge", "blt", "bgt", "ble", "b"}
+        {"mul", "mla", "\0", "\0", "\0", "\0", "\0", "\0", "\0", "\0"},
+        {"ldr", "str", "\0", "\0", "\0", "\0", "\0", "\0", "\0", "\0"},
+        { "beq", "bne", "bge", "blt", "bgt", "ble", "b", "\0", "\0", "\0"}
 
 };
 
@@ -59,6 +59,7 @@ typedef enum {
 }instruction;
 
 int countLines(FILE*);
+
 instruction *decode(char**, uint16_t);
 
 struct symbol *symbolTableHead;

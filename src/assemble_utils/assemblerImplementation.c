@@ -87,11 +87,20 @@ uint32_t parse(char *line) {
     }
 }
 
- instruction *decode(char** line, uint16_t memoryAddr) {
+instruction *decode(char** given, uint16_t memoryAddr) {
     instruction *instr = malloc(sizeof(instruction));
 
+    char *line[5];
+    for ( int i = 0 ; i < 5 ; ++i ) {
+        line[i] = malloc(strlen(given[i])+1);
+    }
+
+    for ( int i = 0 ; i < 5 ; ++i ) {
+        strcpy(line[i],given[i]);
+    }
     instr->opcode  = line[0];
     instr->memoryAddr = memoryAddr;
+
 
     for ( int i = 0 ; i < 4 ; ++i ) {
         //char *codes = ;
@@ -113,6 +122,9 @@ uint32_t parse(char *line) {
                 instr->Rd = line[1];
                 instr->Rn = "#0";
                 instr->operand2 = line[2];
+                //strcpy(instr->Rd,line[1]);
+                //strcpy(instr->Rn,"#0");
+                //strcpy(instr->operand2,line[2]);
             } else if (!strcmp(line[0],"tst") || !strcmp(line[0],"teq") || !strcmp(line[0],"cmp")) {
                 instr->Rd = "#0";
                 instr->Rn = line[1];
@@ -140,7 +152,7 @@ uint32_t parse(char *line) {
             //for cases where there is a complex address;
 
             break;
-            //missing the optional cases
+
 
         case BRANCH:
             instr->expression = line[1];
@@ -155,7 +167,7 @@ uint32_t parse(char *line) {
             break;
     }
     return instr;
-} // fixed, maybe temp because no strcmp on **line?
+} // fixed
 
 int countLines (FILE* input) {
     int returnVal;
@@ -165,6 +177,7 @@ int countLines (FILE* input) {
     while(fgets(line, sizeof(line),input)) {
         returnVal++;
     }
+    returnVal++;
     return returnVal;
 }
 
