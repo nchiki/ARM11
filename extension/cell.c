@@ -9,5 +9,5 @@ const char *symbol(cell c){
     if (c.s == ON) {
         return "*";
     }
-    return "O";
+    return " ";
 }
