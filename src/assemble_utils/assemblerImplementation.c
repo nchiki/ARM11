@@ -177,7 +177,7 @@ int countLines (FILE* input) {
     while(fgets(line, sizeof(line),input)) {
         returnVal++;
     }
-    returnVal++;
+
     return returnVal;
 }
 

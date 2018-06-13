@@ -57,7 +57,7 @@ uint32_t* dataProcessing (instruction inst) {
     }
 
 
-    uint32_t *instruction = malloc(sizeof(uint32_t));
+    uint32_t *instruction = calloc(1,sizeof(uint32_t));
 
     if (!strcmp(inst.opcode, "and")) {
         opcode = 0 ;
@@ -86,8 +86,8 @@ uint32_t* dataProcessing (instruction inst) {
 
 
 
-    *instruction = (cond << 28 | (flag2 << 25) | (opcode << 21) | (flag << 20) | convertToWriteableFormat(inst.Rn) << 16
-            | (convertToWriteableFormat(inst.Rd) << 12 | convertToWriteableFormat(inst.operand2)));
+    *instruction = (cond << 28 )| (flag2 << 25) | (opcode << 21) | (flag << 20) | convertToWriteableFormat(inst.Rn) << 16
+            | (convertToWriteableFormat(inst.Rd) << 12 | offset);
     return instruction;
 
     // check

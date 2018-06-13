@@ -23,8 +23,12 @@
    mult.S = 0;
    mult.cond = AL;
 
-   uint32_t binary = mult.Rn | 0x0090 | (mult.Rs << 8) |(mult.Rn << 12) | (mult.Rd << 16) | (mult.S << 20) |
-           (mult.A << 21) | 0x00000000 | 0xE0000000;
-   uint32_t *binPtr = &binary;
-   return binPtr;
+   //uint32_t binary = mult.Rn | 0x0090 | (mult.Rs << 8) |(mult.Rn << 12) | (mult.Rd << 16) | (mult.S << 20) |
+//           (mult.A << 21) | 0x00000000 | 0xE0000000;
+
+
+   uint32_t binary =  mult.cond << 28 | mult.A << 21 | mult.S << 20 | mult.Rd << 16 | mult.Rn << 12 | mult.Rs << 8 | 0b1001 << 4 | mult.Rm;
+     uint32_t *binPtr = &binary;
+
+     return binPtr;
 }

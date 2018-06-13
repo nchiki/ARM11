@@ -77,7 +77,7 @@ uint32_t *SDTassembling(instruction inst){
               printf("PC is %d\n",progC);
               rn = 15;
               //offset = findConstOffset(progC, value, constTableHead);
-              *returnVal = condition << 28 | 1 << 26 | i_flag << 25 | p_flag << 23 | l_flag << 20 | rn << 16 | rd << 12 | offset;
+              *returnVal = condition << 28 | 1 << 26 | i_flag << 25 | p_flag << 24 | l_flag << 20 | rn << 16 | rd << 12 | offset;
                 // CHECK LOOK HERE FIX PFLAG
               return returnVal;
           }
@@ -163,7 +163,7 @@ uint32_t *SDTassembling(instruction inst){
           rn = convertToWriteableFormat(inst.Rn);
   }
 
-  *returnVal = condition << 28 | 1 << 26 | i_flag << 25 | p_flag << 24 | u_flag << 22 | l_flag << 20 | rn << 16 | rd << 12 | offset;
+  *returnVal = condition << 28 | 1 << 26 | i_flag << 25 | p_flag << 24 | u_flag << 23 | l_flag << 20 | rn << 16 | rd << 12 | offset;
     // FIX THIS
   return returnVal;
 

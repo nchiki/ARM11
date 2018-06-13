@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
             strcpy(label,tokenizedLine[0]);
             label[strlen(label)-1] = '\0';
             if (containsLabel(label)==0) {
-                addLabel(label,address);
+                addLabel(label,address*4);
             }
         } else {
 
