@@ -59,6 +59,7 @@ typedef enum {
 }instruction;
 
 int countLines(FILE*);
+
 instruction *decode(char**, uint16_t);
 
 struct symbol *symbolTableHead;

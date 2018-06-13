@@ -14,15 +14,15 @@ int main(int argc, char **argv) {
 
     char *destFile = argv[2];
 
-    uint16_t address = 0;
+    uint32_t address = 0;
 
     char line[MAX_LINE_SIZE] ;
 
     // first pass
 
     FILE *input;
-
-    if ((input = fopen(argv[1],"r")) == NULL) {
+    input = fopen(argv[1],"r");
+    if (input == NULL) {
         printf("Could not open the file");
         exit(-1);
     }
@@ -31,13 +31,13 @@ int main(int argc, char **argv) {
     numberOfLinesInSource = numLines;
     instruction *instArr = calloc(numLines,sizeof(instruction));
 
-
+    rewind(input);
     initSymbolTable();
     uint32_t *valueToBeWritten = NULL;
-
-    while (fgets(line, MAX_LINE_SIZE, input)) {
+    int counter = 0;
+    while (fgets(line, sizeof(line), input)) {
         char **tokenizedLine = tokenizeHelper(line);
-
+        counter++;
         // tokenizeHelper takes a line and return a 2D char array where the first sentence will be the instruction or label
         // it will be a label iff the last char of the first line is :
         // otherwise send it to decode;
