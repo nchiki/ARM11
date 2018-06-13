@@ -99,7 +99,7 @@ uint32_t *distinguish(instruction inst) {
 // the idea here is to be able to make a switch function which takes the mnemonic
 // and returns, using the defs in usefulTools, the code of both the condition and the opcodes
 
-uint16_t convertToWriteableFormat(char* givenStr) {
+int32_t convertToWriteableFormat(char* givenStr) {
     uint16_t returnVal = 0 ;
 
     switch(givenStr[0]) {
@@ -115,7 +115,7 @@ uint16_t convertToWriteableFormat(char* givenStr) {
             break;
     }
     return returnVal;
-}
+} // check
 
 uint16_t textToInt(char *givenStr) {
     // the first character of giveStr will definitely be # = or r
@@ -128,6 +128,69 @@ uint16_t textToInt(char *givenStr) {
     return returnVal;
 }
 
+uint32_t getOp2 (int32_t op2) {
+    uint16_t shiftVal = 0;
+    uint32_t tempVal = op2;
+    while (tempVal % 4 == 0) {
+        tempVal/=4;
+        shiftVal+=2;
+    }
+    int temp2 = (int)((unsigned)op2 >> shiftVal);
+    int temp3 = op2 << (32-shiftVal);
+
+    shiftVal = (32-shiftVal)/2;
+    return (shiftVal << 8)/2;
+}
+
+uint32_t *lsl(instruction inst) {
+    uint32_t *returnValue = calloc(1,sizeof(uint32_t));
+    uint8_t condition = 14;
+    uint8_t opcode = 13;
+
+    uint32_t Rn = convertToWriteableFormat(inst.Rn);
+
+    uint32_t shiftVal = convertToWriteableFormat(inst.expression);
+    uint8_t S = 0;
+
+    *returnValue = ((cond << 28) | opcode << 21 | S << 20 | Rn << 12 | (shiftVal << 7) | Rn );
+
+    return returnValue;
+
+} //fixed
+
+bool checkIfImmediate(char *given) {
+    switch(given[0]) {
+        case 'r' : return false;
+        case '#' :
+        case '=' : return true;
+    }
+    return false;
+}
 
 
+uint32_t shiftOperand (char *base, char *shiftT, char *shiftA) {
+    uint32_t returnVal = 0;
+    int baseVal = convertToWriteableFormat(base);
+    int shiftC = 0;
+    int shiftAmount;
 
+
+    if (!strcmp(shiftT,"lsl")) {
+        shiftC = 0;
+    } else if (!strcmp(shiftT,"lsr")) {
+        shiftC = 1;
+    } else if (!strcmp(shiftT,"asr")) {
+        shiftC = 2;
+    } else if (!strcmp(shiftT,"ror")) {
+        shiftC = 3;
+    }
+
+    if (checkIfImmediate(shiftA)) {
+        shiftAmount = 7;
+    } else {
+        shiftAmount = 8;
+    }
+
+    returnVal = convertToWriteableFormat(shiftA) << shiftAmount | shiftC << 5 | (shiftAmount==8) << 4 | baseVal);
+
+} // fixed

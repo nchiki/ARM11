@@ -45,8 +45,15 @@ char **tokenizeHelper(char*);
 
 uint32_t *distinguish(instruction);
 
+uint32_t getOp2(int32_t);
 
-uint16_t convertToWriteableFormat(char*);
+int32_t convertToWriteableFormat(char*);
+
+uint32_t *lsl(instruction);
+
+bool checkIfImmediate(char*);
+
+uint32_t shiftOperand(char*, char*, char*);
 
 uint16_t textToInt(char*);
 #endif //ARM11_28_DEFS_H

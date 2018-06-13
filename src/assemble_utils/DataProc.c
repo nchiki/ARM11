@@ -1,6 +1,7 @@
 
 #include <memory.h>
 #include "assemblerImplementation.h"
+#include "defs.h"
 // change the return type of the thing
 
 /*
@@ -46,8 +47,15 @@ uint32_t* dataProcessing (instruction inst) {
     uint8_t opcode;
     bool flag = 0 ;
     uint8_t cond = 14;
-
+    uint32_t offset = convertToWriteableFormat(inst.operand2);
     bool flag2 = 1;
+
+    if (inst.operand2[0] == 'r') {
+        I = 0;
+    } else if ( offset > 0xFF ) {
+        offset = getOp2(offset);
+    }
+
 
     uint32_t *instruction = malloc(sizeof(uint32_t));
 
@@ -78,9 +86,11 @@ uint32_t* dataProcessing (instruction inst) {
 
 
 
-    *instruction = (cond << 28 | (flag2 << 25) | (opcode << 22) | (flag << 20) | convertToWriteableFormat(inst.Rn) << 16
+    *instruction = (cond << 28 | (flag2 << 25) | (opcode << 21) | (flag << 20) | convertToWriteableFormat(inst.Rn) << 16
             | (convertToWriteableFormat(inst.Rd) << 12 | convertToWriteableFormat(inst.operand2)));
     return instruction;
+
+    // check
 
 }
 

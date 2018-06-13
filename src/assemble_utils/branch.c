@@ -8,7 +8,7 @@
 #include "assemblerImplementation.h"
 #include "instruction_defs.h"
 
-uint32_t* branch(instruction instruction) {
+uint32_t* branch(instruction inst) {
    /* BranchInstr_t branchInstr;
     char *cond = instruction.opcode + 1; //it takes rid of the initial "b" of the mnemonic
     //compares the condition part of the instruction's mnemonic to the different conditions and 
@@ -46,19 +46,19 @@ uint32_t* branch(instruction instruction) {
 
     // just rewriting the damm thing
     uint8_t cond_code;
-    uint32_t *returnValue = 0 ;
+    uint32_t *returnValue = calloc(1, sizeof(uint32_t)) ;
 
-    if (!strcmp(instruction.opcode,"beq")) {
+    if (!strcmp(inst.opcode,"beq")) {
         cond_code = 0;
-    } else if (!strcmp(instruction.opcode, "bne")) {
+    } else if (!strcmp(inst.opcode, "bne")) {
         cond_code = 1;
-    } else if (!strcmp(instruction.opcode, "bge"))  {
+    } else if (!strcmp(inst.opcode, "bge"))  {
         cond_code = 10 ;
-    } else if (!strcmp(instruction.opcode, "blt")) {
+    } else if (!strcmp(inst.opcode, "blt")) {
         cond_code = 11;
-    } else if (!strcmp(instruction.opcode, "bgt")) {
+    } else if (!strcmp(inst.opcode, "bgt")) {
         cond_code = 12;
-    } else if (!strcmp(instruction.opcode,"ble")) {
+    } else if (!strcmp(inst.opcode,"ble")) {
         cond_code = 13;
     } else {
         cond_code = 14;
@@ -68,23 +68,22 @@ uint32_t* branch(instruction instruction) {
     cond_code |= 10;
 
     // difference of 8 to account for pipeline?
-    uint32_t offset;
+    int offset;
 
-    if (containsLabel(instruction.expression)) {
-        offset = getAddress(instruction.expression);
+    if (containsLabel(inst.expression)) {
+        printf("Table contains\n");
+        offset = getAddress(inst.expression)-8;
     } else {
-        offset = convertToWriteableFormat(instruction.expression);
+        prinf("Table NOT Contains\n") ;
+        offset = convertToWriteableFormat(inst.expression)-8;
     }
-    offset = offset - (uint32_t)(instruction.memoryAddr - 8);
-    offset >>= 2;
 
-    int32_t absoffset = abs(offset);
-    if(offset < 0) {
-        *returnValue = (~absoffset) + 1;
-    } else {
-        *returnValue = offset;
-    }
-    *returnValue |= ((cond_code << 24));
-    return returnValue;
-
+    offset = offset - (int)(inst.memoryAddr);
+    offset = offset >> 2;
+    uint32_t thisMask = 0xFFFFFF;
+    offset &= thisMask;
+    *returnValue = ((cond_code << 24) | offset);
+    return  returnValue;
 }
+
+//fixed

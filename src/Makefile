@@ -1,4 +1,4 @@
-CC      = gcc
+#CC      = gcc
 CFLAGS  = -Wall -g -D_POSIX_SOURCE -D_BSD_SOURCE -D_DEFAULT_SOURCE -std=c99
 
 ASSEMBLE_SOURCES = assemble.c $(wildcard assemble_utils/*.c)
@@ -11,7 +11,7 @@ EMULATE_OBJECTS = emulate.o $(EMULATE_SOURCES:.c=.o)
 
 .PHONY: all clean
 
-all: emulate 
+all: emulate assemble
 
 assemble: $(ASSEMBLE_OBJECTS)
 

@@ -4,7 +4,8 @@
 
 #ifndef ARM11_28_REGISTERS_H
 #define ARM11_28_REGISTERS_H
-
+#include<stdint.h>
+#include<stdlib.h>
 
 typedef enum {
     r0 = 0000,
