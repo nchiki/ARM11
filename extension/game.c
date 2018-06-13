@@ -7,14 +7,7 @@
 #include <zconf.h>
 #include <unistd.h>
 #include <memory.h>
-
-
-//Decide defaults
-#define DEFAULT_WIDTH 100
-#define DEFAULT_HEIGHT 50
-#define MAX_WIDTH 211
-#define MAX_HEIGHT 57
-
+#include <stdbool.h>
 
 void printScreen(cell **board, int width, int height){
     move(0, 0);
@@ -26,21 +19,23 @@ void printScreen(cell **board, int width, int height){
     }
 }
 
-void takeDimensions(int *width, int *height) {
+void takeDimensions(int *width, int *height, int maxW, int maxH) {
     char input[6];
 
     //Take initial dimensions
-    printw("Please enter the size of your matrix (width, height): ");
+    printw("Please enter the size of your matrix <= (maxW, maxH): ");
     refresh();
     getnstr(input, sizeof(input));
+
+    //Need to fix seg fault on strings entered
 
     *width = atoi(strtok(input, ","));
     *height = atoi(strtok(NULL, "\n"));
     clear();
 
     //If dimensions don't fulfil requirements, ask for re-entry
-    while ((*width > MAX_WIDTH || *height > MAX_HEIGHT)) {
-        printw("Please enter dimensions <= (211, 57): ");
+    while ((*width > maxW || *height > maxH)) {
+        printw("Please enter dimensions <= (%d, %d): ", maxW, maxH);
         refresh();
         getnstr(input, sizeof(input));
         *width = atoi(strtok(input, ","));
@@ -49,48 +44,82 @@ void takeDimensions(int *width, int *height) {
     }
 }
 
+//Segmentation fault if grid isn't big enough
+void printInitialConfigs(cell **game, int width, int height) {
+    //nightSky(game, width, height);
+    gliderGun(game, width, height);
+    //glider(game, width, height);
+    //butterfly(game, width, height);
+    //acorn(game, width, height);
+    //periodic(game, width, height);
+}
+
 void printMenu(cell **game, int width, int height) {
-    printw("Initial board setup options:\n\n");
-    printw("\t1 - Random Configuration\n");
-    printw("\t2 - Premade Configuration\n");
-    printw("\t3 - User Input\n");
-    printw("\nPlease choose an option: ");
-    refresh();
+    char option = 'a';
 
-    int option;
-    scanf("%i", &option);
-    clear();
+    while (option != '1' && option != '2' && option != '3') {
+        printw("Initial board setup options:\n\n");
+        printw("\t1 - Random Configuration\n");
+        printw("\t2 - Pre-made Configuration\n");
+        printw("\t3 - User Input\n");
 
-    while (option != 1 && option != 2 && option != 3) {
-        printw("Please choose a valid option: ");
+        printw("\nPlease choose an option between 1 and 3");
         refresh();
-        scanf("%i", &option);
+        scanf("%c", &option);
         clear();
     }
 
-    switch (option) {
+    switch (atoi((const char *) &option)) {
         case 1:
             randomConfig(game, width, height);
             break;
         case 2:
-            longLine(game, width, height);
+            printInitialConfigs(game, width, height);
             break;
         case 3:
             //Add user input
             break;
     }
+}
 
-    //Wait for user to press enter
-    getchar();
+bool checkDefault() {
+    char answer = 'a';
+
+    while (answer != 'y' && answer != 'n') {
+        printw("Would you like to choose the game size? (y or n)");
+        refresh();
+        scanf("%c", &answer);
+        clear();
+    }
+
+    if (answer == 'y') {
+        //Ask user for sizings
+        return false;
+    }
+    //Use default
+    return true;
 }
 
 int main(int argc, char **argv) {
+    //Initialise screen
     initscr();
+    //Hide cursors
+    curs_set(0);
 
-    int width, height;
+    //Find max size of screen
+    int maxW, maxH;
+    getmaxyx(stdscr, maxH, maxW);
+    //Leave a line at the edge
+    maxW -= 1;
 
-    takeDimensions(&width, &height);
+    int width = maxW, height = maxH;
 
+    //Allow use to choose size
+    if (!checkDefault()) {
+        takeDimensions(&width, &height, maxW, maxH);
+    }
+
+    //Setup the grid
     cell** game = {setupGrid(width, height)};
 
     printMenu(game, width, height);
@@ -104,6 +133,7 @@ int main(int argc, char **argv) {
         evolve(game, width, height);
         printScreen(game, width, height);
         refresh();
+        //CHANGE SLEEP TIME WITH TICK VARIABLE
         usleep(100000);
     }
 }
