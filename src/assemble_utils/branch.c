@@ -71,10 +71,9 @@ uint32_t* branch(instruction inst) {
     int offset;
 
     if (containsLabel(inst.expression)) {
-        printf("Table contains\n");
         offset = getAddress(inst.expression)-8;
     } else {
-        printf("Table NOT Contains\n") ;
+
         offset = convertToWriteableFormat(inst.expression)-8;
     }
 
