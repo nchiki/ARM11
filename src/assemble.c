@@ -77,13 +77,14 @@ int main(int argc, char **argv) {
 
     // second pass
 
+    uint32_t f = 0;
     for ( int i = 0; i < address; ++i) {
         uint32_t *writeValue = distinguish(instArr[i]);
-
-        if (instArr[i].type == ANDEQ) {
-            *writeValue = 0;
-        }
+        if ( instArr[i].type == ANDEQ ) {
+            fwrite(&f,1,sizeof(uint32_t),output);
+        } else {
             fwrite(writeValue,1, sizeof(uint32_t),output);
+        }
 
     }
 
@@ -92,7 +93,7 @@ int main(int argc, char **argv) {
         struct constantLL *temp = constantTableHead;
 
         while (temp->label != NULL) {
-            fwrite(temp->address, 1, sizeof(uint32_t), output);
+            fwrite(&temp->address, 1, sizeof(uint32_t), output);
             temp = temp->next;
 
         }
@@ -100,7 +101,8 @@ int main(int argc, char **argv) {
 
     fclose(output);
 
-
+    clearSymbolTable();
+    clearConstantTable();
 
    return EXIT_SUCCESS;
 

@@ -59,6 +59,7 @@ uint32_t* dataProcessing (instruction inst) {
     }
 
 
+
     uint32_t *instruction = calloc(1,sizeof(uint32_t));
 
     if (!strcmp(inst.opcode, "and")) {

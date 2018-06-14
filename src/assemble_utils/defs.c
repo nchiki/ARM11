@@ -116,7 +116,7 @@ uint32_t *distinguish(instruction inst) {
 
 
         case ANDEQ:
-            *returnVal = 0;
+
             break;
     }
 

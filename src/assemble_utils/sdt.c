@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "instruction_defs.h"
+#include "sdt.h"
 
 
 uint32_t *SDTassembling(instruction inst){
@@ -77,7 +78,7 @@ uint32_t *SDTassembling(instruction inst){
               rn = 15;
               offset = calculateOffset(progC, value);
               *returnVal = condition << 28 | 1 << 26 | i_flag << 25 |
-                p_flag << 24 | l_flag << 20 | rn << 16 | rd << 12 | offset;
+                p_flag << 24 | u_flag << 23 | l_flag << 20 | rn << 16 | rd << 12 | offset;
                 // CHECK LOOK HERE FIX PFLAG
               return returnVal;
           }

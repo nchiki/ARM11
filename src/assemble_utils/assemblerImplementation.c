@@ -79,7 +79,7 @@ uint32_t getConstantLastAddress() {
     if(constantTableHead->label == NULL) {
       return getLastAddress();
     } else {
-      struct symbol *temp = constantTableHead;
+      struct constantLL *temp = constantTableHead;
       while (temp->next != NULL ) {
       }
       return temp->address;
@@ -157,10 +157,10 @@ bool containsConstant (uint32_t *givenLabel) {
 
 int32_t calculateOffset(uint32_t PC, uint32_t value) {
     int32_t returnValue;
-    char *key = malloc(sizeof(uint32_t));
+    uint32_t *key = malloc(sizeof(uint32_t));
     *key = value;
     uint32_t address = getLastAddress();
-    addConstant(key, address);
+    addConstant(key, value);
     returnValue = (address) - (int32_t)PC;
     return returnValue&0xFFF;
 }
@@ -253,6 +253,7 @@ instruction *decode(char** given, uint16_t memoryAddr) {
             }
 
             break;
+
         case SINGLE_DATA_TRANSFER:
             instr->Rd = line[1];
             instr->address = line[2];
@@ -271,7 +272,9 @@ instruction *decode(char** given, uint16_t memoryAddr) {
             break;
 
         case ANDEQ:
-            instr->Rn = line[1];
+            instr->Rn = '\0';
+            instr->Rd = '\0';
+            instr->operand2 = '\0';
             break;
     }
     return instr;
