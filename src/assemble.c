@@ -79,12 +79,12 @@ int main(int argc, char **argv) {
 
     for ( int i = 0; i < address; ++i) {
         uint32_t *writeValue = distinguish(instArr[i]);
-        if (*writeValue != 0 || (*writeValue == 00 && !strcmp(instArr[i].opcode,"andeq"))) {
-            fwrite(writeValue,1, sizeof(uint32_t),output);
-        } else if (strcmp(instArr[i].opcode,"andeq")==0) {
-          uint32_t *andEQinst = 0;
-          fwrite(andEQinst,1, sizeof(uint32_t),output);
+
+        if (instArr[i].type == ANDEQ) {
+            *writeValue = 0;
         }
+            fwrite(writeValue,1, sizeof(uint32_t),output);
+
     }
 
     //int numberOfConstants = numberOfConstants();

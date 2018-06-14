@@ -217,6 +217,12 @@ instruction *decode(char** given, uint16_t memoryAddr) {
 
     }
 
+    if (strcmp(line[0],"andeq")==0) {
+        instr->type = 5;
+    } else if (strcmp(line[0],"lsl")==0) {
+        instr->type = 6;
+    }
+
     switch(instr->type) {
         case DATA_PROCESSING:
             if (!strcmp(line[0], "mov")) {
@@ -265,6 +271,7 @@ instruction *decode(char** given, uint16_t memoryAddr) {
             break;
 
         case ANDEQ:
+            instr->Rn = line[1];
             break;
     }
     return instr;

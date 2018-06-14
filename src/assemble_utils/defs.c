@@ -116,8 +116,7 @@ uint32_t *distinguish(instruction inst) {
 
 
         case ANDEQ:
-            returnVal = calloc(1,sizeof(uint32_t));
-            returnVal = 0;
+            *returnVal = 0;
             break;
     }
 
@@ -184,18 +183,7 @@ uint16_t textToInt(char *givenStr) {
 }
 
 uint32_t getOp2 (int32_t op2) {
-  /*  uint16_t shiftVal = 0;
-    uint32_t tempVal = op2;
-    while (tempVal % 4 == 0) {
-        tempVal/=4;
-        shiftVal+=2;
-    }
-    int temp2 = (int)((unsigned)op2 >> shiftVal);
-    int temp3 = op2 << (32-shiftVal);
 
-    shiftVal = (32-shiftVal)/2;
-    return (shiftVal << 8)/2;
-    */
     int shiftVal = 32;
     uint32_t tempVal = op2;
     while(!(tempVal & 0x3)){
