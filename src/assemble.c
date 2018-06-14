@@ -33,6 +33,9 @@ int main(int argc, char **argv) {
 
     rewind(input);
     initSymbolTable();
+    initConstantTable();
+
+
     uint32_t *valueToBeWritten = NULL;
     //int counter = 0;
     while (fgets(line, sizeof(line), input)) {
@@ -61,6 +64,7 @@ int main(int argc, char **argv) {
         }
     }
 
+    finalInstAddr = instArr[address].memoryAddr;
     fclose(input);
 
 
@@ -79,6 +83,20 @@ int main(int argc, char **argv) {
             fwrite(writeValue,1, sizeof(uint32_t),output);
         }
     }
+
+
+    //int numberOfConstants = numberOfConstants();
+    if (constantTableHead->label!=NULL) {
+        struct constantLL *temp = constantTableHead;
+
+        while (temp->label != NULL) {
+            fwrite(temp->address, 1, sizeof(uint32_t), output);
+            temp = temp->next;
+
+        }
+    }
+
+    fclose(output);
 
 
 

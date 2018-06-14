@@ -59,9 +59,9 @@ uint32_t *SDTassembling(instruction inst){
   uint16_t condition = 14;
   char *tokAdd[3], *base, *shiftT, *shiftA;
   uint32_t *returnVal = malloc(sizeof(uint32_t));
-
+    uint32_t progC = inst.memoryAddr + 8;
   if (strcmp(inst.opcode,ldr) != 0) {
-      l_flag = 1;
+      l_flag = 0;
       if (address[0] == '=') {
           p_flag = 1;
           value = convertToWriteableFormat(address);
@@ -73,17 +73,23 @@ uint32_t *SDTassembling(instruction inst){
           } else {
               i_flag = 0;
               u_flag = 1;
-              uint32_t progC = inst.memoryAddr  + 8;
+               progC = inst.memoryAddr  + 8;
               printf("PC is %d\n",progC);
               rn = 15;
-              //offset = findConstOffset(progC, value, constTableHead);
+              offset = calculateOffset(progC, value);
               *returnVal = condition << 28 | 1 << 26 | i_flag << 25 | p_flag << 24 | l_flag << 20 | rn << 16 | rd << 12 | offset;
                 // CHECK LOOK HERE FIX PFLAG
               return returnVal;
           }
       }
   } else if ( strcmp(inst.opcode,str) != 0 )  {
-      l_flag =0;
+      l_flag = 1;
+      u_flag = 1;
+      p_flag = 1;
+      rn = 15;
+      offset = progC - finalInstAddr;
+      finalInstAddr+=4;
+
   } else {
       printf("error");
       exit(-1);

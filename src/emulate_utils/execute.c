@@ -347,9 +347,16 @@ void execute_SDT(MACHINE *machine) {
         newAddress = machine->c.registers[(machine->c.decodedInstruction->Rn)] -
                      offsetValue;
     }
-    if(newAddress >= MEM_BOUNDS){ // out of bounds memory
+     // out of bounds memory
+    if((machine->c.decodedInstruction->P) && (newAddress >= MEM_BOUNDS)){
+          printf("Error: Out of bounds memory access at address 0x%08x\n",
+                                                      (newAddress&0x3FFFFFFF));
+    } else if(!(machine->c.decodedInstruction->P) &&
+    (machine->c.registers[machine->c.decodedInstruction->Rn] >= MEM_BOUNDS)) {
+      word_t address = machine->c.registers[machine->c.decodedInstruction->Rn];
       printf("Error: Out of bounds memory access at address 0x%08x\n",
-                                                                newAddress);
+                                                                address);
+
     } else {
       if (machine->c.decodedInstruction->L) { //L set the load, otherwise store
           if (machine->c.decodedInstruction->P) { // P set then pre-indexing
