@@ -78,11 +78,11 @@ uint32_t* branch(instruction inst) {
     }
 
     offset = offset - (int)(inst.memoryAddr);
-    offset -=2;
+    //offset -=2;
     offset = offset >> 2;
 
-    uint32_t thisMask = 0xFFFFFF;
-    offset &= thisMask;
+    //uint32_t thisMask = 0;
+    //offset &= thisMask;
     *returnValue = ((cond_code << 24) | offset);
     return  returnValue;
 }
