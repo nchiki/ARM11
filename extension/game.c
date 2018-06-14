@@ -19,6 +19,25 @@ void printScreen(cell **board, int width, int height){
     }
 }
 
+const char **tokenizeHelper(char *line) {
+
+    char new_line[511];
+    const char *tokenized[10];
+
+    int i = 0;
+
+    strcpy(new_line, line); /* can't use strtok on string literal */
+
+
+    tokenized[i] = strtok(new_line, " ");
+    while (tokenized[i] != NULL ) {
+        i++;
+        tokenized[i] = strtok(NULL, ",\n");
+    }
+
+    return tokenized;
+}
+
 void takeDimensions(int *width, int *height, int maxW, int maxH) {
     char input[6];
 
@@ -54,6 +73,32 @@ void printInitialConfigs(cell **game, int width, int height) {
     //periodic(game, width, height);
 }
 
+int *printUserInput(cell **game, int width, int height){
+    printw("How many cells do you want to set?\n\n");
+    refresh();
+
+    int option;
+    scanf("%i", &option);
+    clear();
+
+    //printw("Please choose your %i options", option);
+    // refresh();
+
+    char input[100];
+
+    //Take initial dimensions
+    printw("Blabla");
+    refresh();
+
+    scanf("%s", input);
+    const char **inputM = tokenizeHelper(input);
+
+    for(int i = 0; i < (option * 2) -1; i = i+2){
+        flipCell(&game[atoi(inputM[i])][atoi(inputM[i+1])]);
+    }
+
+}
+
 void printMenu(cell **game, int width, int height) {
     char option = 'a';
 
@@ -77,7 +122,7 @@ void printMenu(cell **game, int width, int height) {
             printInitialConfigs(game, width, height);
             break;
         case 3:
-            //Add user input
+            printUserInput(game, width, height);
             break;
     }
 }
