@@ -71,10 +71,10 @@ uint32_t* branch(instruction inst) {
     int offset;
 
     if (containsLabel(inst.expression)) {
-        offset = getAddress(inst.expression);
+        offset = getAddress(inst.expression)-8;
     } else {
 
-        offset = convertToWriteableFormat(inst.expression);
+        offset = convertToWriteableFormat(inst.expression)-8;
     }
 
     offset = offset - (int)(inst.memoryAddr);
