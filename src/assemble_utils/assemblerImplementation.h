@@ -21,6 +21,13 @@ struct symbol {
 
 };
 
+struct constantLL {
+    char *label;
+    uint32_t address;
+    struct constantLL *next;
+
+};
+
 // this was just extra effort, instead, let there be an overall data structure like the one in emulate which has a subtype type
 
 // purposely did not use typedef because typedef breaks a couple of things in the implementation of addLabel in assemblerImplementation.c
@@ -63,6 +70,7 @@ int countLines(FILE*);
 instruction *decode(char**, uint16_t);
 
 struct symbol *symbolTableHead;
+struct constantLL *constantTableHead;
 void initSymbolTable(void);
 
 void addLabel (char*, uint16_t) ;
@@ -77,5 +85,17 @@ uint32_t parse(char*);
 void setInstNull (instruction);
 
 int numberOfLinesInSource;
+
+void initConstantTable(void);
+void addConstant(char*, uint32_t);
+uint32_t getConstantAddress(char*);
+
+void constantsHelperFunction(struct constantLL*);
+void clearConstantTable();
+bool containsConstant (char*);
+int32_t calculateOffset(uint32_t, uint32_t);
+int numberOfConstants();
+
+int finalInstAddr;
 
 #endif //ARM11_28_ASSEMBLERIMPLEMENTATION_H

@@ -17,6 +17,12 @@ void initSymbolTable(void) {
     symbolTableHead->address = 0;
 }
 
+void initConstantTable(void) {
+    constantTableHead = (struct constantLL*)(malloc(sizeof(struct constantLL)));
+    constantTableHead->label = NULL;
+    constantTableHead->next = NULL;
+    constantTableHead->address = 0;
+}
 
 void addLabel( char* newLabel, uint16_t givAddress ) {
     struct symbol *temp = symbolTableHead;
@@ -26,6 +32,23 @@ void addLabel( char* newLabel, uint16_t givAddress ) {
     }
 
     temp->next = (struct symbol*)(malloc(sizeof(struct symbol)));
+    temp->next->label = NULL;
+    temp->next->address = 0;
+    temp->next->next = NULL;
+    temp->label = malloc(strlen(newLabel)+1);
+    strcpy(temp->label,newLabel);
+    temp->address = givAddress;
+
+}
+
+void addConstant(char *newLabel, uint32_t givAddress) {
+    struct constantLL *temp = constantTableHead;
+
+    while (temp->next!= NULL) {
+        temp = temp->next;
+    }
+
+    temp->next = (struct constantLL*)(malloc(sizeof(struct constantLL)));
     temp->next->label = NULL;
     temp->next->address = 0;
     temp->next->next = NULL;
@@ -45,6 +68,15 @@ uint16_t getAddress(char *givLabel) {
     return -1;
 }
 
+uint32_t getConstantAddress(char *givenLabel) {
+    struct constantLL *temp = constantTableHead;
+    while (temp->next != NULL ) {
+        if (strcmp(temp->label,givenLabel) == 0) {
+            return temp->address;
+        }
+    }
+    return -1;
+}
 
 void helperFunction(struct symbol* something) {
     if (something->next != NULL ) {
@@ -56,12 +88,29 @@ void helperFunction(struct symbol* something) {
 
 }
 
+void constantsHelperFunction(struct constantLL* something) {
+    if (something->next != NULL ) {
+        constantsHelperFunction(something->next);
+    }
+    free(something->label);
+    free(something);
+
+}
+
 void clearSymbolTable() {
     if (symbolTableHead->next != NULL) {
         helperFunction(symbolTableHead->next);
     }
    free(symbolTableHead->label);
     free(symbolTableHead);
+}
+
+void clearConstantTable() {
+    if (constantTableHead->next != NULL) {
+        constantsHelperFunction(constantTableHead->next);
+    }
+    free(constantTableHead->label);
+    free(constantTableHead);
 }
 
 
@@ -74,6 +123,36 @@ bool containsLabel(char *givenLabel) {
         }
     }
     return false ;
+}
+
+bool containsConstant (char *givenLabel) {
+    struct constantLL *temp = constantTableHead;
+    while (temp->next != NULL ) {
+        if (strcmp(temp->label,givenLabel) == 0) {
+            return true;
+        }
+    }
+    return false ;
+}
+
+int32_t calculateOffset(uint32_t PC, uint32_t value) {
+    int32_t returnValue;
+    char *key = malloc(sizeof(char)*10);
+    addConstant(key,value);
+    returnValue = atoi(key)*4 - (int32_t)PC;
+    return returnValue;
+}
+
+
+int numberOfConstants() {
+    struct constantLL *temp = constantTableHead;
+    int count = 0;
+    while (temp->next!= NULL) {
+        temp = temp->next;
+        count+=1;
+    }
+    count+=1;
+    return count;
 }
 uint32_t parse(char *line) {
     int i = 0;
