@@ -87,7 +87,7 @@ int *printUserInput(cell **game, int width, int height){
     char input[100];
 
     //Take initial dimensions
-    printw("Blabla");
+    printw("Put in the coordinates of the cells that should be ON");
     refresh();
 
     scanf("%s", input);
