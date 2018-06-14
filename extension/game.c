@@ -19,23 +19,53 @@ void printScreen(cell **board, int width, int height){
     }
 }
 
-const char **tokenizeHelper(char *line) {
+int *printUserInput(cell **game, int width, int height){
+    int options = 0;
 
-    char new_line[511];
-    const char *tokenized[10];
-
-    int i = 0;
-
-    strcpy(new_line, line); /* can't use strtok on string literal */
-
-
-    tokenized[i] = strtok(new_line, " ");
-    while (tokenized[i] != NULL ) {
-        i++;
-        tokenized[i] = strtok(NULL, ",\n");
+    //Must choose at least one cell
+    while (options == 0) {
+        printw("Please enter the number of cells you would like to set to ON: ");
+        refresh();
+        char *answer;
+        getnstr(answer, sizeof(options));
+        options = atoi(answer);
+        clear();
     }
 
-    return tokenized;
+    //Enough space to enter "x,y x,y x,y... x,y" with maximum 211,57
+    char input[options * 7 - 1];
+
+    //Take initial dimensions
+    printw("Put in the coordinates of the cells that should be ON: ");
+    refresh();
+    getnstr(input, sizeof(input));
+
+    //Take first input outside loop because of strtok params
+    int x = atoi(strtok(input, ","));
+    int y = atoi(strtok(NULL, " "));
+    if (x < width && y < height) {
+        flipCell(&game[y][x]);
+    }
+
+    //Loop through rest of cells
+    for(int i = 0; i < options - 2; i++){
+        x = atoi(strtok(NULL, ","));
+        y = atoi(strtok(NULL, " "));
+
+        //The final condition make sure to eliminate all duplicate cell inputs
+        if (x < width && y < height && !game[x][y].s) {
+            flipCell(&game[y][x]);
+        }
+    }
+
+    //For end of line if string doesn't fill the line
+    x = atoi(strtok(NULL, ","));
+    y = atoi(strtok(NULL, "\n"));
+
+    //The final condition make sure to eliminate all duplicate cell inputs
+    if (x < width && y < height && !game[x][y].s) {
+        flipCell(&game[y][x]);
+    }
 }
 
 void takeDimensions(int *width, int *height, int maxW, int maxH) {
@@ -64,42 +94,52 @@ void takeDimensions(int *width, int *height, int maxW, int maxH) {
 }
 
 //Segmentation fault if grid isn't big enough
-void printInitialConfigs(cell **game, int width, int height) {
-    //nightSky(game, width, height);
-    gliderGun(game, width, height);
-    //glider(game, width, height);
-    //butterfly(game, width, height);
-    //acorn(game, width, height);
-    //periodic(game, width, height);
-}
+void printInitialConfigs(cell **game, int width, int height, int *tick) {
+    char option = 'a';
 
-int *printUserInput(cell **game, int width, int height){
-    printw("How many cells do you want to set?\n\n");
-    refresh();
+    while (option != '1' && option != '2' && option != '3' &&
+           option != '4' && option != '5' && option != '6') {
+        printw("Initial board setup options:\n\n");
+        printw("\t1 - Night Sky\n");
+        printw("\t2 - Glider Gun\n");
+        printw("\t3 - Glider\n");
+        printw("\t4 - Butterfly\n");
+        printw("\t5 - Geometry\n");
+        printw("\t6 - Periodic\n");
 
-    int option;
-    scanf("%i", &option);
-    clear();
-
-    //printw("Please choose your %i options", option);
-    // refresh();
-
-    char input[100];
-
-    //Take initial dimensions
-    printw("Put in the coordinates of the cells that should be ON");
-    refresh();
-
-    scanf("%s", input);
-    const char **inputM = tokenizeHelper(input);
-
-    for(int i = 0; i < (option * 2) -1; i = i+2){
-        flipCell(&game[atoi(inputM[i])][atoi(inputM[i+1])]);
+        printw("\nPlease choose an option between 1 and 6");
+        refresh();
+        scanf("%c", &option);
+        clear();
     }
 
+    switch (atoi((const char *) &option)) {
+        case 1:
+            *tick = 20000;
+            nightSky(game, width, height);
+            break;
+        case 2:
+            *tick = 10000;
+            gliderGun(game, width, height);
+            break;
+        case 3:
+            *tick = 50000;
+            glider(game, width, height);
+            break;
+        case 4:
+            butterfly(game, width, height);
+            break;
+        case 5:
+            *tick = 50000;
+            geometry(game, width, height);
+            break;
+        case 6:
+            periodic(game, width, height);
+            break;
+    }
 }
 
-void printMenu(cell **game, int width, int height) {
+void printMenu(cell **game, int width, int height, int *tick) {
     char option = 'a';
 
     while (option != '1' && option != '2' && option != '3') {
@@ -119,7 +159,7 @@ void printMenu(cell **game, int width, int height) {
             randomConfig(game, width, height);
             break;
         case 2:
-            printInitialConfigs(game, width, height);
+            printInitialConfigs(game, width, height, tick);
             break;
         case 3:
             printUserInput(game, width, height);
@@ -150,6 +190,7 @@ int main(int argc, char **argv) {
     initscr();
     //Hide cursors
     curs_set(0);
+    int tick = 100000;
 
     //Find max size of screen
     int maxW, maxH;
@@ -167,7 +208,7 @@ int main(int argc, char **argv) {
     //Setup the grid
     cell** game = {setupGrid(width, height)};
 
-    printMenu(game, width, height);
+    printMenu(game, width, height, &tick);
 
     printScreen(game, width, height);
     refresh();
@@ -178,8 +219,8 @@ int main(int argc, char **argv) {
         evolve(game, width, height);
         printScreen(game, width, height);
         refresh();
-        //CHANGE SLEEP TIME WITH TICK VARIABLE
-        usleep(100000);
+        //Change the speed of evolution with a timer for different patterns
+        usleep(tick);
     }
 }
 

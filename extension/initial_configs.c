@@ -20,7 +20,7 @@ void periodic(cell **grid, int width, int height) {
     }
 }
 
-void acorn(cell **grid, int width, int height) {
+void geometry(cell **grid, int width, int height) {
     int midW = width / 2;
     int midH = height / 2;
 

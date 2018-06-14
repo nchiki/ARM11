@@ -6,7 +6,7 @@ void randomConfig(cell **grid, int width, int height);
 
 void periodic(cell **grid, int width, int height);
 
-void acorn(cell **grid, int width, int height);
+void geometry(cell **grid, int width, int height);
 
 void butterfly(cell **grid, int width, int height);
 
