@@ -121,9 +121,9 @@ uint32_t *distinguish(instruction inst) {
             break;
     }
 
-    return returnVal; 
+    return returnVal;
 
-} // fixed 
+} // fixed
 
 
 
@@ -163,7 +163,7 @@ uint16_t textToInt(char *givenStr) {
 }
 
 uint32_t getOp2 (int32_t op2) {
-    uint16_t shiftVal = 0;
+  /*  uint16_t shiftVal = 0;
     uint32_t tempVal = op2;
     while (tempVal % 4 == 0) {
         tempVal/=4;
@@ -174,6 +174,14 @@ uint32_t getOp2 (int32_t op2) {
 
     shiftVal = (32-shiftVal)/2;
     return (shiftVal << 8)/2;
+    */
+    int shiftVal = 32;
+    uint32_t tempVal = op2;
+    while(!(tempVal & 0x3)){
+      tempVal >>= 2;
+      shiftVal--;
+    }
+    return ((shiftVal << 8) | (tempVal & 0xFF)) & 0xFFF;
 } // fixed
 
 uint32_t *lslFunc(instruction inst) {
