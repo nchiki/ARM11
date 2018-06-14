@@ -60,30 +60,30 @@ uint32_t *SDTassembling(instruction inst){
   char *tokAdd[3], *base, *shiftT, *shiftA;
   uint32_t *returnVal = malloc(sizeof(uint32_t));
     uint32_t progC = inst.memoryAddr + 8;
-  if (strcmp(inst.opcode,ldr) != 0) {
-      l_flag = 0;
+  if (strcmp(inst.opcode,ldr) == 0) {
+      l_flag = 1;
       if (address[0] == '=') {
           p_flag = 1;
           value = convertToWriteableFormat(address);
           if ( value < 0xFF ) {
               inst.opcode = "mov";
               inst.operand2 = address;
-              inst.Rn = '#0';
+              inst.Rn = inst.Rd;
               return dataProcessing(inst);
           } else {
               i_flag = 0;
               u_flag = 1;
-               progC = inst.memoryAddr  + 8;
               printf("PC is %d\n",progC);
               rn = 15;
               offset = calculateOffset(progC, value);
-              *returnVal = condition << 28 | 1 << 26 | i_flag << 25 | p_flag << 24 | l_flag << 20 | rn << 16 | rd << 12 | offset;
+              *returnVal = condition << 28 | 1 << 26 | i_flag << 25 |
+                p_flag << 24 | l_flag << 20 | rn << 16 | rd << 12 | offset;
                 // CHECK LOOK HERE FIX PFLAG
               return returnVal;
           }
       }
-  } else if ( strcmp(inst.opcode,str) != 0 )  {
-      l_flag = 1;
+  } else if ( strcmp(inst.opcode,str) == 0 )  {
+      l_flag = 0;
       u_flag = 1;
       p_flag = 1;
       rn = 15;
@@ -116,7 +116,7 @@ uint32_t *SDTassembling(instruction inst){
       case 1:
           i_flag = 0;
           offset = 0;
-          u_flag = 0;
+          u_flag = 1;
           tokAdd[0][strlen(tokAdd[0])-1] = '\0';
           inst.Rn = tokAdd[0];
           rn = convertToWriteableFormat(inst.Rn);
@@ -132,11 +132,11 @@ uint32_t *SDTassembling(instruction inst){
               tokAdd[0][strlen(tokAdd[0])-1] = '\0';
           }
 
-          i_flag = !checkIfImmediate(tokAdd[i]);
+          i_flag = !checkIfImmediate(tokAdd[1]);
           u_flag = 1;
-          offset = convertToWriteableFormat(tokAdd[i]);
-          if (offset < 0) {
-              u_flag =0 ;
+          offset = convertToWriteableFormat(tokAdd[1]);
+          if (isNeg(tokAdd[1])) {
+              u_flag = 0 ;
               offset*=1;
           }
 
@@ -144,8 +144,8 @@ uint32_t *SDTassembling(instruction inst){
           rn = convertToWriteableFormat(inst.Rn);
           break;
       case 3:
-          base = tokAdd[i];
-          shiftT = strtok(tokAdd[2]," ");
+          base = tokAdd[2];
+          shiftT = strtok(tokAdd[i]," ");
           shiftA = strtok(NULL," ");
 
           if (p_flag) {
@@ -169,7 +169,8 @@ uint32_t *SDTassembling(instruction inst){
           rn = convertToWriteableFormat(inst.Rn);
   }
 
-  *returnVal = condition << 28 | 1 << 26 | i_flag << 25 | p_flag << 24 | u_flag << 23 | l_flag << 20 | rn << 16 | rd << 12 | offset;
+  *returnVal = condition << 28 | 1 << 26 | i_flag << 25 | p_flag << 24 |
+   u_flag << 23 | l_flag << 20 | rn << 16 | rd << 12 | offset;
     // FIX THIS
   return returnVal;
 

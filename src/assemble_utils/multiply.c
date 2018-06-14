@@ -6,29 +6,27 @@
  uint32_t *multiply(instruction instr){
 
     MultiplyInstr_t mult;
+    int Rd = convertToWriteableFormat(instr.Rd);
+    int Rm = convertToWriteableFormat(instr.Rm);
+    int Rs = convertToWriteableFormat(instr.Rs);
+    int Rn = 0;
+    bool A = 0;
 
-     mult.Rn = assignReg(instr.Rn);
-     mult.Rs = assignReg(instr.Rs);
-     mult.Rm = assignReg(instr.Rm);
-
-    if(instr.opcode == "mul"){
-     mult.A = 0;
-     mult.Rd = mult.Rm * mult.Rs;
-     mult.mnemonic = mul;
-   } else if(instr.opcode == "mla"){
-       mult.A = 1;
-       mult.Rd = mult.Rm * mult.Rs + mult.Rn;
-       mult.mnemonic = mla;
+    if(strcmp(instr.opcode,"mul")==0){
+      A = 0;
+   } else if(strcmp(instr.opcode,"mla")==0){
+     A = 1;
+     Rn = convertToWriteableFormat(instr.Rn);
     }
-   mult.S = 0;
-   mult.cond = AL;
+   bool S = 0;
+   int cond = 14;
 
    //uint32_t binary = mult.Rn | 0x0090 | (mult.Rs << 8) |(mult.Rn << 12) | (mult.Rd << 16) | (mult.S << 20) |
 //           (mult.A << 21) | 0x00000000 | 0xE0000000;
 
+    uint32_t *returnVal = malloc(sizeof(uint32_t));
+    *returnVal =  cond << 28 | A << 21 | S << 20 | Rd << 16
+    | Rn << 12 | Rs << 8 | 0b1001 << 4 | Rm;
 
-   uint32_t binary =  mult.cond << 28 | mult.A << 21 | mult.S << 20 | mult.Rd << 16 | mult.Rn << 12 | mult.Rs << 8 | 0b1001 << 4 | mult.Rm;
-     uint32_t *binPtr = &binary;
-
-     return binPtr;
+     return returnVal;
 }

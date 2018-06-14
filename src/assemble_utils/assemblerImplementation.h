@@ -22,7 +22,7 @@ struct symbol {
 };
 
 struct constantLL {
-    char *label;
+    uint32_t *label;
     uint32_t address;
     struct constantLL *next;
 
@@ -77,6 +77,10 @@ void addLabel (char*, uint16_t) ;
 
 uint16_t getAddress (char*);
 
+uint16_t getLastAddress();
+
+uint32_t getConstantLastAddress();
+
 void clearSymbolTable();
 
 bool containsLabel(char*);
@@ -87,12 +91,12 @@ void setInstNull (instruction);
 int numberOfLinesInSource;
 
 void initConstantTable(void);
-void addConstant(char*, uint32_t);
-uint32_t getConstantAddress(char*);
+void addConstant(uint32_t*, uint32_t);
+uint32_t getConstantAddress(uint32_t*);
 
 void constantsHelperFunction(struct constantLL*);
 void clearConstantTable();
-bool containsConstant (char*);
+bool containsConstant (uint32_t*);
 int32_t calculateOffset(uint32_t, uint32_t);
 int numberOfConstants();
 

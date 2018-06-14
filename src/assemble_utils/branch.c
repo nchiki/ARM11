@@ -83,7 +83,7 @@ uint32_t* branch(instruction inst) {
 
     //uint32_t thisMask = 0;
     //offset &= thisMask;
-    *returnValue = ((cond_code << 24) | offset);
+    *returnValue = ((cond_code << 24) | offset & 0x00FFFFFF);
     return  returnValue;
 }
 

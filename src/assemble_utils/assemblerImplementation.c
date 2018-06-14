@@ -41,7 +41,7 @@ void addLabel( char* newLabel, uint16_t givAddress ) {
 
 }
 
-void addConstant(char *newLabel, uint32_t givAddress) {
+void addConstant(uint32_t *newLabel, uint32_t givAddress) {
     struct constantLL *temp = constantTableHead;
 
     while (temp->next!= NULL) {
@@ -52,8 +52,8 @@ void addConstant(char *newLabel, uint32_t givAddress) {
     temp->next->label = NULL;
     temp->next->address = 0;
     temp->next->next = NULL;
-    temp->label = malloc(strlen(newLabel)+1);
-    strcpy(temp->label,newLabel);
+    temp->label = malloc(sizeof(uint32_t));
+    temp->label = newLabel;
     temp->address = givAddress;
 
 }
@@ -68,15 +68,35 @@ uint16_t getAddress(char *givLabel) {
     return -1;
 }
 
-uint32_t getConstantAddress(char *givenLabel) {
+uint16_t getLastAddress() {
+    struct symbol *temp = symbolTableHead;
+    while (temp->next != NULL ) {
+    }
+    return temp->address;
+}
+
+uint32_t getConstantLastAddress() {
+    if(constantTableHead->label == NULL) {
+      return getLastAddress();
+    } else {
+      struct symbol *temp = constantTableHead;
+      while (temp->next != NULL ) {
+      }
+      return temp->address;
+    }
+    return -1;
+}
+
+uint32_t getConstantAddress(uint32_t *givenLabel) {
     struct constantLL *temp = constantTableHead;
     while (temp->next != NULL ) {
-        if (strcmp(temp->label,givenLabel) == 0) {
+        if (temp->label == *givenLabel) {
             return temp->address;
         }
     }
     return -1;
 }
+
 
 void helperFunction(struct symbol* something) {
     if (something->next != NULL ) {
@@ -125,10 +145,10 @@ bool containsLabel(char *givenLabel) {
     return false ;
 }
 
-bool containsConstant (char *givenLabel) {
+bool containsConstant (uint32_t *givenLabel) {
     struct constantLL *temp = constantTableHead;
     while (temp->next != NULL ) {
-        if (strcmp(temp->label,givenLabel) == 0) {
+        if (temp->label == givenLabel) {
             return true;
         }
     }
@@ -137,10 +157,12 @@ bool containsConstant (char *givenLabel) {
 
 int32_t calculateOffset(uint32_t PC, uint32_t value) {
     int32_t returnValue;
-    char *key = malloc(sizeof(char)*10);
-    addConstant(key,value);
-    returnValue = atoi(key)*4 - (int32_t)PC;
-    return returnValue;
+    char *key = malloc(sizeof(uint32_t));
+    *key = value;
+    uint32_t address = getLastAddress();
+    addConstant(key, address);
+    returnValue = (address) - (int32_t)PC;
+    return returnValue&0xFFF;
 }
 
 

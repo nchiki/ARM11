@@ -133,22 +133,43 @@ uint32_t *distinguish(instruction inst) {
 int32_t convertToWriteableFormat(char *givenStr) {
     int32_t returnVal = 0;
     int32_t temp = 1;
+    bool neg = false;
     switch(givenStr[0]) {
         case 'r' : returnVal = atoi(givenStr+1); break;
         case '#' :
         case '=' :
             if (givenStr[1] == '-') {
                 temp = 2;
+                neg = true;
             }
             if (givenStr[temp] == '0' && givenStr[temp+1] == 'x') {
-                returnVal = (int32_t)strtol(givenStr+1,NULL,0);
+                returnVal = (int32_t)strtol(givenStr+1,NULL, 0);
             } else {
                 returnVal = atoi(givenStr+1);
             }
             break;
     }
-
+    if (neg) {
+      returnVal *= (-1);
+    }
     return returnVal;
+} // fixed
+
+bool isNeg(char *givenStr) {
+    bool neg = false;
+    switch(givenStr[0]) {
+        case 'r' :
+            break;
+        case '#' :
+        case '=' :
+          if (givenStr[1] == '-'){
+            neg = true;
+          }
+            break;
+        default:
+              break;
+            }
+    return neg;
 } // fixed
 
 uint16_t textToInt(char *givenStr) {
@@ -200,13 +221,21 @@ uint32_t *lslFunc(instruction inst) {
 
 } //fixed
 
-bool checkIfImmediate(char *given) {
+bool checkIfImmediate(char *text) {
+  char *given = malloc(strlen(text));
+  strcpy(given,text);
     switch(given[0]) {
-        case 'r' : return false;
+        case 'r' :
+                return false;
+                break;
         case '#' :
-        case '=' : return true;
+        case '=' :
+                return true;
+                break;
+        default:
+                return false;
     }
-    return false;
+
 } // fixed
 
 
@@ -233,7 +262,8 @@ uint32_t shiftOperand (char *base, char *shiftT, char *shiftA) {
         shiftAmount = 8;
     }
 
-    returnVal = convertToWriteableFormat(shiftA) << shiftAmount | shiftC << 5 | (shiftAmount==8) << 4 | baseVal;
+    returnVal = convertToWriteableFormat(shiftA) << shiftAmount | shiftC << 5 |
+     (shiftAmount==8) << 4 | baseVal;
 
     return returnVal;
 } // fixed
