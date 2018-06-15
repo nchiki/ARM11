@@ -9,7 +9,7 @@
 #include <strings.h>
 #include <string.h>
 
-
+// function to initialise the linked list of symbols
 void initSymbolTable(void) {
     symbolTableHead = (struct symbol*)(malloc(sizeof(struct symbol)));
     symbolTableHead->label = NULL;
@@ -17,6 +17,7 @@ void initSymbolTable(void) {
     symbolTableHead->address = 0;
 }
 
+// function to initialise the linked list of constants to be added to the end of the file
 void initConstantTable(void) {
     constantTableHead = (struct constantLL*)(malloc(sizeof(struct constantLL)));
     constantTableHead->label = NULL;
@@ -24,6 +25,7 @@ void initConstantTable(void) {
     constantTableHead->address = 0;
 }
 
+// add a label to the linked list of labels
 void addLabel( char* newLabel, uint16_t givAddress ) {
     struct symbol *temp = symbolTableHead;
 
@@ -41,6 +43,7 @@ void addLabel( char* newLabel, uint16_t givAddress ) {
 
 }
 
+// add a constant to the linked list of constants to be appended to the end of the fild
 void addConstant(uint32_t *newLabel, uint32_t givAddress) {
     struct constantLL *temp = constantTableHead;
 
@@ -58,6 +61,7 @@ void addConstant(uint32_t *newLabel, uint32_t givAddress) {
 
 }
 
+// get the address of a label that may or may not exist in the linked list of symbols
 uint16_t getAddress(char *givLabel) {
     struct symbol *temp = symbolTableHead;
     while (temp->next != NULL ) {
@@ -69,6 +73,8 @@ uint16_t getAddress(char *givLabel) {
     return -1;
 }
 
+// get the updated last address, taking into account the new constants that have been added to the end of the file
+// this function returns the overall last addresss ( in the file )
 uint16_t getLastAddress() {
     struct constantLL *temp = constantTableHead;
     int count = 0;
@@ -79,6 +85,7 @@ uint16_t getLastAddress() {
     return (count*4 + finalInstAddr);
 }
 
+// returns the address of the last constant which has to be added to the end of the file
 uint32_t getConstantLastAddress() {
     if(constantTableHead->label == NULL) {
       return getLastAddress();
@@ -91,6 +98,8 @@ uint32_t getConstantLastAddress() {
     return -1;
 }
 
+// returns the address of a constant that may or may not exist in the linked list of constants to be added to the
+// end of the file
 uint32_t getConstantAddress(uint32_t *givenLabel) {
     struct constantLL *temp = constantTableHead;
     while (temp->next != NULL ) {
@@ -101,7 +110,7 @@ uint32_t getConstantAddress(uint32_t *givenLabel) {
     return -1;
 }
 
-
+// helper function to free linked list of labels
 void helperFunction(struct symbol* something) {
     if (something->next != NULL ) {
         helperFunction(something->next);
@@ -112,6 +121,7 @@ void helperFunction(struct symbol* something) {
 
 }
 
+// helper function to free linked list of constants
 void constantsHelperFunction(struct constantLL* something) {
     if (something->next != NULL ) {
         constantsHelperFunction(something->next);
@@ -121,6 +131,7 @@ void constantsHelperFunction(struct constantLL* something) {
 
 }
 
+// function to clear the linked list of labels
 void clearSymbolTable() {
     if (symbolTableHead->next != NULL) {
         helperFunction(symbolTableHead->next);
@@ -129,6 +140,7 @@ void clearSymbolTable() {
     free(symbolTableHead);
 }
 
+// function to clear the linked list of constants
 void clearConstantTable() {
     if (constantTableHead->next != NULL) {
         constantsHelperFunction(constantTableHead->next);
@@ -137,8 +149,7 @@ void clearConstantTable() {
     free(constantTableHead);
 }
 
-
-
+// checks if a label exists in the linked list of labels
 bool containsLabel(char *givenLabel) {
     struct symbol *temp = symbolTableHead;
     while (temp->next != NULL ) {
@@ -150,6 +161,7 @@ bool containsLabel(char *givenLabel) {
     return false ;
 }
 
+// checks if a constant exists in the linked list of constants
 bool containsConstant (uint32_t *givenLabel) {
     struct constantLL *temp = constantTableHead;
     while (temp->next != NULL ) {
@@ -160,44 +172,21 @@ bool containsConstant (uint32_t *givenLabel) {
     return false ;
 }
 
+// returns the offset between the constant to the added to the end of the file and the current address of the
+// instruction. called from
 int32_t calculateOffset(uint32_t PC, uint32_t value) {
     int32_t returnValue;
     uint32_t *key = malloc(sizeof(uint32_t));
     *key = value;
     uint32_t address = getLastAddress();
-    //if (constantTableHead->next != NULL) {
-    //    address += 4;
-    //}
+
 
     addConstant(key, value);
     returnValue = (address) - (int32_t)PC;
     return returnValue&0xFFF;
 }
 
-
-int numberOfConstants() {
-    struct constantLL *temp = constantTableHead;
-    int count = 0;
-    while (temp->next!= NULL) {
-        temp = temp->next;
-        count+=1;
-    }
-    count+=1;
-    return count;
-}
-
-uint32_t parse(char *line) {
-    int i = 0;
-    char *addr = line;
-    char *word = "";
-    while (line[i] != ' '){
-        if(line[i] != ' ') {
-            *word += line[i];//saves the first word;
-        }
-        addr ++; // increments the addres of the array
-    }
-}
-
+// looks at a tokenized 2D char array and returns a struct instruction based on the same
 instruction *decode(char** given, uint16_t memoryAddr) {
     instruction *instr = malloc(sizeof(instruction));
 
@@ -290,6 +279,7 @@ instruction *decode(char** given, uint16_t memoryAddr) {
     return instr;
 } // fixed
 
+// returns the number of lines in the binary files, including blank lines
 int countLines (FILE* input) {
     int returnVal;
     char line[MAX_LINE_SIZE];
@@ -302,16 +292,3 @@ int countLines (FILE* input) {
     return returnVal;
 }
 
-void setInstNull(instruction inst) {
-    inst.opcode = NULL;
-    inst.Rd = NULL;
-    inst.Rn = NULL;
-    inst.operand2 = NULL;
-    inst.Rm = NULL;
-    inst.Rs = NULL;
-
-    inst.address = NULL;
-    inst.expression = NULL;
-    inst.memoryAddr = 0;
-
-}
