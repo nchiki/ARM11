@@ -1,7 +1,3 @@
-//
-// Created by nb1317 on 01/06/18.
-//
-
 #ifndef ARM11_28_ASSEMBLERIMPLEMENTATION_H
 #define ARM11_28_ASSEMBLERIMPLEMENTATION_H
 
@@ -18,7 +14,6 @@ struct symbol {
     uint16_t address;
     struct symbol *next;
 
-
 };
 
 struct constantLL {
@@ -28,12 +23,10 @@ struct constantLL {
 
 };
 
-// this was just extra effort, instead, let there be an overall data structure like the one in emulate which has a subtype type
 
-// purposely did not use typedef because typedef breaks a couple of things in the implementation of addLabel in assemblerImplementation.c
-// DO NOT CHANGE TO TYPEDEF STRUCT {..}SYMBOL;
-
-// all the opcodes, each row is a different type of instruction. use this to easily classify instructions
+// purposely did not use typedef because typedef breaks a couple of things in the implementation of addLabel in
+// assemblerImplementation.c
+// all the opcodes, each row is a different type of instruction
 
 static const char *Opcodes[][10] = {
         {"add", "sub", "rsb", "and", "eor", "orr", "mov", "tst", "teq", "cmp"},
@@ -48,7 +41,6 @@ typedef enum {
     DATA_PROCESSING, MULTIPLY, SINGLE_DATA_TRANSFER, BRANCH, LsL, ANDEQ
 }instrType ;
 
-// there should be an enum for instrtype
 typedef struct {
     char *opcode;
     instrType type;

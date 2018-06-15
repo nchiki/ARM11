@@ -1,3 +1,4 @@
+#include <string.h>
 #include "instruction_defs.h"
 #include "assemblerImplementation.h"
 #include "registers.h"

@@ -8,8 +8,6 @@
 
 int main(int argc, char **argv) {
 
-
-
     char *sourceFile = argv[1];
 
     char *destFile = argv[2];
@@ -34,14 +32,11 @@ int main(int argc, char **argv) {
     rewind(input);
     initSymbolTable();
     initConstantTable();
-  //  int instCounter = 0;
 
     uint32_t *valueToBeWritten = NULL;
-    //int counter = 0;
     while (fgets(line, sizeof(line), input)) {
         if (line[0] != '\n' && line[0] != '\0' && line[0] != ' ') {
             // this gets rid of empty lines like the ones in beq
-
             char **tokenizedLine = tokenizeHelper(line);
 
             /* tokenizeHelper takes a line and return a 2D char array where the first sentence will be the instruction or label
@@ -66,7 +61,6 @@ int main(int argc, char **argv) {
 
                 instruction *temp = decode(tokenizedLine, address * 4);
                 memcpy(instArr + address, temp, sizeof(instruction));
-                // referencing by array indexing weirdly didnt work for some reason
 
                 address += 1;
 

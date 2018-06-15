@@ -1,7 +1,5 @@
-//
-// Created by Blanca Tebar on 03/06/2018.
-
 #include <string.h>
+#include <stdlib.h>
 #include "defs.h"
 #include "../usefulTools.h"
 #include "assemblerImplementation.h"
@@ -31,7 +29,7 @@ char **tokenizeHelper(char *line) {
     } else {
         tempLine = newline;
     }
-    // get rid of the [ so that you can get rid of the ] in SDT
+    // getting rid of the [ so that you can get rid of the ] in SDT
 
 
     tempLine = strtok(tempLine, ", ");
@@ -43,7 +41,6 @@ char **tokenizeHelper(char *line) {
     }
 
     // in case there are nested instructions
-
 
     if ( tempLine2 != NULL && i < 10) {
         tokenized[i] = tempLine2;
@@ -86,7 +83,7 @@ uint32_t *distinguish(instruction inst) {
 
     return returnVal;
 
-} // fixed
+}
 
 // convert from text to int32, so that it can be used in shift and written into the binary file
 int32_t convertToWriteableFormat(char *givenStr) {
@@ -112,7 +109,7 @@ int32_t convertToWriteableFormat(char *givenStr) {
       returnVal *= (-1);
     }
     return returnVal;
-} // fixed
+}
 
 // checks if an immediate is negative
 bool isNeg(char *givenStr) {
@@ -130,7 +127,7 @@ bool isNeg(char *givenStr) {
               break;
             }
     return neg;
-} // fixed
+}
 
 // returns operand2 in special cases of SDT
 uint32_t getOp2 (int32_t op2) {
@@ -141,7 +138,7 @@ uint32_t getOp2 (int32_t op2) {
       shiftVal--;
     }
     return ((shiftVal << 8) | (tempVal & 0xFF)) & 0xFFF;
-} // fixed
+}
 
 //Effect of instruction LSL
 uint32_t *lslFunc(instruction inst) {
@@ -158,7 +155,7 @@ uint32_t *lslFunc(instruction inst) {
 
     return returnValue;
 
-} //fixed
+}
 
 // checks if a given string contains a constant value
 bool checkIfImmediate(char *text) {
@@ -176,10 +173,10 @@ bool checkIfImmediate(char *text) {
                 return false;
     }
 
-} // fixed
+}
 
+// shifts a given value based on the type and amount
 uint32_t shiftOperand (char *base, char *shiftT, char *shiftA) {
-    // shifts a given value based on the type and amount
 
     uint32_t returnVal = 0;
     int baseVal = convertToWriteableFormat(base);
@@ -204,9 +201,8 @@ uint32_t shiftOperand (char *base, char *shiftT, char *shiftA) {
         shiftAmount = 8;
     }
 
-
     returnVal = convertToWriteableFormat(shiftA) << shiftAmount | shiftC << 5 |
      (shiftAmount==8) << 4 | baseVal;
 
     return returnVal;
-} // fixed
+}

@@ -1,9 +1,3 @@
-//
-// Created by nb1317 on 01/06/18.
-//
-
-
-
 #include <stdlib.h>
 #include "assemblerImplementation.h"
 #include <strings.h>
@@ -173,7 +167,7 @@ bool containsConstant (uint32_t *givenLabel) {
 }
 
 // returns the offset between the constant to the added to the end of the file and the current address of the
-// instruction. called from
+// instruction
 int32_t calculateOffset(uint32_t PC, uint32_t value) {
     int32_t returnValue;
     uint32_t *key = malloc(sizeof(uint32_t));
@@ -203,7 +197,6 @@ instruction *decode(char** given, uint16_t memoryAddr) {
 
 
     for ( int i = 0 ; i < 4 ; ++i ) {
-        //char *codes = ;
         int len = sizeof(Opcodes[i])/ sizeof(Opcodes[i][0]);
 
         for (int j = 0 ; j < len; ++j) {
@@ -228,9 +221,6 @@ instruction *decode(char** given, uint16_t memoryAddr) {
                 instr->Rd = line[1];
                 instr->Rn = "#0";
                 instr->operand2 = line[2];
-                //strcpy(instr->Rd,line[1]);
-                //strcpy(instr->Rn,"#0");
-                //strcpy(instr->operand2,line[2]);
             } else if (!strcmp(line[0],"tst") || !strcmp(line[0],"teq") || !strcmp(line[0],"cmp")) {
                 instr->Rd = "#0";
                 instr->Rn = line[1];

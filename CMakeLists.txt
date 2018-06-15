@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
-project(arm11_28)
+project(arm11_28 C)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_C_STANDARD 11)
 
 include_directories(extension)
 include_directories(src)
@@ -9,10 +9,6 @@ include_directories(src/assemble_utils)
 include_directories(src/emulate_utils)
 
 add_executable(arm11_28
-        codestyles/Default.xml
-        doc/Checkpoint.tex
-        doc/Makefile
-        doc/Report.tex
         extension/cell.c
         extension/cell.h
         extension/game.c
@@ -21,11 +17,6 @@ add_executable(arm11_28
         extension/grid.h
         extension/initial_configs.c
         extension/initial_configs.h
-        inspection/Default.xml
-        interim_report/title/logo.png
-        interim_report/title/title.tex
-        interim_report/main.tex
-        programs/gpio.s
         src/assemble_utils/assemblerImplementation.c
         src/assemble_utils/assemblerImplementation.h
         src/assemble_utils/branch.c
@@ -61,6 +52,5 @@ add_executable(arm11_28
         src/emulate_utils/usefulFuncs.h
         src/assemble.c
         src/emulate.c
-        src/Makefile
         src/memoryImplementation.h
         src/usefulTools.h)

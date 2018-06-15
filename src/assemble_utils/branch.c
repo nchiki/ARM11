@@ -1,7 +1,3 @@
-//
-// Created by bt3917 on 05/06/18.
-//
-
 #include <stdint.h>
 #include <memory.h>
 #include <stdlib.h>
@@ -48,5 +44,3 @@ uint32_t* branch(instruction inst) {
     *returnValue = ((cond_code << 24) | offset & 0x00FFFFFF);
     return  returnValue;
 }
-
-//fixed
