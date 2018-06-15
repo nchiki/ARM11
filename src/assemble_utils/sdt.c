@@ -75,7 +75,7 @@ uint32_t *SDTassembling(instruction inst){
               i_flag = 0;
               u_flag = 1;
               printf("PC is %d\n",progC);
-              rn = 15;
+              progC = 15;
               offset = calculateOffset(progC, value);
               *returnVal = condition << 28 | 1 << 26 | i_flag << 25 |
                 p_flag << 24 | u_flag << 23 | l_flag << 20 | rn << 16 | rd << 12 | offset;

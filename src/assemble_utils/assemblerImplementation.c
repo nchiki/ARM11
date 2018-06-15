@@ -71,9 +71,11 @@ uint16_t getAddress(char *givLabel) {
 
 uint16_t getLastAddress() {
     struct symbol *temp = symbolTableHead;
+    int count = 0;
     while (temp->next != NULL ) {
+        count+=1;
     }
-    return temp->address;
+    return (count*4 + finalInstAddr);
 }
 
 uint32_t getConstantLastAddress() {
@@ -178,6 +180,7 @@ int numberOfConstants() {
     count+=1;
     return count;
 }
+
 uint32_t parse(char *line) {
     int i = 0;
     char *addr = line;
