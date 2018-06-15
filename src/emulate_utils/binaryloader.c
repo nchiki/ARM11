@@ -1,12 +1,11 @@
 
 #include "binaryloader.h"
 
-//loads the binary file
-
+//Loads the binary file
 void loadFile (char *fname, word_t *memory) {
     FILE *f = fopen(fname,"rb");
 
-    if ( f == NULL ) {
+    if (f == NULL) {
         exit(-1);
     }
 

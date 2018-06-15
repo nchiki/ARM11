@@ -23,7 +23,7 @@ char **tokenizeHelper(char *line) {
 
     strcpy(newline,line);
 
-    if(strchr(line,'[') != NULL) {
+    if (strchr(line,'[') != NULL) {
         tempLine = strtok(newline,"[");
         tempLine2 = strtok(NULL,"[");
     } else {
@@ -35,7 +35,7 @@ char **tokenizeHelper(char *line) {
     tempLine = strtok(tempLine, ", ");
     // keep splitting as you go along while also looking at commas
 
-    for ( ; tempLine != NULL; i++) {
+    for (; tempLine != NULL; i++) {
         tokenized[i] = tempLine;
         tempLine = strtok(NULL,", ");
     }
@@ -58,7 +58,7 @@ char **tokenizeHelper(char *line) {
 uint32_t *distinguish(instruction inst) {
     uint32_t *returnVal;
 
-    switch(inst.type) {
+    switch (inst.type) {
         case DATA_PROCESSING:
             returnVal = dataProcessing(inst);
             break;
@@ -154,7 +154,6 @@ uint32_t *lslFunc(instruction inst) {
     *returnValue = ((condition << 28) | opcode << 21 | S << 20 | Rn << 12 | (shiftVal << 7) | Rn );
 
     return returnValue;
-
 }
 
 // checks if a given string contains a constant value
@@ -164,11 +163,9 @@ bool checkIfImmediate(char *text) {
     switch(given[0]) {
         case 'r' :
                 return false;
-                break;
         case '#' :
         case '=' :
                 return true;
-                break;
         default:
                 return false;
     }
@@ -184,13 +181,13 @@ uint32_t shiftOperand (char *base, char *shiftT, char *shiftA) {
     int shiftAmount;
 
 
-    if (strcmp(shiftT,"lsl")==0) {
+    if (strcmp(shiftT, "lsl") == 0) {
         shiftC = 0;
-    } else if (strcmp(shiftT,"lsr")==0) {
+    } else if (strcmp(shiftT, "lsr") == 0) {
         shiftC = 1;
-    } else if (strcmp(shiftT,"asr")==0) {
+    } else if (strcmp(shiftT, "asr") == 0) {
         shiftC = 2;
-    } else if (strcmp(shiftT,"ror")==0) {
+    } else if (strcmp(shiftT, "ror") == 0) {
         shiftC = 3;
     }
     // to check if the shift amount is an immediate value

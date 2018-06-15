@@ -1,7 +1,7 @@
 #include "decode.h"
 
-//differentiates between the instructions
-void decode(MACHINE *machine){ //checked
+//Differentiates between the instructions
+void decode(MACHINE *machine){
     if (machine->c.fetchedInstruction == 0){
         halt(machine); //if all-zeros is halt
     } else if((machine->c.fetchedInstruction&Branch_MASK)){

@@ -81,7 +81,7 @@ uint16_t getLastAddress() {
 
 // returns the address of the last constant which has to be added to the end of the file
 uint32_t getConstantLastAddress() {
-    if(constantTableHead->label == NULL) {
+    if (constantTableHead->label == NULL) {
       return getLastAddress();
     } else {
       struct constantLL *temp = constantTableHead;
@@ -147,7 +147,7 @@ void clearConstantTable() {
 bool containsLabel(char *givenLabel) {
     struct symbol *temp = symbolTableHead;
     while (temp->next != NULL ) {
-        if (strcmp(temp->label,givenLabel) == 0) {
+        if (strcmp(temp->label, givenLabel) == 0) {
             return true;
         }
         temp = temp->next;
@@ -185,22 +185,22 @@ instruction *decode(char** given, uint16_t memoryAddr) {
     instruction *instr = malloc(sizeof(instruction));
 
     char *line[5];
-    for ( int i = 0 ; i < 5 ; ++i ) {
-        line[i] = malloc(strlen(given[i])+1);
+    for (int i = 0; i < 5; ++i) {
+        line[i] = malloc(strlen(given[i]) + 1);
     }
 
-    for ( int i = 0 ; i < 5 ; ++i ) {
-        strcpy(line[i],given[i]);
+    for (int i = 0; i < 5; ++i) {
+        strcpy(line[i], given[i]);
     }
-    instr->opcode  = line[0];
+    instr->opcode = line[0];
     instr->memoryAddr = memoryAddr;
 
 
-    for ( int i = 0 ; i < 4 ; ++i ) {
-        int len = sizeof(Opcodes[i])/ sizeof(Opcodes[i][0]);
+    for (int i = 0; i < 4; ++i) {
+        int len = sizeof(Opcodes[i]) / sizeof(Opcodes[i][0]);
 
-        for (int j = 0 ; j < len; ++j) {
-            if (!strcmp(Opcodes[i][j],line[0])) {
+        for (int j = 0; j < len; ++j) {
+            if (!strcmp(Opcodes[i][j], line[0])) {
                 instr->type = i;
                 break;
             }
@@ -209,19 +209,19 @@ instruction *decode(char** given, uint16_t memoryAddr) {
 
     }
 
-    if (strcmp(line[0],"andeq")==0) {
+    if (strcmp(line[0], "andeq") == 0) {
         instr->type = 5;
-    } else if (strcmp(line[0],"lsl")==0) {
+    } else if (strcmp(line[0], "lsl") == 0) {
         instr->type = LsL;
     }
 
-    switch(instr->type) {
+    switch (instr->type) {
         case DATA_PROCESSING:
             if (!strcmp(line[0], "mov")) {
                 instr->Rd = line[1];
                 instr->Rn = "#0";
                 instr->operand2 = line[2];
-            } else if (!strcmp(line[0],"tst") || !strcmp(line[0],"teq") || !strcmp(line[0],"cmp")) {
+            } else if (!strcmp(line[0], "tst") || !strcmp(line[0], "teq") || !strcmp(line[0], "cmp")) {
                 instr->Rd = "#0";
                 instr->Rn = line[1];
                 instr->operand2 = line[2];
@@ -237,7 +237,7 @@ instruction *decode(char** given, uint16_t memoryAddr) {
             instr->Rm = line[2];
             instr->Rs = line[3];
 
-            if (!strcmp(line[0],"mla")) {
+            if (!strcmp(line[0], "mla")) {
                 instr->Rn = line[4];
             }
 
@@ -267,7 +267,7 @@ instruction *decode(char** given, uint16_t memoryAddr) {
             break;
     }
     return instr;
-} // fixed
+}
 
 // returns the number of lines in the binary files, including blank lines
 int countLines (FILE* input) {

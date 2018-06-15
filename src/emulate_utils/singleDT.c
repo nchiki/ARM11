@@ -1,6 +1,6 @@
 #include "singleDT.h"
 
-void SDTdecode(word_t instruction, MACHINE *machine) { //checked
+void SDTdecode(word_t instruction, MACHINE *machine) {
     machine->c.decodedInstruction->binary = instruction;
 	machine->c.decodedInstruction->type = SDT;
     machine->c.decodedInstruction->I = (bool)((instruction >> Ibit) & 1);

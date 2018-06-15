@@ -1,7 +1,7 @@
 #include "multiply.h"
 
 
-void multiply(word_t instruction, MACHINE *machine){ //checked
+void multiply(word_t instruction, MACHINE *machine){
     machine->c.decodedInstruction->binary = instruction;
 	machine->c.decodedInstruction->type = Mult;
     machine->c.decodedInstruction->A = (bool)((instruction >> Abit) & 1);

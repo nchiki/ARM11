@@ -2,7 +2,7 @@
 
 
 
-void branch(word_t instruction, MACHINE *machine) { //checked
+void branch(word_t instruction, MACHINE *machine) {
 	machine->c.decodedInstruction->type = Branch;
     word_t offsetValue = (instruction & 0xFFFFFF)<<2;//24 bit offset
 		if((instruction>>23)&0x1){ //if the instruction is negative

@@ -17,7 +17,7 @@ MEMORY memoArray = {
   .memoryAlloc = {0},
 };
 
-// dummy instruction to fix the effects of the pipeline
+//Dummy instruction to setup the pipeline
 instructions NullInstruction = {
  None,
  1111,
@@ -50,31 +50,32 @@ instructions NullInstruction = {
 
 
 int main(int argc, char **argv) {
-   //checks if it receives the correct number of arguments
+    //Check if it receives the correct number of arguments
     assert(argc == 2 && "Incorrect number of arguments");
 
     char *givenFile = argv[1];
 
-    CPU *cpu = (CPU *)malloc(sizeof(CPU)); //allocates the cpu
+    //Allocates the CPU
+    CPU *cpu = (CPU *)malloc(sizeof(CPU));
     *cpu = cpuo;
 
-    MEMORY *memory = (MEMORY *)malloc(sizeof(MEMORY)); //allocates the memory
+    //Allocate the memory
+    MEMORY *memory = (MEMORY *)malloc(sizeof(MEMORY));
     *memory = memoArray;
 
     (cpu->decodedInstruction) = (instructions *)malloc(sizeof(instructions));
     *(cpu->decodedInstruction) = NullInstruction;
 
-
-
-    MACHINE *machine = (MACHINE*)(malloc(sizeof(MACHINE))); // allocates the machine
-    // setting values
+    //Allocate the machine
+    MACHINE *machine = (MACHINE*)(malloc(sizeof(MACHINE)));
+    //Set values
     (machine->c) = *cpu;
     (machine->mem) = *memory;
 
-    //loading the file
+    //Load the file
     loadFile(givenFile,machine->mem.memoryAlloc);
 
-    // Fill the pipeline before you begin
+    //Fill the pipeline before you begin
     word_t fetched = 0;
     word_t address = machine->c.registers[PC];
     fetched |= ((uint32_t) machine->mem.memoryAlloc[binToDec(address)]);
@@ -89,34 +90,34 @@ int main(int argc, char **argv) {
 
     // --------------------MAIN WHILE LOOP---------------------------
 
-    //once there are instructions to fetch, execute and decode it will execute the loop
+    //Once there are instructions to fetch, execute and decode it will execute the loop
     while (machine->c.decodedInstruction->type != Halt  ) {
-      //fetch
+      //Fetch
       address = machine->c.registers[PC];
       fetched = 0;
       fetched |= ((uint32_t) machine->mem.memoryAlloc[address]);
       machine->c.instructionIsFetched = true;
       machine->c.fetchedInstruction = fetched;
 
-      //execute
+      //Execute
       if (machine->c.decodedInstruction->type != None) {
       execute(machine);
       }
 
 
-      //decode
+      //Decode
       *(machine->c.decodedInstruction) = NullInstruction; //dummy value to be defined by decode
       if(machine->c.instructionIsFetched){ //check if the instruction has to be decoded
         decode(machine);
       }
 
       machine->c.registers[PC] += 1; // as we made 4-bytes addresses the value
-                                    // of the Pc is only incremented by 1
+                                     // of the PC is only incremented by 1
     }
     machine->c.registers[PC] += 1; // last time incremented
     execute(machine); // executes halt and prints the values held in memory and registers
 
-    //frees and exits the program
+    //Frees and exits the program
     free(machine->c.decodedInstruction);
     free(cpu);
     free(memory);

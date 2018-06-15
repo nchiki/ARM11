@@ -1,8 +1,8 @@
 #include "DataProcDec.h"
 
-void decodeDATPROC(word_t instruction, MACHINE *machine){ //checked
+void decodeDATPROC(word_t instruction, MACHINE *machine){
 
-   // saving the different files of the instruction
+    //SavE the different files of the instruction
     machine->c.decodedInstruction->binary = instruction;
     machine->c.decodedInstruction->type = DProc;
     machine->c.decodedInstruction->Rn =

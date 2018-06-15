@@ -5,7 +5,6 @@
 #include "instruction_defs.h"
 
 uint32_t* branch(instruction inst) {
-
     uint8_t cond_code;
     uint32_t *returnValue = calloc(1, sizeof(uint32_t)) ;
 
@@ -34,7 +33,6 @@ uint32_t* branch(instruction inst) {
     if (containsLabel(inst.expression)) {
         offset = getAddress(inst.expression)-8;
     } else {
-
         offset = convertToWriteableFormat(inst.expression)-8;
     }
 

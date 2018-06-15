@@ -14,10 +14,9 @@ int main(int argc, char **argv) {
 
     uint32_t address = 0;
 
-    char line[MAX_LINE_SIZE] ;
+    char line[MAX_LINE_SIZE];
 
-    // first pass
-
+    //First pass
     FILE *input;
     input = fopen(argv[1],"r");
     if (input == NULL) {
@@ -45,55 +44,45 @@ int main(int argc, char **argv) {
 
             if (tokenizedLine[0][strlen(tokenizedLine[0]) - 1] == ':') {
                 // if its a label
-
                 char *label = malloc(sizeof(tokenizedLine[0]));
                 strcpy(label, tokenizedLine[0]);
                 label[strlen(label) - 1] = '\0';
-                // replace the : with a NULL character
 
+                // replace the : with a NULL character
                 if (containsLabel(label) == 0) {
                     // only add to the symbol if it doesnt already exist in there
-
                     addLabel(label, address * 4);
                 }
             } else {
                 // its an instruction, so decode it
-
                 instruction *temp = decode(tokenizedLine, address * 4);
                 memcpy(instArr + address, temp, sizeof(instruction));
 
                 address += 1;
-
             }
         }
     }
 
     finalInstAddr = 4*address;
-
     fclose(input);
 
-
     FILE *output;
-
     if ((output = fopen(argv[2],"wb"))==NULL) {
         printf("Could not open output file");
         exit(-1);
     }
 
-    // second pass
-
+    //Second pass
     uint32_t f = 0;
     for ( int i = 0; i < address; ++i) {
         uint32_t *writeValue = distinguish(instArr[i]);
 
         if ( instArr[i].type == ANDEQ ) {
             //doing this because other methods to set the value of a pointer to zero would result in a NULL pointer
-
             fwrite(&f,1,sizeof(uint32_t),output);
         } else {
             fwrite(writeValue,1, sizeof(uint32_t),output);
         }
-
     }
 
     // take all constants present in constant table, and append at the end of the file
@@ -103,15 +92,12 @@ int main(int argc, char **argv) {
         while (temp->label != NULL) {
             fwrite(&temp->address, 1, sizeof(uint32_t), output);
             temp = temp->next;
-
         }
     }
 
     fclose(output);
-
     clearSymbolTable();
     clearConstantTable();
 
-   return EXIT_SUCCESS;
-
+    return EXIT_SUCCESS;
 }

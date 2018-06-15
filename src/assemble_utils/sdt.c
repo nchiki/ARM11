@@ -7,16 +7,12 @@
 
 
 uint32_t *SDTassembling(instruction inst){
-
   char *address = inst.address;
   char *newAdd = malloc(sizeof(char)*strlen(address));
-
   char *tempPtr;
-
   const char ldr[] = "ldr";
   const char str[] = "str";
   bool p_flag, i_flag, u_flag, l_flag;
-
   int value = 1;
 
   uint16_t rd = convertToWriteableFormat(inst.Rd);
@@ -72,7 +68,7 @@ uint32_t *SDTassembling(instruction inst){
   int i = 0;
   tempPtr = strtok(newAdd,",");
 
-  for ( ; tempPtr != NULL; i++) {
+  for (; tempPtr != NULL; i++) {
       tokAdd[i] = tempPtr;
       tempPtr = strtok(NULL,",");
   }
@@ -84,7 +80,7 @@ uint32_t *SDTassembling(instruction inst){
           i_flag = 0;
           offset = 0;
           u_flag = 1;
-          tokAdd[0][strlen(tokAdd[0])-1] = '\0';
+          tokAdd[0][strlen(tokAdd[0]) - 1] = '\0';
           inst.Rn = tokAdd[0];
           rn = convertToWriteableFormat(inst.Rn);
           break;
@@ -94,9 +90,9 @@ uint32_t *SDTassembling(instruction inst){
           }
 
           if (p_flag) {
-              tokAdd[1][strlen(tokAdd[1])-1] = '\0';
+              tokAdd[1][strlen(tokAdd[1]) - 1] = '\0';
           } else {
-              tokAdd[0][strlen(tokAdd[0])-1] = '\0';
+              tokAdd[0][strlen(tokAdd[0]) - 1] = '\0';
           }
 
           i_flag = !checkIfImmediate(tokAdd[1]);
@@ -116,18 +112,18 @@ uint32_t *SDTassembling(instruction inst){
           shiftA = strtok(NULL," ");
 
           if (p_flag) {
-              if(shiftA[strlen(shiftA)-1]==']') {
-                  shiftA[strlen(shiftA)-1] = '\0';
+              if(shiftA[strlen(shiftA) - 1] == ']') {
+                  shiftA[strlen(shiftA) - 1] = '\0';
               }
           } else {
               if (base[strlen(base)-1] == ']') {
                   base[strlen(base)-1] = '\0';
               }
           }
-          offset = shiftOperand(base,shiftT,shiftA);
+          offset = shiftOperand(base, shiftT, shiftA);
           u_flag = 1;
 
-          if ( offset < 0 ) {
+          if (offset < 0) {
               u_flag = 0;
               offset*=-1;
           }

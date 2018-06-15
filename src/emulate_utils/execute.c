@@ -4,7 +4,7 @@
 void printBitsofMem(word_t memAlloc);
 void printBitsofReg(int32_t reg, bool isPC, bool isCPSR);
 
-int checkCondition(MACHINE *machine) { //checked
+int checkCondition(MACHINE *machine) {
     //checking whether the condition set in the cond field
     //of the instructions correspond to the flags of the CPSR
 
@@ -35,27 +35,27 @@ int checkCondition(MACHINE *machine) { //checked
 
 }
 
-void execute_MulI(MACHINE *machine){ //checked
+void execute_MulI(MACHINE *machine){
     //simple multiplication
     word_t result = machine->c.registers[machine->c.decodedInstruction->Rm] *
             machine->c.registers[machine->c.decodedInstruction->Rs];
 
     //if A is set, then add accumulator
-    if(machine->c.decodedInstruction->A){
+    if (machine->c.decodedInstruction->A) {
         result += machine->c.registers[machine->c.decodedInstruction->Rn];
     }
 
     machine->c.registers[machine->c.decodedInstruction->Rd] = result;
 
     //if S is set, update CPSR flag
-    if(machine->c.decodedInstruction->S){
+    if (machine->c.decodedInstruction->S) {
 
         //N will be updated to the last bit of the result, rest of CPSR stays the same
         machine->c.registers[CPSR] &= 0x7FFFFFFF;
         machine->c.registers[CPSR] |= (result>>OTHERSIDE) * N_MASK_32;
 
         //if result is zero, Z bit is set and the rest of CPSR stays the same
-        if(result == 0){
+        if (result == 0) {
             machine->c.registers[CPSR] &= 0xBFFFFFFF;
             machine->c.registers[CPSR] = Z_MASK_32 | machine->c.registers[CPSR];
         }
@@ -68,14 +68,14 @@ void execute_Halt(MACHINE *machine){
     printf("Registers:\n");
     bool isPC = false;
     bool isCPSR = false; //CPSR needs a different padding
-    for(int i = 0; i < NUM_REGISTERS; i++){
+    for(int i = 0; i < NUM_REGISTERS; i++) {
       isPC = false;
       isCPSR = false;
       if (!(i == UnusedReg1 || i == UnusedReg2)) {
-        if (i == PC){
+        if (i == PC) {
           printf("PC  :");
           isPC = true;
-        } else if(i == CPSR){
+        } else if(i == CPSR) {
           printf("CPSR:");
           isCPSR = true;
         } else {
@@ -85,9 +85,9 @@ void execute_Halt(MACHINE *machine){
       }
     }
     printf("Non-zero memory:\n");
-    for(int i = 0; i < NUM_ADDRESSES; i++){
-      if(machine->mem.memoryAlloc[i] != 0){
-        printf("0x%08x: ", i*4);
+    for (int i = 0; i < NUM_ADDRESSES; i++) {
+      if (machine->mem.memoryAlloc[i] != 0) {
+        printf("0x%08x: ", i * 4);
         printBitsofMem(machine->mem.memoryAlloc[i]);
       }
     }
@@ -96,11 +96,11 @@ void execute_Halt(MACHINE *machine){
 
 
 //prints bit sequence of register
-void printBitsofReg(int32_t reg, bool isPC, bool isCPSR) { //checked
+void printBitsofReg(int32_t reg, bool isPC, bool isCPSR) {
 
     if (isPC) {
       printf("% 11d (0x%08x)\n", reg*4, reg*4); //4-byte addressable
-    } else if(isCPSR && (reg<0)){
+    } else if (isCPSR && (reg < 0)) {
       printf("% 12d (0x%08x)\n", reg, reg);
     } else if (reg < 0) {// if the number is ngative we need more space
       if (reg <= (-2147483648)) { //bound for the padding
@@ -113,7 +113,7 @@ void printBitsofReg(int32_t reg, bool isPC, bool isCPSR) { //checked
     }
 }
 
-void printBitsofMem(word_t memAlloc) { //checked
+void printBitsofMem(word_t memAlloc) {
       // swapping bits because of the endianess of the memory
       word_t mem = bswap_32(memAlloc);
       printf("0x%08x\n", mem);
@@ -121,30 +121,30 @@ void printBitsofMem(word_t memAlloc) { //checked
 
 
 //checks for negative value and turns offset into positive binary
-word_t signedtwos_to_unsigned(int32_t signednum){ //checked
+word_t signedtwos_to_unsigned(int32_t signednum){
     word_t signednumAbs = (~signednum) + 1;
-    if(signednum >> OTHERSIDE){
+    if (signednum >> OTHERSIDE) {
         signednumAbs *= -1;
     }
     return signednumAbs;
 }
 
-word_t signedtwos_to_int(int32_t signednum){ //checked
+word_t signedtwos_to_int(int32_t signednum){
     word_t  signednumAbs = (~signednum) + 1;
-    if(signednum >> OTHERSIDE){
+    if (signednum >> OTHERSIDE) {
         signednumAbs *= -1;
     }
     return signednumAbs;
 }
 
-void execute_branch(MACHINE *machine){ //checked
+void execute_branch(MACHINE *machine){
     machine->c.instructionIsFetched = false; //ignoring last instruction;
     int32_t offset = (machine->c.decodedInstruction->offset);  // /4 - 1;
     machine->c.registers[PC] += (offset)/4;
 }
 
-// operand are the 12 last bits of the instruction (although it is passed as an uin32_t)
-word_t shiftReg(word_t operand, MACHINE *machine) { //blanca should check this
+//Operand are the 12 last bits of the instruction (although it is passed as an uin32_t)
+word_t shiftReg(word_t operand, MACHINE *machine) {
     int amount; //the number of positions to be shifted
     int32_t mask2; // mask that we are gonna use later
     if ((operand & 0x10) != 0) {  //checks if it's shifted by constant amount
@@ -230,7 +230,7 @@ word_t shiftReg(word_t operand, MACHINE *machine) { //blanca should check this
 //rotates with right shifts and takes number of rotations as parameter
 word_t rotate(word_t operand, int numberRot){
     int num = (numberRot);  //number of rotations
-    for(int i = 0; i < num; i++){
+    for (int i = 0; i < num; i++) {
         int firstBit = getBitRange(operand, 0, 1);
         operand >>= 1;
         firstBit <<= OTHERSIDE;
@@ -313,21 +313,26 @@ int addr = (int) address/bits_4;
 
 bool isGPIO (uint32_t number, MACHINE *machine) {
     switch(number) {
-        case 0x20200008 :
+        case 0x20200008:
             printf("One GPIO pin from 20 to 29 has been accessed\n");
-            machine->c.registers[machine->c.decodedInstruction->Rd] = number; break;
-        case 0x20200004 :
+            machine->c.registers[machine->c.decodedInstruction->Rd] = number;
+            break;
+        case 0x20200004:
             printf("One GPIO pin from 10 to 19 has been accessed\n");
-            machine->c.registers[machine->c.decodedInstruction->Rd] = number;break;
-        case 0x20200000 :
+            machine->c.registers[machine->c.decodedInstruction->Rd] = number;
+            break;
+        case 0x20200000:
             printf("One GPIO pin from 0 to 9 has been accessed\n");
-            machine->c.registers[machine->c.decodedInstruction->Rd] = number;break;
-        case 0x20200028 :
-            printf("PIN OFF\n"); break;
-        case 0x2020001c :
-            printf("PIN ON\n"); break;
-
-        default: return false;
+            machine->c.registers[machine->c.decodedInstruction->Rd] = number;
+            break;
+        case 0x20200028:
+            printf("PIN OFF\n");
+            break;
+        case 0x2020001c:
+            printf("PIN ON\n");
+            break;
+        default:
+            return false;
     }
     return true;
 
@@ -428,17 +433,17 @@ void execute_DPI(MACHINE *machine){
     word_t op2;
     int32_t RN = machine->c.registers[binToDec(instr->Rn)];
 
-    if(instr->I){ //checking if operand2 is immediate value or shifted register
+    if (instr->I) { //checking if operand2 is immediate value or shifted register
         op2 = getBitRange((instr->operand2 | 0x00000000), 0, BYTE_1);
         int numberRot = getBitRange(instr->binary, BYTE_1, bits_4) << 1;
         op2 = rotate(op2, numberRot); //rotates immediate value
     }
-    else{ //shifts register value
+    else { //shifts register value
         op2 = shiftReg(instr->operand2, machine);
         carry = instr->carry;
     }
 
-    switch(machine->c.decodedInstruction->opcode) {
+    switch (machine->c.decodedInstruction->opcode) {
         case 0: // and
         case 8: // tst
             result = RN & op2;
@@ -480,7 +485,7 @@ void execute_DPI(MACHINE *machine){
     }
 
     //if one of these instructions, result is not written
-    if(!(instr->opcode == BYTE_1 || instr->opcode == 9 || instr->opcode == 10)){
+    if (!(instr->opcode == BYTE_1 || instr->opcode == 9 || instr->opcode == 10)) {
         machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)] =
                                                                         result;
     }
