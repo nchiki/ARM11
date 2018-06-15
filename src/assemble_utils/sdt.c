@@ -26,6 +26,7 @@ uint32_t *SDTassembling(instruction inst){
     uint32_t progC = inst.memoryAddr + 8;
   if (strcmp(inst.opcode,ldr) == 0) {
       l_flag = 1;
+      // L = 1 if its an LDR
       if (address[0] == '=') {
           p_flag = 1;
           value = convertToWriteableFormat(address);
@@ -39,7 +40,6 @@ uint32_t *SDTassembling(instruction inst){
               u_flag = 1;
               printf("PC is %d\n",progC);
               rn = 15;
-              //progC = rn;
               offset = calculateOffset(progC, value);
               *returnVal = condition << 28 | 1 << 26 | i_flag << 25 |
                 p_flag << 24 | u_flag << 23 | l_flag << 20 | rn << 16 | rd << 12 | offset;
@@ -70,9 +70,8 @@ uint32_t *SDTassembling(instruction inst){
   int i = 0;
   tempPtr = strtok(newAdd,",");
 
-  while (tempPtr) {
+  for ( ; tempPtr != NULL; i++) {
       tokAdd[i] = tempPtr;
-      i++;
       tempPtr = strtok(NULL,",");
   }
 
