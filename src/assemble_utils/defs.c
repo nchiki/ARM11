@@ -54,11 +54,6 @@ char **tokenizeHelper(char *line) {
         tokenized[i] = "";
     }
 
-    for ( int i = 0 ; i < 10 ; ++i ) {
-        if (tokenized[i][0] == ' ') {
-
-        }
-    }
     return tokenized;
 }
 

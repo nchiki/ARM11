@@ -56,4 +56,6 @@ bool checkIfImmediate(char*);
 uint32_t shiftOperand(char*, char*, char*);
 
 uint16_t textToInt(char*);
+
+char *removeSpaces(char*);
 #endif //ARM11_28_DEFS_H
