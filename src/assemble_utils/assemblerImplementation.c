@@ -164,6 +164,10 @@ int32_t calculateOffset(uint32_t PC, uint32_t value) {
     uint32_t *key = malloc(sizeof(uint32_t));
     *key = value;
     uint32_t address = getLastAddress();
+    if (constantTableHead->next != NULL) {
+        address += 4;
+    }
+
     addConstant(key, value);
     returnValue = (address) - (int32_t)PC;
     return returnValue&0xFFF;

@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
     rewind(input);
     initSymbolTable();
     initConstantTable();
-
+  //  int instCounter = 0;
 
     uint32_t *valueToBeWritten = NULL;
     //int counter = 0;
@@ -64,7 +64,7 @@ int main(int argc, char **argv) {
         }
     }
 
-    finalInstAddr = instArr[address].memoryAddr;
+    finalInstAddr = 4*address;
     fclose(input);
 
 
