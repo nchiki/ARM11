@@ -6,7 +6,7 @@
 #include "../usefulTools.h"
 #include "assemblerImplementation.h"
 
-
+// takes a line of text from the binary file and parses into a 2D char array which can then be easily passed to decode
 char **tokenizeHelper(char *line) {
     char *tempLine;
     char *tempLine2 = NULL;
@@ -62,6 +62,7 @@ char **tokenizeHelper(char *line) {
     return tokenized;
 }
 
+//looks at the type of instruction, and calls the respective instructin.
 uint32_t *distinguish(instruction inst) {
     uint32_t *returnVal;
 
@@ -92,11 +93,7 @@ uint32_t *distinguish(instruction inst) {
 
 } // fixed
 
-
-
-// the idea here is to be able to make a switch function which takes the mnemonic
-// and returns, using the defs in usefulTools, the code of both the condition and the opcodes
-
+// convert from text to int32, so that it can be used in shift and written into the binary file
 int32_t convertToWriteableFormat(char *givenStr) {
     int32_t returnVal = 0;
     int32_t temp = 1;
@@ -122,6 +119,7 @@ int32_t convertToWriteableFormat(char *givenStr) {
     return returnVal;
 } // fixed
 
+// checks if an immediate is negative
 bool isNeg(char *givenStr) {
     bool neg = false;
     switch(givenStr[0]) {
@@ -139,7 +137,7 @@ bool isNeg(char *givenStr) {
     return neg;
 } // fixed
 
-
+// returns operand2 in special cases of SDT
 uint32_t getOp2 (int32_t op2) {
     int shiftVal = 32;
     uint32_t tempVal = op2;
@@ -150,6 +148,7 @@ uint32_t getOp2 (int32_t op2) {
     return ((shiftVal << 8) | (tempVal & 0xFF)) & 0xFFF;
 } // fixed
 
+//Effect of instruction LSL
 uint32_t *lslFunc(instruction inst) {
     uint32_t *returnValue = calloc(1,sizeof(uint32_t));
     uint8_t condition = 14;
@@ -166,6 +165,7 @@ uint32_t *lslFunc(instruction inst) {
 
 } //fixed
 
+// checks if a given string contains a constant value
 bool checkIfImmediate(char *text) {
   char *given = malloc(strlen(text));
   strcpy(given,text);
@@ -182,7 +182,6 @@ bool checkIfImmediate(char *text) {
     }
 
 } // fixed
-
 
 uint32_t shiftOperand (char *base, char *shiftT, char *shiftA) {
     // shifts a given value based on the type and amount

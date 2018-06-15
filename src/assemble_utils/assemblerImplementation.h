@@ -33,7 +33,8 @@ struct constantLL {
 // purposely did not use typedef because typedef breaks a couple of things in the implementation of addLabel in assemblerImplementation.c
 // DO NOT CHANGE TO TYPEDEF STRUCT {..}SYMBOL;
 
-// all the opcodes, not entirely too sure what to do for the special instructions
+// all the opcodes, each row is a different type of instruction. use this to easily classify instructions
+
 static const char *Opcodes[][10] = {
         {"add", "sub", "rsb", "and", "eor", "orr", "mov", "tst", "teq", "cmp"},
         {"mul", "mla", "\0", "\0", "\0", "\0", "\0", "\0", "\0", "\0"},
@@ -48,7 +49,7 @@ typedef enum {
 }instrType ;
 
 // there should be an enum for instrtype
- typedef struct {
+typedef struct {
     char *opcode;
     instrType type;
 
@@ -84,7 +85,6 @@ uint32_t getConstantLastAddress();
 void clearSymbolTable();
 
 bool containsLabel(char*);
-uint32_t parse(char*);
 
 void setInstNull (instruction);
 
@@ -98,7 +98,7 @@ void constantsHelperFunction(struct constantLL*);
 void clearConstantTable();
 bool containsConstant (uint32_t*);
 int32_t calculateOffset(uint32_t, uint32_t);
-int numberOfConstants();
+
 
 int finalInstAddr;
 
