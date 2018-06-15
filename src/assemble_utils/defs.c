@@ -7,50 +7,17 @@
 #include "assemblerImplementation.h"
 
 
-
-MNEMONIC takeMnemonic(char *word) {
-    if (!strcmp(word, "add")) {
-        return add;
-    } else if(!strcmp(word, "sub")) {
-        return sub;
-    } else if(!strcmp(word, "rsb")) {
-        return rsb;
-    } else if(!strcmp(word, "and")) {
-        return and;
-    } else if(!strcmp(word, "eor")) {
-        return eor;
-    } else if(!strcmp(word, "orr")) {
-        return orr;
-    } else if(!strcmp(word, "mov")) {
-        return mov;
-    } else if(!strcmp(word, "tst")) {
-        return tst;
-    } else if(!strcmp(word, "teq")) {
-        return teq;
-    } else if(!strcmp(word, "cmp")) {
-        return cmp;
-    } else if(!strcmp(word, "mul")) {
-        return mul;
-    } else if (!strcmp(word, "mla")) {
-        return mla;
-    } //to be continued
-}
-
-
 char **tokenizeHelper(char *line) {
     char *tempLine;
     char *tempLine2 = NULL;
 
     char newline[MAX_LINE_SIZE];
     char **tokenized = malloc(sizeof(char*)*10);
-    // 10 is just a placeholder, should probably improve it
+
 
     int i = 0;
-    if (line[0] == ' ') {
-        strcpy(newline,line+1);
-    } else {
-        strcpy(newline,line);
-    }
+    strcpy(newline,line);
+
 
     if (line[strlen(line)-1] == '\n') {
         line[strlen(line)-1] = '\0';
@@ -64,22 +31,27 @@ char **tokenizeHelper(char *line) {
     } else {
         tempLine = newline;
     }
-    tempLine = strtok(tempLine, ", ");
+    // get rid of the [ so that you can get rid of the ] in SDT
 
-    while(tempLine) {
+
+    tempLine = strtok(tempLine, ", ");
+    // keep splitting as you go along while also looking at commas
+
+    for ( ; tempLine != NULL; i++) {
         tokenized[i] = tempLine;
-        i++;
-        tempLine = strtok(NULL, ", ");
+        tempLine = strtok(NULL,", ");
     }
+
+    // in case there are nested instructions
+
 
     if ( tempLine2 != NULL && i < 10) {
         tokenized[i] = tempLine2;
         i++;
     }
 
-    while ( i < 10 ) {
+    for ( ; i < 10 ; i++ ) {
         tokenized[i] = "";
-        i++;
     }
 
     for ( int i = 0 ; i < 10 ; ++i ) {
@@ -89,6 +61,7 @@ char **tokenizeHelper(char *line) {
     }
     return tokenized;
 }
+
 
 
 uint32_t *distinguish(instruction inst) {
@@ -107,16 +80,13 @@ uint32_t *distinguish(instruction inst) {
 
         case BRANCH:
             returnVal = branch(inst);
-            // call to function like this: branch(inst, symbolTable), branch hasnt implemented that
             break;
 
         case LsL:
             returnVal = lslFunc(inst);
             break;
 
-
         case ANDEQ:
-
             break;
     }
 

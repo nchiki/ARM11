@@ -5,44 +5,7 @@
 
 
 uint32_t *SDTassembling(instruction inst){
-  /*SDTinstr_t SDTinstr;
-  SDTinstr.cond = AL;
-  if (!strcmp(inst.opcode, "ldr")) {
-    SDTinstr.L = '1'; //load bit set
-  } else {
-    SDTinstr.L = '0';
-  }
-  //checks if its the form of <=expression>
-  if(inst.address[0] == '=') {
-    char *expr = inst.address + 1;
-    if (atoi(expr) <= 0xFF) { //the value to be load fits in a mov instruction
-      instruction movInstr;
-      movInstr.opcode = "mov";
-      movInstr.memoryAddr = inst.address;
-      movInstr.type = DATA_PROCESSING;
-      movInstr.Rd = inst.Rd;
-      movInstr.operand2 = inst.address;
-      return dataProc(movInstr);
-    } else { // stores the value at the end of the assemble file and gets the address
-      SDTinstr.P = '1';
-      int NUMofLines= numberOfLinesInSource;
 
-      SDTinstr.Rn = r16; //this should be r15 bc its the PC-----
-      SDTinstr.U = '0';
-      SDTinstr.I = '1';
-      // the address of the value is going to be the actual address adding the number of lines multiplied by 4 so its unique
-      SDTinstr.offset = inst.memoryAddr + (NUMofLines*4);
-      //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-      //have to save the value in the destination file (no clue of how to do that)
-      //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-    }
-  }else {
-    SDTinstr.Rn = assignReg(inst.Rn);
-    SDTinstr.offset = inst.expression;
-
-    SDTinstr.P = inst.PFlag; //sets the P bit if the tokenizeHelper decoded an address of the form [Rn, <#expression>]
-  }
-*/
   char *address = inst.address;
   char *newAdd = malloc(sizeof(char)*strlen(address));
 
@@ -78,10 +41,8 @@ uint32_t *SDTassembling(instruction inst){
               rn = 15;
               //progC = rn;
               offset = calculateOffset(progC, value);
-              //numberOfGTC+=1;
               *returnVal = condition << 28 | 1 << 26 | i_flag << 25 |
                 p_flag << 24 | u_flag << 23 | l_flag << 20 | rn << 16 | rd << 12 | offset;
-                // CHECK LOOK HERE FIX PFLAG
               return returnVal;
           }
       }
@@ -99,7 +60,7 @@ uint32_t *SDTassembling(instruction inst){
   }
 
   strcpy(newAdd,address);
-  // second run at tokenising
+  // further tokenizing
   if (newAdd[strlen(newAdd)-1] == ']') {
       p_flag = 1;
   } else {
@@ -114,6 +75,8 @@ uint32_t *SDTassembling(instruction inst){
       i++;
       tempPtr = strtok(NULL,",");
   }
+
+  // for nested instructions
 
   switch(i) {
       case 1:
@@ -174,7 +137,7 @@ uint32_t *SDTassembling(instruction inst){
 
   *returnVal = condition << 28 | 1 << 26 | i_flag << 25 | p_flag << 24 |
    u_flag << 23 | l_flag << 20 | rn << 16 | rd << 12 | offset;
-    // FIX THIS
+
   return returnVal;
 
 
