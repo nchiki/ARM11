@@ -6,51 +6,18 @@
 #include "../usefulTools.h"
 #include "assemblerImplementation.h"
 
-
-
-MNEMONIC takeMnemonic(char *word) {
-    if (!strcmp(word, "add")) {
-        return add;
-    } else if(!strcmp(word, "sub")) {
-        return sub;
-    } else if(!strcmp(word, "rsb")) {
-        return rsb;
-    } else if(!strcmp(word, "and")) {
-        return and;
-    } else if(!strcmp(word, "eor")) {
-        return eor;
-    } else if(!strcmp(word, "orr")) {
-        return orr;
-    } else if(!strcmp(word, "mov")) {
-        return mov;
-    } else if(!strcmp(word, "tst")) {
-        return tst;
-    } else if(!strcmp(word, "teq")) {
-        return teq;
-    } else if(!strcmp(word, "cmp")) {
-        return cmp;
-    } else if(!strcmp(word, "mul")) {
-        return mul;
-    } else if (!strcmp(word, "mla")) {
-        return mla;
-    } //to be continued
-}
-
-
+// takes a line of text from the binary file and parses into a 2D char array which can then be easily passed to decode
 char **tokenizeHelper(char *line) {
     char *tempLine;
     char *tempLine2 = NULL;
 
     char newline[MAX_LINE_SIZE];
     char **tokenized = malloc(sizeof(char*)*10);
-    // 10 is just a placeholder, should probably improve it
+
 
     int i = 0;
-    if (line[0] == ' ') {
-        strcpy(newline,line+1);
-    } else {
-        strcpy(newline,line);
-    }
+    strcpy(newline,line);
+
 
     if (line[strlen(line)-1] == '\n') {
         line[strlen(line)-1] = '\0';
@@ -64,22 +31,27 @@ char **tokenizeHelper(char *line) {
     } else {
         tempLine = newline;
     }
-    tempLine = strtok(tempLine, ", ");
+    // get rid of the [ so that you can get rid of the ] in SDT
 
-    while(tempLine) {
+
+    tempLine = strtok(tempLine, ", ");
+    // keep splitting as you go along while also looking at commas
+
+    for ( ; tempLine != NULL; i++) {
         tokenized[i] = tempLine;
-        i++;
-        tempLine = strtok(NULL, ", ");
+        tempLine = strtok(NULL,", ");
     }
+
+    // in case there are nested instructions
+
 
     if ( tempLine2 != NULL && i < 10) {
         tokenized[i] = tempLine2;
         i++;
     }
 
-    while ( i < 10 ) {
+    for ( ; i < 10 ; i++ ) {
         tokenized[i] = "";
-        i++;
     }
 
     for ( int i = 0 ; i < 10 ; ++i ) {
@@ -90,7 +62,7 @@ char **tokenizeHelper(char *line) {
     return tokenized;
 }
 
-
+//looks at the type of instruction, and calls the respective instructin.
 uint32_t *distinguish(instruction inst) {
     uint32_t *returnVal;
 
@@ -107,16 +79,13 @@ uint32_t *distinguish(instruction inst) {
 
         case BRANCH:
             returnVal = branch(inst);
-            // call to function like this: branch(inst, symbolTable), branch hasnt implemented that
             break;
 
         case LsL:
             returnVal = lslFunc(inst);
             break;
 
-
         case ANDEQ:
-
             break;
     }
 
@@ -124,11 +93,7 @@ uint32_t *distinguish(instruction inst) {
 
 } // fixed
 
-
-
-// the idea here is to be able to make a switch function which takes the mnemonic
-// and returns, using the defs in usefulTools, the code of both the condition and the opcodes
-
+// convert from text to int32, so that it can be used in shift and written into the binary file
 int32_t convertToWriteableFormat(char *givenStr) {
     int32_t returnVal = 0;
     int32_t temp = 1;
@@ -154,6 +119,7 @@ int32_t convertToWriteableFormat(char *givenStr) {
     return returnVal;
 } // fixed
 
+// checks if an immediate is negative
 bool isNeg(char *givenStr) {
     bool neg = false;
     switch(givenStr[0]) {
@@ -171,19 +137,8 @@ bool isNeg(char *givenStr) {
     return neg;
 } // fixed
 
-uint16_t textToInt(char *givenStr) {
-    // the first character of giveStr will definitely be # = or r
-    uint16_t returnVal = 0 ;
-    int len = strlen(givenStr);
-
-    for (int i = 1 ; i < len ; ++i ) {
-        returnVal = returnVal*10 + (givenStr[i] - '0');
-    }
-    return returnVal;
-}
-
+// returns operand2 in special cases of SDT
 uint32_t getOp2 (int32_t op2) {
-
     int shiftVal = 32;
     uint32_t tempVal = op2;
     while(!(tempVal & 0x3)){
@@ -193,6 +148,7 @@ uint32_t getOp2 (int32_t op2) {
     return ((shiftVal << 8) | (tempVal & 0xFF)) & 0xFFF;
 } // fixed
 
+//Effect of instruction LSL
 uint32_t *lslFunc(instruction inst) {
     uint32_t *returnValue = calloc(1,sizeof(uint32_t));
     uint8_t condition = 14;
@@ -209,6 +165,7 @@ uint32_t *lslFunc(instruction inst) {
 
 } //fixed
 
+// checks if a given string contains a constant value
 bool checkIfImmediate(char *text) {
   char *given = malloc(strlen(text));
   strcpy(given,text);
@@ -226,29 +183,32 @@ bool checkIfImmediate(char *text) {
 
 } // fixed
 
-
 uint32_t shiftOperand (char *base, char *shiftT, char *shiftA) {
+    // shifts a given value based on the type and amount
+
     uint32_t returnVal = 0;
     int baseVal = convertToWriteableFormat(base);
     int shiftC = 0;
     int shiftAmount;
 
 
-    if (!strcmp(shiftT,"lsl")) {
+    if (strcmp(shiftT,"lsl")==0) {
         shiftC = 0;
-    } else if (!strcmp(shiftT,"lsr")) {
+    } else if (strcmp(shiftT,"lsr")==0) {
         shiftC = 1;
-    } else if (!strcmp(shiftT,"asr")) {
+    } else if (strcmp(shiftT,"asr")==0) {
         shiftC = 2;
-    } else if (!strcmp(shiftT,"ror")) {
+    } else if (strcmp(shiftT,"ror")==0) {
         shiftC = 3;
     }
+    // to check if the shift amount is an immediate value
 
     if (checkIfImmediate(shiftA)) {
         shiftAmount = 7;
     } else {
         shiftAmount = 8;
     }
+
 
     returnVal = convertToWriteableFormat(shiftA) << shiftAmount | shiftC << 5 |
      (shiftAmount==8) << 4 | baseVal;
