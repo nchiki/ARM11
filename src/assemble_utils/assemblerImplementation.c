@@ -64,6 +64,7 @@ uint16_t getAddress(char *givLabel) {
         if (strcmp(temp->label,givLabel) == 0) {
             return temp->address;
         }
+        temp = temp->next;
     }
     return -1;
 }
@@ -141,6 +142,7 @@ bool containsLabel(char *givenLabel) {
         if (strcmp(temp->label,givenLabel) == 0) {
             return true;
         }
+        temp = temp->next;
     }
     return false ;
 }
