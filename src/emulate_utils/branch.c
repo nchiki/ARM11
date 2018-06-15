@@ -9,8 +9,7 @@ void branch(word_t instruction, MACHINE *machine) { //checked
 			offsetValue |= 0xFC000000; //sign extend the offset
 		}
 		machine->c.decodedInstruction->offset = (offsetValue);
-    machine->c.decodedInstruction->binary = instruction; //saves the binary
-		machine->c.decodedInstruction->cond =
-															getBitRange(instruction, condBits, bits_4) & 0xF;
+    	machine->c.decodedInstruction->binary = instruction; //saves the binary
+		machine->c.decodedInstruction->cond = getBitRange(instruction, condBits, bits_4) & 0xF;
 
 }

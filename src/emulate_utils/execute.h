@@ -40,5 +40,5 @@ void execute_DPI(MACHINE*);
 
 void execute(MACHINE*);
 
-
+bool isGPIO(uint32_t,MACHINE*);
 #endif //C_CODE_EXECUTE_H

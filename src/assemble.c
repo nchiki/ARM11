@@ -39,28 +39,30 @@ int main(int argc, char **argv) {
     uint32_t *valueToBeWritten = NULL;
     //int counter = 0;
     while (fgets(line, sizeof(line), input)) {
-        char **tokenizedLine = tokenizeHelper(line);
-      //  counter++;
-        // tokenizeHelper takes a line and return a 2D char array where the first sentence will be the instruction or label
-        // it will be a label iff the last char of the first line is :
-        // otherwise send it to decode;
+        if (line[0] != '\n' && line[0] != '\0' && line[0] != ' ') {
+            char **tokenizedLine = tokenizeHelper(line);
+            //  counter++;
+            // tokenizeHelper takes a line and return a 2D char array where the first sentence will be the instruction or label
+            // it will be a label iff the last char of the first line is :
+            // otherwise send it to decode;
 
-        if (tokenizedLine[0][strlen(tokenizedLine[0])-1] == ':') {
-            char *label = malloc(sizeof(tokenizedLine[0]));
-            strcpy(label,tokenizedLine[0]);
-            label[strlen(label)-1] = '\0';
-            if (containsLabel(label)==0) {
-                addLabel(label,address*4);
+            if (tokenizedLine[0][strlen(tokenizedLine[0]) - 1] == ':') {
+                char *label = malloc(sizeof(tokenizedLine[0]));
+                strcpy(label, tokenizedLine[0]);
+                label[strlen(label) - 1] = '\0';
+                if (containsLabel(label) == 0) {
+                    addLabel(label, address * 4);
+                }
+            } else {
+
+                // send it to decode
+                //instArr[address] = *decode(tokenizedLine,address*4);
+                instruction *temp = decode(tokenizedLine, address * 4);
+                memcpy(instArr + address, temp, sizeof(instruction));
+                // parameter mismatch?
+                address += 1;
+
             }
-        } else {
-
-            // send it to decode
-            //instArr[address] = *decode(tokenizedLine,address*4);
-            instruction *temp = decode(tokenizedLine,address*4);
-            memcpy(instArr+address,temp,sizeof(instruction));
-            // parameter mismatch?
-            address+=1;
-
         }
     }
 

@@ -70,10 +70,11 @@ uint16_t getAddress(char *givLabel) {
 }
 
 uint16_t getLastAddress() {
-    struct symbol *temp = symbolTableHead;
+    struct constantLL *temp = constantTableHead;
     int count = 0;
     while (temp->next != NULL ) {
         count+=1;
+        temp = temp->next;
     }
     return (count*4 + finalInstAddr);
 }
@@ -164,9 +165,9 @@ int32_t calculateOffset(uint32_t PC, uint32_t value) {
     uint32_t *key = malloc(sizeof(uint32_t));
     *key = value;
     uint32_t address = getLastAddress();
-    if (constantTableHead->next != NULL) {
-        address += 4;
-    }
+    //if (constantTableHead->next != NULL) {
+    //    address += 4;
+    //}
 
     addConstant(key, value);
     returnValue = (address) - (int32_t)PC;

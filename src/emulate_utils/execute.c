@@ -140,8 +140,7 @@ word_t signedtwos_to_int(int32_t signednum){ //checked
 void execute_branch(MACHINE *machine){ //checked
     machine->c.instructionIsFetched = false; //ignoring last instruction;
     int32_t offset = (machine->c.decodedInstruction->offset);  // /4 - 1;
-    int offsetValue = (int)(signedtwos_to_int(offset));
-    machine->c.registers[PC] += (offsetValue)/4;
+    machine->c.registers[PC] += (offset)/4;
 }
 
 // operand are the 12 last bits of the instruction (although it is passed as an uin32_t)
@@ -312,6 +311,26 @@ int addr = (int) address/bits_4;
   }
 }
 
+bool isGPIO (uint32_t number, MACHINE *machine) {
+    switch(number) {
+
+
+        case 0x20200008 :
+            printf("One GPIO pin from 20 to 29 has been accessed\n"); machine->c.registers[machine->c.decodedInstruction->Rd] = number; break;
+        case 0x20200004 :
+            printf("One GPIO pin from 10 to 19 has been accessed\n"); machine->c.registers[machine->c.decodedInstruction->Rd] = number;break;
+        case 0x20200000 :
+            printf("One GPIO pin from 0 to 9 has been accessed\n"); machine->c.registers[machine->c.decodedInstruction->Rd] = number;break;
+        case 0x20200028 :
+            printf("PIN OFF\n"); break;
+        case 0x2020001c :
+            printf("PIN ON\n"); break;
+
+        default: return false;
+    }
+    return true;
+
+}
 
 void execute_SDT(MACHINE *machine) {
     //we must ensure that if Rn is the PC it contains the instruction's address
@@ -348,43 +367,48 @@ void execute_SDT(MACHINE *machine) {
                      offsetValue;
     }
      // out of bounds memory
-    if((machine->c.decodedInstruction->P) && (newAddress >= MEM_BOUNDS)){
-          printf("Error: Out of bounds memory access at address 0x%08x\n",
-                                                      (newAddress&0x3FFFFFFF));
-    } else if(!(machine->c.decodedInstruction->P) &&
-    (machine->c.registers[machine->c.decodedInstruction->Rn] >= MEM_BOUNDS)) {
+
+    if(!(machine->c.decodedInstruction->P) &&
+    (machine->c.registers[machine->c.decodedInstruction->Rn] >= MEM_BOUNDS) &&
+            !isGPIO(machine->c.registers[machine->c.decodedInstruction->Rn],machine)) {
       word_t address = machine->c.registers[machine->c.decodedInstruction->Rn];
       printf("Error: Out of bounds memory access at address 0x%08x\n",
                                                                 address);
-
     } else {
-      if (machine->c.decodedInstruction->L) { //L set the load, otherwise store
-          if (machine->c.decodedInstruction->P) { // P set then pre-indexing
-              //stores the value of mem[address] in Rd
-              machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)]
-                  = getFromMemory(newAddress, machine);
-          } else { //Post-indexing (after transferring the data)
-              word_t rn = machine->c.registers[machine->c.decodedInstruction->Rn];
-              machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)]
-                  = getFromMemory(rn, machine);
-              machine->c.registers[binToDec(machine->c.decodedInstruction->Rn)]
-                  = newAddress;
-          }
-      } else {
-        word_t value
-        = machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)];
-          if (machine->c.decodedInstruction->P) {
-              setMemory(newAddress, value, machine);
-          } else {
-              //first loads from the address held in Rn
-              word_t address
-                    = machine->c.registers[(machine->c.decodedInstruction->Rn)];
-              setMemory(address, value, machine);
-              //changes the value of Rn by offset
-              machine->c.registers[machine->c.decodedInstruction->Rn] =
-                                                                    newAddress;
-          }
 
+        if ( !isGPIO(newAddress,machine) && newAddress >= MEM_BOUNDS ) {
+            printf("Error: Out of bounds memory access at address 0x%08x\n",
+                   (newAddress&0x3FFFFFFF));
+        }
+
+      if (newAddress < MEM_BOUNDS) {
+          if (machine->c.decodedInstruction->L) { //L set the load, otherwise store
+              if (machine->c.decodedInstruction->P) { // P set then pre-indexing
+                  //stores the value of mem[address] in Rd
+                  machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)]
+                          = getFromMemory(newAddress, machine);
+              } else { //Post-indexing (after transferring the data)
+                  word_t rn = machine->c.registers[machine->c.decodedInstruction->Rn];
+                  machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)]
+                          = getFromMemory(rn, machine);
+                  machine->c.registers[binToDec(machine->c.decodedInstruction->Rn)]
+                          = newAddress;
+              }
+          } else {
+              word_t value
+                      = machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)];
+              if (machine->c.decodedInstruction->P) {
+                  setMemory(newAddress, value, machine);
+              } else {
+                  //first loads from the address held in Rn
+                  word_t address
+                          = machine->c.registers[(machine->c.decodedInstruction->Rn)];
+                  setMemory(address, value, machine);
+                  //changes the value of Rn by offset
+                  machine->c.registers[machine->c.decodedInstruction->Rn] =
+                          newAddress;
+              }
+          }
       }
     }
     machine->c.registers[PC] = (machine->c.registers[PC]/bits_4)-1;
