@@ -141,16 +141,7 @@ bool isNeg(char *givenStr) {
     return neg;
 } // fixed
 
-uint16_t textToInt(char *givenStr) {
-    // the first character of giveStr will definitely be # = or r
-    uint16_t returnVal = 0 ;
-    int len = strlen(givenStr);
 
-    for (int i = 1 ; i < len ; ++i ) {
-        returnVal = returnVal*10 + (givenStr[i] - '0');
-    }
-    return returnVal;
-}
 
 uint32_t getOp2 (int32_t op2) {
 
