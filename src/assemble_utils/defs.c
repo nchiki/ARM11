@@ -62,8 +62,6 @@ char **tokenizeHelper(char *line) {
     return tokenized;
 }
 
-
-
 uint32_t *distinguish(instruction inst) {
     uint32_t *returnVal;
 
@@ -142,9 +140,7 @@ bool isNeg(char *givenStr) {
 } // fixed
 
 
-
 uint32_t getOp2 (int32_t op2) {
-
     int shiftVal = 32;
     uint32_t tempVal = op2;
     while(!(tempVal & 0x3)){
@@ -189,27 +185,31 @@ bool checkIfImmediate(char *text) {
 
 
 uint32_t shiftOperand (char *base, char *shiftT, char *shiftA) {
+    // shifts a given value based on the type and amount
+
     uint32_t returnVal = 0;
     int baseVal = convertToWriteableFormat(base);
     int shiftC = 0;
     int shiftAmount;
 
 
-    if (!strcmp(shiftT,"lsl")) {
+    if (strcmp(shiftT,"lsl")==0) {
         shiftC = 0;
-    } else if (!strcmp(shiftT,"lsr")) {
+    } else if (strcmp(shiftT,"lsr")==0) {
         shiftC = 1;
-    } else if (!strcmp(shiftT,"asr")) {
+    } else if (strcmp(shiftT,"asr")==0) {
         shiftC = 2;
-    } else if (!strcmp(shiftT,"ror")) {
+    } else if (strcmp(shiftT,"ror")==0) {
         shiftC = 3;
     }
+    // to check if the shift amount is an immediate value
 
     if (checkIfImmediate(shiftA)) {
         shiftAmount = 7;
     } else {
         shiftAmount = 8;
     }
+
 
     returnVal = convertToWriteableFormat(shiftA) << shiftAmount | shiftC << 5 |
      (shiftAmount==8) << 4 | baseVal;
