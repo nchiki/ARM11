@@ -220,7 +220,7 @@ instruction *decode(char** given, uint16_t memoryAddr) {
     if (strcmp(line[0],"andeq")==0) {
         instr->type = 5;
     } else if (strcmp(line[0],"lsl")==0) {
-        instr->type = 6;
+        instr->type = LsL;
     }
 
     switch(instr->type) {
