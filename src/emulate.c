@@ -94,7 +94,7 @@ int main(int argc, char **argv) {
       //fetch
       address = machine->c.registers[PC];
       fetched = 0;
-      fetched |= ((uint32_t) machine->mem.memoryAlloc[binToDec(address)]);
+      fetched |= ((uint32_t) machine->mem.memoryAlloc[address]);
       machine->c.instructionIsFetched = true;
       machine->c.fetchedInstruction = fetched;
 

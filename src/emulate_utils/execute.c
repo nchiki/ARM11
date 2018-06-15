@@ -313,14 +313,15 @@ int addr = (int) address/bits_4;
 
 bool isGPIO (uint32_t number, MACHINE *machine) {
     switch(number) {
-
-
         case 0x20200008 :
-            printf("One GPIO pin from 20 to 29 has been accessed\n"); machine->c.registers[machine->c.decodedInstruction->Rd] = number; break;
+            printf("One GPIO pin from 20 to 29 has been accessed\n");
+            machine->c.registers[machine->c.decodedInstruction->Rd] = number; break;
         case 0x20200004 :
-            printf("One GPIO pin from 10 to 19 has been accessed\n"); machine->c.registers[machine->c.decodedInstruction->Rd] = number;break;
+            printf("One GPIO pin from 10 to 19 has been accessed\n");
+            machine->c.registers[machine->c.decodedInstruction->Rd] = number;break;
         case 0x20200000 :
-            printf("One GPIO pin from 0 to 9 has been accessed\n"); machine->c.registers[machine->c.decodedInstruction->Rd] = number;break;
+            printf("One GPIO pin from 0 to 9 has been accessed\n");
+            machine->c.registers[machine->c.decodedInstruction->Rd] = number;break;
         case 0x20200028 :
             printf("PIN OFF\n"); break;
         case 0x2020001c :
@@ -335,9 +336,10 @@ bool isGPIO (uint32_t number, MACHINE *machine) {
 void execute_SDT(MACHINE *machine) {
     //we must ensure that if Rn is the PC it contains the instruction's address
     // +8 bits bc of the pipeline
-    if ((machine->c.decodedInstruction->Rn == PC) &&
+   if ((machine->c.decodedInstruction->Rn == PC) &&
         (machine->c.decodedInstruction->binary) !=
           machine->mem.memoryAlloc[(machine->c.registers[PC] - 1)]){
+
         fprintf(stderr, "PC doesn't contain the correct instructions");
         exit(EXIT_FAILURE);
     }
@@ -383,6 +385,7 @@ void execute_SDT(MACHINE *machine) {
 
       if (newAddress < MEM_BOUNDS) {
           if (machine->c.decodedInstruction->L) { //L set the load, otherwise store
+              isGPIO(machine->mem.memoryAlloc[offsetValue],machine);
               if (machine->c.decodedInstruction->P) { // P set then pre-indexing
                   //stores the value of mem[address] in Rd
                   machine->c.registers[binToDec(machine->c.decodedInstruction->Rd)]
@@ -483,13 +486,14 @@ void execute_DPI(MACHINE *machine){
     }
 
     //if S flag is set, CPSR flags have to be set in the following way
-    if (instr->S){
+    if (instr->S) {
         // if result is all zeros, Z bit will be set
-        if(result == 0){
+        if (result == 0) {
             machine->c.registers[CPSR] |= Z_MASK_32;
         } else {
-          machine->c.registers[CPSR] &= 0xBFFFFFFF;
+            machine->c.registers[CPSR] &= 0xBFFFFFFF;
         }
+
         // N bit will be set to bit 31 of result
         machine->c.registers[CPSR] &= 0x7fffffff;
         machine->c.registers[CPSR] |=
