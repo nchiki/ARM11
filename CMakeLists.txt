@@ -9,6 +9,9 @@ include_directories(src/assemble_utils)
 include_directories(src/emulate_utils)
 
 add_executable(arm11_28
+        extension/tetris/main.c
+        extension/tetris/tetris.c
+        extension/tetris/tetris.h
         extension/cell.c
         extension/cell.h
         extension/game.c
@@ -53,4 +56,4 @@ add_executable(arm11_28
         src/assemble.c
         src/emulate.c
         src/memoryImplementation.h
-        src/usefulTools.h)
+        src/usefulTools.h extension/tetris/block.c extension/tetris/block.h extension/tetris/util.c extension/tetris/util.h)
