@@ -3,6 +3,7 @@
 #include "grid.h"
 #include "cell.h"
 #include "initial_configs.h"
+#include "minesweeper.h"
 #include <ncurses.h>
 #include <zconf.h>
 #include <unistd.h>
@@ -98,7 +99,7 @@ void printInitialConfigs(cell **game, int width, int height, int *tick) {
     char option = 'a';
 
     while (option != '1' && option != '2' && option != '3' &&
-           option != '4' && option != '5' && option != '6') {
+           option != '4' && option != '5' && option != '6'&& option != '7') {
         printw("Initial board setup options:\n\n");
         printw("\t1 - Night Sky\n");
         printw("\t2 - Glider Gun\n");
@@ -106,8 +107,9 @@ void printInitialConfigs(cell **game, int width, int height, int *tick) {
         printw("\t4 - Butterfly\n");
         printw("\t5 - Geometry\n");
         printw("\t6 - Periodic\n");
+        printw("\t7 - Back to menu\n");
 
-        printw("\nPlease choose an option between 1 and 6");
+        printw("\nPlease choose an option between 1 and 6, or exit with 7");
         refresh();
         scanf("%c", &option);
         clear();
@@ -136,33 +138,8 @@ void printInitialConfigs(cell **game, int width, int height, int *tick) {
         case 6:
             periodic(game, width, height);
             break;
-    }
-}
-
-void printMenu(cell **game, int width, int height, int *tick) {
-    char option = 'a';
-
-    while (option != '1' && option != '2' && option != '3') {
-        printw("Initial board setup options:\n\n");
-        printw("\t1 - Random Configuration\n");
-        printw("\t2 - Pre-made Configuration\n");
-        printw("\t3 - User Input\n");
-
-        printw("\nPlease choose an option between 1 and 3");
-        refresh();
-        scanf("%c", &option);
-        clear();
-    }
-
-    switch (atoi((const char *) &option)) {
-        case 1:
-            randomConfig(game, width, height);
-            break;
-        case 2:
-            printInitialConfigs(game, width, height, tick);
-            break;
-        case 3:
-            printUserInput(game, width, height);
+        case 7:
+            printMenu(game, width, height, tick);
             break;
     }
 }
@@ -185,8 +162,54 @@ bool checkDefault() {
     return true;
 }
 
+void printMenu(cell **game, int width, int height, int *tick) {
+    char option = 'a';
+
+    while (option != '1' && option != '2' && option != '3' && option != '4'
+      && option != '5') {
+        printw("Initial board setup options:\n\n");
+        printw("\t1 - Random Configuration\n");
+        printw("\t2 - Pre-made Configuration\n");
+        printw("\t3 - User Input\n");
+        printw("\t4 - Play MineSweeper\n");
+        printw("\t5 - Change dimensions\n");
+
+        printw("\nPlease choose an option between 1 and 5");
+        refresh();
+        scanf("%c", &option);
+        clear();
+    }
+    int maxW, maxH;
+    switch (atoi((const char *) &option)) {
+        case 1:
+            randomConfig(game, width, height);
+            break;
+        case 2:
+            printInitialConfigs(game, width, height, tick);
+            break;
+        case 3:
+            printUserInput(game, width, height);
+            break;
+        case 4:
+            minesweeper(width, height);
+            break;
+        case 5:
+
+            getmaxyx(stdscr, maxH, maxW);
+            maxW -= 1;
+            width = maxW, height = maxH;
+            if (!checkDefault()) {
+                takeDimensions(&width, &height, maxW, maxH);
+            }
+            break;
+          }
+}
+
+
+
 int main(int argc, char **argv) {
     //Initialise screen
+    //beginning:
     initscr();
     //Hide cursors
     curs_set(0);
@@ -221,6 +244,13 @@ int main(int argc, char **argv) {
         refresh();
         //Change the speed of evolution with a timer for different patterns
         usleep(tick);
-    }
-}
+        /*char ch;
+        ch = getchar();
+        if (ch == ' ') {
+          goto beginning;
+          break;
+        }*/
 
+    }
+    return 0;
+}
