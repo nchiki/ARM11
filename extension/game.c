@@ -1,11 +1,12 @@
 #include <stdlib.h>
-#include "game.h"
+#include <string.h>
+#include <stdio.h>
+#include <zconf.h>
 #include "grid.h"
 #include "cell.h"
 #include "initial_configs.h"
 #include "minesweeper.h"
 #include <ncurses.h>
-#include <zconf.h>
 #include <unistd.h>
 #include <memory.h>
 #include <stdbool.h>
@@ -20,16 +21,14 @@ void printScreen(cell **board, int width, int height){
     }
 }
 
-int *printUserInput(cell **game, int width, int height){
+void printUserInput(cell **game, int width, int height){
     int options = 0;
 
     //Must choose at least one cell
     while (options == 0) {
         printw("Please enter the number of cells you would like to set to ON: ");
         refresh();
-        char *answer;
-        getnstr(answer, sizeof(options));
-        options = atoi(answer);
+        scanf("%d", &options);
         clear();
     }
 
@@ -94,8 +93,11 @@ void takeDimensions(int *width, int *height, int maxW, int maxH) {
     }
 }
 
+//Forward declaration for functions below
+void printMenu(cell **game, int width, int height, int *tick, bool *quit);
+
 //Segmentation fault if grid isn't big enough
-void printInitialConfigs(cell **game, int width, int height, int *tick) {
+void printInitialConfigs(cell **game, int width, int height, int *tick, bool *quit) {
     char option = 'a';
 
     while (option != '1' && option != '2' && option != '3' &&
@@ -107,7 +109,7 @@ void printInitialConfigs(cell **game, int width, int height, int *tick) {
         printw("\t4 - Butterfly\n");
         printw("\t5 - Geometry\n");
         printw("\t6 - Periodic\n");
-        printw("\t7 - Back to menu\n");
+        printw("\t7 - Return to menu\n");
 
         printw("\nPlease choose an option between 1 and 6, or exit with 7");
         refresh();
@@ -139,7 +141,7 @@ void printInitialConfigs(cell **game, int width, int height, int *tick) {
             periodic(game, width, height);
             break;
         case 7:
-            printMenu(game, width, height, tick);
+            printMenu(game, width, height, tick, quit);
             break;
     }
 }
@@ -155,14 +157,14 @@ bool checkDefault() {
     }
 
     if (answer == 'y') {
-        //Ask user for sizings
+        //Ask user for sizing
         return false;
     }
     //Use default
     return true;
 }
 
-void printMenu(cell **game, int width, int height, int *tick) {
+void printMenu(cell **game, int width, int height, int *tick, bool *quit) {
     char option = 'a';
 
     while (option != '1' && option != '2' && option != '3' && option != '4'
@@ -172,7 +174,7 @@ void printMenu(cell **game, int width, int height, int *tick) {
         printw("\t2 - Pre-made Configuration\n");
         printw("\t3 - User Input\n");
         printw("\t4 - Play MineSweeper\n");
-        printw("\t5 - Change dimensions\n");
+        printw("\t5 - Quit\n");
 
         printw("\nPlease choose an option between 1 and 5");
         refresh();
@@ -185,7 +187,7 @@ void printMenu(cell **game, int width, int height, int *tick) {
             randomConfig(game, width, height);
             break;
         case 2:
-            printInitialConfigs(game, width, height, tick);
+            printInitialConfigs(game, width, height, tick, quit);
             break;
         case 3:
             printUserInput(game, width, height);
@@ -194,23 +196,38 @@ void printMenu(cell **game, int width, int height, int *tick) {
             minesweeper(width, height);
             break;
         case 5:
-
-            getmaxyx(stdscr, maxH, maxW);
-            maxW -= 1;
-            width = maxW, height = maxH;
-            if (!checkDefault()) {
-                takeDimensions(&width, &height, maxW, maxH);
-            }
-            break;
-          }
+            *quit = TRUE;
+    }
 }
 
+void runCGOL(cell **game, int width, int height, int tick) {
+    clear();
+    printScreen(game, width, height);
+    refresh();
+    //Wait for user to click before starting
+    getchar();
 
+    while (1) {
+        evolve(game, width, height);
+        printScreen(game, width, height);
+        refresh();
+        //Change the speed of evolution with a timer for different patterns
+        if (getch() == 'x') {        //Press x to quit run
+            break;
+        } else if (getch() == 'p') { //Hold p to pause
+            while(getch() != 'r') {} //Press r to resume
+        }
+        usleep(tick);
+    }
+    printScreen(game, width, height);
+    refresh();
+}
 
 int main(int argc, char **argv) {
     //Initialise screen
-    //beginning:
     initscr();
+    cbreak();
+    keypad(stdscr, TRUE);
     //Hide cursors
     curs_set(0);
     int tick = 100000;
@@ -220,10 +237,9 @@ int main(int argc, char **argv) {
     getmaxyx(stdscr, maxH, maxW);
     //Leave a line at the edge
     maxW -= 1;
-
     int width = maxW, height = maxH;
 
-    //Allow use to choose size
+    //Allow user to choose size of game
     if (!checkDefault()) {
         takeDimensions(&width, &height, maxW, maxH);
     }
@@ -231,26 +247,25 @@ int main(int argc, char **argv) {
     //Setup the grid
     cell** game = {setupGrid(width, height)};
 
-    printMenu(game, width, height, &tick);
-
-    printScreen(game, width, height);
-    refresh();
-    //Wait for user to click before starting
-    getchar();
-
+    bool quit = FALSE;
     while(1) {
-        evolve(game, width, height);
-        printScreen(game, width, height);
-        refresh();
-        //Change the speed of evolution with a timer for different patterns
-        usleep(tick);
-        /*char ch;
-        ch = getchar();
-        if (ch == ' ') {
-          goto beginning;
-          break;
-        }*/
+        printMenu(game, width, height, &tick, &quit);
+        //If option 5 is selected, user exits to terminal
+        if (quit) {
+            break;
+        }
 
+        //Enter non-blocked read mode
+        timeout(1);
+        noecho();
+        runCGOL(game, width, height, tick);
+        //Enter blocked read mode
+        echo();
+        timeout(-1);
+
+        //Clean up
+        resetGrid(game, width, height);
+        clear();
     }
-    return 0;
+    endwin();
 }

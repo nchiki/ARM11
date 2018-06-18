@@ -4,9 +4,9 @@
 
 cell **setupGrid(int, int);
 
-void evolve(cell**, int, int);
+void evolve(cell **, int, int);
 
-void freeMatrix(cell **);
+void resetGrid(cell **, int, int);
 
 void copyGrid(cell **, cell **, int, int);
 
