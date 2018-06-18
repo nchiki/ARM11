@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <memory.h>
 #include <stdbool.h>
+#include "tet.c"
 
 void printScreen(cell **board, int width, int height){
     move(0, 0);
@@ -174,9 +175,10 @@ void printMenu(cell **game, int width, int height, int *tick, bool *quit) {
         printw("\t2 - Pre-made Configuration\n");
         printw("\t3 - User Input\n");
         printw("\t4 - Play MineSweeper\n");
-        printw("\t5 - Quit\n");
+        printw("\t5 - Play Tetris\n");
+        printw("\t6 - Quit\n");
 
-        printw("\nPlease choose an option between 1 and 5");
+        printw("\nPlease choose an option between 1 and 6");
         refresh();
         scanf("%c", &option);
         clear();
@@ -196,6 +198,8 @@ void printMenu(cell **game, int width, int height, int *tick, bool *quit) {
             minesweeper(width, height);
             break;
         case 5:
+            tetris_main();
+        case 6:
             *quit = TRUE;
     }
 }
