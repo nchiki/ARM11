@@ -14,7 +14,6 @@ char minesNear(int, int, int, int, char **);
 
 int mineAt(int, int, int, int, char **);
 
-
 void minesweeper(int, int);
 
 #endif

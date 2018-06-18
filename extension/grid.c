@@ -30,9 +30,12 @@ cell **setupGrid(int width, int height) {
     return matrix;
 }
 
-void freeMatrix(cell **matrix) {
-    free(matrix[0]);
-    free(matrix);
+void resetGrid(cell **board, int width, int height) {
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            board[i][j].s = OFF;
+        }
+    }
 }
 
 int countNeighbours(cell **board, int row, int col, int width, int height) {

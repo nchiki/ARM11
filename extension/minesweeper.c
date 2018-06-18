@@ -1,6 +1,7 @@
 #include "minesweeper.h"
+#include <ncurses.h>
 
-char ** generateField(int width, int height) {
+char **generateField(int width, int height) {
 char **field;
 field = (char **) malloc(width * sizeof(char *));
 if (!field) { return NULL;} //failed
@@ -39,7 +40,7 @@ void placeMines(char **minefield, int width, int height, int mines) {
   printf("\n Mines placed");
 }
 
-void clearField(char ** minefield, int width, int height) {
+void clearField(char **minefield, int width, int height) {
     // Set every grid space to a space character.
     for(int y = 0; y < height; y++) {
       for(int x = 0; x < width; x++) {
