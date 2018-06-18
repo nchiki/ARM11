@@ -105,8 +105,8 @@ int mMines;
 printw("\n Please enter the number of mines you want: ");
 refresh();
 char answer = 'a';
-scanf(" %c", answer); // gets the number typed by the player
-mMines = atoi(answer);
+scanf("%c", &answer); // gets the number typed by the player
+mMines = atoi(&answer);
 char **minefield = generateField(width, height);//generates the grid
 clearField(minefield, Mwidth, Mheight); //sets an empty grid
 placeMines(minefield, Mwidth, Mheight, mMines); //places the mines
