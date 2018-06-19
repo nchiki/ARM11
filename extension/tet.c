@@ -2,23 +2,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <sys/time.h>
 #include <ncurses.h>
 
 char Table[20][11] = {0};
 int score = 0;
 char GameOn = 1;
-suseconds_t timer = 500000; //half second
+suseconds_t timer = 500000;
 
 Grid current;
 
 const Grid grid[7]= {
-        {(char *[]){(char []){0,1,1},(char []){1,1,0}, (char []){0,0,0}}, 3},                           //S_shape
-        {(char *[]){(char []){1,1,0},(char []){0,1,1}, (char []){0,0,0}}, 3},                           //Z_shape
-        {(char *[]){(char []){0,1,0},(char []){1,1,1}, (char []){0,0,0}}, 3},                           //T_shape
-        {(char *[]){(char []){0,0,1},(char []){1,1,1}, (char []){0,0,0}}, 3},                           //L_shape
-        {(char *[]){(char []){1,0,0},(char []){1,1,1}, (char []){0,0,0}}, 3},                           //ML_shape
-        {(char *[]){(char []){1,1},(char []){1,1}}, 2},                                                   //SQ_shape
-        {(char *[]){(char []){0,0,0,0}, (char []){1,1,1,1}, (char []){0,0,0,0}, (char []){0,0,0,0}}, 4} //R_shape
+        {(char *[]){(char []){0,1,1},(char []){1,1,0}, (char []){0,0,0}}, 3},
+        {(char *[]){(char []){1,1,0},(char []){0,1,1}, (char []){0,0,0}}, 3},
+        {(char *[]){(char []){0,1,0},(char []){1,1,1}, (char []){0,0,0}}, 3},
+        {(char *[]){(char []){0,0,1},(char []){1,1,1}, (char []){0,0,0}}, 3},
+        {(char *[]){(char []){1,0,0},(char []){1,1,1}, (char []){0,0,0}}, 3},
+        {(char *[]){(char []){1,1},(char []){1,1}}, 2},
+        {(char *[]){(char []){0,0,0,0}, (char []){1,1,1,1}, (char []){0,0,0,0}, (char []){0,0,0,0}}, 4}
 };
 
 Grid copyG(Grid g){
@@ -56,7 +57,7 @@ int checkPos(Grid g){
     return 1;
 }
 
-void getG(){ //returns random shape
+void getG(){
     Grid newG = copyG(grid[rand()%7]);
 
     newG.col = rand()%(11-newG.width+1);
@@ -144,16 +145,17 @@ void changeCur(int x){
 struct timeval before, after;
 
 int checkTime(){
-    return ((suseconds_t)(after.tv_sec*1000000 + after.tv_usec) -((suseconds_t)before.tv_sec*1000000 + before.tv_usec)) > timer;
+    return ((suseconds_t)(after.tv_sec*1000000 + after.tv_usec) -
+            ((suseconds_t)before.tv_sec*1000000 + before.tv_usec)) > timer;
 }
 
-int tetris_main() {
+int main() {
     srand(time(0));
     int c;
     initscr();
     gettimeofday(&before, NULL);
     nodelay(stdscr, TRUE);
-    struct timespec ts = {0, 1000000}; //sleep for 0.1 millisec = 100 microsec
+    struct timespec ts = {0, 1000000};
     timeout(1);
     getG();
     printTable();
@@ -162,13 +164,12 @@ int tetris_main() {
             changeCur(c);
         }
         gettimeofday(&after, NULL);
-        if (checkTime()) { //time difference in microsec accuracy
+        if (checkTime()) { //time difference
             changeCur('s');
-            gettimeofday(&before, NULL); //again, it's for accuracy
+            gettimeofday(&before, NULL);
         }
     }
     printw("\nGame over!\n");
     freeGrid(current);
-    endwin();
     return 0;
 }
