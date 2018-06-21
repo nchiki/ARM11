@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <memory.h>
 #include <stdbool.h>
-#include "tet.c"
+#include "tet.h"
 #include "sudoku.h"
 
 void printScreen(cell **board, int width, int height){
@@ -49,7 +49,7 @@ void printUserInput(cell **game, int width, int height){
     }
 
     //Loop through rest of cells
-    for(int i = 0; i < options - 2; i++){
+    for (int i = 0; i < options - 2; i++) {
         x = atoi(strtok(NULL, ","));
         y = atoi(strtok(NULL, " "));
 
@@ -169,7 +169,7 @@ void printMenu(cell **game, int width, int height, int *tick, bool *quit) {
     char option = 'a';
 
     while (option != '1' && option != '2' && option != '3' && option != '4'
-      && option != '5') {
+      && option != '5' && option != '6') {
         printw("Initial board setup options:\n\n");
         printw("\t1 - Random Configuration\n");
         printw("\t2 - Pre-made Configuration\n");
@@ -195,9 +195,11 @@ void printMenu(cell **game, int width, int height, int *tick, bool *quit) {
             printUserInput(game, width, height);
             break;
         case 4:
-            tetris_main();
+            runTETRIS();
+            break;
         case 5:
-            sudoku_main();
+            runSudoku();
+            break;
         case 6:
             *quit = TRUE;
     }

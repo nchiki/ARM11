@@ -1,6 +1,6 @@
 #include "sudoku.h"
 
-char** current;
+char **current;
 
 char initial [9][9]= {
         {' ', ' ', ' ', '2', '6', ' ', '7', ' ', '1'},
@@ -26,17 +26,10 @@ char solution [9][9] = {
         {'7', '6', '3', '4', '1', '8', '2', '5', '9'}
 };
 
-void freeGrid(char **matrix){
-    for(int i = 0; i < 3; i++){
-        free(matrix[i]);
-    }
-    free(matrix);
-}
-
 int checkSol(char **matrix){
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            if( matrix[i][j] != solution[i][j]){
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            if ( matrix[i][j] != solution[i][j]) {
                 printw("Your solution is not correct.");
                 return 0;
             }
@@ -47,11 +40,11 @@ int checkSol(char **matrix){
     return 1;
 }
 
-char **matrix_init(char **matrix){
-    char **newMatrix = (char**)malloc(3*sizeof(char*));
-    for(int i = 0; i < 3; i++){
-        newMatrix[i] = (char*)malloc(3*sizeof(char));
-        for(int j=0; j < 3; j++) {
+char **matrix_init(char **matrix) {
+    char **newMatrix = (char **) malloc(3 * sizeof(char *));
+    for (int i = 0; i < 3; i++) {
+        newMatrix[i] = (char *) malloc(3 * sizeof(char));
+        for (int j = 0; j < 3; j++) {
             newMatrix[i][j] = matrix[i][j];
         }
     }
@@ -64,11 +57,11 @@ char **change(char **matrix, int x, int y, char number){
     return matrix2;
 }
 
-void printGrid(char **matrix)
-{
+void printGrid(char matrix[][9]) {
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
-            printw((const char *) matrix[i][j]);
+            char value = matrix[i][j];
+            printw("%s", value);
             printw("|");
         }
         printw("-----------------------");
@@ -76,11 +69,10 @@ void printGrid(char **matrix)
     }
 }
 
-int sudoku_main() {
-
+int runSudoku(void) {
     printGrid(initial);
 
-    current = matrix_init(initial);
+    current = matrix_init((char **) initial);
     while (1) {
         char input[6];
 
@@ -93,12 +85,13 @@ int sudoku_main() {
         int x = atoi(strtok(input, ","));
         int y = atoi(strtok(NULL, " "));
 
-        char number[2];
+        char number;
 
         //Take initial dimensions
         printw("Which value should be put in the cell? ");
         refresh();
-        getnstr(number, sizeof(number));
+        //Check
+        getnstr(&number, sizeof(number));
 
         char **newInitial = change(current, x, y, number);
 
