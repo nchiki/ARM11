@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <memory.h>
 
-int checkSol(char **);
+void checkSol(char **);
 
 int runSudoku(void);
 

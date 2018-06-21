@@ -14,7 +14,7 @@ cell **setupGrid(int width, int height) {
     if (!matrix[0]) {
         free(matrix);
         return NULL;
-    }
+    } //Failed
 
     for (int i = 1; i < height; i++) {
         matrix[i] = matrix[i - 1] + width;

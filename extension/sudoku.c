@@ -2,7 +2,7 @@
 
 char **current;
 
-char initial [9][9]= {
+char initial[9][9] = {
         {' ', ' ', ' ', '2', '6', ' ', '7', ' ', '1'},
         {'6', '8', ' ', ' ', '7', ' ', ' ', '9', ' '},
         {'1', '9', ' ', ' ', ' ', '4', '5', ' ', ' '},
@@ -14,7 +14,7 @@ char initial [9][9]= {
         {'7', ' ', '3', ' ', '1', '8', ' ', ' ', ' '}
 };
 
-char solution [9][9] = {
+char solution[9][9] = {
         {'4', '3', '5', '2', '6', '9', '7', '8', '1'},
         {'6', '8', '2', '5', '7', '1', '4', '9', '3'},
         {'1', '9', '7', '8', '3', '4', '5', '6', '2'},
@@ -26,54 +26,68 @@ char solution [9][9] = {
         {'7', '6', '3', '4', '1', '8', '2', '5', '9'}
 };
 
-int checkSol(char **matrix){
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            if ( matrix[i][j] != solution[i][j]) {
+void checkSol(char **matrix){
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            if (matrix[i][j] != solution[i][j]) {
                 printw("Your solution is not correct.");
-                return 0;
             }
         }
-
     }
     printw("Congratulations, your solution is correct!");
-    return 1;
 }
 
 char **matrix_init(char **matrix) {
-    char **newMatrix = (char **) malloc(3 * sizeof(char *));
-    for (int i = 0; i < 3; i++) {
-        newMatrix[i] = (char *) malloc(3 * sizeof(char));
-        for (int j = 0; j < 3; j++) {
+    char **newMatrix = malloc(9 * sizeof(char *));
+
+    if (!newMatrix[0]) {
+        return NULL;
+    } //Failed
+
+    //Allocate each row a line of memory
+    newMatrix[0] = (char *) malloc(9 * 9 * sizeof(char));
+
+    if (!newMatrix[0]) {
+        free(newMatrix);
+        return NULL;
+    } //Failed
+
+    for (int i = 1; i < 9; i++) {
+        newMatrix[i] = newMatrix[i - 1] + 9;
+    }
+
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
             newMatrix[i][j] = matrix[i][j];
         }
     }
+
     return newMatrix;
 }
 
-char **change(char **matrix, int x, int y, char number){
+char **change(char **matrix, int x, int y, const char number){
     char **matrix2 = matrix_init(matrix);
-    matrix2[x][y] = number;
+    matrix[x][y] = number;
     return matrix2;
 }
 
-void printGrid(char matrix[][9]) {
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            char value = matrix[i][j];
-            printw("%s", value);
+void printGrid(char **matrix) {
+    for(int i = 0; i < 9; i++){
+        printw("|");
+        for(int j = 0; j < 9; j++){
+            char *value = matrix[i][j];
+            printw("%c", *value);
             printw("|");
         }
-        printw("-----------------------");
         printw("\n");
     }
 }
 
 int runSudoku(void) {
-    printGrid(initial);
-
     current = matrix_init((char **) initial);
     while (1) {
+        printGrid(current);
+        refresh();
         char input[6];
 
         //Take initial dimensions
@@ -81,7 +95,6 @@ int runSudoku(void) {
         refresh();
         getnstr(input, sizeof(input));
 
-        //Take first input outside loop because of strtok params
         int x = atoi(strtok(input, ","));
         int y = atoi(strtok(NULL, " "));
 
@@ -90,8 +103,8 @@ int runSudoku(void) {
         //Take initial dimensions
         printw("Which value should be put in the cell? ");
         refresh();
-        //Check
-        getnstr(&number, sizeof(number));
+        scanf("%c", &number);
+        clear();
 
         char **newInitial = change(current, x, y, number);
 
@@ -101,11 +114,12 @@ int runSudoku(void) {
         getnstr(inp, sizeof(inp));
 
         if(inp[0] == 'y'){
-            checkSol(newInitial);
+            checkSol(current);
             break;
         }
 
         current = newInitial;
+        clear();
     }
     return 0;
 }
