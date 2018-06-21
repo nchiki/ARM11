@@ -14,8 +14,15 @@
 
 void printScreen(cell **board, int width, int height){
     move(0, 0);
+    start_color();
+    init_pair(1, COLOR_RED, COLOR_BLACK);
+    init_pair(2, COLOR_BLUE, COLOR_BLACK);
+    init_pair(3, COLOR_GREEN, COLOR_BLACK);
+    init_pair(4, COLOR_YELLOW, COLOR_BLACK);
+
     for(int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
+            attron(COLOR_PAIR((i + j + 1) % 5));
             printw(symbol(board[i][j]));
         }
         printw("\n");
@@ -23,13 +30,16 @@ void printScreen(cell **board, int width, int height){
 }
 
 void printUserInput(cell **game, int width, int height){
-    int options = 0;
+    char number[3];
 
+    int options = 0;
+    echo();
     //Must choose at least one cell
     while (options == 0) {
         printw("Please enter the number of cells you would like to set to ON: ");
         refresh();
-        scanf("%d", &options);
+        getnstr(number, sizeof(number));
+        options = atoi(strtok(number, " "));
         clear();
     }
 
@@ -95,10 +105,10 @@ void takeDimensions(int *width, int *height, int maxW, int maxH) {
 }
 
 //Forward declaration for functions below
-void printMenu(cell **game, int width, int height, int *tick, bool *quit);
+void printMenu(cell **game, int width, int height, int *tick, bool *quit, bool *cGOL);
 
 //Segmentation fault if grid isn't big enough
-void printInitialConfigs(cell **game, int width, int height, int *tick, bool *quit) {
+void printInitialConfigs(cell **game, int width, int height, int *tick, bool *quit, bool *cGOL) {
     char option = 'a';
 
     while (option != '1' && option != '2' && option != '3' &&
@@ -142,7 +152,7 @@ void printInitialConfigs(cell **game, int width, int height, int *tick, bool *qu
             periodic(game, width, height);
             break;
         case 7:
-            printMenu(game, width, height, tick, quit);
+            printMenu(game, width, height, tick, quit, cGOL);
             break;
     }
 }
@@ -165,7 +175,7 @@ bool checkDefault() {
     return true;
 }
 
-void printMenu(cell **game, int width, int height, int *tick, bool *quit) {
+void printMenu(cell **game, int width, int height, int *tick, bool *quit, bool *cGOL) {
     char option = 'a';
 
     while (option != '1' && option != '2' && option != '3' && option != '4'
@@ -189,15 +199,17 @@ void printMenu(cell **game, int width, int height, int *tick, bool *quit) {
             randomConfig(game, width, height);
             break;
         case 2:
-            printInitialConfigs(game, width, height, tick, quit);
+            printInitialConfigs(game, width, height, tick, quit, cGOL);
             break;
         case 3:
             printUserInput(game, width, height);
             break;
         case 4:
+            *cGOL = FALSE;
             runTETRIS();
             break;
         case 5:
+            *cGOL = FALSE;
             runSudoku();
             break;
         case 6:
@@ -217,12 +229,18 @@ void runCGOL(cell **game, int width, int height, int tick) {
         printScreen(game, width, height);
         refresh();
         //Change the speed of evolution with a timer for different patterns
-        if (getch() == 'x') {        //Press x to quit run
+        if (getch() == 'p') { //Hold p to pause
+            while(getch() != 'r') {
+                if (getch() == 's') {
+                    evolve(game, width, height);
+                    printScreen(game, width, height);
+                    refresh();
+                }
+            } //Press r to resume
+        } else if (getch() == 'x') { //Press x to quit run
             break;
-        } else if (getch() == 'p') { //Hold p to pause
-            while(getch() != 'r') {} //Press r to resume
         }
-        usleep(tick);
+            usleep(tick);
     }
     printScreen(game, width, height);
     refresh();
@@ -233,6 +251,9 @@ int main(int argc, char **argv) {
     initscr();
     cbreak();
     keypad(stdscr, TRUE);
+    start_color();
+    init_pair(5, COLOR_WHITE, COLOR_BLACK);
+    attron(COLOR_PAIR(5));
     //Hide cursors
     curs_set(0);
     int tick = 100000;
@@ -254,22 +275,27 @@ int main(int argc, char **argv) {
 
     bool quit = FALSE;
     while(1) {
-        printMenu(game, width, height, &tick, &quit);
+        attron(COLOR_PAIR(5));
+        bool cGOL = TRUE;
+        printMenu(game, width, height, &tick, &quit, &cGOL);
         //If option 5 is selected, user exits to terminal
         if (quit) {
             break;
         }
 
-        //Enter non-blocked read mode
-        timeout(1);
-        noecho();
-        runCGOL(game, width, height, tick);
-        //Enter blocked read mode
-        echo();
-        timeout(-1);
+        if (cGOL) {
+            //Enter non-blocked read mode
+            timeout(1);
+            noecho();
+            runCGOL(game, width, height, tick);
+            //Enter blocked read mode
+            echo();
+            timeout(-1);
 
-        //Clean up
-        resetGrid(game, width, height);
+            //Clean up
+            resetGrid(game, width, height);
+        }
+
         clear();
     }
     endwin();

@@ -158,6 +158,7 @@ void runTETRIS(void) {
     timeout(1);
     getG();
     printTable();
+    noecho();
     while (GameOn) {
         if ((c = getch()) != ERR) {
             changeCur(c);
