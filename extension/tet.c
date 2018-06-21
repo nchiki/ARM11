@@ -149,7 +149,7 @@ int checkTime(){
             ((suseconds_t)before.tv_sec*1000000 + before.tv_usec)) > timer;
 }
 
-int main() {
+int tetris_main() {
     srand(time(0));
     int c;
     initscr();

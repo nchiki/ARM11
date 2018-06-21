@@ -56,4 +56,6 @@ add_executable(arm11_28
         src/assemble.c
         src/emulate.c
         src/memoryImplementation.h
-        src/usefulTools.h extension/tetris/block.c extension/tetris/block.h extension/tetris/util.c extension/tetris/util.h)
+        src/usefulTools.h extension/tetris/block.c extension/tetris/block.h extension/tetris/util.c extension/tetris/util.h
+        extension/sudoku.c
+        extension/sudoku.h)

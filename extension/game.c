@@ -5,12 +5,12 @@
 #include "grid.h"
 #include "cell.h"
 #include "initial_configs.h"
-#include "minesweeper.h"
 #include <ncurses.h>
 #include <unistd.h>
 #include <memory.h>
 #include <stdbool.h>
 #include "tet.c"
+#include "sudoku.h"
 
 void printScreen(cell **board, int width, int height){
     move(0, 0);
@@ -174,8 +174,8 @@ void printMenu(cell **game, int width, int height, int *tick, bool *quit) {
         printw("\t1 - Random Configuration\n");
         printw("\t2 - Pre-made Configuration\n");
         printw("\t3 - User Input\n");
-        printw("\t4 - Play MineSweeper\n");
-        printw("\t5 - Play Tetris\n");
+        printw("\t4 - Play Tetris\n");
+        printw("\t5 - Play Sudoku\n");
         printw("\t6 - Quit\n");
 
         printw("\nPlease choose an option between 1 and 6");
@@ -195,10 +195,9 @@ void printMenu(cell **game, int width, int height, int *tick, bool *quit) {
             printUserInput(game, width, height);
             break;
         case 4:
-            minesweeper(width, height);
-            break;
-        case 5:
             tetris_main();
+        case 5:
+            sudoku_main();
         case 6:
             *quit = TRUE;
     }
