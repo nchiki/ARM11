@@ -16,8 +16,8 @@ void printScreen(cell **board, int width, int height){
     move(0, 0);
     start_color();
     init_pair(1, COLOR_RED, COLOR_BLACK);
-    init_pair(2, COLOR_BLUE, COLOR_BLACK);
-    init_pair(3, COLOR_GREEN, COLOR_BLACK);
+    init_pair(2, COLOR_GREEN, COLOR_BLACK);
+    init_pair(3, COLOR_BLUE, COLOR_BLACK);
     init_pair(4, COLOR_YELLOW, COLOR_BLACK);
 
     for(int i = 0; i < height; i++){
@@ -149,6 +149,7 @@ void printInitialConfigs(cell **game, int width, int height, int *tick, bool *qu
             geometry(game, width, height);
             break;
         case 6:
+            *tick = 80000;
             periodic(game, width, height);
             break;
         case 7:
@@ -256,7 +257,7 @@ int main(int argc, char **argv) {
     attron(COLOR_PAIR(5));
     //Hide cursors
     curs_set(0);
-    int tick = 100000;
+    int tick = 180000;
 
     //Find max size of screen
     int maxW, maxH;
@@ -276,9 +277,10 @@ int main(int argc, char **argv) {
     bool quit = FALSE;
     while(1) {
         attron(COLOR_PAIR(5));
+        //Determines whether or not to run cGOL
         bool cGOL = TRUE;
         printMenu(game, width, height, &tick, &quit, &cGOL);
-        //If option 5 is selected, user exits to terminal
+        //If option 6 is selected, user exits to terminal
         if (quit) {
             break;
         }

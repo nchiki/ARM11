@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include <memory.h>
 
-void checkSol(char **);
-
 int runSudoku(void);
 
 #endif //ARM11_28_SUDOKU_H

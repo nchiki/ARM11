@@ -5,7 +5,7 @@
 #include <sys/time.h>
 #include <ncurses.h>
 
-char Table[20][11] = {0};
+int Table[20][11] = {0};
 int score = 0;
 char GameOn = 1;
 suseconds_t timer = 500000;
@@ -35,13 +35,6 @@ Grid copyG(Grid g) {
     return newG;
 }
 
-void freeGrid(Grid g) {
-    for (int i = 0; i < g.width; i++) {
-        free(g.matrix[i]);
-    }
-    free(g.matrix);
-}
-
 int checkPos(Grid g) {
     char **matrix2 = g.matrix;
     for (int i = 0; i < g.width; i++) {
@@ -61,7 +54,6 @@ void getG() {
 
     newG.col = rand() % (11 - newG.width + 1);
     newG.row = 0;
-    freeGrid(current);
     current = newG;
     if (!checkPos(current)) {
         GameOn = 0;
@@ -77,7 +69,6 @@ void rotate(Grid g) {
             g.matrix[i][j] = temp.matrix[k][i];
         }
     }
-    freeGrid(temp);
 }
 
 void copyT() {
@@ -137,7 +128,6 @@ void changeCur(int x) {
                 rotate(current);
             break;
     }
-    freeGrid(g);
     printTable();
 }
 
@@ -148,10 +138,19 @@ int checkTime() {
             ((suseconds_t) before.tv_sec * 1000000 + before.tv_usec)) > timer;
 }
 
+void reset() {
+    for (int i = 0; i < 20; i++) {
+        for (int j = 0; j < 11; j++) {
+            Table[i][j] = 0;
+        }
+    }
+}
+
 void runTETRIS(void) {
+    reset();
+    GameOn = 1;
     srand(time(0));
     int c;
-    initscr();
     gettimeofday(&before, NULL);
     nodelay(stdscr, TRUE);
     struct timespec ts = {0, 1000000};
@@ -170,5 +169,7 @@ void runTETRIS(void) {
         }
     }
     printw("\nGame over!\n");
-    freeGrid(current);
+    refresh();
+    while (getch() != 'x') {
+    }
 }

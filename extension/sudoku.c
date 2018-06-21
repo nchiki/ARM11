@@ -1,7 +1,5 @@
 #include "sudoku.h"
 
-char **current;
-
 char initial[9][9] = {
         {' ', ' ', ' ', '2', '6', ' ', '7', ' ', '1'},
         {'6', '8', ' ', ' ', '7', ' ', ' ', '9', ' '},
@@ -26,72 +24,62 @@ char solution[9][9] = {
         {'7', '6', '3', '4', '1', '8', '2', '5', '9'}
 };
 
-void checkSol(char **matrix){
+int checkSol(char matrix[][9]){
     for (int i = 0; i < 9; i++) {
         for (int j = 0; j < 9; j++) {
             if (matrix[i][j] != solution[i][j]) {
-                printw("Your solution is not correct.");
+                return 0;
             }
         }
     }
-    printw("Congratulations, your solution is correct!");
+    return 1;
 }
 
-char **matrix_init(char **matrix) {
-    char **newMatrix = malloc(9 * sizeof(char *));
-
-    if (!newMatrix[0]) {
-        return NULL;
-    } //Failed
-
-    //Allocate each row a line of memory
-    newMatrix[0] = (char *) malloc(9 * 9 * sizeof(char));
-
-    if (!newMatrix[0]) {
-        free(newMatrix);
-        return NULL;
-    } //Failed
-
-    for (int i = 1; i < 9; i++) {
-        newMatrix[i] = newMatrix[i - 1] + 9;
-    }
-
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            newMatrix[i][j] = matrix[i][j];
-        }
-    }
-
-    return newMatrix;
-}
-
-char **change(char **matrix, int x, int y, const char number){
-    char **matrix2 = matrix_init(matrix);
-    matrix[x][y] = number;
-    return matrix2;
-}
-
-void printGrid(char **matrix) {
+void printGrid(char matrix[][9]) {
     for(int i = 0; i < 9; i++){
         printw("|");
         for(int j = 0; j < 9; j++){
-            char *value = matrix[i][j];
-            printw("%c", *value);
+            char value = matrix[i][j];
+            printw("%c", value);
             printw("|");
         }
         printw("\n");
     }
 }
 
+void copyBoard(char grid[][9], char new_grid[][9]) {
+    //Copy over values from one grid to another without altering addresses
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            new_grid[i][j] = grid[i][j];
+        }
+    }
+}
+
 int runSudoku(void) {
-    current = matrix_init((char **) initial);
+    char current[9][9];
+    copyBoard(initial, current);
     while (1) {
+        //Take initial dimensions
+        printw("Press c to make a move or press x to quit: ");
+        refresh();
+
+        noecho();
+        char c = 'a';
+        while (c != 'c' && c != 'x') {
+            c = getch();
+        }
+        if (c == 'x') {
+            break;
+        }
+        echo();
+        clear();
+
         printGrid(current);
         refresh();
         char input[6];
 
-        //Take initial dimensions
-        printw("Put in the coordinates of the cell that you want to fill: ");
+        printw("Please enter the coordinates of the cell you would like to fill: ");
         refresh();
         getnstr(input, sizeof(input));
 
@@ -101,25 +89,23 @@ int runSudoku(void) {
         char number;
 
         //Take initial dimensions
-        printw("Which value should be put in the cell? ");
+        printw("Which value should be put in the cell?");
         refresh();
         scanf("%c", &number);
         clear();
 
-        char **newInitial = change(current, x, y, number);
+        current[x][y] = number;
 
-        char inp[1];
-        printw("Do you want to continue or stop and check if you are right?[y/n]");
+        clear();
+        printGrid(current);
         refresh();
-        getnstr(inp, sizeof(inp));
 
-        if(inp[0] == 'y'){
-            checkSol(current);
+        if (checkSol(current)) {
+            printw("Congratulations, you win!");
+            refresh();
+            getch();
             break;
         }
-
-        current = newInitial;
-        clear();
     }
     return 0;
 }
